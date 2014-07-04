@@ -1,8 +1,8 @@
 <div class="site-index">
     <div>
-        <h2>Create New Tag</h2>
+        <h3>Tag (<?php if(!$tag->isNewRecord): ?><?=$tag->id?><?php else: ?>New<?php endif; ?>)</h3>
     </div>
     <div class="body-content">
-        <p> RENDER PARTIAL WEBFORM HERE </p>
+        <?php echo($this->render('_tag_form', ['tag' => $tag])); ?>
     </div>
 </div>
