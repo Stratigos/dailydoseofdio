@@ -1,11 +1,14 @@
 <?php
 	use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
 ?>
 
-<div id="tag-form" class="form tag-form">
-    <form>
-    	<div>
-    		I am a webform.
-    	</div>
-    </form>
+<div>
+    <?php $form = ActiveForm::begin([
+        'id'      => 'tag-form',
+        'options' => ['class' => 'form-horizontal']
+    ]); ?>
+        <?= $form->field($tag, 'name'); ?>
+        <?= Html::submitButton('Login', ['class' => 'btn btn-primary']); ?>
+    <?php ActiveForm::end(); ?>
 </div>
