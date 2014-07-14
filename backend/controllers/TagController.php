@@ -78,13 +78,20 @@ class TagController extends Controller
     }
 
     /**
-     *
+     * create a new Tag record
      */
     public function actionCreate()
     {
         $tag = new Tag();
 
-        // do needful createy stuff
+        if(Yii::$app->request->isPost) {
+            $tag->load(Yii::$app->request->post());
+            if($tag->save()) {
+                return $this->redirect(['index']);
+            } else {
+                // error do needful
+            }
+        }
 
         return $this->render('create', ['tag' => $tag]);
     }

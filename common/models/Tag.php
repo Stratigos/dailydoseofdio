@@ -34,6 +34,19 @@ class Tag extends ActiveRecord
      */
     public function rules()
     {
-        return [];
+        return [
+            [['name'], 'required'],
+            [['name'], 'string', 'length' => [3, 32]]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'name' => 'Name'
+        ];
     }
 }
