@@ -28,7 +28,7 @@ class TagController extends Controller
                         'roles' => ['@']
                     ]
                 ]
-            ],
+            ]
             // 'verbs' => [
             //     'class'   => VerbFilter::className(),
             //     'actions' => [
@@ -46,7 +46,7 @@ class TagController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction'
-            ],
+            ]
         ];
     }
 
