@@ -9,7 +9,7 @@ class Tag extends ActiveRecord
      * Regular expression used to validate tags.name such that only letters,
      *  numbers, and dashes are allowed. Because fuck underscores in URLs!
      */
-    private static $urlFriendlyPattern = '/[^A-Za-z0-9-]+/'; // because fuck underscores in urls!
+    private static $urlFriendlyPattern = '/[^A-Za-z0-9-]+/';
 
     /**
      * @inheritdoc
