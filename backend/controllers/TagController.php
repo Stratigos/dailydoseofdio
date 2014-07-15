@@ -72,7 +72,6 @@ class TagController extends Controller
                 'createTagUrl' => Yii::$app->urlManager->createUrl('tag/create'),
                 'tags'         => $tags,
                 'pagination'   => $pagination
-
             ]
         );
     }
@@ -82,18 +81,25 @@ class TagController extends Controller
      */
     public function actionCreate()
     {
-        $tag = new Tag();
+        $tag    = new Tag();
+        $errors = [];
 
         if(Yii::$app->request->isPost) {
             $tag->load(Yii::$app->request->post());
             if($tag->save()) {
                 return $this->redirect(['index']);
             } else {
-                // error do needful
+                $errors = $tag->getErrors();
             }
         }
 
-        return $this->render('create', ['tag' => $tag]);
+        return $this->render(
+            'create',
+            [
+                'tag'    => $tag,
+                'errors' => $errors
+            ]
+        );
     }
 
     /**

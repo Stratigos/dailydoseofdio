@@ -6,6 +6,12 @@ use yii\db\ActiveRecord;
 class Tag extends ActiveRecord
 {
     /**
+     * Regular expression used to validate tags.name such that only letters,
+     *  numbers, and dashes are allowed. Because fuck underscores in URLs!
+     */
+    private static $urlFriendlyPattern = '/[^A-Za-z0-9-]+/'; // because fuck underscores in urls!
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -36,8 +42,21 @@ class Tag extends ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'length' => [3, 32]]
+            [['name'], 'string', 'length' => [3, 32]],
+            [['name'], 'unique'],
+            [['name'], 'validateNameURLFriendly']
         ];
+    }
+
+    /**
+     * validate tags.name such that only url-friendly characters are allowed
+     */
+    public function validateNameURLFriendly($attribute)
+    {
+        $value = $this->$attribute;
+        if(preg_match(self::$urlFriendlyPattern, $value)) {
+            $this->addError($attribute, 'Tag name can only contain letters, numbers, and underscores.');
+        }
     }
 
     /**
