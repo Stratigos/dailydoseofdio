@@ -99,7 +99,7 @@ trait ActiveRelationTrait
      * Its signature should be `function($query)`, where `$query` is the query to be customized.
      * @return static the relation object itself.
      */
-    public function via($relationName, $callable = null)
+    public function via($relationName, callable $callable = null)
     {
         $relation = $this->primaryModel->getRelation($relationName);
         $this->via = [$relationName, $relation];
@@ -203,8 +203,12 @@ trait ActiveRelationTrait
             $this->filterByModels($viaModels);
         } elseif (is_array($this->via)) {
             // via relation
-            /* @var $viaQuery ActiveRelationTrait */
+            /* @var $viaQuery ActiveRelationTrait|ActiveQueryTrait */
             list($viaName, $viaQuery) = $this->via;
+            if ($viaQuery->asArray === null) {
+                // inherit asArray from primary query
+                $viaQuery->asArray($this->asArray);
+            }
             $viaQuery->primaryModel = null;
             $viaModels = $viaQuery->populateRelation($viaName, $primaryModels);
             $this->filterByModels($viaModels);

@@ -49,6 +49,7 @@ class Schema extends \yii\db\Schema
         'varchar' => self::TYPE_STRING,
         'string' => self::TYPE_STRING,
         'char' => self::TYPE_STRING,
+        'blob' => self::TYPE_BINARY,
         'datetime' => self::TYPE_DATETIME,
         'year' => self::TYPE_DATE,
         'date' => self::TYPE_DATE,
@@ -251,7 +252,7 @@ class Schema extends \yii\db\Schema
                 $column->defaultValue = new Expression('CURRENT_TIMESTAMP');
             } else {
                 $value = trim($info['dflt_value'], "'\"");
-                $column->defaultValue = $column->typecast($value);
+                $column->defaultValue = $column->phpTypecast($value);
             }
         }
 

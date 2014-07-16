@@ -177,7 +177,7 @@ class Schema extends \yii\db\Schema
             } elseif (isset($type) && $type === 'bit') {
                 $column->defaultValue = bindec(trim($info['Default'],'b\''));
             } else {
-                $column->defaultValue = $column->typecast($info['Default']);
+                $column->defaultValue = $column->phpTypecast($info['Default']);
             }
         }
 
@@ -225,7 +225,7 @@ class Schema extends \yii\db\Schema
      */
     protected function getCreateTableSql($table)
     {
-        $row = $this->db->createCommand('SHOW CREATE TABLE ' . $this->quoteSimpleTableName($table->name))->queryOne();
+        $row = $this->db->createCommand('SHOW CREATE TABLE ' . $this->quoteTableName($table->fullName))->queryOne();
         if (isset($row['Create Table'])) {
             $sql = $row['Create Table'];
         } else {
