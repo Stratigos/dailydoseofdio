@@ -13,7 +13,26 @@ use yii\grid\GridView;
         <div>
             <?php echo(
                 GridView::widget([
-                    'dataProvider' => $tagsDataProvider
+                    'dataProvider' => $tagsDataProvider,
+                    'columns'      => [
+                        ['class' => 'yii\grid\SerialColumn'],
+                        'id',
+                        'name',
+                        [
+                            'label' => 'Created',
+                            'class' => 'yii\grid\DataColumn',
+                            'value' => function ($data) {
+                                return date('Y-m-d H:i:s', $data->created_at);
+                            }
+                        ],
+                        [
+                            'label' => 'Updated',
+                            'class' => 'yii\grid\DataColumn',
+                            'value' => function ($data) {
+                                return date('Y-m-d H:i:s', $data->updated_at);
+                            }
+                        ]
+                    ]
                 ])
             ); ?>
         </div>
