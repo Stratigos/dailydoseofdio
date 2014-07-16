@@ -5,6 +5,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Tag;
 
@@ -55,23 +56,17 @@ class TagController extends Controller
      */
     public function actionIndex()
     {
-        $tagsquery  = Tag::find();
-
-        $pagination = new Pagination(
-            [
-                'defaultPageSize' => 50,
-                'totalCount'      => $tagsquery->count(),
-            ]
-        );
-
-        $tags = $tagsquery->orderBy('id')->offset($pagination->offset)->limit($pagination->limit)->all();
+        // TODO - move instance to controller property
+        $tagsDataProvider = new ActiveDataProvider([
+            'query'      => Tag::find(),
+            'pagination' => ['pageSize' => 50]
+        ]);
 
         return $this->render(
             'index',
             [
-                'createTagUrl' => Yii::$app->urlManager->createUrl('tag/create'),
-                'tags'         => $tags,
-                'pagination'   => $pagination
+                'createTagUrl'     => Yii::$app->urlManager->createUrl('tag/create'),
+                'tagsDataProvider' => $tagsDataProvider
             ]
         );
     }
