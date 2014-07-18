@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -98,24 +99,33 @@ class TagController extends Controller
     }
 
     /**
-     *
+     * edit an existing Tag record
      */
     public function actionUpdate($id)
     {
-        $tag = Tag::find($id);
+        $tag    = Tag::find()->where(['id' => $id])->one();
+        $errors = [];
 
         if($tag === NULL) {
             throw new HttpException(404, "Tag {$id} Not Found");
         }
 
-        // do needful update stuff
-
-        // check for success
-        if(0) {
-            $this->redirect(Yii::$app->urlManager->createUrl('tag/index'));
+        if(Yii::$app->request->isPost) {
+            $tag->load(Yii::$app->request->post());
+            if($tag->save()) {
+                return $this->redirect(['index']);
+            } else {
+                $errors = $tag->getErrors();
+            }
         }
 
-        return $this->render('update', ['tag' => $tag]);
+        return $this->render(
+            'update',
+            [
+                'tag'    => $tag,
+                'errors' => $errors
+            ]
+        );
     }
 
     /**
