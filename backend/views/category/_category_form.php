@@ -18,6 +18,8 @@
     ]); ?>
         <?= $form->field($category, 'name'); ?>
         <?= $form->field($category, 'shortname'); ?>
+        <?= $form->field($category, 'short_description'); ?>
+        <?= $form->field($category, 'description'); ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>

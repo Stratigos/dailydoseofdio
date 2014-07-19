@@ -38,12 +38,14 @@ class m130524_201442_init extends \yii\db\Migration
         $this->createTable(
             '{{%categories}}',
             [
-                'id'         => Schema::TYPE_PK,
-                'name'       => Schema::TYPE_STRING  . '(32) NOT NULL',
-                'shortname'  => Schema::TYPE_STRING  . '(32) NOT NULL',
-                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'id'                => Schema::TYPE_PK,
+                'name'              => Schema::TYPE_STRING  . '(32) NOT NULL',
+                'shortname'         => Schema::TYPE_STRING  . '(32) NOT NULL',
+                'short_description' => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'description'       => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
+                'created_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'updated_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
             ],
             $tableOptions
         );

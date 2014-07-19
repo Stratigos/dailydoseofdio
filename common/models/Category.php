@@ -47,7 +47,9 @@ class Category extends ActiveRecord
             [['shortname'], 'required'],
             [['shortname'], 'string', 'length' => [3, 32]],
             [['shortname'], 'unique'],
-            [['shortname'], 'validateShortnameURLFriendly']
+            [['shortname'], 'validateShortnameURLFriendly'],
+            [['short_description'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 2000]
         ];
     }
 
@@ -71,8 +73,10 @@ class Category extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name'      => 'Name',
-            'shortname' => 'Shortname (URL name)'
+            'name'              => 'Name',
+            'shortname'         => 'Shortname (URL name)',
+            'short_description' => 'Short Description',
+            'description'       => 'Description'
         ];
     }
 }

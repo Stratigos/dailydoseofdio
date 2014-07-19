@@ -18,6 +18,8 @@ use yii\grid\GridView;
                         'id',
                         'name',
                         'shortname',
+                        'short_description',
+                        'description',
                         [
                             'label' => 'Created',
                             'class' => 'yii\grid\DataColumn',
