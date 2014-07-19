@@ -35,6 +35,19 @@ class m130524_201442_init extends \yii\db\Migration
         );
 
         $this->createTable(
+            '{{%categories}}',
+            [
+                'id'         => Schema::TYPE_PK,
+                'name'       => Schema::TYPE_STRING  . '(32) NOT NULL',
+                'shortname'  => Schema::TYPE_STRING  . '(32) NOT NULL',
+                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
             '{{%users}}',
             [
                 'id'                   => Schema::TYPE_PK,
@@ -73,6 +86,7 @@ class m130524_201442_init extends \yii\db\Migration
     public function down()
     {
         $this->dropTable('{{%tags}}');
+        $this->dropTable('{{%categories}}');
         $this->dropTable('{{%users}}');
     }
 }

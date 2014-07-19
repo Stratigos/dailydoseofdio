@@ -3,20 +3,20 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 
-class Tag extends ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * Regular expression used to validate tags.name such that only lc letters,
-     *  numbers, and dashes are allowed. Because fuck underscores in URLs!
+     *  numbers, and dashes are allowed.
      */
-    private static $urlFriendlyPattern = '/[^a-z0-9-]+/';
+    private static $shortnameFriendlyPattern = '/[^a-z0-9-]+/';
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%tags}}';
+        return '{{%categories}}';
     }
 
     /**
@@ -44,18 +44,24 @@ class Tag extends ActiveRecord
             [['name'], 'required'],
             [['name'], 'string', 'length' => [3, 32]],
             [['name'], 'unique'],
-            [['name'], 'validateNameURLFriendly']
+            [['shortname'], 'required'],
+            [['shortname'], 'string', 'length' => [3, 32]],
+            [['shortname'], 'unique'],
+            [['shortname'], 'validateShortnameURLFriendly']
         ];
     }
 
     /**
-     * validate tags.name such that only url-friendly characters are allowed
+     * validate categories.shortname such that only url-friendly characters are allowed
      */
-    public function validateNameURLFriendly($attribute)
+    public function validateShortnameURLFriendly($attribute)
     {
         $value = $this->$attribute;
-        if(preg_match(self::$urlFriendlyPattern, $value)) {
-            $this->addError($attribute, 'Tag name can only contain lower-case letters, numbers, and dashes.');
+        if(preg_match(self::$shortnameFriendlyPattern, $value)) {
+            $this->addError(
+                $attribute,
+                'Category shortname can only contain lower-case letters, numbers, and dashes.'
+            );
         }
     }
 
@@ -65,7 +71,8 @@ class Tag extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name'
+            'name'      => 'Name',
+            'shortname' => 'Shortname (URL name)'
         ];
     }
 }
