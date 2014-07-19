@@ -25,10 +25,12 @@ class TagController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete'],
+                        'actions' => ['view', 'create', 'index', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
+                    // TODO - implement ACLs or Roles, and create lesser role with access to /view/$id
+
                 ]
             ]
             // 'verbs' => [
@@ -59,7 +61,7 @@ class TagController extends Controller
     {
         // TODO - move instance to controller property
         $tagsDataProvider = new ActiveDataProvider([
-            'query'      => Tag::find(),
+            'query'      => Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC]),
             'pagination' => ['pageSize' => 50]
         ]);
 
@@ -68,6 +70,27 @@ class TagController extends Controller
             [
                 'createTagUrl'     => Yii::$app->urlManager->createUrl('tag/create'),
                 'tagsDataProvider' => $tagsDataProvider
+            ]
+        );
+    }
+
+
+    /**
+     * render a view of a Tag's data
+     */
+    public function actionView($id)
+    {
+        $tag = Tag::find()->where(['id' => $id])->one();
+
+        if($tag === NULL) {
+            throw new HttpException(404, "Tag {$id} Not Found");
+        }
+
+        return $this->render(
+            'view',
+            [
+                'indexUrl' => Yii::$app->urlManager->createUrl('tag/index'),
+                'tag'      => $tag
             ]
         );
     }
@@ -129,11 +152,23 @@ class TagController extends Controller
     }
 
     /**
-     *
+     * soft delete a Tag record
      */
-    public function actionDelete()
-    {
-        // check for AJAX request
-        // dont redirect or render anything
+    public function actionDelete($id)
+    {   
+        //$errors = [];
+        if($tag = Tag::find()->where(['id' => $id])->one()) {
+            $tag->deleted_at = time();
+            if($tag->save()) {
+                return $this->redirect(['index']);
+            } else {
+                $errors[] = "Error deleting tag: {$id}";
+            }
+        }
+        //  else {
+        //     $errors[] = "Unable to locate tag: {$id}";
+        // }
+
+        // display errors
     }
 }

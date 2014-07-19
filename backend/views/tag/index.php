@@ -1,7 +1,7 @@
 <?php
 use yii\grid\GridView;
 ?>
-<div class="site-index">
+<div class="tag-index">
     <div>
         <h1>Tags Management</h1>
         <p class="lead">Create, View, Update, and Delete Tags.</p>
