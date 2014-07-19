@@ -17,6 +17,7 @@ use yii\grid\GridView;
                     'columns'      => [
                         'id',
                         'name',
+                        'shortname',
                         [
                             'label' => 'Created',
                             'class' => 'yii\grid\DataColumn',

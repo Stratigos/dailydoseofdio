@@ -17,6 +17,7 @@
         'options' => ['class' => 'form-horizontal']
     ]); ?>
         <?= $form->field($tag, 'name'); ?>
+        <?= $form->field($tag, 'shortname'); ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>
