@@ -18,8 +18,8 @@
     ]); ?>
         <?= $form->field($category, 'name'); ?>
         <?= $form->field($category, 'shortname'); ?>
-        <?= $form->field($category, 'short_description'); ?>
-        <?= $form->field($category, 'description'); ?>
+        <?= $form->field($category, 'short_description')->textarea(); ?>
+        <?= $form->field($category, 'description')->textarea(); ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>
