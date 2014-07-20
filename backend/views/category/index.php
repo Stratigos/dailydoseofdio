@@ -18,8 +18,18 @@ use yii\grid\GridView;
                         'id',
                         'name',
                         'shortname',
-                        'short_description',
-                        'description',
+                        [
+                            'label' => 'Short Description',
+                            'value' => function($data) {
+                                return empty($data->short_description) ? '' : substr($data->short_description, 0, 50);
+                            }
+                        ],
+                        [
+                            'label' => 'Description',
+                            'value' => function($data) {
+                                return empty($data->description) ? '' : substr($data->description, 0, 50);
+                            }
+                        ],
                         [
                             'label' => 'Created',
                             'class' => 'yii\grid\DataColumn',
