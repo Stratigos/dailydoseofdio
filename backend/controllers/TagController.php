@@ -80,7 +80,7 @@ class TagController extends Controller
      */
     public function actionView($id)
     {
-        $tag = Tag::find()->where(['id' => $id])->one();
+        $tag = Tag::find()->where('id = :_id', [':_id' => $id])->one();
 
         if($tag === NULL) {
             throw new HttpException(404, "Tag {$id} Not Found");
@@ -126,7 +126,7 @@ class TagController extends Controller
      */
     public function actionUpdate($id)
     {
-        $tag    = Tag::find()->where(['id' => $id])->one();
+        $tag    = Tag::find()->where('id = :_id', [':_id' => $id])->one();
         $errors = [];
 
         if($tag === NULL) {
@@ -157,7 +157,7 @@ class TagController extends Controller
     public function actionDelete($id)
     {   
         //$errors = [];
-        if($tag = Tag::find()->where(['id' => $id])->one()) {
+        if($tag = Tag::find()->where('id = :_id', [':_id' => $id])->one()) {
             $tag->deleted_at = time();
             if($tag->save()) {
                 return $this->redirect(['index']);

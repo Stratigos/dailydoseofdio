@@ -77,7 +77,7 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
-        $category = Category::find()->where(['id' => $id])->one();
+        $category = Category::find()->where('id = :_id', [':_id' => $id])->one();
 
         if($category === NULL) {
             throw new HttpException(404, "Category {$id} Not Found");
@@ -123,8 +123,8 @@ class CategoryController extends Controller
      */
     public function actionUpdate($id)
     {
-        $category = Category::find()->where(['id' => $id])->one();
-        $errors   = [];
+        $category = Category::find()->where('id = :_id', [':_id' => $id])->one();
+        $errors = [];
 
         if($category === NULL) {
             throw new HttpException(404, "Category {$id} Not Found");
@@ -154,7 +154,7 @@ class CategoryController extends Controller
     public function actionDelete($id)
     {   
         //$errors = [];
-        if($category = Category::find()->where(['id' => $id])->one()) {
+        if($category = Category::find()->where('id = :_id', [':_id' => $id])->one()) {
             $category->deleted_at = time();
             if($category->save()) {
                 return $this->redirect(['index']);
