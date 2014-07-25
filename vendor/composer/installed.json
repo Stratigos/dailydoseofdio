@@ -114,18 +114,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/twbs/bootstrap.git",
-            "reference": "866ffc4f37def3d505a10a161720dc0ef9420dea"
+            "reference": "2c4641855dd0505608566489392ed35aaa6cf2e3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/866ffc4f37def3d505a10a161720dc0ef9420dea",
-            "reference": "866ffc4f37def3d505a10a161720dc0ef9420dea",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/2c4641855dd0505608566489392ed35aaa6cf2e3",
+            "reference": "2c4641855dd0505608566489392ed35aaa6cf2e3",
             "shasum": ""
         },
         "replace": {
             "twitter/bootstrap": "self.version"
         },
-        "time": "2014-07-17 17:07:28",
+        "time": "2014-07-24 22:16:08",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -212,110 +212,6 @@
         ],
         "description": "pushState + ajax = pjax, a forked maintainted by the Yii Framework core developers",
         "homepage": "https://github.com/yiisoft/jquery-pjax#readme"
-    },
-    {
-        "name": "yiisoft/yii2-composer",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-composer.git",
-            "reference": "47dbc7c4a323086ba96dc4a9c3ff85c9f08d2615"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/47dbc7c4a323086ba96dc4a9c3ff85c9f08d2615",
-            "reference": "47dbc7c4a323086ba96dc4a9c3ff85c9f08d2615",
-            "shasum": ""
-        },
-        "require": {
-            "composer-plugin-api": "1.0.0"
-        },
-        "time": "2014-07-03 12:33:09",
-        "type": "composer-plugin",
-        "extra": {
-            "class": "yii\\composer\\Plugin"
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\composer\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com",
-                "homepage": "http://www.yiiframework.com/",
-                "role": "Founder and project lead"
-            }
-        ],
-        "description": "The composer plugin for Yii extension installer",
-        "keywords": [
-            "composer",
-            "extension installer",
-            "yii2"
-        ]
-    },
-    {
-        "name": "swiftmailer/swiftmailer",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/swiftmailer/swiftmailer.git",
-            "reference": "1471619d856da006a4de443355d6339325b3f46e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/1471619d856da006a4de443355d6339325b3f46e",
-            "reference": "1471619d856da006a4de443355d6339325b3f46e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9.1"
-        },
-        "time": "2014-07-03 13:54:59",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "lib/swift_required.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com",
-                "homepage": "http://fabien.potencier.org",
-                "role": "Lead Developer"
-            },
-            {
-                "name": "Chris Corbyn"
-            }
-        ],
-        "description": "Swiftmailer, free feature-rich PHP mailer",
-        "homepage": "http://swiftmailer.org",
-        "keywords": [
-            "mail",
-            "mailer"
-        ]
     },
     {
         "name": "yiisoft/yii2-swiftmailer",
@@ -490,18 +386,118 @@
         "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays)."
     },
     {
+        "name": "yiisoft/yii2-composer",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-composer.git",
+            "reference": "e5614b13ee4c30c1e322aaf95855140580bc109a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/e5614b13ee4c30c1e322aaf95855140580bc109a",
+            "reference": "e5614b13ee4c30c1e322aaf95855140580bc109a",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "1.0.0"
+        },
+        "time": "2014-07-19 19:39:03",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "yii\\composer\\Plugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\composer\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com"
+            }
+        ],
+        "description": "The composer plugin for Yii extension installer",
+        "keywords": [
+            "composer",
+            "extension installer",
+            "yii2"
+        ]
+    },
+    {
+        "name": "swiftmailer/swiftmailer",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/swiftmailer/swiftmailer.git",
+            "reference": "e27c50e6f768aecbc46666994ccc9b2f77fd8ade"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e27c50e6f768aecbc46666994ccc9b2f77fd8ade",
+            "reference": "e27c50e6f768aecbc46666994ccc9b2f77fd8ade",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.1"
+        },
+        "time": "2014-07-22 15:44:41",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Corbyn"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "mail",
+            "mailer"
+        ]
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "d1bcf27fe5a6567055f00f7be09fd6800a4ed1ed"
+            "reference": "5d09acba3d3d215ed519168ffe1378c1714e4ee9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d1bcf27fe5a6567055f00f7be09fd6800a4ed1ed",
-            "reference": "d1bcf27fe5a6567055f00f7be09fd6800a4ed1ed",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5d09acba3d3d215ed519168ffe1378c1714e4ee9",
+            "reference": "5d09acba3d3d215ed519168ffe1378c1714e4ee9",
             "shasum": ""
         },
         "require": {
@@ -514,7 +510,7 @@
             "yiisoft/jquery-pjax": "*",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2014-07-18 15:54:09",
+        "time": "2014-07-25 14:24:54",
         "bin": [
             "yii"
         ],
@@ -579,19 +575,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-            "reference": "1b86f9f1e364b60a82e44ae4fe02cdf9ce3ed49d"
+            "reference": "b74f3b0d65f2650aac72a63c72db04e18e86a883"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1b86f9f1e364b60a82e44ae4fe02cdf9ce3ed49d",
-            "reference": "1b86f9f1e364b60a82e44ae4fe02cdf9ce3ed49d",
+            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/b74f3b0d65f2650aac72a63c72db04e18e86a883",
+            "reference": "b74f3b0d65f2650aac72a63c72db04e18e86a883",
             "shasum": ""
         },
         "require": {
             "twbs/bootstrap": "3.2.* | 3.1.* | 3.0.*",
             "yiisoft/yii2": "*"
         },
-        "time": "2014-07-18 15:24:34",
+        "time": "2014-07-22 04:10:23",
         "type": "yii2-extension",
         "installation-source": "dist",
         "autoload": {
@@ -606,9 +602,7 @@
         "authors": [
             {
                 "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com",
-                "homepage": "http://www.yiiframework.com/",
-                "role": "Founder and project lead"
+                "email": "qiang.xue@gmail.com"
             }
         ],
         "description": "The Twitter Bootstrap extension for the Yii framework",
@@ -624,12 +618,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-gii.git",
-            "reference": "c50b66be57b5b666c6f8e660e9d9b2948255a64d"
+            "reference": "3919852efa2a4526d8388b4c9d5b8590b0ebf85a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/c50b66be57b5b666c6f8e660e9d9b2948255a64d",
-            "reference": "c50b66be57b5b666c6f8e660e9d9b2948255a64d",
+            "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/3919852efa2a4526d8388b4c9d5b8590b0ebf85a",
+            "reference": "3919852efa2a4526d8388b4c9d5b8590b0ebf85a",
             "shasum": ""
         },
         "require": {
@@ -637,7 +631,7 @@
             "yiisoft/yii2": "*",
             "yiisoft/yii2-bootstrap": "*"
         },
-        "time": "2014-07-17 16:31:56",
+        "time": "2014-07-25 11:01:13",
         "type": "yii2-extension",
         "installation-source": "dist",
         "autoload": {
@@ -652,9 +646,7 @@
         "authors": [
             {
                 "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com",
-                "homepage": "http://www.yiiframework.com/",
-                "role": "Founder and project lead"
+                "email": "qiang.xue@gmail.com"
             }
         ],
         "description": "The Gii extension for the Yii framework",

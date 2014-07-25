@@ -13,6 +13,10 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'ihavenoideawhatiamdoing',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -28,7 +32,7 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
+        ]
     ],
-    'params' => $params,
+    'params' => $params
 ];
