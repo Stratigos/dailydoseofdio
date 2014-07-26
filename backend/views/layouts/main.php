@@ -30,18 +30,82 @@ AppAsset::register($this);
                 'options'    => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
+
+
             ]);
             $menuItems = [
                 [
                     'label' => 'Home',
                     'url'   => ['/site/index']
                 ],
+                [
+                    'label' => 'Content',
+                    'items' => [
+                        [
+                            'label' => 'Posts',
+                            'url'   => '#'
+                        ],
+                        [
+                            'label' => 'Pages',
+                            'url'   => '/index.php?r=page/index'
+                        ],
+                        [
+                            'label' => 'Dio Sites',
+                            'url'   => '/index.php?r=diosite/index'
+                        ]
+                    ]
+                ],
+                [
+                    'label' => 'Taxonomy',
+                    'items' => [
+                        [
+                            'label' => 'Blogs',
+                            'url'   => '#'
+                        ],
+                        [
+                            'label' => 'Categories',
+                            'url'   => '/index.php?r=category/index'
+                        ],
+                        [
+                            'label' => 'Tags',
+                            'url'   => '/index.php?r=tag/index'
+                        ]
+                    ]
+                ],
+                [
+                    'label' => 'Promotionals',
+                    'items' => [
+                        '<li class="divider"></li>',
+                        '<li class="dropdown-header">Under Construction</li>'
+                    ]
+                ],
+                [
+                    'label' => 'Hello, ' . Yii::$app->user->identity->username,
+                    'items' => [
+                        '<li class="divider"></li>',
+                        '<li class="dropdown-header">Cool Header Bro</li>',
+                        [
+                            'label' => 'Profile',
+                            'url'   => '#'
+                        ],
+                        [
+                            'label' => 'Some Crap',
+                            'url'   => '#'
+                        ],
+                        '<li class="divider"></li>',
+                        '<li class="dropdown-header">Misc</li>',
+                        [
+                            'label' => 'Home',
+                            'url'   => ['/site/index']
+                        ]
+                    ]
+                ],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label'       => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label'       => 'Logout',
                     'url'         => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
