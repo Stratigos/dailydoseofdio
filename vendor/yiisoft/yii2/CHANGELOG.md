@@ -72,6 +72,7 @@ Yii Framework 2 Change Log
 - Bug #4409: Upper case letters in subdirectory prefixes of controller IDs were not properly handled (qiangxue)
 - Bug #4412: Formatter used SI Prefixes for base 1024, now uses binary prefixes (kmindi)
 - Bug #4427: Formatter could do one division too much (kmindi)
+- Bug #4453: `yii message/extract` wasn't properly writing to po files in case of multiple categories (samdark)
 - Bug: Fixed inconsistent return of `\yii\console\Application::runAction()` (samdark)
 - Bug: URL encoding for the route parameter added to `\yii\web\UrlManager` (klimov-paul)
 - Bug: Fixed the bug that requesting protected or private action methods would cause 500 error instead of 404 (qiangxue)
@@ -148,6 +149,11 @@ Yii Framework 2 Change Log
 - Enh #4080: Added proper handling and support of the symlinked directories in `FileHelper`, added $options parameter in `FileHelper::removeDirectory()` (resurtm)
 - Enh #4086: changedAttributes of afterSave Event now contain old values (dizews)
 - Enh #4114: Added `Security::generateRandomBytes()`, improved tests (samdark)
+- Enh #4131: Security adjustments (tom--)
+     - Added HKDF to `yii\base\Security`.
+     - Reverted auto fallback to PHP PBKDF2.
+     - Fixed PBKDF2 key truncation.
+     - Adjusted API.
 - Enh #4209: Added `beforeCopy`, `afterCopy`, `forceCopy` properties to AssetManager (cebe)
 - Enh #4297: Added check for DOM extension to requirements (samdark)
 - Enh #4317: Added `absoluteAuthTimeout` to yii\web\User (ivokund, nkovacs)
