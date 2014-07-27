@@ -78,8 +78,12 @@ AppAsset::register($this);
                         '<li class="divider"></li>',
                         '<li class="dropdown-header">Under Construction</li>'
                     ]
-                ],
-                [
+                ]
+            ];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            } else {
+                $menuItems[] = [
                     'label' => 'Hello, ' . Yii::$app->user->identity->username,
                     'items' => [
                         '<li class="divider"></li>',
@@ -98,16 +102,12 @@ AppAsset::register($this);
                             'label' => 'Home',
                             'url'   => ['/site/index']
                         ]
+                    ],
+                    [
+                        'label'       => 'Logout',
+                        'url'         => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post']
                     ]
-                ],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label'       => 'Logout',
-                    'url'         => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
                 ];
             }
             echo Nav::widget([
