@@ -101,12 +101,12 @@ AppAsset::register($this);
                         [
                             'label' => 'Home',
                             'url'   => ['/site/index']
+                        ],
+                        [
+                            'label'       => 'Logout',
+                            'url'         => ['/site/logout'],
+                            'linkOptions' => ['data-method' => 'post']
                         ]
-                    ],
-                    [
-                        'label'       => 'Logout',
-                        'url'         => ['/site/logout'],
-                        'linkOptions' => ['data-method' => 'post']
                     ]
                 ];
             }
