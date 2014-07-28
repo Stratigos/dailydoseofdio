@@ -114,18 +114,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/twbs/bootstrap.git",
-            "reference": "c2f4e5fef1e9f11fa532cb98ccf088e8890e25fc"
+            "reference": "5892273a2367ccc0b599414e848ccabd74781403"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/c2f4e5fef1e9f11fa532cb98ccf088e8890e25fc",
-            "reference": "c2f4e5fef1e9f11fa532cb98ccf088e8890e25fc",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/5892273a2367ccc0b599414e848ccabd74781403",
+            "reference": "5892273a2367ccc0b599414e848ccabd74781403",
             "shasum": ""
         },
         "replace": {
             "twitter/bootstrap": "self.version"
         },
-        "time": "2014-07-25 18:02:30",
+        "time": "2014-07-28 00:08:27",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -432,60 +432,6 @@
         ]
     },
     {
-        "name": "swiftmailer/swiftmailer",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/swiftmailer/swiftmailer.git",
-            "reference": "e27c50e6f768aecbc46666994ccc9b2f77fd8ade"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e27c50e6f768aecbc46666994ccc9b2f77fd8ade",
-            "reference": "e27c50e6f768aecbc46666994ccc9b2f77fd8ade",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9.1"
-        },
-        "time": "2014-07-22 15:44:41",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "lib/swift_required.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Chris Corbyn"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Swiftmailer, free feature-rich PHP mailer",
-        "homepage": "http://swiftmailer.org",
-        "keywords": [
-            "mail",
-            "mailer"
-        ]
-    },
-    {
         "name": "yiisoft/yii2-bootstrap",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -574,18 +520,72 @@
         ]
     },
     {
+        "name": "swiftmailer/swiftmailer",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/swiftmailer/swiftmailer.git",
+            "reference": "62478c4c4ed84939a5457b15f9b978b58d0db849"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/62478c4c4ed84939a5457b15f9b978b58d0db849",
+            "reference": "62478c4c4ed84939a5457b15f9b978b58d0db849",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.1"
+        },
+        "time": "2014-07-28 09:34:50",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/swift_required.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Corbyn"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Swiftmailer, free feature-rich PHP mailer",
+        "homepage": "http://swiftmailer.org",
+        "keywords": [
+            "mail",
+            "mailer"
+        ]
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "87a5e7e4f583502aa0218ee0e348f7cd49a98c59"
+            "reference": "b7591b28df1a250dbb6c9e74721da68df09f953d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/87a5e7e4f583502aa0218ee0e348f7cd49a98c59",
-            "reference": "87a5e7e4f583502aa0218ee0e348f7cd49a98c59",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b7591b28df1a250dbb6c9e74721da68df09f953d",
+            "reference": "b7591b28df1a250dbb6c9e74721da68df09f953d",
             "shasum": ""
         },
         "require": {
@@ -598,7 +598,7 @@
             "yiisoft/jquery-pjax": "*",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2014-07-27 20:11:57",
+        "time": "2014-07-28 18:15:59",
         "bin": [
             "yii"
         ],

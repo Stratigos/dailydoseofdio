@@ -30,7 +30,7 @@ use yii\di\ServiceLocator;
  * @property string $layoutPath The root directory of layout files. Defaults to "[[viewPath]]/layouts".
  * @property array $modules The modules (indexed by their IDs).
  * @property string $uniqueId The unique ID of the module. This property is read-only.
- * @property string $viewPath The root directory of view files. Defaults to "[[basePath]]/view".
+ * @property string $viewPath The root directory of view files. Defaults to "[[basePath]]/views".
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -241,7 +241,7 @@ class Module extends ServiceLocator
 
     /**
      * Returns the directory that contains the view files for this module.
-     * @return string the root directory of view files. Defaults to "[[basePath]]/view".
+     * @return string the root directory of view files. Defaults to "[[basePath]]/views".
      */
     public function getViewPath()
     {
