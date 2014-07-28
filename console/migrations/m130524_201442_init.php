@@ -23,11 +23,12 @@ class m130524_201442_init extends \yii\db\Migration
         }
 
         $this->createTable(
-            '{{%diosites}}',
+            '{{%pages}}',
             [
                 'id'         => Schema::TYPE_PK,
                 'title'      => Schema::TYPE_STRING  . '(64) NOT NULL',
-                'url'        => Schema::TYPE_STRING  . '(2000) NOT NULL',
+                'shortname'  => Schema::TYPE_STRING  . '(32) NOT NULL',
+                'body'       => Schema::TYPE_TEXT    . ' DEFAULT NULL',
                 'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
@@ -36,12 +37,11 @@ class m130524_201442_init extends \yii\db\Migration
         );
 
         $this->createTable(
-            '{{%pages}}',
+            '{{%diosites}}',
             [
                 'id'         => Schema::TYPE_PK,
                 'title'      => Schema::TYPE_STRING  . '(64) NOT NULL',
-                'shortname'  => Schema::TYPE_STRING  . '(32) NOT NULL',
-                'body'       => Schema::TYPE_TEXT    . ' DEFAULT NULL',
+                'url'        => Schema::TYPE_STRING  . '(2000) NOT NULL',
                 'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
@@ -72,6 +72,24 @@ class m130524_201442_init extends \yii\db\Migration
                 'description'       => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
                 'created_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
+            '{{%bloggers}}',
+            [
+                'id'                => Schema::TYPE_PK,
+                'display_name'      => Schema::TYPE_STRING   . '(64) NOT NULL',
+                'shortname'         => Schema::TYPE_STRING   . '(32) NOT NULL',
+                'short_description' => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'description'       => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
+                'dio_favorite'      => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'rank'              => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT 0',
+                'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
+                'created_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
+                'updated_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
                 'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
             ],
             $tableOptions
@@ -115,10 +133,11 @@ class m130524_201442_init extends \yii\db\Migration
 
     public function down()
     {
-        $this->dropTable('{{%diosites}}');
         $this->dropTable('{{%pages}}');
+        $this->dropTable('{{%diosites}}');
         $this->dropTable('{{%tags}}');
         $this->dropTable('{{%categories}}');
+        $this->dropTable('{{%bloggers}}');
         $this->dropTable('{{%users}}');
     }
 }
