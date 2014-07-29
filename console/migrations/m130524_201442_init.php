@@ -83,14 +83,15 @@ class m130524_201442_init extends \yii\db\Migration
                 'id'                => Schema::TYPE_PK,
                 'display_name'      => Schema::TYPE_STRING   . '(64) NOT NULL',
                 'shortname'         => Schema::TYPE_STRING   . '(32) NOT NULL',
-                'short_description' => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
-                'description'       => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
-                'dio_favorite'      => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'image'             => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
+                'short_description' => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
+                'description'       => Schema::TYPE_STRING   . '(2000) DEFAULT NULL',
+                'dio_favorite'      => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
                 'rank'              => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT 0',
                 'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
                 'created_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
                 'updated_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
-                'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'deleted_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL'
             ],
             $tableOptions
         );
