@@ -81,7 +81,7 @@ class m130524_201442_init extends \yii\db\Migration
             '{{%bloggers}}',
             [
                 'id'                => Schema::TYPE_PK,
-                'display_name'      => Schema::TYPE_STRING   . '(64) NOT NULL',
+                'name'              => Schema::TYPE_STRING   . '(64) NOT NULL',
                 'shortname'         => Schema::TYPE_STRING   . '(32) NOT NULL',
                 'image'             => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
                 'short_description' => Schema::TYPE_STRING   . '(255) DEFAULT NULL',

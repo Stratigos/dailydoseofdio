@@ -3,10 +3,10 @@ namespace common\models;
 
 use yii\db\ActiveRecord;
 
-class Category extends ActiveRecord
+class Blogger extends ActiveRecord
 {
     /**
-     * Regular expression used to validate categories.shortname such that only lc letters,
+     * Regular expression used to validate blogers.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
      */
     private static $shortnameFriendlyPattern = '/[^a-z0-9-]+/';
@@ -42,19 +42,23 @@ class Category extends ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['name'], 'string', 'length' => [3, 32]],
+            [['name'], 'string', 'length' => [3, 64]],
             [['name'], 'unique'],
             [['shortname'], 'required'],
             [['shortname'], 'string', 'length' => [3, 32]],
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
+            // IMAGE RULES...
             [['short_description'], 'string', 'max' => 255],
-            [['description'], 'string', 'max' => 2000]
+            [['description'], 'string', 'max' => 2000],
+            [['dio_favorite'], 'string', 'max' => 255],
+            [['rank'], 'integer', 'min' => 0, 'max' => 999],
+            [['status'], 'integer', 'min' => 0]
         ];
     }
 
     /**
-     * validate categories.shortname such that only url-friendly characters are allowed
+     * validate bloggers.shortname such that only url-friendly characters are allowed
      */
     public function validateShortnameURLFriendly($attribute)
     {
@@ -62,7 +66,7 @@ class Category extends ActiveRecord
         if(preg_match(self::$shortnameFriendlyPattern, $value)) {
             $this->addError(
                 $attribute,
-                'Category shortname can only contain lower-case letters, numbers, and dashes.'
+                'Blogger shortname can only contain lower-case letters, numbers, and dashes.'
             );
         }
     }
@@ -76,7 +80,10 @@ class Category extends ActiveRecord
             'name'              => 'Name',
             'shortname'         => 'Shortname (URL name)',
             'short_description' => 'Short Description',
-            'description'       => 'Description'
+            'description'       => 'Description',
+            'dio_favorite'      => 'Dio-Favorite',
+            'rank'              => 'Rank',
+            'status'            => 'Status'
         ];
     }
 }
