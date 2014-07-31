@@ -31,7 +31,7 @@ class m130524_201442_init extends \yii\db\Migration
                 'body'       => Schema::TYPE_TEXT    . ' DEFAULT NULL',
                 'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
             ],
             $tableOptions
         );
@@ -42,9 +42,9 @@ class m130524_201442_init extends \yii\db\Migration
                 'id'         => Schema::TYPE_PK,
                 'title'      => Schema::TYPE_STRING  . '(64) NOT NULL',
                 'url'        => Schema::TYPE_STRING  . '(2000) NOT NULL',
-                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
             ],
             $tableOptions
         );
@@ -55,9 +55,9 @@ class m130524_201442_init extends \yii\db\Migration
                 'id'         => Schema::TYPE_PK,
                 'name'       => Schema::TYPE_STRING  . '(32) NOT NULL',
                 'shortname'  => Schema::TYPE_STRING  . '(32) NOT NULL',
-                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'created_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'updated_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'deleted_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
             ],
             $tableOptions
         );
@@ -70,9 +70,9 @@ class m130524_201442_init extends \yii\db\Migration
                 'shortname'         => Schema::TYPE_STRING  . '(32) NOT NULL',
                 'short_description' => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
                 'description'       => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
-                'created_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'updated_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL'
+                'created_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'updated_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'deleted_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
             ],
             $tableOptions
         );
@@ -89,9 +89,9 @@ class m130524_201442_init extends \yii\db\Migration
                 'dio_favorite'      => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
                 'rank'              => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT 0',
                 'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
-                'created_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
-                'updated_at'        => Schema::TYPE_INTEGER  . ' NOT NULL',
-                'deleted_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL'
+                'created_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
+                'updated_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
+                'deleted_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0'
             ],
             $tableOptions
         );
@@ -107,8 +107,8 @@ class m130524_201442_init extends \yii\db\Migration
                 'email'                => Schema::TYPE_STRING   . ' NOT NULL',
                 'role'                 => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
                 'status'               => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
-                'created_at'           => Schema::TYPE_INTEGER  . ' NOT NULL',
-                'updated_at'           => Schema::TYPE_INTEGER  . ' NOT NULL',
+                'created_at'           => Schema::TYPE_INTEGER  . ' NOT NULL DEFAULT 0',
+                'updated_at'           => Schema::TYPE_INTEGER  . ' NOT NULL DEFAULT 0',
             ],
             $tableOptions
         );
