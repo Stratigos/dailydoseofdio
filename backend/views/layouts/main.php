@@ -63,6 +63,10 @@ AppAsset::register($this);
                             'url'   => '#'
                         ],
                         [
+                            'label' => 'Bloggers',
+                            'url'   => 'index.php?r=blogger/index'
+                        ],
+                        [
                             'label' => 'Categories',
                             'url'   => '/index.php?r=category/index'
                         ],
