@@ -70,8 +70,9 @@ class BloggerController extends Controller
      */
     public function actionCreate()
     {
+        $errors  = [];
         $blogger = new Blogger();
-        $errors   = [];
+        $blogger->loadDefaultValues();
 
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
