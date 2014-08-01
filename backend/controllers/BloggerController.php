@@ -65,27 +65,6 @@ class BloggerController extends Controller
         );
     }
 
-
-    /**
-     * render a view of a Blogger's data
-     */
-    public function actionView($id)
-    {
-        $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
-
-        if($blogger === NULL) {
-            throw new HttpException(404, "Blogger {$id} Not Found");
-        }
-
-        return $this->render(
-            'view',
-            [
-                'indexUrl' => Yii::$app->urlManager->createUrl('blogger/index'),
-                'blogger' => $blogger
-            ]
-        );
-    }
-
     /**
      * create a new Blogger record
      */
