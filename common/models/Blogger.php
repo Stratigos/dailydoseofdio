@@ -5,6 +5,13 @@ use yii\db\ActiveRecord;
 
 class Blogger extends ActiveRecord
 {
+
+    /**
+     * default values for bloggers.status
+     */
+    const STATUS_HIDDEN    = 0;
+    const STATUS_DISPLAYED = 1;
+
     /**
      * Regular expression used to validate blogers.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
@@ -53,7 +60,7 @@ class Blogger extends ActiveRecord
             [['description'], 'string', 'max' => 2000],
             [['dio_favorite'], 'string', 'max' => 255],
             [['rank'], 'integer', 'min' => 0, 'max' => 999],
-            [['status'], 'integer', 'min' => 0]
+            [['status'], 'integer', 'min' => 0, 'max' => 1]
         ];
     }
 

@@ -1,6 +1,7 @@
 <?php
 	use yii\helpers\Html;
     use yii\widgets\ActiveForm;
+    use common\models\Blogger;
 ?>
 <div>
     <div id="blogger-form-errors" class="form-errors-cont">
@@ -22,8 +23,13 @@
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
         <?= $form->field($blogger, 'description')->textarea(); ?>
         <?= $form->field($blogger, 'dio_favorite'); ?>
-        <?= $form->field($blogger, 'rank'); ?>
-        <?= $form->field($blogger, 'status'); ?>
+        <?= $form->field($blogger, 'rank')->input('text', array('size' => 20, 'maxlength' => 3)); ?>
+        <?= $form->field($blogger, 'status')->radioList(
+            array(
+                Blogger::STATUS_HIDDEN    => 'Hidden',
+                Blogger::STATUS_DISPLAYED => 'Displayed'
+            )
+        ); ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>
