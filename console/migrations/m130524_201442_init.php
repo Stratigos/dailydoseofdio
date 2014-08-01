@@ -88,7 +88,7 @@ class m130524_201442_init extends \yii\db\Migration
                 'description'       => Schema::TYPE_STRING   . '(2000) DEFAULT NULL',
                 'dio_favorite'      => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
                 'rank'              => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT 0',
-                'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 1',
+                'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
                 'created_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
                 'updated_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
                 'deleted_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0'
