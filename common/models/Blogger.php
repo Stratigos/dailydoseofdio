@@ -13,7 +13,7 @@ class Blogger extends ActiveRecord
     const STATUS_DISPLAYED = 1;
 
     /**
-     * Regular expression used to validate blogers.shortname such that only lc letters,
+     * Regular expression used to validate bloggers.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
      */
     private static $shortnameFriendlyPattern = '/[^a-z0-9-]+/';
