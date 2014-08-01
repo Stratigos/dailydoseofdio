@@ -78,6 +78,25 @@ class m130524_201442_init extends \yii\db\Migration
         );
 
         $this->createTable(
+            '{{%blogs}}',
+            [
+                'id'                => Schema::TYPE_PK,
+                'title'             => Schema::TYPE_STRING   . '(128) NOT NULL',
+                'shortname'         => Schema::TYPE_STRING   . '(32) NOT NULL',
+                'image'             => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
+                'short_description' => Schema::TYPE_STRING   . '(255) DEFAULT NULL',
+                'description'       => Schema::TYPE_STRING   . '(2000) DEFAULT NULL',
+                'keywords'          => Schema::TYPE_STRING   . '(2000) DEFAULT NULL',
+                'rank'              => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT 0',
+                'status'            => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
+                'created_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
+                'updated_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0',
+                'deleted_at'        => Schema::TYPE_INTEGER  . ' UNSIGNED NOT NULL DEFAULT 0'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
             '{{%bloggers}}',
             [
                 'id'                => Schema::TYPE_PK,

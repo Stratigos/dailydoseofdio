@@ -60,7 +60,7 @@ AppAsset::register($this);
                     'items' => [
                         [
                             'label' => 'Blogs',
-                            'url'   => '#'
+                            'url'   => 'index.php?r=blog/index'
                         ],
                         [
                             'label' => 'Bloggers',
