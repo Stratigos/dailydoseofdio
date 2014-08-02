@@ -10,8 +10,14 @@ class m130524_201442_init extends \yii\db\Migration
 {
     /**
      * creates the following tables:
+     *  + pages
+     *  + diosites
+     *  + categories
      *  + tags
+     *  + blogs
+     *  + bloggers
      *  + users
+     *  
      * creates the following instances/records:
      *  + user: admin 
      */
@@ -157,6 +163,7 @@ class m130524_201442_init extends \yii\db\Migration
         $this->dropTable('{{%diosites}}');
         $this->dropTable('{{%tags}}');
         $this->dropTable('{{%categories}}');
+        $this->dropTable('{{%blogs}}');
         $this->dropTable('{{%bloggers}}');
         $this->dropTable('{{%users}}');
     }
