@@ -29,6 +29,26 @@ class m130524_201442_init extends \yii\db\Migration
         }
 
         $this->createTable(
+            '{{%posts}}',
+            [
+                'id'           => Schema::TYPE_PK,
+                'type_id'      => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
+                'category_id'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'blog_id'      => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'blogger_id'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0',
+                'title'        => Schema::TYPE_STRING  . '(128) NOT NULL',
+                'shortname'    => Schema::TYPE_STRING  . '(128) NOT NULL',
+                'body'         => Schema::TYPE_TEXT    . ' DEFAULT NULL',
+                'status'       => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
+                'published_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'created_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'updated_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'deleted_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
             '{{%pages}}',
             [
                 'id'         => Schema::TYPE_PK,
@@ -159,6 +179,7 @@ class m130524_201442_init extends \yii\db\Migration
 
     public function down()
     {
+        $this->dropTable('{{%posts}}');
         $this->dropTable('{{%pages}}');
         $this->dropTable('{{%diosites}}');
         $this->dropTable('{{%tags}}');
