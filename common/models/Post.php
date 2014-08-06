@@ -55,7 +55,7 @@ class Post extends ActiveRecord
             [['shortname'], 'string', 'length' => [3, 128]],
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
-            [['body'], 'string', 'max' => 65535]
+            [['body'], 'string', 'max' => 65535],
             [['status'], 'required'],
             [['status'], 'integer', 'min' => 0, 'max' => 1],
         ];
@@ -90,5 +90,50 @@ class Post extends ActiveRecord
             'body'        => 'Body',
             'status'      => 'Status'
         ];
+    }
+
+    /**
+     * relation to Blog
+     */
+    public function getBlog()
+    {
+        return $this->hasOne(Blog::className(), ['id' => 'blog_id'])->inverseOf('posts');
+    }
+
+    /**
+     * relation to Blogger
+     */
+    public function getBlogger()
+    {
+        return $this->hasOne(Blogger::className(), ['id' => 'blogger_id'])->inverseOf('posts');
+    }
+
+    /**
+     * relation to Category
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id'])->inverseOf('posts');
+    }
+
+    /**
+     * intermediate relation to Tags (PostTag)
+     * @todo  implement PostTag model / post_tags table
+     * @see  Post::getTags()
+     */
+    public function getPostTags()
+    {
+        return;
+        //return $this->hasMany(PostTag::className(), ['post_id' => 'id']);
+    }
+
+    /**
+     * relation to Tags
+     * @todo ...implement PostTag / post_tags
+     * @see Post::getPostTags()
+     */
+    public function getTags() {
+        return;
+        //return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
     }
 }
