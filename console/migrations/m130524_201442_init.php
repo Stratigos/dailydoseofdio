@@ -49,6 +49,16 @@ class m130524_201442_init extends \yii\db\Migration
         );
 
         $this->createTable(
+            '{{%post_tags}}',
+            [
+                'id'      => Schema::TYPE_PK,
+                'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'tag_id'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
             '{{%pages}}',
             [
                 'id'         => Schema::TYPE_PK,
@@ -180,6 +190,7 @@ class m130524_201442_init extends \yii\db\Migration
     public function down()
     {
         $this->dropTable('{{%posts}}');
+        $this->dropTable('{{%post_tags}}');
         $this->dropTable('{{%pages}}');
         $this->dropTable('{{%diosites}}');
         $this->dropTable('{{%tags}}');

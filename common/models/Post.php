@@ -118,22 +118,18 @@ class Post extends ActiveRecord
 
     /**
      * intermediate relation to Tags (PostTag)
-     * @todo  implement PostTag model / post_tags table
-     * @see  Post::getTags()
+     * @see Post::getTags()
      */
     public function getPostTags()
     {
-        return;
-        //return $this->hasMany(PostTag::className(), ['post_id' => 'id']);
+        return $this->hasMany(PostTag::className(), ['post_id' => 'id']);
     }
 
     /**
      * relation to Tags
-     * @todo ...implement PostTag / post_tags
      * @see Post::getPostTags()
      */
     public function getTags() {
-        return;
-        //return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
     }
 }
