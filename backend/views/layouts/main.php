@@ -43,7 +43,7 @@ AppAsset::register($this);
                     'items' => [
                         [
                             'label' => 'Posts',
-                            'url'   => '#'
+                            'url'   => '/index.php?r=post/index'
                         ],
                         [
                             'label' => 'Pages',

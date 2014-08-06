@@ -6,6 +6,12 @@ use yii\db\ActiveRecord;
 class Post extends ActiveRecord
 {
     /**
+     * default values for posts.status
+     */
+    const STATUS_DRAFT     = 0;
+    const STATUS_PUBLISHED = 1;
+
+    /**
      * Regular expression used to validate posts.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
      */
