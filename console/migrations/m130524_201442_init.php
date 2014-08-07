@@ -1,6 +1,8 @@
 <?php
-
 use yii\db\Schema;
+use common\models\Category;
+use common\models\Blog;
+use common\models\Blogger;
 use common\models\User;
 
 /**
@@ -10,6 +12,8 @@ class m130524_201442_init extends \yii\db\Migration
 {
     /**
      * creates the following tables:
+     *  + posts
+     *  + post_tags
      *  + pages
      *  + diosites
      *  + categories
@@ -19,6 +23,9 @@ class m130524_201442_init extends \yii\db\Migration
      *  + users
      *  
      * creates the following instances/records:
+     *  + categories: Rainbow, Black Sabbath, Dio
+     *  + blogs: Doses
+     *  + bloggers: Todd Stargazer
      *  + user: admin 
      */
     public function up()
@@ -168,7 +175,56 @@ class m130524_201442_init extends \yii\db\Migration
             $tableOptions
         );
 
-        // create initial admin user
+        // create initial Categories
+        $_cats = [
+            ['name' => 'Rainbow',       'shortname' => 'rainbow'],
+            ['name' => 'Black Sabbath', 'shortname' => 'black-sabbath'],
+            ['name' => 'Dio',           'shortname' => 'dio'] // the band...
+        ];
+        foreach($_cats as $_cat) {
+            $category            = new Category;
+            $category->name      = $_cat['name'];
+            $category->shortname = $_cat['shortname'];
+            try {
+                $category->save();
+                // if(!$category->save()) {
+                //     echo(print_r($category->getErrors(), 1));
+                // }
+            } catch(Exception $e) {
+                echo("\n");
+                echo($e->getMessage());
+                echo("\n");
+            }
+        }
+        echo("\n    FINISHED ADDING CATEGORIES \n");
+
+        // create initial Blog
+        $blog            = new Blog;
+        $blog->title     = 'Doses';
+        $blog->shortname = 'doses';
+        try {
+            $blog->save();
+        } catch (Exception $e) {
+            echo("\n");
+            echo($e->getMessage());
+            echo("\n");
+        }
+        echo("\n    FINISHED ADDING FIRST BLOG \n");
+
+        // create initial Blogger
+        $blogger            = new Blogger;
+        $blogger->name      = 'Todd Stargazer';
+        $blogger->shortname = 'todd-stargazer';
+        try {
+            $blogger->save();
+        } catch (Exception $e) {
+            echo("\n");
+            echo($e->getMessage());
+            echo("\n");
+        }
+        echo("\n    FINISHED ADDING FIRST BLOGGER \n");
+
+        // create initial admin User
         $password       = 'admin';
         $user           = new User();
         $user->username = 'admin';
