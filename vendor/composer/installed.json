@@ -483,49 +483,6 @@
         ]
     },
     {
-        "name": "yiisoft/yii2-bootstrap",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-            "reference": "83489d3684485543d1fdbe6594da10c3f1f61b85"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/83489d3684485543d1fdbe6594da10c3f1f61b85",
-            "reference": "83489d3684485543d1fdbe6594da10c3f1f61b85",
-            "shasum": ""
-        },
-        "require": {
-            "twbs/bootstrap": "3.2.* | 3.1.* | 3.0.*",
-            "yiisoft/yii2": "*"
-        },
-        "time": "2014-07-29 22:40:46",
-        "type": "yii2-extension",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\bootstrap\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Qiang Xue",
-                "email": "qiang.xue@gmail.com"
-            }
-        ],
-        "description": "The Twitter Bootstrap extension for the Yii framework",
-        "keywords": [
-            "bootstrap",
-            "yii2"
-        ]
-    },
-    {
         "name": "yiisoft/yii2-gii",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -571,18 +528,61 @@
         ]
     },
     {
+        "name": "yiisoft/yii2-bootstrap",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-bootstrap.git",
+            "reference": "9d72ead1834d75a922fde458b8ec81cb1de39f4c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/9d72ead1834d75a922fde458b8ec81cb1de39f4c",
+            "reference": "9d72ead1834d75a922fde458b8ec81cb1de39f4c",
+            "shasum": ""
+        },
+        "require": {
+            "twbs/bootstrap": "3.2.* | 3.1.* | 3.0.*",
+            "yiisoft/yii2": "*"
+        },
+        "time": "2014-08-07 11:58:52",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\bootstrap\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Qiang Xue",
+                "email": "qiang.xue@gmail.com"
+            }
+        ],
+        "description": "The Twitter Bootstrap extension for the Yii framework",
+        "keywords": [
+            "bootstrap",
+            "yii2"
+        ]
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "1f42beae7c0d8f7513a5e90e8803c6a3b7859df2"
+            "reference": "6618c07f9bc1e16f7bf13a7b6cf5301f30a8127e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/1f42beae7c0d8f7513a5e90e8803c6a3b7859df2",
-            "reference": "1f42beae7c0d8f7513a5e90e8803c6a3b7859df2",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6618c07f9bc1e16f7bf13a7b6cf5301f30a8127e",
+            "reference": "6618c07f9bc1e16f7bf13a7b6cf5301f30a8127e",
             "shasum": ""
         },
         "require": {
@@ -595,7 +595,7 @@
             "yiisoft/jquery-pjax": "*",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2014-08-06 12:08:07",
+        "time": "2014-08-07 11:58:52",
         "bin": [
             "yii"
         ],
