@@ -8,6 +8,10 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
+use yii\helpers\ArrayHelper;
+use common\models\Category;
+use common\models\Blog;
+use common\models\Blogger;
 use common\models\Post;
 
 /**
@@ -91,24 +95,34 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
-        $errors = [];
-        $post   = new Post();
+        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
+        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $post       = new Post();
         $post->loadDefaultValues();
+
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+        $blogs      = ArrayHelper::map($blogs, 'id', 'title');
+        $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
+        array_unshift($categories, 'None');
+        array_unshift($blogs, 'None');
+        array_unshift($bloggers, 'None');
+
 
         if(Yii::$app->request->isPost) {
             $post->load(Yii::$app->request->post());
             if($post->save()) {
                 return $this->redirect(['index']);
-            } else {
-                $errors = $post->getErrors();
             }
         }
 
         return $this->render(
             'create',
             [
-                'post'   => $post,
-                'errors' => $errors
+                'categories' => $categories,
+                'blogs'      => $blogs,
+                'bloggers'   => $bloggers,
+                'post'       => $post,
             ]
         );
     }
@@ -119,7 +133,6 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $post   = Post::find()->where('id = :_id', [':_id' => $id])->one();
-        $errors = [];
 
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
@@ -129,16 +142,13 @@ class PostController extends Controller
             $post->load(Yii::$app->request->post());
             if($post->save()) {
                 return $this->redirect(['index']);
-            } else {
-                $errors = $post->getErrors();
             }
         }
 
         return $this->render(
             'update',
             [
-                'post'   => $post,
-                'errors' => $errors
+                'post'   => $post
             ]
         );
     }

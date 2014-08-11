@@ -47,19 +47,19 @@ use common\models\Post;
                         [
                             'label' => 'Category',
                             'value' => function($data) {
-                                return empty($data->category) ? '' : $data->category->name;
+                                return empty($data->category_id) ? '' : $data->category->name;
                             }
                         ],
                         [
                             'label' => 'Blog',
                             'value' => function($data) {
-                                return empty($data->blog) ? '' : $data->blog->title;
+                                return empty($data->blog_id) ? '' : $data->blog->title;
                             }
                         ],
                         [
                             'label' => 'Blogger',
                             'value' => function($data) {
-                                return empty($data->blogger) ? '' : substr($data->blogger->name, 0, 50);
+                                return empty($data->blogger_id) ? '' : substr($data->blogger->name, 0, 50);
                             }
                         ],
                         [
