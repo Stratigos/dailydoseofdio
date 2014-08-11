@@ -103,7 +103,7 @@ class Post extends ActiveRecord
      */
     public function getBlog()
     {
-        return $this->hasOne(Blog::className(), ['id' => 'blog_id'])->inverseOf('posts');
+        return $this->hasOne(Blog::className(), ['id' => 'blog_id']);/*->inverseOf('posts')*/;
     }
 
     /**
@@ -111,7 +111,7 @@ class Post extends ActiveRecord
      */
     public function getBlogger()
     {
-        return $this->hasOne(Blogger::className(), ['id' => 'blogger_id'])->inverseOf('posts');
+        return $this->hasOne(Blogger::className(), ['id' => 'blogger_id']);/*->inverseOf('posts')*/;
     }
 
     /**
@@ -119,7 +119,7 @@ class Post extends ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id'])->inverseOf('posts');
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);/*->inverseOf('posts')*/;
     }
 
     /**
