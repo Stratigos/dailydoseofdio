@@ -56,8 +56,13 @@ class PostController extends Controller
     public function actionIndex()
     {
         $postsDataProvider = new ActiveDataProvider([
-            'query'      => Post::find()->where(['deleted_at' => 0])->orderBy(['published_at' => SORT_DESC]),
-            'pagination' => ['pageSize' => 50]
+            'pagination' => ['pageSize' => 50],
+            'query'      => Post::find()->where(['deleted_at' => 0])->orderBy(
+                [
+                    'published_at' => SORT_DESC,
+                    'created_at'   => SORT_DESC
+                ]
+            )
         ]);
 
         return $this->render(
@@ -135,23 +140,40 @@ class PostController extends Controller
      */
     public function actionUpdate($id)
     {
-        $post   = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        $errors     = [];
+        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
+        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
 
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
         }
 
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+        $blogs      = ArrayHelper::map($blogs, 'id', 'title');
+        $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
+        array_unshift($categories, 'None');
+        array_unshift($blogs, 'None');
+        array_unshift($bloggers, 'None');
+
         if(Yii::$app->request->isPost) {
             $post->load(Yii::$app->request->post());
             if($post->save()) {
                 return $this->redirect(['index']);
+            } else {
+                $errors = $post->getErrors();
             }
         }
 
         return $this->render(
             'update',
             [
-                'post'   => $post
+                'categories' => $categories,
+                'blogs'      => $blogs,
+                'bloggers'   => $bloggers,
+                'post'       => $post,
+                'errors'     => $errors
             ]
         );
     }
