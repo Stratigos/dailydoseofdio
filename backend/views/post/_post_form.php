@@ -4,6 +4,19 @@
     use common\models\Post;
 ?>
 <div>
+    <div id="post-form-errors" class="form-errors-cont">
+        <?php if(isset($errors) && !empty($errors)) : ?>
+            <ul class="form-errors-list">
+                <?php foreach($errors as $property => $prop_errors) :
+                    foreach($prop_errors as $this_prop_errors) :
+                        foreach($this_prop_errors as $error) : ?>
+                            <li><?= "{$property} : {$error}" ?></li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>                    
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
     <?php $form = ActiveForm::begin([
         'id'      => 'post-form',
         'options' => ['class' => 'form-horizontal']

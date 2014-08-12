@@ -10,7 +10,8 @@
                     'categories' => $categories,
                     'blogs'      => $blogs,
                     'bloggers'   => $bloggers,
-                    'post'       => $post
+                    'post'       => $post,
+                    'errors'     => $errors
                 ]
             )
         ); ?>

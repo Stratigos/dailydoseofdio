@@ -95,6 +95,7 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
+        $errors     = [];
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
@@ -111,11 +112,14 @@ class PostController extends Controller
 
         if(Yii::$app->request->isPost) {
             $post->load(Yii::$app->request->post());
+            $post->category_id = null;
             if($post->save()) {
                 return $this->redirect(['index']);
+            } else {
+                $errors[] = $post->getErrors();
             }
         }
-
+        
         return $this->render(
             'create',
             [
@@ -123,6 +127,7 @@ class PostController extends Controller
                 'blogs'      => $blogs,
                 'bloggers'   => $bloggers,
                 'post'       => $post,
+                'errors'     => $errors
             ]
         );
     }
