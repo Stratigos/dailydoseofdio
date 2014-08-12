@@ -268,12 +268,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "47332be405dc8be3110ff86cf75d733ffa77f6c3"
+                "reference": "e21edc24714a4584338a01802ca9f7bc14ae0b86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/47332be405dc8be3110ff86cf75d733ffa77f6c3",
-                "reference": "47332be405dc8be3110ff86cf75d733ffa77f6c3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e21edc24714a4584338a01802ca9f7bc14ae0b86",
+                "reference": "e21edc24714a4584338a01802ca9f7bc14ae0b86",
                 "shasum": ""
             },
             "require": {
@@ -341,7 +341,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-08-10 01:39:50"
+            "time": "2014-08-12 09:40:31"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -390,12 +390,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "844d1745ba85a4535fc9945298a278b014f5197d"
+                "reference": "94b8a7fce81ca0c2ba94bac2c1f4d3b039ac6cf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/844d1745ba85a4535fc9945298a278b014f5197d",
-                "reference": "844d1745ba85a4535fc9945298a278b014f5197d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/94b8a7fce81ca0c2ba94bac2c1f4d3b039ac6cf2",
+                "reference": "94b8a7fce81ca0c2ba94bac2c1f4d3b039ac6cf2",
                 "shasum": ""
             },
             "require": {
@@ -426,7 +426,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2014-08-10 01:39:50"
+            "time": "2014-08-12 01:42:09"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
