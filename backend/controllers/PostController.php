@@ -109,10 +109,8 @@ class PostController extends Controller
         array_unshift($blogs, 'None');
         array_unshift($bloggers, 'None');
 
-
         if(Yii::$app->request->isPost) {
             $post->load(Yii::$app->request->post());
-            $post->category_id = null;
             if($post->save()) {
                 return $this->redirect(['index']);
             } else {
