@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use common\models\Category;
 use common\models\Blog;
 use common\models\Blogger;
+use common\models\Tag;
 use common\models\Post;
 
 /**
@@ -104,6 +105,7 @@ class PostController extends Controller
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $post       = new Post();
         $post->loadDefaultValues();
 
@@ -129,6 +131,7 @@ class PostController extends Controller
                 'categories' => $categories,
                 'blogs'      => $blogs,
                 'bloggers'   => $bloggers,
+                'tags'       => $tags,
                 'post'       => $post,
                 'errors'     => $errors
             ]

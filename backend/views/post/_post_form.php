@@ -34,6 +34,24 @@
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
+        <div id='post-form-tag-list-cont'>
+            <p>TAGS:</p>
+            <?php if(!empty($tags)): ?>
+                <ul id="post-form-tag-list">
+                    <?php foreach($tags as $tag): ?>
+                        <li>
+                            <a
+                                href="#"
+                                data-tag-shortname="<?= $tag->shortname; ?>"
+                                data-tag-id="<?= $tag->id; ?>"
+                            ><?= $tag->name; ?></a>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
+            <?php else: ?>
+                <p>No Tags found.</p>
+            <?php endif;?>
+        </div>
         <!--
             TODO: include posts.type_id switch here, and include a new partial form
                 depending on the Post type selected (img, video, quote, etc...)
