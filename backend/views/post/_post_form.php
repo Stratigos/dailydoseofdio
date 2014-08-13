@@ -2,6 +2,7 @@
 	use yii\helpers\Html;
     use yii\widgets\ActiveForm;
     use common\models\Post;
+    use Zelenin\yii\widgets\Summernote;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -30,7 +31,7 @@
         ); ?>
         <?= $form->field($post, 'title'); ?>
         <?= $form->field($post, 'shortname'); ?>
-        <?= $form->field($post, 'body')->textarea(); ?>
+        <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
