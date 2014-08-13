@@ -48,4 +48,13 @@ return array (
       '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap',
     ),
   ),
+  'zelenin/yii2-summernote-widget' => 
+  array (
+    'name' => 'zelenin/yii2-summernote-widget',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@Zelenin/yii/widgets/Summernote' => $vendorDir . '/zelenin/yii2-summernote-widget',
+    ),
+  ),
 );

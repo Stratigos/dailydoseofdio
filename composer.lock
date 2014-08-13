@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "335c3e0b689ea9df95b2abffba2c09b7",
+    "hash": "c2479a1901fb942882029d15e877e55f",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -472,6 +472,52 @@
                 "yii2"
             ],
             "time": "2014-07-29 22:40:46"
+        },
+        {
+            "name": "zelenin/yii2-summernote-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zelenin/yii2-summernote-widget.git",
+                "reference": "c2b3041f8af3d1dae1ac2f9bb3c6514383ef7da1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zelenin/yii2-summernote-widget/zipball/c2b3041f8af3d1dae1ac2f9bb3c6514383ef7da1",
+                "reference": "c2b3041f8af3d1dae1ac2f9bb3c6514383ef7da1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "Zelenin\\yii\\widgets\\Summernote\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Zelenin",
+                    "email": "aleksandr@zelenin.me",
+                    "homepage": "http://zelenin.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 Summernote widget. Super simple WYSIWYG editor on Bootstrap",
+            "homepage": "https://github.com/zelenin/yii2-summernote-widget",
+            "keywords": [
+                "summernote",
+                "widget",
+                "wysiwyg",
+                "yii2"
+            ],
+            "time": "2014-05-04 20:10:09"
         }
     ],
     "packages-dev": [
@@ -639,9 +685,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "zelenin/yii2-summernote-widget": 20
+    },
     "platform": {
         "php": ">=5.4.0"
     },
