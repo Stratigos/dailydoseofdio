@@ -79,4 +79,12 @@ class Category extends ActiveRecord
             'description'       => 'Description'
         ];
     }
+
+    /**
+     * relation to Posts
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['category_id' => 'id'])->inverseOf('category');
+    }
 }

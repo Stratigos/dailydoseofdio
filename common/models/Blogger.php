@@ -93,4 +93,12 @@ class Blogger extends ActiveRecord
             'status'            => 'Status'
         ];
     }
+
+    /**
+     * relation to Posts
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['blogger_id' => 'id'])->inverseOf('blogger');
+    }
 }
