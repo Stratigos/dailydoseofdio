@@ -3,6 +3,7 @@
     use yii\widgets\ActiveForm;
     use common\models\Post;
     use Zelenin\yii\widgets\Summernote\Summernote;
+    use dosamigos\datepicker\DatePicker;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -31,6 +32,15 @@
         ); ?>
         <?= $form->field($post, 'title'); ?>
         <?= $form->field($post, 'shortname'); ?>
+        <?= $form->field($post, 'published_at')->widget(
+            DatePicker::className(), [
+                //'inline'        => true, 
+                'template'      => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format'    => 'dd-M-yyyy'
+                ]
+        ]);?>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
