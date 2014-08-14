@@ -3,7 +3,7 @@
     use yii\widgets\ActiveForm;
     use common\models\Post;
     use Zelenin\yii\widgets\Summernote\Summernote;
-    use dosamigos\datepicker\DatePicker;
+    use dosamigos\datetimepicker\DateTimePicker;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -32,14 +32,19 @@
         ); ?>
         <?= $form->field($post, 'title'); ?>
         <?= $form->field($post, 'shortname'); ?>
-        <?= $form->field($post, 'published_at')->widget(
-            DatePicker::className(), [
-                //'inline'        => true, 
-                'template'      => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-                'clientOptions' => [
-                    'autoclose' => true,
-                    'format'    => 'dd-M-yyyy'
-                ]
+        <?= $form->field($post, 'published_at')->widget(DateTimePicker::className(), [
+            //'template'       => '{input}',
+            'size'           => 'ms',            
+            'pickButtonIcon' => 'glyphicon glyphicon-time',
+            'clientOptions' => [
+                'format'         => 'dd-M-yyyy HH:ii P',
+                'startView'      => 2,
+                'minView'        => 0,
+                'maxView'        => 4,
+                'autoclose'      => true,
+                'todayBtn'       => true,
+                'todayHighlight' => true
+            ]
         ]);?>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
@@ -68,7 +73,6 @@
                 depending on the Post type selected (img, video, quote, etc...)
               - then include list of Tag instances for now, and crate ctrl routine
                 to add PostTags to Post on save
-              - then include datepicker to set published_at
         -->
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
