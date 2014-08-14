@@ -13,6 +13,7 @@ return array(
     'yii\\codeception\\' => array($vendorDir . '/yiisoft/yii2-codeception'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'dosamigos\\datepicker\\' => array($vendorDir . '/2amigos/yii2-date-picker-widget'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Zelenin\\yii\\widgets\\Summernote\\' => array($vendorDir . '/zelenin/yii2-summernote-widget'),
 );

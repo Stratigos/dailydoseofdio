@@ -57,4 +57,13 @@ return array (
       '@Zelenin/yii/widgets/Summernote' => $vendorDir . '/zelenin/yii2-summernote-widget',
     ),
   ),
+  '2amigos/yii2-date-picker-widget' => 
+  array (
+    'name' => '2amigos/yii2-date-picker-widget',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dosamigos/datepicker' => $vendorDir . '/2amigos/yii2-date-picker-widget',
+    ),
+  ),
 );
