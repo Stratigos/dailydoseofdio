@@ -1,8 +1,8 @@
 <?php
-	use yii\helpers\Html;
+    use yii\helpers\Html;
     use yii\widgets\ActiveForm;
     use common\models\Post;
-    use Zelenin\yii\widgets\Summernote;
+    use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
