@@ -27,7 +27,7 @@ use common\models\Post;
                             'label' => 'Publish Date',
                             'class' => 'yii\grid\DataColumn',
                             'value' => function($data) {
-                                return date('Y-m-d H:i:s', $data->published_at);
+                                return empty($data->published_at) ? null : date('Y-m-d H:i:s', $data->published_at);
                             }
                         ],
                         [

@@ -32,20 +32,25 @@
         ); ?>
         <?= $form->field($post, 'title'); ?>
         <?= $form->field($post, 'shortname'); ?>
-        <?= $form->field($post, 'published_at')->widget(DateTimePicker::className(), [
-            //'template'       => '{input}',
-            'size'           => 'ms',            
-            'pickButtonIcon' => 'glyphicon glyphicon-time',
-            'clientOptions' => [
-                'format'         => 'dd-M-yyyy HH:ii P',
-                'startView'      => 2,
-                'minView'        => 0,
-                'maxView'        => 4,
-                'autoclose'      => true,
-                'todayBtn'       => true,
-                'todayHighlight' => true
-            ]
-        ]);?>
+        <div class="form-group field-post-published-at-string">
+            <label class="control-label" for="post-published-at-string">Published At</label>
+            <?= DateTimePicker::widget([
+                'id'             => 'post-published-at-string',
+                'name'           => 'post_published_at_string',
+                'size'           => 'ms',            
+                'pickButtonIcon' => 'glyphicon glyphicon-time',
+                'value'          => (empty($post->published_at) ? '' : date('Y-m-d H:i:s', $post->published_at)),
+                'clientOptions'  => [
+                    'format'         => 'yyyy-mm-dd hh:ii:ss',
+                    'startView'      => 2,
+                    'minView'        => 0,
+                    'maxView'        => 4,
+                    'autoclose'      => TRUE,
+                    'todayBtn'       => TRUE,
+                    'todayHighlight' => TRUE
+                ]
+            ]);?>
+        </div>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
