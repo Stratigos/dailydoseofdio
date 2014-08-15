@@ -1,9 +1,11 @@
 <?php
     use yii\helpers\Html;
     use yii\widgets\ActiveForm;
+    use yii\web\JsExpression;
     use common\models\Post;
     use Zelenin\yii\widgets\Summernote\Summernote;
     use dosamigos\datetimepicker\DateTimePicker;
+    use dosamigos\selectize\Selectize;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -55,6 +57,29 @@
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
+        <!--<?php/* = $form->field($post, 'tagNames')->widget(Selectize::className(), [
+            'url'           => ['tag/list'],
+            'options'       => ['class' => 'form-control'],
+            'clientOptions' => [
+                'plugins'     => ['remove_button'],
+                'valueField'  => 'name',
+                'labelField'  => 'name',
+                'searchField' => ['name'],
+                'create'      => TRUE
+            ],
+        ])->hint('Use commas to separate tags') */?> -->
+        <?= Selectize::widget([
+            'name'          => 'test',
+            'value'         => 'testtag1, testtag2, testtag3',
+            'url'           => ['tag/list'],
+            'options'       => ['class' => 'form-control'],
+            'clientOptions' => [
+                'delimiter' => ',',
+                'plugins'   => ['remove_button'],
+                'persist'   => FALSE,
+                'create'    => new JsExpression("function(input) { return { value: input, text: input }; }")
+            ],
+        ]) ?>
         <div id='post-form-tag-list-cont'>
             <p>TAGS:</p>
             <?php if(!empty($tags)): ?>
