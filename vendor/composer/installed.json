@@ -790,5 +790,55 @@
             "framework",
             "yii2"
         ]
+    },
+    {
+        "name": "2amigos/yii2-selectize-widget",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/2amigos/yii2-selectize-widget.git",
+            "reference": "ed3f95ac7f156d5d029f52e1f6eea53ba7e204a1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/2amigos/yii2-selectize-widget/zipball/ed3f95ac7f156d5d029f52e1f6eea53ba7e204a1",
+            "reference": "ed3f95ac7f156d5d029f52e1f6eea53ba7e204a1",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2014-07-03 11:09:59",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "dosamigos\\selectize\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Antonio Ramirez",
+                "email": "ramirez.cobos@gmail.com",
+                "homepage": "http://www.ramirezcobos.com"
+            },
+            {
+                "name": "Alexander Kochetov",
+                "email": "creocoder@gmail.com"
+            }
+        ],
+        "description": "Selectize.js widget for Yii2.",
+        "homepage": "https://github.com/2amigos/yii2-selectize-widget",
+        "keywords": [
+            "extension",
+            "selectize",
+            "widget",
+            "yii"
+        ]
     }
 ]
