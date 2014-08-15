@@ -168,7 +168,14 @@ class PostController extends Controller
         array_unshift($bloggers, 'None');
 
         if(Yii::$app->request->isPost) {
-            $post->load(Yii::$app->request->post());
+            $post_request_data = Yii::$app->request->post();
+            $post->load($post_request_data);
+            // Set the Post's published_at from a datetimepicker value.
+            if( isset($post_request_data['post_published_at_string']) &&
+                !empty($post_request_data['post_published_at_string'])
+            ) {
+                $post->published_at = strtotime($post_request_data['post_published_at_string']);
+            }
             if($post->save()) {
                 return $this->redirect(['index']);
             } else {
