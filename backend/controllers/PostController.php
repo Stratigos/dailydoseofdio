@@ -154,6 +154,7 @@ class PostController extends Controller
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
 
         if($post === NULL) {
@@ -189,6 +190,7 @@ class PostController extends Controller
                 'categories' => $categories,
                 'blogs'      => $blogs,
                 'bloggers'   => $bloggers,
+                'tags'       => $tags,
                 'post'       => $post,
                 'errors'     => $errors
             ]

@@ -10,6 +10,7 @@
                     'categories' => $categories,
                     'blogs'      => $blogs,
                     'bloggers'   => $bloggers,
+                    'tags'       => $tags,
                     'post'       => $post,
                     'errors'     => $errors
                 ]
