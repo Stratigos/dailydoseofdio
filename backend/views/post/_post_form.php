@@ -57,30 +57,38 @@
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
-        <!--<?php/* = $form->field($post, 'tagNames')->widget(Selectize::className(), [
-            'url'           => ['tag/list'],
-            'options'       => ['class' => 'form-control'],
-            'clientOptions' => [
-                'plugins'     => ['remove_button'],
-                'valueField'  => 'name',
-                'labelField'  => 'name',
-                'searchField' => ['name'],
-                'create'      => TRUE
-            ],
-        ])->hint('Use commas to separate tags') */?> -->
-        <?= Selectize::widget([
-            'name'          => 'test',
-            'value'         => 'testtag1, testtag2, testtag3',
-            'url'           => ['tag/list'],
-            'options'       => ['class' => 'form-control'],
-            'clientOptions' => [
-                'delimiter' => ',',
-                'plugins'   => ['remove_button'],
-                'persist'   => FALSE,
-                'create'    => new JsExpression("function(input) { return { value: input, text: input }; }")
-            ],
-        ]) ?>
+        <div class="form-group field-post-tags-selected">
+            <label class="control-label" for="post-tags-selected">Post Tags</label>
+            <?= Selectize::widget([
+                // https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md
+                'name'          => 'post_tag_ids_selected',
+                'value'         => '', // List $post->postTags; (maybe make $post->getPostTagsList() callback to return "str1,str2,str3"?)
+                'url'           => ['tag/list'],
+                'options'       => [
+                    'class' => 'form-control',
+                    'id'    => 'post-tags-selected'
+                ],
+                'clientOptions' => [
+                    'delimiter'     => ',',
+                    'plugins'       => ['remove_button'],
+                    'valueField'    => 'id',
+                    'labelField'    => 'name',
+                    'searchField'   => ['name'],
+                    'loadThrottle'  => 500,
+                    'addPrecedence' => TRUE,
+                    'hideSelected'  => TRUE,
+                    'create'        => FALSE
+                ],
+            ]) ?>
+        </div>
+
         <div id='post-form-tag-list-cont'>
+            <?php /*
+                THIS NEEDS TO BECOME A SELECT DROPDOWN
+                THAT IS HIDDEN ON LOAD, DISPLAYS WITH ONCLICK OF HELPER
+                LINK OR BUTTON OR IMAGE, AND DISPLAYS ALL AVAILABLE TAGS.
+                WHEN A TAG IS SELECTED, ITS ADDED TO THE LIST ABOVE
+            */ ?>
             <p>TAGS:</p>
             <?php if(!empty($tags)): ?>
                 <ul id="post-form-tag-list">
