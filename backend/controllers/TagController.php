@@ -3,9 +3,10 @@ namespace backend\controllers;
 
 use Yii;
 use yii\web\HttpException;
+use yii\web\Controller;
+use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Tag;
@@ -25,7 +26,7 @@ class TagController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'create', 'index', 'update', 'delete'],
+                        'actions' => ['view', 'create', 'index', 'update', 'delete', 'list'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
@@ -170,5 +171,27 @@ class TagController extends Controller
         // }
 
         // display errors
+    }
+
+    /**
+     * returns a JSON object containing a list of Tags which match input.
+     * @param String $query
+     *  Partial or complete value for tags.name for search.
+     * @return String
+     *  JSON response of list of Tag names which match search.
+     */
+    public function actionList($query)
+    {
+        $tagnames = Tag::find()->
+            select(['name'])->
+            where(['like', 'name', $query])->
+            andWhere(['deleted_at' => 0])->
+            orderBy(['name' => SORT_ASC])->
+            all()
+        ;
+        // can use ContentNegotiator filter here
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $tagnames;
     }
 }

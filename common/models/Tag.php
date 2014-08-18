@@ -73,4 +73,21 @@ class Tag extends ActiveRecord
             'shortname' => 'Shortname (URL Name)'
         ];
     }
+
+    /**
+     * intermediate relation to Posts (PostTag)
+     * @see Tag::getTags()
+     */
+    public function getPostTags()
+    {
+        return $this->hasMany(PostTag::className(), ['tag_id' => 'id']);
+    }
+
+    /**
+     * relation to Posts
+     * @see Tag::getPostTags()
+     */
+    public function getPosts() {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
+    }
 }

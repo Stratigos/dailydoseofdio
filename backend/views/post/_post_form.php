@@ -1,9 +1,11 @@
 <?php
     use yii\helpers\Html;
     use yii\widgets\ActiveForm;
+    use yii\web\JsExpression;
     use common\models\Post;
     use Zelenin\yii\widgets\Summernote\Summernote;
     use dosamigos\datetimepicker\DateTimePicker;
+    use dosamigos\selectize\Selectize;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -55,20 +57,41 @@
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
-        <div id='post-form-tag-list-cont'>
+        <div class="form-group field-post-tags-selected">
+            <label class="control-label" for="post-tags-selected">Post Tags</label>
+            <?= Selectize::widget([
+                // https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md
+                'name'          => 'post_tag_names_selected',
+                'value'         => $post_tags,
+                'url'           => ['tag/list'],
+                'options'       => [
+                    'class' => 'form-control',
+                    'id'    => 'post-tags-selected'
+                ],
+                'clientOptions' => [
+                    'delimiter'     => ',',
+                    'plugins'       => ['remove_button'],
+                    'valueField'    => 'name',
+                    'labelField'    => 'name',
+                    'searchField'   => ['name'],
+                    'loadThrottle'  => 500,
+                    'addPrecedence' => TRUE,
+                    'hideSelected'  => TRUE,
+                    'create'        => FALSE
+                ],
+            ]) ?>
+        </div>
+
+        <div id='post-form-tag-list-cont' class="form-group">
+            <?php /*
+                THIS NEEDS TO BECOME A SELECT DROPDOWN
+                THAT IS HIDDEN ON LOAD, DISPLAYS WITH ONCLICK OF HELPER
+                LINK OR BUTTON OR IMAGE, AND DISPLAYS ALL AVAILABLE TAGS.
+                WHEN A TAG IS SELECTED, ITS ADDED TO THE LIST ABOVE
+            */ ?>
             <p>TAGS:</p>
             <?php if(!empty($tags)): ?>
-                <ul id="post-form-tag-list">
-                    <?php foreach($tags as $tag): ?>
-                        <li>
-                            <a
-                                href="#"
-                                data-tag-shortname="<?= $tag->shortname; ?>"
-                                data-tag-id="<?= $tag->id; ?>"
-                            ><?= $tag->name; ?></a>
-                        </li>
-                    <?php endforeach;?>
-                </ul>
+                <p>There are <?= count($tags); ?> Tags in this system (UNDER CONSTRUCTION).</p>
             <?php else: ?>
                 <p>No Tags found.</p>
             <?php endif;?>
