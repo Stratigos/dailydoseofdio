@@ -1,6 +1,7 @@
 <?php
 use yii\db\Schema;
 use common\models\Category;
+use common\models\Tag;
 use common\models\Blog;
 use common\models\Blogger;
 use common\models\User;
@@ -58,9 +59,9 @@ class m130524_201442_init extends \yii\db\Migration
         $this->createTable(
             '{{%post_tags}}',
             [
-                'id'      => Schema::TYPE_PK,
                 'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'tag_id'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'PRIMARY KEY (post_id, tag_id)'
             ],
             $tableOptions
         );
@@ -197,6 +198,28 @@ class m130524_201442_init extends \yii\db\Migration
             }
         }
         echo("\n    FINISHED ADDING CATEGORIES \n");
+
+        // create some sample Tags
+        $_tags = [
+            ['name' => '70s',            'shortname' => '70s'],
+            ['name' => '80s',            'shortname' => '80s'],
+            ['name' => 'Music Industry', 'shortname' => 'music-industry'],
+            ['name' => 'Poetic Lyrics',  'shortname' => 'poetic-lyrics'],
+            ['name' => 'Rockin Solos',   'shortname' => 'rockin-solos']
+        ];
+        foreach($_tags as $_tag) {
+            $tag            = new Tag;
+            $tag->name      = $_tag['name'];
+            $tag->shortname = $_tag['shortname'];
+            try {
+                $tag->save();
+            } catch(Exception $e) {
+                echo("\n");
+                echo($e->getMessage());
+                echo("\n");
+            }
+        }
+        echo("\n    FINISHED ADDING SAMPLE TAGS \n");
 
         // create initial Blog
         $blog            = new Blog;

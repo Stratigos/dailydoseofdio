@@ -127,6 +127,25 @@ class PostController extends Controller
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
+            // Save any Tags added to Post
+            if( isset($post_request_data['post_tag_names_selected']) &&
+                !empty($post_request_data['post_tag_names_selected'])
+            ) {
+                $post_tags_array = explode(',', $post_request_data['post_tag_names_selected']);
+                if(!empty($post_tags_array)) {
+                    foreach($post_tags_array as $tag_name) {
+                        $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
+                        if($tag) {
+                            $post_tag          = new PostTag();
+                            $post_tag->post_id = $post->id;
+                            $post_tag->tag_id  = $tag->id;
+                            if(!$post_tag->save()) {
+                                $errors = array_merge($errors, $post_tag->getErrors());
+                            }
+                        }
+                    }
+                }
+            }
             if($post->save()) {
                 return $this->redirect(['index']);
             } else {
