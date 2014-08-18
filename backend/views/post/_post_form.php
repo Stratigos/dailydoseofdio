@@ -61,7 +61,7 @@
             <label class="control-label" for="post-tags-selected">Post Tags</label>
             <?= Selectize::widget([
                 // https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md
-                'name'          => 'post_tag_ids_selected',
+                'name'          => 'post_tag_names_selected',
                 'value'         => '', // List $post->postTags; (maybe make $post->getPostTagsList() callback to return "str1,str2,str3"?)
                 'url'           => ['tag/list'],
                 'options'       => [
@@ -71,7 +71,7 @@
                 'clientOptions' => [
                     'delimiter'     => ',',
                     'plugins'       => ['remove_button'],
-                    'valueField'    => 'id',
+                    'valueField'    => 'name',
                     'labelField'    => 'name',
                     'searchField'   => ['name'],
                     'loadThrottle'  => 500,

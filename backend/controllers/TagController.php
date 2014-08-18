@@ -183,7 +183,7 @@ class TagController extends Controller
     public function actionList($query)
     {
         $tagnames = Tag::find()->
-            select(['id','name'])->
+            select(['name'])->
             where(['like', 'name', $query])->
             andWhere(['deleted_at' => 0])->
             orderBy(['name' => SORT_ASC])->
