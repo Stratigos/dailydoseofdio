@@ -62,7 +62,7 @@
             <?= Selectize::widget([
                 // https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md
                 'name'          => 'post_tag_names_selected',
-                'value'         => '', // List $post->postTags; (maybe make $post->getPostTagsList() callback to return "str1,str2,str3"?)
+                'value'         => $post_tags,
                 'url'           => ['tag/list'],
                 'options'       => [
                     'class' => 'form-control',
@@ -82,7 +82,7 @@
             ]) ?>
         </div>
 
-        <div id='post-form-tag-list-cont'>
+        <div id='post-form-tag-list-cont' class="form-group">
             <?php /*
                 THIS NEEDS TO BECOME A SELECT DROPDOWN
                 THAT IS HIDDEN ON LOAD, DISPLAYS WITH ONCLICK OF HELPER
@@ -91,17 +91,7 @@
             */ ?>
             <p>TAGS:</p>
             <?php if(!empty($tags)): ?>
-                <ul id="post-form-tag-list">
-                    <?php foreach($tags as $tag): ?>
-                        <li>
-                            <a
-                                href="#"
-                                data-tag-shortname="<?= $tag->shortname; ?>"
-                                data-tag-id="<?= $tag->id; ?>"
-                            ><?= $tag->name; ?></a>
-                        </li>
-                    <?php endforeach;?>
-                </ul>
+                <p>There are <?= count($tags); ?> Tags in this system (UNDER CONSTRUCTION).</p>
             <?php else: ?>
                 <p>No Tags found.</p>
             <?php endif;?>

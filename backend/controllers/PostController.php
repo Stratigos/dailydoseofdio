@@ -102,6 +102,7 @@ class PostController extends Controller
      */
     public function actionCreate()
     {
+        $post_tags  = '';
         $errors     = [];
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
@@ -141,6 +142,7 @@ class PostController extends Controller
                 'bloggers'   => $bloggers,
                 'tags'       => $tags,
                 'post'       => $post,
+                'post_tags'  => $post_tags,
                 'errors'     => $errors
             ]
         );
@@ -151,12 +153,18 @@ class PostController extends Controller
      */
     public function actionUpdate($id)
     {
+        $post_tags  = '';
         $errors     = [];
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        if(!empty($post->tags)) {
+            $post_tags = ArrayHelper::map($post->tags, 'id', 'name');
+            $post_tags = implode(',', $post_tags);
+        }
+        
 
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
@@ -180,7 +188,9 @@ class PostController extends Controller
             }
             // Set all of the Post's Tags
             if(!empty($post->postTags)) {
-                $post->postTags->deleteAll(); // DELETE ALL POST TAGS HERE
+                foreach($post->postTags as $postTag) {
+                    $postTag->delete();
+                }
             }
             if( isset($post_request_data['post_tag_names_selected']) &&
                 !empty($post_request_data['post_tag_names_selected'])
@@ -215,6 +225,7 @@ class PostController extends Controller
                 'bloggers'   => $bloggers,
                 'tags'       => $tags,
                 'post'       => $post,
+                'post_tags'  => $post_tags,
                 'errors'     => $errors
             ]
         );

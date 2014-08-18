@@ -12,6 +12,7 @@
                     'bloggers'   => $bloggers,
                     'tags'       => $tags,
                     'post'       => $post,
+                    'post_tags'  => $post_tags,
                     'errors'     => $errors
                 ]
             )
