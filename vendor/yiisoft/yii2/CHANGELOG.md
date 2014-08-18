@@ -82,6 +82,7 @@ Yii Framework 2 Change Log
 - Bug #4519: `yii\base\Model::isAttributeRequired()` should check if the `when` option of the validator is set (thiagotalma)
 - Bug #4592: Fixed `yii help` command was listing incorrect action names for methods like `actionSayNO` (samdark)
 - Bug #4654: Fixed issue with PostgreSQL and inserting boolean values with batch insert (cebe)
+- Bug #4727: Fixed wrong Stylus definition in `\yii\web\AssetConverter` (samdark)
 - Bug: Fixed inconsistent return of `\yii\console\Application::runAction()` (samdark)
 - Bug: URL encoding for the route parameter added to `\yii\web\UrlManager` (klimov-paul)
 - Bug: Fixed the bug that requesting protected or private action methods would cause 500 error instead of 404 (qiangxue)
@@ -170,6 +171,7 @@ Yii Framework 2 Change Log
 - Enh #4297: Added check for DOM extension to requirements (samdark)
 - Enh #4317: Added `absoluteAuthTimeout` to yii\web\User (ivokund, nkovacs)
 - Enh #4360: Added client validation support for file validator (Skysplit)
+- Enh #4372: `yii\filters\HttpCache` failed to comply to RFC 7232 (DaSourcerer)
 - Enh #4436: Added callback functions to AJAX-based form validation (thiagotalma)
 - Enh #4485: Added support for deferred validation in `ActiveForm` (Alex-Code)
 - Enh #4520: Added sasl support to `yii\caching\MemCache` (xjflyttp)
@@ -551,6 +553,7 @@ Yii Framework 2 Change Log
 - New #2932: Added `yii\web\ViewAction` that allow you to render views based on GET parameter (samdark)
 - New #2998: Added `framework\log\SyslogTarget` that is able to write log to syslog (miramir, samdark)
 - New #3029: Added `yii\bootstrap\ActiveForm` and `yii\bootstrap\ActiveField` (mikehaertl)
+- New #4640: Added `yii\widgets\ActiveForm::beginField()` and `endField()` (qiangxue)
 - New: Yii framework now comes with core messages translated into 26 languages, many thanks to all our translators!
 - New: Added `yii\codeception\DbTestCase` (qiangxue)
 - New: Added `yii\web\GroupUrlRule` (qiangxue)
