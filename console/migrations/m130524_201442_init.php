@@ -52,6 +52,7 @@ class m130524_201442_init extends \yii\db\Migration
                 'created_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'deleted_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
+                // TODO: CREATE INDEXES FOR PUBLISHED, ADMIN LIST, BLOG/BLOGGER/CATEGORY/etc INDEXES HERE
             ],
             $tableOptions
         );
