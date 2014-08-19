@@ -114,18 +114,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/twbs/bootstrap.git",
-            "reference": "31f7cb152efbc22ea61801915d81ba2b13435f97"
+            "reference": "c95aa97c03fc676f7b53d002c7c8a3bb59fd6747"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/31f7cb152efbc22ea61801915d81ba2b13435f97",
-            "reference": "31f7cb152efbc22ea61801915d81ba2b13435f97",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/c95aa97c03fc676f7b53d002c7c8a3bb59fd6747",
+            "reference": "c95aa97c03fc676f7b53d002c7c8a3bb59fd6747",
             "shasum": ""
         },
         "replace": {
             "twitter/bootstrap": "self.version"
         },
-        "time": "2014-08-15 18:52:50",
+        "time": "2014-08-19 03:06:02",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -347,48 +347,6 @@
             "mailer",
             "swift",
             "swiftmailer",
-            "yii2"
-        ]
-    },
-    {
-        "name": "yiisoft/yii2-codeception",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-codeception.git",
-            "reference": "b20673b381a6f3c3180ec8b6f1ba11e3572a6938"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/b20673b381a6f3c3180ec8b6f1ba11e3572a6938",
-            "reference": "b20673b381a6f3c3180ec8b6f1ba11e3572a6938",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/yii2": "*"
-        },
-        "time": "2014-07-29 22:40:46",
-        "type": "yii2-extension",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\codeception\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Mark Jebri",
-                "email": "mark.github@yandex.ru"
-            }
-        ],
-        "description": "The Codeception integration for the Yii framework",
-        "keywords": [
-            "codeception",
             "yii2"
         ]
     },
@@ -759,18 +717,60 @@
         ]
     },
     {
+        "name": "yiisoft/yii2-codeception",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-codeception.git",
+            "reference": "b3caa390756f2c5520ebfb15956490db89276dd1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/b3caa390756f2c5520ebfb15956490db89276dd1",
+            "reference": "b3caa390756f2c5520ebfb15956490db89276dd1",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2014-08-17 14:45:58",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\codeception\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Mark Jebri",
+                "email": "mark.github@yandex.ru"
+            }
+        ],
+        "description": "The Codeception integration for the Yii framework",
+        "keywords": [
+            "codeception",
+            "yii2"
+        ]
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "5e8707f999897add1b5df2ad22121f49491ee26c"
+            "reference": "a9ef2f56a074081fe057c157494be88cc1308e9c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5e8707f999897add1b5df2ad22121f49491ee26c",
-            "reference": "5e8707f999897add1b5df2ad22121f49491ee26c",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/a9ef2f56a074081fe057c157494be88cc1308e9c",
+            "reference": "a9ef2f56a074081fe057c157494be88cc1308e9c",
             "shasum": ""
         },
         "require": {
@@ -783,7 +783,7 @@
             "yiisoft/jquery-pjax": "*",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2014-08-18 00:58:34",
+        "time": "2014-08-19 14:35:58",
         "bin": [
             "yii"
         ],
