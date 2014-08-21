@@ -1,5 +1,6 @@
 <?php
 use yii\db\Schema;
+use yii\db\Migration;
 use common\models\Category;
 use common\models\Tag;
 use common\models\Blog;
@@ -9,7 +10,7 @@ use common\models\User;
 /**
  * Migration to initialize DDoD Web Application
  */
-class m130524_201442_init extends \yii\db\Migration
+class m130524_201442_init extends Migration
 {
     /**
      * creates the following tables:
