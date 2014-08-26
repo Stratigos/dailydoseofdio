@@ -31,7 +31,7 @@ class PostController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'create', 'index', 'update', 'delete'],
+                        'actions' => ['view', 'selectmediatype', 'create', 'index', 'update', 'delete'],
                         'allow'   => true,
                         'roles'   => ['@']
                     ]
@@ -94,6 +94,17 @@ class PostController extends Controller
                 'indexUrl' => Yii::$app->urlManager->createUrl('post/index'),
                 'post'     => $post
             ]
+        );
+    }
+
+    /**
+     * select Post's media type (Quote, Video, Image, Text) before creating
+     */
+    public function actionSelectmediatype()
+    {
+        return $this->render(
+            'media_type',
+            []
         );
     }
 
