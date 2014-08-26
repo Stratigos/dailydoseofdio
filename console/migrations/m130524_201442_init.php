@@ -37,6 +37,8 @@ class m130524_201442_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
+        // atomic content item (Post), and its relational members
+        
         $this->createTable(
             '{{%posts}}',
             [
@@ -59,6 +61,18 @@ class m130524_201442_init extends Migration
         );
 
         $this->createTable(
+            '{{quotes}}',
+            [
+                'id'      => Schema::TYPE_PK,
+                'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'body'    => Schema::TYPE_TEXT    . ' DEFAULT NULL',
+                'source'  => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
+                'KEY idx_quote_post (post_id)'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
             '{{%post_tags}}',
             [
                 'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
@@ -67,6 +81,8 @@ class m130524_201442_init extends Migration
             ],
             $tableOptions
         );
+
+        // remaining content datatypes or content taxonomy datatypes
 
         $this->createTable(
             '{{%pages}}',
@@ -161,6 +177,8 @@ class m130524_201442_init extends Migration
             $tableOptions
         );
 
+        // administrative datatypes
+        
         $this->createTable(
             '{{%users}}',
             [

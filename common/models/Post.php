@@ -12,6 +12,14 @@ class Post extends ActiveRecord
     const STATUS_PUBLISHED = 1;
 
     /**
+     * values for posts.type_id, representing Post media types
+     */
+    const POST_TYPE_TEXT  = 0;
+    const POST_TYPE_VIDEO = 1;
+    const POST_TYPE_QUOTE = 2;
+    const POST_TYPE_IMAGE = 3;
+
+    /**
      * Regular expression used to validate posts.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
      */
@@ -135,7 +143,16 @@ class Post extends ActiveRecord
      * relation to Tags
      * @see Post::getPostTags()
      */
-    public function getTags() {
+    public function getTags()
+    {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
+    }
+
+    /**
+     * relation to a Quote
+     */
+    public function getQuote()
+    {
+        return $this->hasOne(Quote::className(), ['post_id' => 'id'])->inverseOf('post');
     }
 }
