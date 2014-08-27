@@ -3,6 +3,7 @@
     use yii\widgets\ActiveForm;
     use yii\web\JsExpression;
     use common\models\Post;
+    use common\models\Quote;
     use Zelenin\yii\widgets\Summernote\Summernote;
     use dosamigos\datetimepicker\DateTimePicker;
     use dosamigos\selectize\Selectize;
@@ -53,14 +54,22 @@
                 ]
             ]);?>
         </div>
-        <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
+        <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
+        <?php if($media_type_partial) : ?>
+            <?= $this->render(
+                $media_type_partial,
+                [
+                    'post_media' => $post_media,
+                    'form'       => $form
+                ]
+            ); ?>
+        <?php endif;?>
         <div class="form-group field-post-tags-selected">
             <label class="control-label" for="post-tags-selected">Post Tags</label>
             <?= Selectize::widget([
-                // https://github.com/brianreavis/selectize.js/blob/master/docs/usage.md
                 'name'          => 'post_tag_names_selected',
                 'value'         => $post_tags,
                 'url'           => ['tag/list'],
@@ -96,10 +105,6 @@
                 <p>No Tags found.</p>
             <?php endif;?>
         </div>
-        <!--
-            TODO: include posts.type_id switch here, and include a new partial form
-                depending on the Post type selected (img, video, quote, etc...)
-        -->
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>

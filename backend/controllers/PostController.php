@@ -15,6 +15,7 @@ use common\models\Blogger;
 use common\models\Tag;
 use common\models\PostTag;
 use common\models\Post;
+use common\models\Quote;
 
 /**
  * CRUD operations for Posts
@@ -70,7 +71,7 @@ class PostController extends Controller
         return $this->render(
             'index',
             [
-                'createPostUrl'     => Yii::$app->urlManager->createUrl('post/create'),
+                'createPostUrl'     => Yii::$app->urlManager->createUrl('post/selectmediatype'),
                 'postsDataProvider' => $postsDataProvider
             ]
         );
@@ -79,6 +80,8 @@ class PostController extends Controller
 
     /**
      * render a view of a Post's data
+     * @param Int $id
+     *  valid posts.id value
      */
     public function actionView($id)
     {
@@ -91,7 +94,7 @@ class PostController extends Controller
         return $this->render(
             'view',
             [
-                'indexUrl' => Yii::$app->urlManager->createUrl('post/index'),
+                'indexUrl' => Yii::$app->urlManager->createUrl('post/selectmediatype'),
                 'post'     => $post
             ]
         );
@@ -104,24 +107,52 @@ class PostController extends Controller
     {
         return $this->render(
             'media_type',
-            []
+            ['post_media_types' => Post::getMediaTypes()]
         );
     }
 
     /**
      * create a new Post record
+     * @param Int $media_type
+     *  valid posts.type_id value (@see Post::getMediaTypes())
      */
-    public function actionCreate()
+    public function actionCreate($media_type)
     {
-        $post_tags  = '';
-        $errors     = [];
-        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
-        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $post       = new Post();
-        $post->loadDefaultValues();
+        $post_media_types = Post::getMediaTypes();
+        if(!array_key_exists($media_type, $post_media_types)) {
+            throw new HttpException(404, "Invalid Post Media Type.");
+        }
 
+        $post_media         = null;
+        $post_tags          = '';
+        $media_type_partial = '';
+        $errors             = [];
+        $categories         = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $blogs              = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
+        $bloggers           = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $tags               = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $post               = new Post();
+
+        // load Post defaults, and load additional media partial, if needed
+        $post->loadDefaultValues();
+        $post->type_id = $media_type;
+
+        switch($post->type_id) {
+            case Post::POST_TYPE_IMAGE :
+                $media_type_partial = ''; // TODO - Image upload form partial
+                break;
+            case Post::POST_TYPE_QUOTE :
+                $media_type_partial = '_post_quote_form';
+                $post_media         = new Quote;
+                break;
+            case Post::POST_TYPE_VIDEO :
+                $media_type_partial = ''; // TODO - Video asset form partial
+                break;
+            default:
+                break;
+        }
+
+        // create array of relational datatypes' id => name/title for <select>
         $categories = ArrayHelper::map($categories, 'id', 'name');
         $blogs      = ArrayHelper::map($blogs, 'id', 'title');
         $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
@@ -167,19 +198,23 @@ class PostController extends Controller
         return $this->render(
             'create',
             [
-                'categories' => $categories,
-                'blogs'      => $blogs,
-                'bloggers'   => $bloggers,
-                'tags'       => $tags,
-                'post'       => $post,
-                'post_tags'  => $post_tags,
-                'errors'     => $errors
+                'categories'         => $categories,
+                'blogs'              => $blogs,
+                'bloggers'           => $bloggers,
+                'tags'               => $tags,
+                'post'               => $post,
+                'post_tags'          => $post_tags,
+                'post_media'         => $post_media,
+                'errors'             => $errors,
+                'media_type_partial' => $media_type_partial
             ]
         );
     }
 
     /**
      * edit an existing Post record
+     * @param Int $id
+     *  valid posts.id value
      */
     public function actionUpdate($id)
     {
@@ -263,6 +298,8 @@ class PostController extends Controller
 
     /**
      * soft delete a Post record
+     * @param Int $id
+     *  valid posts.id value
      */
     public function actionDelete($id)
     {   

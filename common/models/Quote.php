@@ -33,8 +33,8 @@ class Quote extends ActiveRecord
     {
         return [
             'post_id' => 'Post ID',
-            'body'    => 'Body',
-            'source'  => 'Source'
+            'body'    => 'Quote Body',
+            'source'  => 'Quote Source'
         ];
     }
 

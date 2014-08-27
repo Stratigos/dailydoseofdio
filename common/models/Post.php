@@ -34,6 +34,20 @@ class Post extends ActiveRecord
     }
 
     /**
+     * returns an array of each posts.type_id value as keys, with
+     *  text representations of the types as values.
+     */
+    public static function getMediaTypes()
+    {
+        return [
+            self::POST_TYPE_TEXT  => 'text',
+            self::POST_TYPE_VIDEO => 'video',
+            self::POST_TYPE_QUOTE => 'quote',
+            self::POST_TYPE_IMAGE => 'image'
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
