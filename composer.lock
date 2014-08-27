@@ -822,6 +822,7 @@
     "stability-flags": {
         "zelenin/yii2-summernote-widget": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.4.0"
     },
