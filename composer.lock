@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "62478c4c4ed84939a5457b15f9b978b58d0db849"
+                "reference": "8a2bcc6045e92acfbfea252cb6b444bc8c3f171e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/62478c4c4ed84939a5457b15f9b978b58d0db849",
-                "reference": "62478c4c4ed84939a5457b15f9b978b58d0db849",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/8a2bcc6045e92acfbfea252cb6b444bc8c3f171e",
+                "reference": "8a2bcc6045e92acfbfea252cb6b444bc8c3f171e",
                 "shasum": ""
             },
             "require": {
@@ -294,7 +294,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-07-28 09:34:50"
+            "time": "2014-08-27 09:29:44"
         },
         {
             "name": "twbs/bootstrap",
@@ -302,12 +302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "55dd964690380977cfbc71494e6030b70c17b949"
+                "reference": "35f09315ed543a0479719afa2143240952c215db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/55dd964690380977cfbc71494e6030b70c17b949",
-                "reference": "55dd964690380977cfbc71494e6030b70c17b949",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/35f09315ed543a0479719afa2143240952c215db",
+                "reference": "35f09315ed543a0479719afa2143240952c215db",
                 "shasum": ""
             },
             "replace": {
@@ -345,7 +345,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-08-25 19:38:53"
+            "time": "2014-08-26 16:07:00"
         },
         {
             "name": "yiisoft/jquery",
@@ -376,12 +376,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6"
+                "reference": "1512a6fcf820ad4a95d724e6f32672b77ff296b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6",
-                "reference": "520f8c12b5a417e21d2cd0df499fa2a4e4e9a9d6",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/1512a6fcf820ad4a95d724e6f32672b77ff296b4",
+                "reference": "1512a6fcf820ad4a95d724e6f32672b77ff296b4",
                 "shasum": ""
             },
             "require": {
@@ -394,7 +394,7 @@
             ],
             "description": "pushState + ajax = pjax, a forked maintainted by the Yii Framework core developers",
             "homepage": "https://github.com/yiisoft/jquery-pjax#readme",
-            "time": "2014-03-20 17:20:33"
+            "time": "2014-08-27 14:11:41"
         },
         {
             "name": "yiisoft/yii2",
@@ -402,12 +402,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "0ed82f0139f9fa1cbb48043d8af636212fdc9417"
+                "reference": "baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/0ed82f0139f9fa1cbb48043d8af636212fdc9417",
-                "reference": "0ed82f0139f9fa1cbb48043d8af636212fdc9417",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345",
+                "reference": "baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345",
                 "shasum": ""
             },
             "require": {
@@ -475,7 +475,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-08-26 10:12:24"
+            "time": "2014-08-27 17:42:07"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
