@@ -137,19 +137,8 @@ class PostController extends Controller
         $post->loadDefaultValues();
         $post->type_id = $media_type;
 
-        switch($post->type_id) {
-            case Post::POST_TYPE_IMAGE :
-                $media_type_partial = ''; // TODO - Image upload form partial
-                break;
-            case Post::POST_TYPE_QUOTE :
-                $media_type_partial = '_post_quote_form';
-                $post_media         = new Quote;
-                break;
-            case Post::POST_TYPE_VIDEO :
-                $media_type_partial = ''; // TODO - Video asset form partial
-                break;
-            default:
-                break;
+        if($post->type_id) {
+            $media_type_partial = '_post_' . $post_media_types[$post->type_id] . '_form';
         }
 
         // create array of relational datatypes' id => name/title for <select>
@@ -218,21 +207,29 @@ class PostController extends Controller
      */
     public function actionUpdate($id)
     {
-        $post_tags  = '';
-        $errors     = [];
-        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
-        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
+
+        $post_media         = null;
+        $post_tags          = '';
+        $media_type_partial = '';
+        $errors             = [];
+        $post_media_types   = Post::getMediaTypes();
+        $categories         = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $blogs              = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
+        $bloggers           = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $tags               = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $post               = Post::find()->where('id = :_id', [':_id' => $id])->one();
+
+        if($post === NULL) {
+            throw new HttpException(404, "Post {$id} Not Found");
+        }
+
         if(!empty($post->tags)) {
             $post_tags = ArrayHelper::map($post->tags, 'id', 'name');
             $post_tags = implode(',', $post_tags);
         }
-        
-
-        if($post === NULL) {
-            throw new HttpException(404, "Post {$id} Not Found");
+        if($post->type_id) {
+            $post_media         = $post->quote; // TODO - update to a $post->getMedia(); callback
+            $media_type_partial = '_post_' . $post_media_types[$post->type_id] . '_form';
         }
 
         $categories = ArrayHelper::map($categories, 'id', 'name');
@@ -285,13 +282,15 @@ class PostController extends Controller
         return $this->render(
             'update',
             [
-                'categories' => $categories,
-                'blogs'      => $blogs,
-                'bloggers'   => $bloggers,
-                'tags'       => $tags,
-                'post'       => $post,
-                'post_tags'  => $post_tags,
-                'errors'     => $errors
+                'categories'         => $categories,
+                'blogs'              => $blogs,
+                'bloggers'           => $bloggers,
+                'tags'               => $tags,
+                'post'               => $post,
+                'post_tags'          => $post_tags,
+                'post_media'         => $post_media,
+                'errors'             => $errors,
+                'media_type_partial' => $media_type_partial
             ]
         );
     }

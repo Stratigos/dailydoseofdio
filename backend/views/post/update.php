@@ -13,6 +13,7 @@
                     'tags'       => $tags,
                     'post'       => $post,
                     'post_tags'  => $post_tags,
+                    'post_media' => $post_media,
                     'errors'     => $errors
                 ]
             )
