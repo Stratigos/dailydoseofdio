@@ -114,18 +114,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/twbs/bootstrap.git",
-            "reference": "35f09315ed543a0479719afa2143240952c215db"
+            "reference": "d869a5fb62888887178a75bfa295787e6f70eadd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/35f09315ed543a0479719afa2143240952c215db",
-            "reference": "35f09315ed543a0479719afa2143240952c215db",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d869a5fb62888887178a75bfa295787e6f70eadd",
+            "reference": "d869a5fb62888887178a75bfa295787e6f70eadd",
             "shasum": ""
         },
         "replace": {
             "twitter/bootstrap": "self.version"
         },
-        "time": "2014-08-26 16:07:00",
+        "time": "2014-08-28 06:38:53",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -677,34 +677,6 @@
         ]
     },
     {
-        "name": "yiisoft/jquery-pjax",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/jquery-pjax.git",
-            "reference": "1512a6fcf820ad4a95d724e6f32672b77ff296b4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/1512a6fcf820ad4a95d724e6f32672b77ff296b4",
-            "reference": "1512a6fcf820ad4a95d724e6f32672b77ff296b4",
-            "shasum": ""
-        },
-        "require": {
-            "yiisoft/jquery": ">=1.8"
-        },
-        "time": "2014-08-27 14:11:41",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "pushState + ajax = pjax, a forked maintainted by the Yii Framework core developers",
-        "homepage": "https://github.com/yiisoft/jquery-pjax#readme"
-    },
-    {
         "name": "swiftmailer/swiftmailer",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -759,18 +731,46 @@
         ]
     },
     {
+        "name": "yiisoft/jquery-pjax",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/jquery-pjax.git",
+            "reference": "1712c0fc794d622c57a3b0d1d450f416a63603f0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/1712c0fc794d622c57a3b0d1d450f416a63603f0",
+            "reference": "1712c0fc794d622c57a3b0d1d450f416a63603f0",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/jquery": ">=1.8"
+        },
+        "time": "2014-08-27 20:58:57",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "pushState + ajax = pjax, a forked maintainted by the Yii Framework core developers",
+        "homepage": "https://github.com/yiisoft/jquery-pjax#readme"
+    },
+    {
         "name": "yiisoft/yii2",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/yiisoft/yii2-framework.git",
-            "reference": "baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345"
+            "reference": "c61d076e5dfe86faf1fd2833994f43c429fbc360"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345",
-            "reference": "baf11b80bd0cd6ee8af0bc2e1a22c47f1b47f345",
+            "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c61d076e5dfe86faf1fd2833994f43c429fbc360",
+            "reference": "c61d076e5dfe86faf1fd2833994f43c429fbc360",
             "shasum": ""
         },
         "require": {
@@ -783,7 +783,7 @@
             "yiisoft/jquery-pjax": "*",
             "yiisoft/yii2-composer": "*"
         },
-        "time": "2014-08-27 17:42:07",
+        "time": "2014-08-28 09:20:17",
         "bin": [
             "yii"
         ],
