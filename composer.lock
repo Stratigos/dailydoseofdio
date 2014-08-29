@@ -302,12 +302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "d869a5fb62888887178a75bfa295787e6f70eadd"
+                "reference": "551306fe9dde347c19c6b8d91a2e9b2dccf0f4c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d869a5fb62888887178a75bfa295787e6f70eadd",
-                "reference": "d869a5fb62888887178a75bfa295787e6f70eadd",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/551306fe9dde347c19c6b8d91a2e9b2dccf0f4c2",
+                "reference": "551306fe9dde347c19c6b8d91a2e9b2dccf0f4c2",
                 "shasum": ""
             },
             "replace": {
@@ -345,7 +345,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-08-28 06:38:53"
+            "time": "2014-08-29 00:22:08"
         },
         {
             "name": "yiisoft/jquery",
@@ -822,6 +822,7 @@
     "stability-flags": {
         "zelenin/yii2-summernote-widget": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.4.0"
     },
