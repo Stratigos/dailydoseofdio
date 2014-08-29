@@ -121,6 +121,48 @@ class Post extends ActiveRecord
     }
 
     /**
+     * get the string literal associated with a Post's media type_id.
+     * Does not return a value for the default type, 'text'.
+     * @return String
+     *  String literal representation of media type (e.g., 'quote'),
+     *  or NULL if no media.
+     */
+    public function getMediaTypeName()
+    {
+        $name        = NULL;
+        $media_types = self::getMediaTypes();
+        if($this->type_id && isset($media_types[$this->type_id])) {
+            $name = $media_types[$this->type_id];
+        }
+
+        return $name;
+    }
+
+    /**
+     * return the relation to the media type associated with a Post
+     * @see getMediaTypes()
+     * @return Multi
+     *  Instance of this Post's Video, Quote, or Image, if Post has
+     *  related object, else NULL.
+     */
+    public function getMedia()
+    {
+        $media = null;
+        switch($this->type_id) {
+            case self::POST_TYPE_VIDEO :
+                //$media = $this->video;
+                break;
+            case self::POST_TYPE_QUOTE :
+                $media = $this->quote;
+                break;
+            case self::POST_TYPE_IMAGE :
+                //$media = $this->image;
+                break;
+        }
+        return $media;
+    }
+
+    /**
      * relation to Blog
      */
     public function getBlog()

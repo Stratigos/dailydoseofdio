@@ -12,15 +12,16 @@
     <div id="post-form-errors" class="form-errors-cont">
         <?php if(isset($errors) && !empty($errors)) : ?>
             <p>ERRORS</p>
-            <ul class="form-errors-list has-error help-block">
-                <?php foreach($errors as $prop_errors) :
+            <!-- <ul class="form-errors-list has-error help-block">
+                <?php /* foreach($errors as $prop_errors) :
                     foreach($prop_errors as $property => $this_prop_errors) :
                         foreach($this_prop_errors as $error) : ?>
                             <li><?= "{$property} : {$error}" ?></li>
                         <?php endforeach; ?>
                     <?php endforeach; ?>                    
-                <?php endforeach; ?>
-            </ul>
+                <?php endforeach; */ ?>
+            </ul> -->
+            <pre><?php echo(print_r($errors)); ?>
         <?php endif; ?>
     </div>
     <?php $form = ActiveForm::begin([

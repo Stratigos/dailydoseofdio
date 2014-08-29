@@ -137,8 +137,11 @@ class PostController extends Controller
         $post->loadDefaultValues();
         $post->type_id = $media_type;
 
-        if($post->type_id) {
-            $media_type_partial = '_post_' . $post_media_types[$post->type_id] . '_form';
+        // load the Quote, Video, or Image partial-form, if appropriate type
+        if($_type = $post->getMediaTypeName()) {
+            $_classname         = 'common\\models\\' . ucfirst($_type);
+            $post_media         = new $_classname;
+            $media_type_partial = "_post_{$_type}_form";
         }
 
         // create array of relational datatypes' id => name/title for <select>
@@ -178,6 +181,21 @@ class PostController extends Controller
                 }
             }
             if($post->save()) {
+                // check for any media, and save relation to Post
+                if($post->type_id && isset($post_media)) {
+                    $post_media->load($post_request_data);
+                    $post_media->post_id = $post->id;
+                    if(!$post_media->save()) {
+                        $errors[$post_media->className()] = $post_media->getErrors();
+                    }
+                }
+                if(!empty($errors)) {
+                    return $this->redirect(
+                        Yii::$app->urlManager->createUrl(
+                            ['post/update', 'id' => $post->id]
+                        )
+                    );
+                }
                 return $this->redirect(['index']);
             } else {
                 $errors[] = $post->getErrors();
@@ -209,10 +227,9 @@ class PostController extends Controller
     {
 
         $post_media         = null;
-        $post_tags          = '';
         $media_type_partial = '';
+        $post_tags          = '';
         $errors             = [];
-        $post_media_types   = Post::getMediaTypes();
         $categories         = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs              = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers           = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
@@ -222,14 +239,15 @@ class PostController extends Controller
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
         }
-
+        // load Tags associated with Post
         if(!empty($post->tags)) {
             $post_tags = ArrayHelper::map($post->tags, 'id', 'name');
             $post_tags = implode(',', $post_tags);
         }
-        if($post->type_id) {
-            $post_media         = $post->quote; // TODO - update to a $post->getMedia(); callback
-            $media_type_partial = '_post_' . $post_media_types[$post->type_id] . '_form';
+        // load the Quote, Video, or Image, if appropriate type
+        if($_type = $post->getMediaTypeName()) {
+            $post_media         = $post->media;
+            $media_type_partial = "_post_{$_type}_form";
         }
 
         $categories = ArrayHelper::map($categories, 'id', 'name');
