@@ -289,6 +289,7 @@ class m130524_201442_init extends Migration
     public function down()
     {
         $this->dropTable('{{%posts}}');
+        $this->dropTable('{{%quotes}}');
         $this->dropTable('{{%post_tags}}');
         $this->dropTable('{{%pages}}');
         $this->dropTable('{{%diosites}}');
