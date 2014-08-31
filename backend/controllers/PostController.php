@@ -154,6 +154,10 @@ class PostController extends Controller
         if(Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
             $post->load($post_request_data);
+            // load Post's media instance here, to preserve form data on error
+            if(isset($post_media)) {
+                $post_media->load($post_request_data);
+            }
             // Set the Post's published_at from a datetimepicker value.
             if( isset($post_request_data['post_published_at_string']) &&
                 !empty($post_request_data['post_published_at_string'])
@@ -182,7 +186,6 @@ class PostController extends Controller
             if($post->save()) {
                 // check for any media, and save relation to Post
                 if($post->type_id && isset($post_media)) {
-                    $post_media->load($post_request_data);
                     $post_media->post_id = $post->id;
                     if(!$post_media->save()) {
                         $errors[$post_media->className()] = $post_media->getErrors();
