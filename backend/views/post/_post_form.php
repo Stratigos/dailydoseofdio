@@ -59,9 +59,9 @@
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
-        <?php if($media_type_partial) : ?>
+        <?php if($post->type_id) : ?>
             <?= $this->render(
-                $media_type_partial,
+                '_post_' . $post->getMediaTypeName() . '_form',
                 [
                     'post_media' => $post_media,
                     'form'       => $form

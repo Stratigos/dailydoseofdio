@@ -138,10 +138,9 @@ class PostController extends Controller
         $post->type_id = $media_type;
 
         // load the Quote, Video, or Image partial-form, if appropriate type
-        if($_type = $post->getMediaTypeName()) {
-            $_classname         = 'common\\models\\' . ucfirst($_type);
-            $post_media         = new $_classname;
-            $media_type_partial = "_post_{$_type}_form";
+        if($post->type_id) {
+            $_classname = 'common\\models\\' . ucfirst($post->getMediaTypeName());
+            $post_media = new $_classname;
         }
 
         // create array of relational datatypes' id => name/title for <select>
@@ -205,15 +204,14 @@ class PostController extends Controller
         return $this->render(
             'create',
             [
-                'categories'         => $categories,
-                'blogs'              => $blogs,
-                'bloggers'           => $bloggers,
-                'tags'               => $tags,
-                'post'               => $post,
-                'post_tags'          => $post_tags,
-                'post_media'         => $post_media,
-                'errors'             => $errors,
-                'media_type_partial' => $media_type_partial
+                'categories' => $categories,
+                'blogs'      => $blogs,
+                'bloggers'   => $bloggers,
+                'tags'       => $tags,
+                'post'       => $post,
+                'post_tags'  => $post_tags,
+                'post_media' => $post_media,
+                'errors'     => $errors
             ]
         );
     }
@@ -226,15 +224,14 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
 
-        $post_media         = null;
-        $media_type_partial = '';
-        $post_tags          = '';
-        $errors             = [];
-        $categories         = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $blogs              = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
-        $bloggers           = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $tags               = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $post               = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        $post_media = null;
+        $post_tags  = '';
+        $errors     = [];
+        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
+        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
 
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
@@ -246,8 +243,7 @@ class PostController extends Controller
         }
         // load the Quote, Video, or Image, if appropriate type
         if($_type = $post->getMediaTypeName()) {
-            $post_media         = $post->media;
-            $media_type_partial = "_post_{$_type}_form";
+            $post_media = $post->media;
         }
 
         $categories = ArrayHelper::map($categories, 'id', 'name');
@@ -291,7 +287,14 @@ class PostController extends Controller
                 }
             }
             if($post->save()) {
-                return $this->redirect(['index']);
+                // check for any media, and save relation to Post
+                if($post->type_id && isset($post_media)) {
+                    $post_media->load($post_request_data);
+                    $post_media->post_id = $post->id;
+                    if(!$post_media->save()) {
+                        $errors[$post_media->className()] = $post_media->getErrors();
+                    }
+                }
             } else {
                 $errors = array_merge($errors, $post->getErrors());
             }
@@ -300,15 +303,14 @@ class PostController extends Controller
         return $this->render(
             'update',
             [
-                'categories'         => $categories,
-                'blogs'              => $blogs,
-                'bloggers'           => $bloggers,
-                'tags'               => $tags,
-                'post'               => $post,
-                'post_tags'          => $post_tags,
-                'post_media'         => $post_media,
-                'errors'             => $errors,
-                'media_type_partial' => $media_type_partial
+                'categories' => $categories,
+                'blogs'      => $blogs,
+                'bloggers'   => $bloggers,
+                'tags'       => $tags,
+                'post'       => $post,
+                'post_tags'  => $post_tags,
+                'post_media' => $post_media,
+                'errors'     => $errors
             ]
         );
     }

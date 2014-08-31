@@ -7,15 +7,14 @@
             $this->render(
                 '_post_form',
                 [
-                    'categories'         => $categories,
-                    'blogs'              => $blogs,
-                    'bloggers'           => $bloggers,
-                    'tags'               => $tags,
-                    'post'               => $post,
-                    'post_tags'          => $post_tags,
-                    'post_media'         => $post_media,
-                    'errors'             => $errors,
-                    'media_type_partial' => $media_type_partial
+                    'categories' => $categories,
+                    'blogs'      => $blogs,
+                    'bloggers'   => $bloggers,
+                    'tags'       => $tags,
+                    'post'       => $post,
+                    'post_tags'  => $post_tags,
+                    'post_media' => $post_media,
+                    'errors'     => $errors
                 ]
             )
         ); ?>
