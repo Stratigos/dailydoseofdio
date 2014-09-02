@@ -164,26 +164,26 @@ class PostController extends Controller
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
-            // Save any Tags added to Post
-            if( isset($post_request_data['post_tag_names_selected']) &&
-                !empty($post_request_data['post_tag_names_selected'])
-            ) {
-                $post_tags_array = explode(',', $post_request_data['post_tag_names_selected']);
-                if(!empty($post_tags_array)) {
-                    foreach($post_tags_array as $tag_name) {
-                        $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
-                        if($tag) {
-                            $post_tag          = new PostTag();
-                            $post_tag->post_id = $post->id;
-                            $post_tag->tag_id  = $tag->id;
-                            if(!$post_tag->save()) {
-                                $errors = array_merge($errors, $post_tag->getErrors());
+            if($post->save()) {
+                // Save any Tags added to Post
+                if( isset($post_request_data['post_tag_names_selected']) &&
+                    !empty($post_request_data['post_tag_names_selected'])
+                ) {
+                    $post_tags_array = explode(',', $post_request_data['post_tag_names_selected']);
+                    if(!empty($post_tags_array)) {
+                        foreach($post_tags_array as $tag_name) {
+                            $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
+                            if($tag) {
+                                $post_tag          = new PostTag();
+                                $post_tag->post_id = $post->id;
+                                $post_tag->tag_id  = $tag->id;
+                                if(!$post_tag->save()) {
+                                    $errors[PostTag::className()][$tag->id] = $post_tag->getErrors();
+                                }
                             }
                         }
                     }
                 }
-            }
-            if($post->save()) {
                 // check for any media, and save relation to Post
                 if($post->type_id && isset($post_media)) {
                     $post_media->post_id = $post->id;
@@ -194,7 +194,11 @@ class PostController extends Controller
                 if(!empty($errors)) {
                     return $this->redirect(
                         Yii::$app->urlManager->createUrl(
-                            ['post/update', 'id' => $post->id]
+                            [
+                                'post/update',
+                                'id'     => $post->id,
+                                'errors' => $errors
+                            ]
                         )
                     );
                 }
@@ -220,21 +224,27 @@ class PostController extends Controller
     }
 
     /**
-     * edit an existing Post record
+     * Edit an existing Post record.
      * @param Int $id
-     *  valid posts.id value
+     *  valid posts.id value.
+     * @param Array $create_errors
+     *  Array of errors from actionCreate() that occurred while
+     *  saving the original Post or its relational objects.
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $create_errors = null)
     {
 
         $post_media = null;
         $post_tags  = '';
-        $errors     = [];
         $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        $errors     = (isset($create_errors) && is_array($create_errors) && !empty($create_errors)) ?
+            $create_errors :
+            []
+        ;
 
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
@@ -265,31 +275,31 @@ class PostController extends Controller
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
-            // Set all of the Post's Tags
-            if(!empty($post->postTags)) {
-                foreach($post->postTags as $postTag) {
-                    $postTag->delete();
+            if($post->save()) {
+                // Set all of the Post's Tags
+                if(!empty($post->postTags)) {
+                    foreach($post->postTags as $postTag) {
+                        $postTag->delete();
+                    }
                 }
-            }
-            if( isset($post_request_data['post_tag_names_selected']) &&
-                !empty($post_request_data['post_tag_names_selected'])
-            ) {
-                $post_tags_array = explode(',', $post_request_data['post_tag_names_selected']);
-                if(!empty($post_tags_array)) {
-                    foreach($post_tags_array as $tag_name) {
-                        $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
-                        if($tag) {
-                            $post_tag          = new PostTag();
-                            $post_tag->post_id = $post->id;
-                            $post_tag->tag_id  = $tag->id;
-                            if(!$post_tag->save()) {
-                                $errors = array_merge($errors, $post_tag->getErrors());
+                if( isset($post_request_data['post_tag_names_selected']) &&
+                    !empty($post_request_data['post_tag_names_selected'])
+                ) {
+                    $post_tags_array = explode(',', $post_request_data['post_tag_names_selected']);
+                    if(!empty($post_tags_array)) {
+                        foreach($post_tags_array as $tag_name) {
+                            $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
+                            if($tag) {
+                                $post_tag          = new PostTag();
+                                $post_tag->post_id = $post->id;
+                                $post_tag->tag_id  = $tag->id;
+                                if(!$post_tag->save()) {
+                                    $errors[PostTag::className()][$tag->id] = $post_tag->getErrors();
+                                }
                             }
                         }
                     }
                 }
-            }
-            if($post->save()) {
                 // check for any media, and save relation to Post
                 if($post->type_id && isset($post_media)) {
                     $post_media->load($post_request_data);
@@ -297,6 +307,10 @@ class PostController extends Controller
                     if(!$post_media->save()) {
                         $errors[$post_media->className()] = $post_media->getErrors();
                     }
+                }
+                // if everything saved correctly, refresh current page
+                if(empty($errors)) {
+                    $this->refresh();
                 }
             } else {
                 $errors = array_merge($errors, $post->getErrors());

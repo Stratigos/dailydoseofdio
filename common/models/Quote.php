@@ -25,8 +25,9 @@ class Quote extends ActiveRecord
         return [
             [['post_id'], 'required'],
             [['post_id'], 'integer'],
-            [['body'], 'string', 'max' => 65535],
-            [['source'], 'string', 'max' => 2000],
+            [['body'], 'required'],
+            [['body'], 'string', 'length' => [3, 65535]],
+            [['source'], 'string', 'length' => [3, 2000]],
         ];
     }
 
