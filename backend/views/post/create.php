@@ -1,3 +1,11 @@
+<?php
+    $this->title                   = 'Create Post';
+    $this->params['breadcrumbs'][] = array(
+        'label' => 'Posts Index',
+        'url'   => Yii::$app->urlManager->createUrl('post/index')
+    );
+    $this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="post-index">
     <div>
         <h3>Create New Post</h3>

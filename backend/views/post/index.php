@@ -1,15 +1,17 @@
 <?php
 use yii\grid\GridView;
 use common\models\Post;
+$this->title                   = 'Posts Index';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
     <div>
         <h1>Posts Management</h1>
-        <p class="lead">Create, View, Update, and Delete Posts.</p>
     </div>
     <div class="body-content">
-        <div class="row">
-            <p><a href="<?= $createPostUrl ?>">Create a new Post</a></p>
+        <div>
+            <p class="lead"><a href="<?= $createPostUrl ?>">Create a new Post</a></p>
+            <hr/>
         </div>
         <div>
             <?php echo(
@@ -89,6 +91,10 @@ use common\models\Post;
                     ]
                 ])
             ); ?>
+        </div>
+        <div>
+            <hr/>
+            <p class="lead"><a href="<?= $createPostUrl ?>">Create a new Post</a></p>
         </div>
     </div>
 </div>

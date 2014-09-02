@@ -1,3 +1,11 @@
+<?php
+    $this->title                   = 'Select Post Media Type';
+    $this->params['breadcrumbs'][] = array(
+        'label' => 'Posts Index',
+        'url'   => Yii::$app->urlManager->createUrl('post/index')
+    );
+    $this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="post-select-media-type">
     <div>
         <h3>Select Media Type</h3>
