@@ -61,13 +61,25 @@ class m130524_201442_init extends Migration
         );
 
         $this->createTable(
-            '{{quotes}}',
+            '{{%quotes}}',
             [
                 'id'      => Schema::TYPE_PK,
                 'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'body'    => Schema::TYPE_TEXT    . ' DEFAULT NULL',
                 'source'  => Schema::TYPE_STRING  . '(2000) DEFAULT NULL',
                 'KEY idx_quote_post (post_id)'
+            ],
+            $tableOptions
+        );
+
+        $this->createTable(
+            '{{%videos}}',
+            [
+                'id'      => Schema::TYPE_PK,
+                'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'url'     => Schema::TYPE_STRING  . '(2000) NOT NULL',
+                'title'   => Schema::TYPE_STRING  . '(128) DEFAULT NULL',
+                'KEY idx_video_post (post_id)'
             ],
             $tableOptions
         );
@@ -290,6 +302,7 @@ class m130524_201442_init extends Migration
     {
         $this->dropTable('{{%posts}}');
         $this->dropTable('{{%quotes}}');
+        $this->dropTable('{{%videos}}');
         $this->dropTable('{{%post_tags}}');
         $this->dropTable('{{%pages}}');
         $this->dropTable('{{%diosites}}');
