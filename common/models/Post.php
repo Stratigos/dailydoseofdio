@@ -1,4 +1,9 @@
 <?php
+/****************************************************************************
+* Post is the 'atomic' content piece - representing a single content entity 
+* (i.e., a blog post). Each instance may have relational media, such as
+* a Video or Quote. 
+*****************************************************************************/
 namespace common\models;
 
 use yii\db\ActiveRecord;
