@@ -15,6 +15,8 @@ class m130524_201442_init extends Migration
     /**
      * creates the following tables:
      *  + posts
+     *  + quotes
+     *  + videos
      *  + post_tags
      *  + pages
      *  + diosites
