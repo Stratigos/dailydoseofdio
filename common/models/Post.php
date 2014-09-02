@@ -150,7 +150,7 @@ class Post extends ActiveRecord
         $media = null;
         switch($this->type_id) {
             case self::POST_TYPE_VIDEO :
-                //$media = $this->video;
+                $media = $this->video;
                 break;
             case self::POST_TYPE_QUOTE :
                 $media = $this->quote;
@@ -210,5 +210,13 @@ class Post extends ActiveRecord
     public function getQuote()
     {
         return $this->hasOne(Quote::className(), ['post_id' => 'id'])->inverseOf('post');
+    }
+
+    /**
+     * relation to a Video
+     */
+    public function getVideo()
+    {
+        return $this->hasOne(Video::className(), ['post_id' => 'id'])->inverseOf('post');
     }
 }

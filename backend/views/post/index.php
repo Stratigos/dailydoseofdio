@@ -63,6 +63,12 @@ use common\models\Post;
                             }
                         ],
                         [
+                            'label' => 'Media',
+                            'value' => function($data) {
+                                return empty($data->type_id) ? '' : $data->mediaTypeName;
+                            }
+                        ],
+                        [
                             'label' => 'Created',
                             'class' => 'yii\grid\DataColumn',
                             'value' => function($data) {

@@ -1,4 +1,8 @@
 <?php
+/*************************************************************************
+* A Quote is a media instance belonging to a Post, which features
+*  special stylized text display, and stores wisdoms pertaining to Dio.
+**************************************************************************/
 namespace common\models;
 
 use yii\db\ActiveRecord;

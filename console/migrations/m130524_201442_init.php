@@ -77,7 +77,7 @@ class m130524_201442_init extends Migration
             [
                 'id'      => Schema::TYPE_PK,
                 'post_id' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-                'url'     => Schema::TYPE_STRING  . '(2000) NOT NULL',
+                'embed'   => Schema::TYPE_STRING  . '(2000) NOT NULL',
                 'title'   => Schema::TYPE_STRING  . '(128) DEFAULT NULL',
                 'KEY idx_video_post (post_id)'
             ],
