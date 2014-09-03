@@ -68,6 +68,7 @@ Yii Framework 2 Change Log
 - Bug #4127: `CaptchaValidator` clientside error message wasn't formed properly (samdark)
 - Bug #4162: Fixed bug where schema name was not used in ’SHOW CREATE TABLE’ query in `yii\db\mysql\Schema` (stevekr)
 - Bug #4241: `yii\widgets\Pjax` was incorrectly setting container id (mitalcoi)
+- Bug #4254: `SqlDataProvider` does not work with Oracle and SQL Server (qiangxue, miramir)
 - Bug #4276: Added check for UPLOAD_ERR_NO_FILE in `yii\web\UploadedFile` and return null if no file was uploaded (OmgDef)
 - Bug #4342: mssql (dblib) driver does not support getting attributes (tof06)
 - Bug #4371: Active form client validation wasn't working in case of two models having same named fields (abrahamy)
@@ -84,6 +85,7 @@ Yii Framework 2 Change Log
 - Bug #4654: Fixed issue with PostgreSQL and inserting boolean values with batch insert (cebe)
 - Bug #4672: Fixed issue with PostgreSQL handling of boolean values in queries, dropped support for using boolean value for integer columns (cebe)
 - Bug #4727: Fixed wrong Stylus definition in `\yii\web\AssetConverter` (samdark)
+- Bug #4755: `yii\test\BaseActiveFixture::unload()` does not clean up the internal cached data (qiangxue)
 - Bug #4813: Fixed MSSQL schema that was getting incorrect info about constraints (samdark, SerjRamone, o-rey)
 - Bug #4880: Return value of yii\web\Request::getPrefferedLanguage() was a normalized value instead of a valid language value from the input array (cebe)
 - Bug: Fixed inconsistent return of `\yii\console\Application::runAction()` (samdark)
@@ -173,6 +175,7 @@ Yii Framework 2 Change Log
      - Fixed PBKDF2 key truncation.
      - Adjusted API.
 - Enh #4209: Added `beforeCopy`, `afterCopy`, `forceCopy` properties to AssetManager (cebe)
+- Enh #4225: Added `ActiveForm::validateOnBlur` and `ActiveField::validateOnBlur` (qiangxue)
 - Enh #4297: Added check for DOM extension to requirements (samdark)
 - Enh #4317: Added `absoluteAuthTimeout` to yii\web\User (ivokund, nkovacs)
 - Enh #4360: Added client validation support for file validator (Skysplit)
@@ -244,6 +247,7 @@ Yii Framework 2 Change Log
 - Chg #4586: Signed bigint and unsigned int will be converted into integers when they are loaded from DB by AR (qiangxue)
 - Chg #4591: `yii\helpers\Url::to()` will no longer prefix relative URLs with the base URL (qiangxue)
 - Chg #4595: `yii\widgets\LinkPager`'s `nextPageLabel`, `prevPageLabel`, `firstPageLabel`, `lastPageLabel` are now taking `false` instead of `null` for "no label" (samdark)
+- Chg #4911: Changed callback signature used in `yii\base\ArrayableTrait::fields()` from `function ($field, $model) {` to `function ($model, $field) {` (samdark)
 - Chg: Replaced `clearAll()` and `clearAllAssignments()` in `yii\rbac\ManagerInterface` with `removeAll()`, `removeAllRoles()`, `removeAllPermissions()`, `removeAllRules()` and `removeAllAssignments()` (qiangxue)
 - Chg: Added `$user` as the first parameter of `yii\rbac\Rule::execute()` (qiangxue)
 - Chg: `yii\grid\DataColumn::getDataCellValue()` visibility is now `public` to allow accessing the value from a GridView directly (cebe)
