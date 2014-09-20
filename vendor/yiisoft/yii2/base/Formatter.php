@@ -77,7 +77,6 @@ class Formatter extends Component
         'decimalSeparator' => null,
     ];
 
-
     /**
      * Initializes the component.
      */
@@ -185,7 +184,9 @@ class Formatter extends Component
             return $this->nullDisplay;
         }
 
-        return str_replace('<p></p>', '', '<p>' . preg_replace('/[\r\n]{2,}/', "</p>\n<p>", Html::encode($value)) . '</p>');
+        return str_replace('<p></p>', '',
+            '<p>' . preg_replace('/[\r\n]{2,}/', "</p>\n<p>", Html::encode($value)) . '</p>'
+        );
     }
 
     /**
@@ -343,28 +344,17 @@ class Formatter extends Component
 
     /**
      * Normalizes the given datetime value as one that can be taken by various date/time formatting methods.
-     *
      * @param mixed $value the datetime value to be normalized.
      * @return integer the normalized datetime value
      */
     protected function normalizeDatetimeValue($value)
     {
         if (is_string($value)) {
-            if (is_numeric($value) || $value === '') {
-                $value = (double)$value;
-            } else {
-                try {
-                    $date = new DateTime($value);
-                } catch (\Exception $e) {
-                    return false;
-                }
-                $value = (double)$date->format('U');
-            }
-            return $value;
+            return is_numeric($value) || $value === '' ? (int) $value : strtotime($value);
         } elseif ($value instanceof DateTime || $value instanceof \DateTimeInterface) {
-            return (double)$value->format('U');
+            return $value->getTimestamp();
         } else {
-            return (double)$value;
+            return (int) $value;
         }
     }
 
@@ -434,10 +424,10 @@ class Formatter extends Component
         if ($value === null) {
             return $this->nullDisplay;
         }
-        $ds = isset($this->decimalSeparator) ? $this->decimalSeparator : '.';
-        $ts = isset($this->thousandSeparator) ? $this->thousandSeparator : ',';
+        $ds = isset($this->decimalSeparator) ? $this->decimalSeparator: '.';
+        $ts = isset($this->thousandSeparator) ? $this->thousandSeparator: ',';
 
-        return number_format((float) $value, $decimals, $ds, $ts);
+        return number_format($value, $decimals, $ds, $ts);
     }
 
     /**
@@ -445,13 +435,10 @@ class Formatter extends Component
      * @param integer $value value in bytes to be formatted
      * @param boolean $verbose if full names should be used (e.g. bytes, kilobytes, ...).
      * Defaults to false meaning that short names will be used (e.g. B, KB, ...).
-     * @param boolean $binaryPrefix if binary prefixes should be used for base 1024
-     * Defaults to true meaning that binary prefixes are used (e.g. kibibyte/KiB, mebibyte/MiB, ...).
-     * @link http://en.wikipedia.org/wiki/Binary_prefix
      * @return string the formatted result
      * @see sizeFormat
      */
-    public function asSize($value, $verbose = false, $binaryPrefix = true)
+    public function asSize($value, $verbose = false)
     {
         $position = 0;
 
@@ -462,28 +449,11 @@ class Formatter extends Component
 
             $value = $value / $this->sizeFormat['base'];
             $position++;
-        } while ($position < 5);
+        } while ($position < 6);
 
         $value = round($value, $this->sizeFormat['decimals']);
         $formattedValue = isset($this->sizeFormat['decimalSeparator']) ? str_replace('.', $this->sizeFormat['decimalSeparator'], $value) : $value;
         $params = ['n' => $formattedValue];
-
-        if ($binaryPrefix && $this->sizeFormat['base'] === 1024) {
-            switch ($position) {
-                case 0:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# byte} other{# bytes}}', $params) : Yii::t('yii', '{n} B', $params);
-                case 1:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# kibibyte} other{# kibibytes}}', $params) : Yii::t('yii', '{n} KiB', $params);
-                case 2:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# mebibyte} other{# mebibytes}}', $params) : Yii::t('yii', '{n} MiB', $params);
-                case 3:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# gibibyte} other{# gibibytes}}', $params) : Yii::t('yii', '{n} GiB', $params);
-                case 4:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# tebibyte} other{# tebibytes}}', $params) : Yii::t('yii', '{n} TiB', $params);
-                default:
-                    return $verbose ? Yii::t('yii', '{n, plural, =1{# pebibyte} other{# pebibytes}}', $params) : Yii::t('yii', '{n} PiB', $params);
-            }
-        }
 
         switch ($position) {
             case 0:
@@ -500,7 +470,7 @@ class Formatter extends Component
                 return $verbose ? Yii::t('yii', '{n, plural, =1{# petabyte} other{# petabytes}}', $params) : Yii::t('yii', '{n} PB', $params);
         }
     }
-    
+
     /**
      * Formats the value as the time interval between a date and now in human readable form.
      *
@@ -531,7 +501,7 @@ class Formatter extends Component
                 // to create a DateInterval with it
                 try {
                     $interval = new \DateInterval($value);
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     // invalid date/time and invalid interval
                     return $this->nullDisplay;
                 }

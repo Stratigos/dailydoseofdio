@@ -40,7 +40,6 @@ class InitDbFixture extends DbFixture
      */
     public $schemas = [''];
 
-
     /**
      * @inheritdoc
      */

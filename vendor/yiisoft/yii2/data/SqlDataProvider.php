@@ -10,7 +10,6 @@ namespace yii\data;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\Connection;
-use yii\db\Expression;
 use yii\di\Instance;
 
 /**
@@ -83,7 +82,6 @@ class SqlDataProvider extends BaseDataProvider
      */
     public $key;
 
-
     /**
      * Initializes the DB connection component.
      * This method will initialize the [[db]] property to make sure it refers to a valid DB connection.
@@ -103,32 +101,24 @@ class SqlDataProvider extends BaseDataProvider
      */
     protected function prepareModels()
     {
-        $sort = $this->getSort();
-        $pagination = $this->getPagination();
-        if ($pagination === false && $sort === false) {
-            return $this->db->createCommand($this->sql, $this->params)->queryAll();
-        }
-
         $sql = $this->sql;
-        $orders = [];
-        $limit = $offset = null;
-
-        if ($sort !== false) {
-            $orders = $sort->getOrders();
-            $pattern = '/\s+order\s+by\s+([\w\s,\.]+)$/i';
-            if (preg_match($pattern, $sql, $matches)) {
-                array_unshift($orders, new Expression($matches[1]));
-                $sql = preg_replace($pattern, '', $sql);
+        $qb = $this->db->getQueryBuilder();
+        if (($sort = $this->getSort()) !== false) {
+            $orderBy = $qb->buildOrderBy($sort->getOrders());
+            if (!empty($orderBy)) {
+                $orderBy = substr($orderBy, 9);
+                if (preg_match('/\s+order\s+by\s+[\w\s,\.]+$/i', $sql)) {
+                    $sql .= ', ' . $orderBy;
+                } else {
+                    $sql .= ' ORDER BY ' . $orderBy;
+                }
             }
         }
 
-        if ($pagination !== false) {
+        if (($pagination = $this->getPagination()) !== false) {
             $pagination->totalCount = $this->getTotalCount();
-            $limit = $pagination->getLimit();
-            $offset = $pagination->getOffset();
+            $sql .= ' ' . $qb->buildLimit($pagination->getLimit(), $pagination->getOffset());
         }
-
-        $sql = $this->db->getQueryBuilder()->buildOrderByAndLimit($sql, $orders, $limit, $offset);
 
         return $this->db->createCommand($sql, $this->params)->queryAll();
     }

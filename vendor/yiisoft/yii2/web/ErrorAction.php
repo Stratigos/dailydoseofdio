@@ -66,15 +66,9 @@ class ErrorAction extends Action
      */
     public $defaultMessage;
 
-
-    /**
-     * Runs the action
-     *
-     * @return string result content
-     */
     public function run()
     {
-        if (($exception = Yii::$app->getErrorHandler()->exception) === null) {
+        if (($exception = Yii::$app->errorHandler->exception) === null) {
             return '';
         }
 

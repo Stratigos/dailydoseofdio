@@ -8,7 +8,6 @@
 namespace yii\db;
 
 use yii\di\Instance;
-use \yii\base\Component;
 
 /**
  * Migration is the base class for representing a database migration.
@@ -18,11 +17,11 @@ use \yii\base\Component;
  * Each child class of Migration represents an individual database migration which
  * is identified by the child class name.
  *
- * Within each migration, the [[up()]] method should be overridden to contain the logic
+ * Within each migration, the [[up()]] method should be overwritten to contain the logic
  * for "upgrading" the database; while the [[down()]] method for the "downgrading"
  * logic. The "yii migrate" command manages all available migrations in an application.
  *
- * If the database supports transactions, you may also override [[safeUp()]] and
+ * If the database supports transactions, you may also overwrite [[safeUp()]] and
  * [[safeDown()]] so that if anything wrong happens during the upgrading or downgrading,
  * the whole migration can be reverted in a whole.
  *
@@ -36,24 +35,13 @@ use \yii\base\Component;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Migration extends Component implements MigrationInterface
+class Migration extends \yii\base\Component
 {
     /**
      * @var Connection|string the DB connection object or the application component ID of the DB connection
-     * that this migration should work with. Note that when a Migration object is created by
-     * the `migrate` command, this property will be overwritten by the command. If you do not want to
-     * use the DB connection provided by the command, you may override the [[init()]] method like the following:
-     *
-     * ```php
-     * public function init()
-     * {
-     *     $this->db = 'db2';
-     *     parent::init();
-     * }
-     * ```
+     * that this migration should work with.
      */
     public $db = 'db';
-
 
     /**
      * Initializes the migration.
@@ -67,7 +55,7 @@ class Migration extends Component implements MigrationInterface
 
     /**
      * This method contains the logic to be executed when applying this migration.
-     * Child classes may override this method to provide actual migration logic.
+     * Child classes may overwrite this method to provide actual migration logic.
      * @return boolean return a false value to indicate the migration fails
      * and should not proceed further. All other return values mean the migration succeeds.
      */

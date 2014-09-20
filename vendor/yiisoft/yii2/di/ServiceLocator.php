@@ -42,7 +42,7 @@ use yii\base\InvalidConfigException;
  * Because [[\yii\base\Module]] extends from ServiceLocator, modules and the application are all service locators.
  *
  * @property array $components The list of the component definitions or the loaded component instances (ID =>
- * definition or instance).
+ * definition or instance). This property is read-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -57,7 +57,6 @@ class ServiceLocator extends Component
      * @var array component definitions indexed by their IDs
      */
     private $_definitions = [];
-
 
     /**
      * Getter magic method.
@@ -188,8 +187,6 @@ class ServiceLocator extends Component
             unset($this->_components[$id], $this->_definitions[$id]);
             return;
         }
-
-        unset($this->_components[$id]);
 
         if (is_object($definition) || is_callable($definition, true)) {
             // an object, a class name, or a PHP callable

@@ -1,7 +1,8 @@
 <?php
-/* @var $this \yii\web\View */
-/* @var $exception \Exception */
-/* @var $handler \yii\web\ErrorHandler */
+/**
+ * @var \Exception $exception
+ * @var \yii\web\ErrorHandler $handler
+ */
 ?>
 <?php if (method_exists($this, 'beginPage')) $this->beginPage(); ?>
 <!doctype html>
@@ -11,16 +12,12 @@
     <meta charset="utf-8"/>
 
     <title><?php
-        $name = $handler->getExceptionName($exception);
         if ($exception instanceof \yii\web\HttpException) {
-            echo (int) $exception->statusCode . ' ' . $handler->htmlEncode($name);
+            echo (int) $exception->statusCode . ' ' . $handler->htmlEncode($exception->getName());
+        } elseif ($exception instanceof \yii\base\Exception) {
+            echo $handler->htmlEncode($exception->getName() . ' – ' . get_class($exception));
         } else {
-            $name = $handler->getExceptionName($exception);
-            if ($name !== null) {
-                echo $handler->htmlEncode($name . ' – ' . get_class($exception));
-            } else {
-                echo $handler->htmlEncode(get_class($exception));
-            }
+            echo $handler->htmlEncode(get_class($exception));
         }
     ?></title>
 
@@ -86,9 +83,6 @@ html,body{
     font-size: 20px;
     line-height: 1.25;
 }
-.header pre{
-    margin: 10px 0;
-}
 
 /* previous exceptions */
 .header .previous{
@@ -106,8 +100,8 @@ html,body{
     filter: progid:DXImageTransform.Microsoft.BasicImage(mirror=1);
     font-size: 26px;
     position: absolute;
-    margin-top: -3px;
-    margin-left: -30px;
+    margin-top: -5px;
+    margin-left: -25px;
     color: #e51717;
 }
 .header .previous h2{
@@ -131,10 +125,6 @@ html,body{
 .header .previous p{
     font-size: 14px;
     color: #aaa;
-}
-.header .previous pre{
-    font-size: 14px;
-    margin: 10px 0;
 }
 
 /* call stack */
@@ -160,7 +150,6 @@ html,body{
     margin: 0 auto;
     padding: 0 50px;
     position: relative;
-    white-space: nowrap;
 }
 .call-stack ul li a{
     color: #505050;
@@ -297,32 +286,54 @@ html,body{
 }
 
 /* highlight.js */
-.comment{
+pre .subst,pre .title{
+    font-weight: normal;
+    color: #505050;
+}
+pre .comment,pre .template_comment,pre .javadoc,pre .diff .header{
     color: #808080;
     font-style: italic;
 }
-.keyword{
+pre .annotation,pre .decorator,pre .preprocessor,pre .doctype,pre .pi,pre .chunk,pre .shebang,pre .apache .cbracket,
+pre .prompt,pre .http .title{
+    color: #808000;
+}
+pre .tag,pre .pi{
+    background: #efefef;
+}
+pre .tag .title,pre .id,pre .attr_selector,pre .pseudo,pre .literal,pre .keyword,pre .hexcolor,pre .css .function,
+pre .ini .title,pre .css .class,pre .list .title,pre .clojure .title,pre .nginx .title,pre .tex .command,
+pre .request,pre .status{
     color: #000080;
 }
-.number{
+pre .attribute,pre .rules .keyword,pre .number,pre .date,pre .regexp,pre .tex .special{
     color: #00a;
 }
-.number{
+pre .number,pre .regexp{
     font-weight: normal;
 }
-.string, .value{
+pre .string,pre .value,pre .filter .argument,pre .css .function .params,pre .apache .tag{
     color: #0a0;
 }
-.symbol, .char {
+pre .symbol,pre .ruby .symbol .string,pre .char,pre .tex .formula{
     color: #505050;
     background: #d0eded;
     font-style: italic;
 }
-.phpdoc{
+pre .phpdoc,pre .yardoctag,pre .javadoctag{
     text-decoration: underline;
 }
-.variable{
+pre .variable,pre .envvar,pre .apache .sqbracket,pre .nginx .built_in{
     color: #a00;
+}
+pre .addition{
+    background: #baeeba;
+}
+pre .deletion{
+    background: #ffc8bd;
+}
+pre .diff .change{
+    background: #bccff9;
 }
     </style>
 </head>
@@ -341,32 +352,25 @@ html,body{
                 if ($exception instanceof \yii\web\HttpException) {
                     echo '<span>' . $handler->createHttpStatusLink($exception->statusCode, $handler->htmlEncode($exception->getName())) . '</span>';
                     echo ' &ndash; ' . $handler->addTypeLinks(get_class($exception));
+                } elseif ($exception instanceof \yii\base\Exception) {
+                    echo '<span>' . $handler->htmlEncode($exception->getName()) . '</span>';
+                    echo ' &ndash; ' . $handler->addTypeLinks(get_class($exception));
                 } else {
-                    $name = $handler->getExceptionName($exception);
-                    if ($name !== null) {
-                        echo '<span>' . $handler->htmlEncode($name) . '</span>';
-                        echo ' &ndash; ' . $handler->addTypeLinks(get_class($exception));
-                    } else {
-                        echo '<span>' . $handler->htmlEncode(get_class($exception)) . '</span>';
-                    }
+                    echo '<span>' . $handler->htmlEncode(get_class($exception)) . '</span>';
                 }
             ?></h1>
         <?php endif; ?>
         <h2><?= nl2br($handler->htmlEncode($exception->getMessage())) ?></h2>
-
-        <?php if ($exception instanceof \yii\db\Exception && !empty($exception->errorInfo)) {
-            echo '<pre>Error Info: ' . print_r($exception->errorInfo, true) . '</pre>';
-        } ?>
 
         <?= $handler->renderPreviousExceptions($exception) ?>
     </div>
 
     <div class="call-stack">
         <ul>
-            <?= $handler->renderCallStackItem($exception->getFile(), $exception->getLine(), null, null, [], 1) ?>
+            <?= $handler->renderCallStackItem($exception->getFile(), $exception->getLine(), null, null, 1) ?>
             <?php for ($i = 0, $trace = $exception->getTrace(), $length = count($trace); $i < $length; ++$i): ?>
                 <?= $handler->renderCallStackItem(@$trace[$i]['file'] ?: null, @$trace[$i]['line'] ?: null,
-                    @$trace[$i]['class'] ?: null, @$trace[$i]['function'] ?: null, $trace[$i]['args'], $i + 2) ?>
+                    @$trace[$i]['class'] ?: null, @$trace[$i]['function'] ?: null, $i + 2) ?>
             <?php endfor; ?>
         </ul>
     </div>

@@ -41,14 +41,12 @@ use yii\helpers\Url;
  */
 class View extends \yii\base\View
 {
-    /**
-     * @event Event an event that is triggered by [[beginBody()]].
-     */
     const EVENT_BEGIN_BODY = 'beginBody';
     /**
      * @event Event an event that is triggered by [[endBody()]].
      */
     const EVENT_END_BODY = 'endBody';
+
     /**
      * The location of registered JavaScript code block or files.
      * This means the location is in the head section.
@@ -129,7 +127,6 @@ class View extends \yii\base\View
     public $jsFiles;
 
     private $_assetManager;
-
 
     /**
      * Marks the position of an HTML head section.
@@ -251,7 +248,7 @@ class View extends \yii\base\View
      * Removes a bundle from [[assetBundles]] once files are registered.
      * @param string $name name of the bundle to register
      */
-    protected function registerAssetFiles($name)
+    private function registerAssetFiles($name)
     {
         if (!isset($this->assetBundles[$name])) {
             return;
@@ -362,7 +359,6 @@ class View extends \yii\base\View
      * @param string $url the CSS file to be registered.
      * @param array $depends the names of the asset bundles that this CSS file depends on
      * @param array $options the HTML attributes for the link tag.
-     * Please refer to [[Html::cssFile()]] for supported options.
      * @param string $key the key that identifies the CSS script file. If null, it will use
      * $url as the key. If two CSS files are registered with the same key, the latter
      * will overwrite the former.
@@ -374,7 +370,7 @@ class View extends \yii\base\View
         if (empty($depends)) {
             $this->cssFiles[$key] = Html::cssFile($url, $options);
         } else {
-            $am = $this->getAssetManager();
+            $am = Yii::$app->getAssetManager();
             $am->bundles[$key] = new AssetBundle([
                 'css' => [Url::to($url)],
                 'cssOptions' => $options,
@@ -423,8 +419,6 @@ class View extends \yii\base\View
      * - [[POS_BEGIN]]: at the beginning of the body section
      * - [[POS_END]]: at the end of the body section. This is the default value.
      *
-     * Please refer to [[Html::jsFile()]] for other supported options.
-     *
      * @param string $key the key that identifies the JS script file. If null, it will use
      * $url as the key. If two JS files are registered with the same key, the latter
      * will overwrite the former.
@@ -438,7 +432,7 @@ class View extends \yii\base\View
             unset($options['position']);
             $this->jsFiles[$position][$key] = Html::jsFile($url, $options);
         } else {
-            $am = $this->getAssetManager();
+            $am = Yii::$app->getAssetManager();
             $am->bundles[$key] = new AssetBundle([
                 'js' => [Url::to($url)],
                 'jsOptions' => $options,
@@ -458,6 +452,12 @@ class View extends \yii\base\View
         $lines = [];
         if (!empty($this->metaTags)) {
             $lines[] = implode("\n", $this->metaTags);
+        }
+
+        $request = Yii::$app->getRequest();
+        if ($request instanceof \yii\web\Request && $request->enableCsrfValidation && !$request->getIsAjax()) {
+            $lines[] = Html::tag('meta', '', ['name' => 'csrf-param', 'content' => $request->csrfParam]);
+            $lines[] = Html::tag('meta', '', ['name' => 'csrf-token', 'content' => $request->getCsrfToken()]);
         }
 
         if (!empty($this->linkTags)) {

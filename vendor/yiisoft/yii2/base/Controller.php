@@ -18,7 +18,7 @@ use Yii;
  * property is read-only.
  * @property string $uniqueId The controller ID that is prefixed with the module ID (if any). This property is
  * read-only.
- * @property View|\yii\web\View $view The view object that can be used to render views or view files.
+ * @property View $view The view object that can be used to render views or view files.
  * @property string $viewPath The directory containing the view files for this controller. This property is
  * read-only.
  *
@@ -36,7 +36,6 @@ class Controller extends Component implements ViewContextInterface
      * @event ActionEvent an event raised right after executing a controller action.
      */
     const EVENT_AFTER_ACTION = 'afterAction';
-
     /**
      * @var string the ID of this controller.
      */
@@ -62,12 +61,10 @@ class Controller extends Component implements ViewContextInterface
      * by [[run()]] when it is called by [[Application]] to run an action.
      */
     public $action;
-
     /**
      * @var View the view object that can be used to render views or view files.
      */
     private $_view;
-
 
     /**
      * @param string $id the ID of this controller.
@@ -153,7 +150,7 @@ class Controller extends Component implements ViewContextInterface
         }
 
         foreach ($modules as $module) {
-            /* @var $module Module */
+            /** @var Module $module */
             $result = $module->afterAction($action, $result);
         }
 
@@ -219,7 +216,7 @@ class Controller extends Component implements ViewContextInterface
             $methodName = 'action' . str_replace(' ', '', ucwords(implode(' ', explode('-', $id))));
             if (method_exists($this, $methodName)) {
                 $method = new \ReflectionMethod($this, $methodName);
-                if ($method->isPublic() && $method->getName() === $methodName) {
+                if ($method->getName() === $methodName) {
                     return new InlineAction($id, $this, $methodName);
                 }
             }
@@ -349,7 +346,7 @@ class Controller extends Component implements ViewContextInterface
      * - a path alias (e.g. "@app/views/layouts/main");
      * - an absolute path (e.g. "/main"): the layout name starts with a slash. The actual layout file will be
      *   looked for under the [[Application::layoutPath|layout path]] of the application;
-     * - a relative path (e.g. "main"): the actual layout file will be looked for under the
+     * - a relative path (e.g. "main"): the actual layout layout file will be looked for under the
      *   [[Module::layoutPath|layout path]] of the context module.
      *
      * If the layout name does not contain a file extension, it will use the default one `.php`.
@@ -401,19 +398,20 @@ class Controller extends Component implements ViewContextInterface
      * The [[render()]], [[renderPartial()]] and [[renderFile()]] methods will use
      * this view object to implement the actual view rendering.
      * If not set, it will default to the "view" application component.
-     * @return View|\yii\web\View the view object that can be used to render views or view files.
+     * @return View the view object that can be used to render views or view files.
      */
     public function getView()
     {
         if ($this->_view === null) {
             $this->_view = Yii::$app->getView();
         }
+
         return $this->_view;
     }
 
     /**
      * Sets the view object to be used by this controller.
-     * @param View|\yii\web\View $view the view object that can be used to render views or view files.
+     * @param View $view the view object that can be used to render views or view files.
      */
     public function setView($view)
     {
@@ -438,7 +436,7 @@ class Controller extends Component implements ViewContextInterface
      * Please refer to [[render()]] on how to specify this parameter.
      * @throws InvalidParamException if an invalid path alias is used to specify the layout.
      */
-    public function findLayoutFile($view)
+    protected function findLayoutFile($view)
     {
         $module = $this->module;
         if (is_string($this->layout)) {

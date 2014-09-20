@@ -85,7 +85,6 @@ class Pjax extends Widget
      */
     public $clientOptions;
 
-
     /**
      * @inheritdoc
      */
@@ -137,13 +136,18 @@ class Pjax extends Widget
 
         // only need the content enclosed within this widget
         $response = Yii::$app->getResponse();
+        $level = ob_get_level();
         $response->clearOutputBuffers();
         $response->setStatusCode(200);
         $response->format = Response::FORMAT_HTML;
         $response->content = $content;
         $response->send();
 
-        Yii::$app->end();
+        // re-enable output buffer to capture content after this widget
+        for (; $level > 0; --$level) {
+            ob_start();
+            ob_implicit_flush(false);
+        }
     }
 
     /**
@@ -153,7 +157,7 @@ class Pjax extends Widget
     {
         $headers = Yii::$app->getRequest()->getHeaders();
 
-        return $headers->get('X-Pjax') && $headers->get('X-Pjax-Container') === '#' . $this->options['id'];
+        return $headers->get('X-Pjax') && $headers->get('X-Pjax-Container') === '#' . $this->getId();
     }
 
     /**

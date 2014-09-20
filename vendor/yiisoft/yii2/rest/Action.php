@@ -56,7 +56,6 @@ class Action extends \yii\base\Action
      */
     public $checkAccess;
 
-
     /**
      * @inheritdoc
      */
@@ -83,7 +82,9 @@ class Action extends \yii\base\Action
             return call_user_func($this->findModel, $id, $this);
         }
 
-        /* @var $modelClass ActiveRecordInterface */
+        /**
+         * @var ActiveRecordInterface $modelClass
+         */
         $modelClass = $this->modelClass;
         $keys = $modelClass::primaryKey();
         if (count($keys) > 1) {

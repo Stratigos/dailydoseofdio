@@ -90,7 +90,6 @@ class AccessRule extends Component
      */
     public $denyCallback;
 
-
     /**
      * Checks whether the Web user is allowed to perform the specified action.
      * @param Action $action the action to be performed

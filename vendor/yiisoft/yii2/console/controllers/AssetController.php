@@ -10,24 +10,19 @@ namespace yii\console\controllers;
 use Yii;
 use yii\console\Exception;
 use yii\console\Controller;
-use yii\helpers\VarDumper;
 
 /**
  * Allows you to combine and compress your JavaScript and CSS files.
  *
  * Usage:
- * 1. Create a configuration file using the `template` action:
- *
+ * 1. Create a configuration file using 'template' action:
  *    yii asset/template /path/to/myapp/config.php
- *
  * 2. Edit the created config file, adjusting it for your web application needs.
  * 3. Run the 'compress' action, using created config:
- *
  *    yii asset /path/to/myapp/config.php /path/to/myapp/config/assets_compressed.php
- *
  * 4. Adjust your web application config to use compressed assets.
  *
- * Note: in the console environment some path aliases like `@webroot` and `@web` may not exist,
+ * Note: in the console environment some path aliases like '@webroot' and '@web' may not exist,
  * so corresponding paths inside the configuration should be specified directly.
  *
  * Note: by default this command relies on an external tools to perform actual files compression,
@@ -56,13 +51,14 @@ class AssetController extends Controller
      *
      * ~~~
      * 'app\config\AllAsset' => [
-     *     'js' => 'js/all-{hash}.js',
-     *     'css' => 'css/all-{hash}.css',
+     *     'js' => 'js/all-{ts}.js',
+     *     'css' => 'css/all-{ts}.css',
      *     'depends' => [ ... ],
      * ]
      * ~~~
      *
-     * File names can contain placeholder "{hash}", which will be filled by the hash of the resulting file.
+     * File names can contain placeholder "{ts}", which will be filled by current timestamp, while
+     * file creation.
      */
     public $targets = [];
     /**
@@ -91,7 +87,6 @@ class AssetController extends Controller
      * for assets processing.
      */
     private $_assetManager = [];
-
 
     /**
      * Returns the asset manager instance.
@@ -142,13 +137,14 @@ class AssetController extends Controller
         $this->loadConfiguration($configFile);
         $bundles = $this->loadBundles($this->bundles);
         $targets = $this->loadTargets($this->targets, $bundles);
+        $timestamp = time();
         foreach ($targets as $name => $target) {
             echo "Creating output bundle '{$name}':\n";
             if (!empty($target->js)) {
-                $this->buildTarget($target, 'js', $bundles);
+                $this->buildTarget($target, 'js', $bundles, $timestamp);
             }
             if (!empty($target->css)) {
-                $this->buildTarget($target, 'css', $bundles);
+                $this->buildTarget($target, 'css', $bundles, $timestamp);
             }
             echo "\n";
         }
@@ -285,11 +281,14 @@ class AssetController extends Controller
      * @param \yii\web\AssetBundle $target output asset bundle
      * @param string $type either 'js' or 'css'.
      * @param \yii\web\AssetBundle[] $bundles source asset bundles.
+     * @param integer $timestamp current timestamp.
      * @throws Exception on failure.
      */
-    protected function buildTarget($target, $type, $bundles)
+    protected function buildTarget($target, $type, $bundles, $timestamp)
     {
-        $tempFile = $target->basePath . '/' . strtr($target->$type, ['{hash}' => 'temp']);
+        $outputFile = strtr($target->$type, [
+            '{ts}' => $timestamp,
+        ]);
         $inputFiles = [];
 
         foreach ($target->depends as $name) {
@@ -302,15 +301,11 @@ class AssetController extends Controller
             }
         }
         if ($type === 'js') {
-            $this->compressJsFiles($inputFiles, $tempFile);
+            $this->compressJsFiles($inputFiles, $target->basePath . '/' . $outputFile);
         } else {
-            $this->compressCssFiles($inputFiles, $tempFile);
+            $this->compressCssFiles($inputFiles, $target->basePath . '/' . $outputFile);
         }
-
-        $targetFile = strtr($target->$type, ['{hash}' => md5_file($tempFile)]);
-        $outputFile = $target->basePath . '/' . $targetFile;
-        rename($tempFile, $outputFile);
-        $target->$type = [$targetFile];
+        $target->$type = [$outputFile];
     }
 
     /**
@@ -397,7 +392,7 @@ class AssetController extends Controller
                 }
             }
         }
-        $array = VarDumper::export($array);
+        $array = var_export($array, true);
         $version = date('Y-m-d H:i:s', time());
         $bundleFileContent = <<<EOD
 <?php
@@ -542,7 +537,7 @@ EOD;
             $fullMatch = $matches[0];
             $inputUrl = $matches[1];
 
-            if (preg_match('/^https?:\/\//is', $inputUrl) || preg_match('/^data:/is', $inputUrl)) {
+            if (preg_match('/https?:\/\//is', $inputUrl)) {
                 return $fullMatch;
             }
 
@@ -578,23 +573,14 @@ EOD;
      */
     public function actionTemplate($configFile)
     {
-        $jsCompressor = VarDumper::export($this->jsCompressor);
-        $cssCompressor = VarDumper::export($this->cssCompressor);
-
         $template = <<<EOD
 <?php
 /**
  * Configuration file for the "yii asset" console command.
+ * Note that in the console environment, some path aliases like '@webroot' and '@web' may not exist.
+ * Please define these missing path aliases.
  */
-
-// In the console environment, some path aliases may not exist. Please define these:
-//Yii::setAlias('@webroot', realpath(__DIR__ . '/../web'));
-//Yii::setAlias('@web', '/');
 return [
-    // Adjust command/callback for JavaScript files compressing:
-    'jsCompressor' => {$jsCompressor},
-    // Adjust command/callback for CSS files compressing:
-    'cssCompressor' => {$cssCompressor},
     // The list of asset bundles to compress:
     'bundles' => [
         // 'yii\web\YiiAsset',
@@ -605,8 +591,8 @@ return [
         'app\assets\AllAsset' => [
             'basePath' => 'path/to/web',
             'baseUrl' => '',
-            'js' => 'js/all-{hash}.js',
-            'css' => 'css/all-{hash}.css',
+            'js' => 'js/all-{ts}.js',
+            'css' => 'css/all-{ts}.css',
         ],
     ],
     // Asset manager configuration:
@@ -618,7 +604,7 @@ return [
 EOD;
         if (file_exists($configFile)) {
             if (!$this->confirm("File '{$configFile}' already exists. Do you wish to overwrite it?")) {
-                return self::EXIT_CODE_NORMAL;
+                return;
             }
         }
         if (!file_put_contents($configFile, $template)) {

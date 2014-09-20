@@ -1,12 +1,13 @@
 <?php
-/**
- * This is the template for generating a controller class file.
- */
 
 use yii\helpers\Inflector;
 
-/* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\controller\Generator */
+/**
+ * This is the template for generating a controller class file.
+ *
+ * @var yii\web\View $this
+ * @var yii\gii\generators\controller\Generator $generator
+ */
 
 echo "<?php\n";
 ?>

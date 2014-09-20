@@ -8,7 +8,9 @@
 namespace yii\base;
 
 /**
- * ModelEvent represents the parameter needed by [[Model]] events.
+ * ModelEvent class.
+ *
+ * ModelEvent represents the parameter needed by model events.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0

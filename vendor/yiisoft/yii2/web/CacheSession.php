@@ -47,7 +47,6 @@ class CacheSession extends Session
      */
     public $cache = 'cache';
 
-
     /**
      * Initializes the application component.
      */

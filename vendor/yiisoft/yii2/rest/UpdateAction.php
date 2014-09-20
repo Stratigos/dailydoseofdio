@@ -23,7 +23,10 @@ class UpdateAction extends Action
      * @var string the scenario to be assigned to the model before it is validated and updated.
      */
     public $scenario = Model::SCENARIO_DEFAULT;
-
+    /**
+     * @var boolean whether to start a DB transaction when saving the model.
+     */
+    public $transactional = true;
 
     /**
      * Updates an existing model.
@@ -33,7 +36,7 @@ class UpdateAction extends Action
      */
     public function run($id)
     {
-        /* @var $model ActiveRecord */
+        /** @var ActiveRecord $model */
         $model = $this->findModel($id);
 
         if ($this->checkAccess) {
@@ -42,7 +45,21 @@ class UpdateAction extends Action
 
         $model->scenario = $this->scenario;
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
-        $model->save();
+
+        if ($this->transactional && $model instanceof ActiveRecord) {
+            if ($model->validate()) {
+                $transaction = $model->getDb()->beginTransaction();
+                try {
+                    $model->update(false);
+                    $transaction->commit();
+                } catch (\Exception $e) {
+                    $transaction->rollback();
+                    throw $e;
+                }
+            }
+        } else {
+            $model->save();
+        }
 
         return $model;
     }

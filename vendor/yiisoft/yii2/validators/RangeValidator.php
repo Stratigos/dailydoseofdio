@@ -33,13 +33,8 @@ class RangeValidator extends Validator
     /**
      * @var boolean whether to invert the validation logic. Defaults to false. If set to true,
      * the attribute value should NOT be among the list of values defined via [[range]].
-     */
+     **/
     public $not = false;
-    /**
-     * @var boolean whether to allow array type attribute.
-     */
-    public $allowArray = false;
-
 
     /**
      * @inheritdoc
@@ -60,20 +55,10 @@ class RangeValidator extends Validator
      */
     protected function validateValue($value)
     {
-        if (!$this->allowArray && is_array($value)) {
-            return [$this->message, []];
-        }
+        $valid = !$this->not && in_array($value, $this->range, $this->strict)
+            || $this->not && !in_array($value, $this->range, $this->strict);
 
-        $in = true;
-
-        foreach ((array)$value as $v) {
-            if (!in_array($v, $this->range, $this->strict)) {
-                $in = false;
-                break;
-            }
-        }
-
-        return $this->not !== $in ? null : [$this->message, []];
+        return $valid ? null : [$this->message, []];
     }
 
     /**
@@ -94,9 +79,6 @@ class RangeValidator extends Validator
         ];
         if ($this->skipOnEmpty) {
             $options['skipOnEmpty'] = 1;
-        }
-        if ($this->allowArray) {
-            $options['allowArray'] = 1;
         }
 
         ValidationAsset::register($view);

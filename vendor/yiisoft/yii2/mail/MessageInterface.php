@@ -16,7 +16,7 @@ namespace yii\mail;
  * Messages are sent by a [[\yii\mail\MailerInterface|mailer]], like the following,
  *
  * ~~~
- * Yii::$app->mailer->compose()
+ * Yii::$app->mail->compose()
  *     ->setFrom('from@domain.com')
  *     ->setTo($form->email)
  *     ->setSubject($form->subject)

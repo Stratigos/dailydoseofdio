@@ -31,7 +31,6 @@ class IndexAction extends Action
      */
     public $prepareDataProvider;
 
-
     /**
      * @return ActiveDataProvider
      */
@@ -54,7 +53,9 @@ class IndexAction extends Action
             return call_user_func($this->prepareDataProvider, $this);
         }
 
-        /* @var $modelClass \yii\db\BaseActiveRecord */
+        /**
+         * @var \yii\db\BaseActiveRecord $modelClass
+         */
         $modelClass = $this->modelClass;
 
         return new ActiveDataProvider([

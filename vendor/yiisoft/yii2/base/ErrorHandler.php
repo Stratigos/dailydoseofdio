@@ -8,7 +8,6 @@
 namespace yii\base;
 
 use Yii;
-use yii\helpers\VarDumper;
 use yii\web\HttpException;
 
 /**
@@ -47,7 +46,7 @@ abstract class ErrorHandler extends Component
 
 
     /**
-     * Register this error handler
+     * Register this errorhandler
      */
     public function register()
     {
@@ -58,15 +57,6 @@ abstract class ErrorHandler extends Component
             $this->_memoryReserve = str_repeat('x', $this->memoryReserveSize);
         }
         register_shutdown_function([$this, 'handleFatalError']);
-    }
-
-    /**
-     * Unregisters this error handler by restoring the PHP error and exception handlers.
-     */
-    public function unregister()
-    {
-        restore_error_handler();
-        restore_exception_handler();
     }
 
     /**
@@ -108,7 +98,7 @@ abstract class ErrorHandler extends Component
                     echo '<pre>' . htmlspecialchars($msg, ENT_QUOTES, Yii::$app->charset) . '</pre>';
                 }
             }
-            $msg .= "\n\$_SERVER = " . VarDumper::export($_SERVER);
+            $msg .= "\n\$_SERVER = " . var_export($_SERVER, true);
             error_log($msg);
             exit(1);
         }
@@ -125,7 +115,6 @@ abstract class ErrorHandler extends Component
      * @param string $message the error message.
      * @param string $file the filename that the error was raised in.
      * @param integer $line the line number the error was raised at.
-     * @return boolean whether the normal error handler continues.
      *
      * @throws ErrorException
      */
@@ -151,7 +140,6 @@ abstract class ErrorHandler extends Component
 
             throw $exception;
         }
-        return false;
     }
 
     /**
@@ -172,17 +160,14 @@ abstract class ErrorHandler extends Component
         if (ErrorException::isFatalError($error)) {
             $exception = new ErrorException($error['message'], $error['type'], $error['type'], $error['file'], $error['line']);
             $this->exception = $exception;
-
-            $this->logException($exception);
+            // use error_log because it's too late to use Yii log
+            // also do not log when on CLI SAPI because message will be sent to STDERR which has already been done by PHP
+            PHP_SAPI === 'cli' or error_log($exception);
 
             if ($this->discardExistingOutput) {
                 $this->clearOutput();
             }
             $this->renderException($exception);
-
-            // need to explicitly flush logs because exit() next will terminate the app immediately
-            Yii::getLogger()->flush(true);
-
             exit(1);
         }
     }
@@ -191,7 +176,7 @@ abstract class ErrorHandler extends Component
      * Renders the exception.
      * @param \Exception $exception the exception to be rendered.
      */
-    abstract protected function renderException($exception);
+    protected abstract function renderException($exception);
 
     /**
      * Logs the given exception

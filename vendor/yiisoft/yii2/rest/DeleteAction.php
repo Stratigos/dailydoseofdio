@@ -8,6 +8,7 @@
 namespace yii\rest;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * DeleteAction implements the API endpoint for deleting a model.
@@ -18,8 +19,12 @@ use Yii;
 class DeleteAction extends Action
 {
     /**
+     * @var boolean whether to start a DB transaction when deleting the model.
+     */
+    public $transactional = true;
+
+    /**
      * Deletes a model.
-     * @param mixed $id id of the model to be deleted.
      */
     public function run($id)
     {
@@ -29,7 +34,18 @@ class DeleteAction extends Action
             call_user_func($this->checkAccess, $this->id, $model);
         }
 
-        $model->delete();
+        if ($this->transactional && $model instanceof ActiveRecord) {
+            $transaction = $model->getDb()->beginTransaction();
+            try {
+                $model->delete();
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollback();
+                throw $e;
+            }
+        } else {
+            $model->delete();
+        }
 
         Yii::$app->getResponse()->setStatusCode(204);
     }

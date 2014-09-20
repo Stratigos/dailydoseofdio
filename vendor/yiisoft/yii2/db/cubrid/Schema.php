@@ -10,7 +10,6 @@ namespace yii\db\cubrid;
 use yii\db\Expression;
 use yii\db\TableSchema;
 use yii\db\ColumnSchema;
-use yii\db\Transaction;
 
 /**
  * Schema is the class for retrieving metadata from a CUBRID database (version 9.1.x and higher).
@@ -55,8 +54,8 @@ class Schema extends \yii\db\Schema
         'blob' => self::TYPE_BINARY,
         'clob' => self::TYPE_BINARY,
         // Bit string data types
-        'bit' => self::TYPE_INTEGER,
-        'bit varying' => self::TYPE_INTEGER,
+        'bit' => self::TYPE_STRING,
+        'bit varying' => self::TYPE_STRING,
         // Collection data types (considered strings for now)
         'set' => self::TYPE_STRING,
         'multiset' => self::TYPE_STRING,
@@ -64,14 +63,6 @@ class Schema extends \yii\db\Schema
         'sequence' => self::TYPE_STRING,
         'enum' => self::TYPE_STRING,
     ];
-    /**
-     * @var array map of DB errors and corresponding exceptions
-     * If left part is found in DB error message exception class from the right part is used.
-     */
-    public $exceptionMap = [
-        'Operation would have caused one or more unique constraint violations' => 'yii\db\IntegrityException',
-    ];
-
 
     /**
      * @inheritdoc
@@ -116,14 +107,13 @@ class Schema extends \yii\db\Schema
             return $str;
         }
 
-        $pdo = $this->db->getSlavePdo();
-
+        $this->db->open();
         // workaround for broken PDO::quote() implementation in CUBRID 9.1.0 http://jira.cubrid.org/browse/APIS-658
-        $version = $pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION);
+        $version = $this->db->pdo->getAttribute(\PDO::ATTR_CLIENT_VERSION);
         if (version_compare($version, '8.4.4.0002', '<') || $version[0] == '9' && version_compare($version, '9.2.0.0002', '<=')) {
             return "'" . addcslashes(str_replace("'", "''", $str), "\000\n\r\\\032") . "'";
         } else {
-            return $pdo->quote($str);
+            return $this->db->pdo->quote($str);
         }
     }
 
@@ -143,9 +133,8 @@ class Schema extends \yii\db\Schema
      */
     protected function loadTableSchema($name)
     {
-        $pdo = $this->db->getSlavePdo();
-
-        $tableInfo = $pdo->cubrid_schema(\PDO::CUBRID_SCH_TABLE, $name);
+        $this->db->open();
+        $tableInfo = $this->db->pdo->cubrid_schema(\PDO::CUBRID_SCH_TABLE, $name);
 
         if (!isset($tableInfo[0]['NAME'])) {
             return null;
@@ -162,7 +151,7 @@ class Schema extends \yii\db\Schema
             $table->columns[$column->name] = $column;
         }
 
-        $primaryKeys = $pdo->cubrid_schema(\PDO::CUBRID_SCH_PRIMARY_KEY, $table->name);
+        $primaryKeys = $this->db->pdo->cubrid_schema(\PDO::CUBRID_SCH_PRIMARY_KEY, $table->name);
         foreach ($primaryKeys as $key) {
             $column = $table->columns[$key['ATTR_NAME']];
             $column->isPrimaryKey = true;
@@ -172,7 +161,7 @@ class Schema extends \yii\db\Schema
             }
         }
 
-        $foreignKeys = $pdo->cubrid_schema(\PDO::CUBRID_SCH_IMPORTED_KEYS, $table->name);
+        $foreignKeys = $this->db->pdo->cubrid_schema(\PDO::CUBRID_SCH_IMPORTED_KEYS, $table->name);
         foreach ($foreignKeys as $key) {
             if (isset($table->foreignKeys[$key['FK_NAME']])) {
                 $table->foreignKeys[$key['FK_NAME']][$key['FKCOLUMN_NAME']] = $key['PKCOLUMN_NAME'];
@@ -195,26 +184,25 @@ class Schema extends \yii\db\Schema
      */
     protected function loadColumnSchema($info)
     {
-        $column = $this->createColumnSchema();
+        $column = new ColumnSchema();
 
         $column->name = $info['Field'];
         $column->allowNull = $info['Null'] === 'YES';
         $column->isPrimaryKey = false; // primary key will be set by loadTableSchema() later
         $column->autoIncrement = stripos($info['Extra'], 'auto_increment') !== false;
 
-        $column->dbType = $info['Type'];
+        $column->dbType = strtolower($info['Type']);
         $column->unsigned = strpos($column->dbType, 'unsigned') !== false;
 
         $column->type = self::TYPE_STRING;
-        if (preg_match('/^([\w ]+)(?:\(([^\)]+)\))?$/', $column->dbType, $matches)) {
-            $type = strtolower($matches[1]);
-            $column->dbType = $type . (isset($matches[2]) ? "({$matches[2]})" : '');
+        if (preg_match('/^([\w ]+)(?:\(([^\)]+)\))?/', $column->dbType, $matches)) {
+            $type = $matches[1];
             if (isset($this->typeMap[$type])) {
                 $column->type = $this->typeMap[$type];
             }
             if (!empty($matches[2])) {
                 if ($type === 'enum') {
-                    $values = preg_split('/\s*,\s*/', $matches[2]);
+                    $values = explode(',', $matches[2]);
                     foreach ($values as $i => $value) {
                         $values[$i] = trim($value, "'");
                     }
@@ -225,35 +213,20 @@ class Schema extends \yii\db\Schema
                     if (isset($values[1])) {
                         $column->scale = (int) $values[1];
                     }
-                    if ($column->size === 1 && $type === 'bit') {
-                        $column->type = 'boolean';
-                    } elseif ($type === 'bit') {
-                        if ($column->size > 32) {
-                            $column->type = 'bigint';
-                        } elseif ($column->size === 32) {
-                            $column->type = 'integer';
-                        }
-                    }
                 }
             }
         }
 
         $column->phpType = $this->getColumnPhpType($column);
 
-        if ($column->isPrimaryKey) {
-            return $column;
-        }
-
-        if ($column->type === 'timestamp' && $info['Default'] === 'SYS_TIMESTAMP' ||
+        if ($column->type === 'timestamp' && $info['Default'] === 'CURRENT_TIMESTAMP' ||
             $column->type === 'datetime' && $info['Default'] === 'SYS_DATETIME' ||
             $column->type === 'date' && $info['Default'] === 'SYS_DATE' ||
             $column->type === 'time' && $info['Default'] === 'SYS_TIME'
         ) {
             $column->defaultValue = new Expression($info['Default']);
-        } elseif (isset($type) && $type === 'bit') {
-            $column->defaultValue = hexdec(trim($info['Default'],'X\''));
         } else {
-            $column->defaultValue = $column->phpTypecast($info['Default']);
+            $column->defaultValue = $column->typecast($info['Default']);
         }
 
         return $column;
@@ -266,8 +239,8 @@ class Schema extends \yii\db\Schema
      */
     protected function findTableNames($schema = '')
     {
-        $pdo = $this->db->getSlavePdo();
-        $tables =$pdo->cubrid_schema(\PDO::CUBRID_SCH_TABLE);
+        $this->db->open();
+        $tables = $this->db->pdo->cubrid_schema(\PDO::CUBRID_SCH_TABLE);
         $tableNames = [];
         foreach ($tables as $table) {
             // do not list system tables
@@ -298,29 +271,5 @@ class Schema extends \yii\db\Schema
         $type = gettype($data);
 
         return isset($typeMap[$type]) ? $typeMap[$type] : \PDO::PARAM_STR;
-    }
-
-    /**
-     * @inheritdoc
-     * @see http://www.cubrid.org/manual/91/en/sql/transaction.html#database-concurrency
-     */
-    public function setTransactionIsolationLevel($level)
-    {
-        // translate SQL92 levels to CUBRID levels:
-        switch ($level) {
-            case Transaction::SERIALIZABLE:
-                $level = '6'; // SERIALIZABLE
-                break;
-            case Transaction::REPEATABLE_READ:
-                $level = '5'; // REPEATABLE READ CLASS with REPEATABLE READ INSTANCES
-                break;
-            case Transaction::READ_COMMITTED:
-                $level = '4'; // REPEATABLE READ CLASS with READ COMMITTED INSTANCES
-                break;
-            case Transaction::READ_UNCOMMITTED:
-                $level = '3'; // REPEATABLE READ CLASS with READ UNCOMMITTED INSTANCES
-                break;
-        }
-        parent::setTransactionIsolationLevel($level);
     }
 }

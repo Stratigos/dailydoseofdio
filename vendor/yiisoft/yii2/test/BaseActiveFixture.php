@@ -34,12 +34,10 @@ abstract class BaseActiveFixture extends DbFixture implements \IteratorAggregate
      * to be returned by [[getData()]]. You can set this property to be false to prevent loading any data.
      */
     public $dataFile;
-
     /**
      * @var \yii\db\ActiveRecord[] the loaded AR models
      */
     private $_models = [];
-
 
     /**
      * Returns the AR model by the specified model name.
@@ -61,9 +59,9 @@ abstract class BaseActiveFixture extends DbFixture implements \IteratorAggregate
             throw new InvalidConfigException('The "modelClass" property must be set.');
         }
         $row = $this->data[$name];
-        /* @var $modelClass \yii\db\ActiveRecord */
+        /** @var \yii\db\ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
-        /* @var $model \yii\db\ActiveRecord */
+        /** @var \yii\db\ActiveRecord $model */
         $model = new $modelClass;
         $keys = [];
         foreach ($model->primaryKey() as $key) {
@@ -104,15 +102,5 @@ abstract class BaseActiveFixture extends DbFixture implements \IteratorAggregate
         } else {
             throw new InvalidConfigException("Fixture data file does not exist: {$this->dataFile}");
         }
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function unload()
-    {
-        parent::unload();
-        $this->data = [];
-        $this->_models = [];
     }
 }

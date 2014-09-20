@@ -31,7 +31,6 @@ class DateValidator extends Validator
      */
     public $timestampAttribute;
 
-
     /**
      * @inheritdoc
      */

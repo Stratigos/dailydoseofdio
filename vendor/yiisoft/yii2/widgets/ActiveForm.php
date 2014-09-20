@@ -8,7 +8,6 @@
 namespace yii\widgets;
 
 use Yii;
-use yii\base\InvalidCallException;
 use yii\base\Widget;
 use yii\base\Model;
 use yii\helpers\Url;
@@ -26,23 +25,11 @@ class ActiveForm extends Widget
 {
     /**
      * @param array|string $action the form action URL. This parameter will be processed by [[\yii\helpers\Url::to()]].
-     * @see method for specifying the HTTP method for this form.
      */
     public $action = '';
     /**
-     * @var string the form submission method. This should be either 'post' or 'get'. Defaults to 'post'.
-     *
-     * When you set this to 'get' you may see the url parameters repeated on each request.
-     * This is because the default value of [[action]] is set to be the current request url and each submit
-     * will add new parameters instead of replacing existing ones.
-     * You may set [[action]] explicitly to avoid this:
-     *
-     * ```php
-     * $form = ActiveForm::begin([
-     *     'method' => 'get',
-     *     'action' => ['controller/action'],
-     * ]);
-     * ```
+     * @var string the form submission method. This should be either 'post' or 'get'.
+     * Defaults to 'post'.
      */
     public $method = 'post';
     /**
@@ -54,10 +41,6 @@ class ActiveForm extends Widget
      * @var array the default configuration used by [[field()]] when creating a new field object.
      */
     public $fieldConfig;
-    /**
-     * @var boolean whether to perform encoding on the error summary.
-     */
-    public $encodeErrorSummary = true;
     /**
      * @var string the default CSS class for the error summary container.
      * @see errorSummary()
@@ -100,15 +83,10 @@ class ActiveForm extends Widget
      */
     public $validateOnSubmit = true;
     /**
-     * @var boolean whether to perform validation when the value of an input field is changed.
+     * @var boolean whether to perform validation when an input field loses focus and its value is found changed.
      * If [[ActiveField::validateOnChange]] is set, its value will take precedence for that input field.
      */
     public $validateOnChange = true;
-    /**
-     * @var boolean whether to perform validation when an input field loses focus.
-     * If [[ActiveField::$validateOnBlur]] is set, its value will take precedence for that input field.
-     */
-    public $validateOnBlur = true;
     /**
      * @var boolean whether to perform validation while the user is typing in an input field.
      * If [[ActiveField::validateOnType]] is set, its value will take precedence for that input field.
@@ -152,17 +130,6 @@ class ActiveForm extends Widget
      */
     public $beforeValidate;
     /**
-     * @var string|JsExpression a JS callback that is called before any validation has run (Only called when the form is submitted).
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, data) {
-     *     ...return false to cancel the validation...
-     * }
-     * ~~~
-     */
-    public $beforeValidateAll;
-    /**
      * @var string|JsExpression a JS callback that is called after validating an attribute.
      * The signature of the callback should be:
      *
@@ -173,46 +140,11 @@ class ActiveForm extends Widget
      */
     public $afterValidate;
     /**
-     * @var string|JsExpression a JS callback that is called after all validation has run (Only called when the form is submitted).
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, data, messages) {
-     * }
-     * ~~~
-     */
-    public $afterValidateAll;
-    /**
-     * @var string|JsExpression a JS pre-request callback function on AJAX-based validation.
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, jqXHR, textStatus) {
-     * }
-     * ~~~
-     */
-    public $ajaxBeforeSend;
-    /**
-     * @var string|JsExpression a JS callback to be called when the request finishes on AJAX-based validation.
-     * The signature of the callback should be:
-     *
-     * ~~~
-     * function ($form, jqXHR, textStatus) {
-     * }
-     * ~~~
-     */
-    public $ajaxComplete;
-    /**
      * @var array the client validation options for individual attributes. Each element of the array
      * represents the validation options for a particular attribute.
      * @internal
      */
     public $attributes = [];
-    /**
-     * @var ActiveField[] the ActiveField objects that are currently active
-     */
-    private $_fields = [];
-
 
     /**
      * Initializes the widget.
@@ -232,14 +164,9 @@ class ActiveForm extends Widget
     /**
      * Runs the widget.
      * This registers the necessary javascript code and renders the form close tag.
-     * @throws InvalidCallException if `beginField()` and `endField()` calls are not matching
      */
     public function run()
     {
-        if (!empty($this->_fields)) {
-            throw new InvalidCallException('Each beginField() should have a matching endField() call.');
-        }
-
         if (!empty($this->attributes)) {
             $id = $this->options['id'];
             $options = Json::encode($this->getClientOptions());
@@ -258,8 +185,7 @@ class ActiveForm extends Widget
     protected function getClientOptions()
     {
         $options = [
-            'encodeErrorSummary' => $this->encodeErrorSummary,
-            'errorSummary' => '.' . implode('.', preg_split('/\s+/', $this->errorSummaryCssClass, -1, PREG_SPLIT_NO_EMPTY)),
+            'errorSummary' => '.' . $this->errorSummaryCssClass,
             'validateOnSubmit' => $this->validateOnSubmit,
             'errorCssClass' => $this->errorCssClass,
             'successCssClass' => $this->successCssClass,
@@ -270,7 +196,7 @@ class ActiveForm extends Widget
         if ($this->validationUrl !== null) {
             $options['validationUrl'] = Url::to($this->validationUrl);
         }
-        foreach (['beforeSubmit', 'beforeValidate', 'beforeValidateAll', 'afterValidate', 'afterValidateAll', 'ajaxBeforeSend', 'ajaxComplete'] as $name) {
+        foreach (['beforeSubmit', 'beforeValidate', 'afterValidate'] as $name) {
             if (($value = $this->$name) !== null) {
                 $options[$name] = $value instanceof JsExpression ? $value : new JsExpression($value);
             }
@@ -291,13 +217,41 @@ class ActiveForm extends Widget
      * The rest of the options will be rendered as the attributes of the container tag. The values will
      * be HTML-encoded using [[\yii\helpers\Html::encode()]]. If a value is null, the corresponding attribute will not be rendered.
      * @return string the generated error summary
-     * @see errorSummaryCssClass
      */
     public function errorSummary($models, $options = [])
     {
-        Html::addCssClass($options, $this->errorSummaryCssClass);
-        $options['encode'] = $this->encodeErrorSummary;
-        return Html::errorSummary($models, $options);
+        if (!is_array($models)) {
+            $models = [$models];
+        }
+
+        $lines = [];
+        foreach ($models as $model) {
+            /** @var Model $model */
+            foreach ($model->getFirstErrors() as $error) {
+                $lines[] = Html::encode($error);
+            }
+        }
+
+        $header = isset($options['header']) ? $options['header'] : '<p>' . Yii::t('yii', 'Please fix the following errors:') . '</p>';
+        $footer = isset($options['footer']) ? $options['footer'] : '';
+        unset($options['header'], $options['footer']);
+
+        if (!isset($options['class'])) {
+            $options['class'] = $this->errorSummaryCssClass;
+        } else {
+            $options['class'] .= ' ' . $this->errorSummaryCssClass;
+        }
+
+        if (!empty($lines)) {
+            $content = "<ul><li>" . implode("</li>\n<li>", $lines) . "</li></ul>";
+
+            return Html::tag('div', $header . $content . $footer, $options);
+        } else {
+            $content = "<ul></ul>";
+            $options['style'] = isset($options['style']) ? rtrim($options['style'], ';') . '; display:none' : 'display:none';
+
+            return Html::tag('div', $header . $content . $footer, $options);
+        }
     }
 
     /**
@@ -318,41 +272,6 @@ class ActiveForm extends Widget
             'attribute' => $attribute,
             'form' => $this,
         ]));
-    }
-
-    /**
-     * Begins a form field.
-     * This method will create a new form field and returns its opening tag.
-     * You should call [[endField()]] afterwards.
-     * @param Model $model the data model
-     * @param string $attribute the attribute name or expression. See [[Html::getAttributeName()]] for the format
-     * about attribute expression.
-     * @param array $options the additional configurations for the field object
-     * @return string the opening tag
-     * @see endField()
-     * @see field()
-     */
-    public function beginField($model, $attribute, $options = [])
-    {
-        $field = $this->field($model, $attribute, $options);
-        $this->_fields[] = $field;
-        return $field->begin();
-    }
-
-    /**
-     * Ends a form field.
-     * This method will return the closing tag of an active form field started by [[beginField()]].
-     * @return string the closing tag of the form field
-     * @throws InvalidCallException if this method is called without a prior [[beginField()]] call.
-     */
-    public function endField()
-    {
-        $field = array_pop($this->_fields);
-        if ($field instanceof ActiveField) {
-            return $field->end();
-        } else {
-            throw new InvalidCallException('Mismatching endField() call.');
-        }
     }
 
     /**
@@ -399,7 +318,7 @@ class ActiveForm extends Widget
         } else {
             $models = [$model];
         }
-        /* @var $model Model */
+        /** @var Model $model */
         foreach ($models as $model) {
             $model->validate($attributes);
             foreach ($model->getErrors() as $attribute => $errors) {
@@ -435,7 +354,7 @@ class ActiveForm extends Widget
     public static function validateMultiple($models, $attributes = null)
     {
         $result = [];
-        /* @var $model Model */
+        /** @var Model $model */
         foreach ($models as $i => $model) {
             $model->validate($attributes);
             foreach ($model->getErrors() as $attribute => $errors) {

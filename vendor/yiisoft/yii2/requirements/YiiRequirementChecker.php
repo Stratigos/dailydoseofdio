@@ -287,6 +287,7 @@ class YiiRequirementChecker
             $minCheckResult = true;
         }
         if ($max !== null) {
+            var_dump($postMaxSize, $uploadMaxFileSize, $max);
             $maxCheckResult = $this->compareByteSize($postMaxSize, $max, '<=') && $this->compareByteSize($uploadMaxFileSize, $max, '<=');
         } else {
             $maxCheckResult = true;

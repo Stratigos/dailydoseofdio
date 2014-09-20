@@ -49,7 +49,6 @@ class BatchQueryResult extends Object implements \Iterator
      * If false, a whole batch of rows will be returned in each iteration.
      */
     public $each = false;
-
     /**
      * @var DataReader the data reader associated with this batch query.
      */
@@ -66,7 +65,6 @@ class BatchQueryResult extends Object implements \Iterator
      * @var string|integer the key for the current iteration
      */
     private $_key;
-
 
     /**
      * Destructor.

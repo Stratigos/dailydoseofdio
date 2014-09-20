@@ -8,7 +8,6 @@
 namespace yii\gii;
 
 use Yii;
-use yii\base\BootstrapInterface;
 use yii\web\ForbiddenHttpException;
 
 /**
@@ -18,7 +17,7 @@ use yii\web\ForbiddenHttpException;
  *
  * ~~~
  * return [
- *     'bootstrap' => ['gii'],
+ *     ......
  *     'modules' => [
  *         'gii' => ['class' => 'yii\gii\Module'],
  *     ],
@@ -33,13 +32,26 @@ use yii\web\ForbiddenHttpException;
  * With the above configuration, you will be able to access GiiModule in your browser using
  * the URL `http://localhost/path/to/index.php?r=gii`
  *
- * If your application enables [[\yii\web\UrlManager::enablePrettyUrl|pretty URLs]],
- * you can then access Gii via URL: `http://localhost/path/to/index.php/gii`
+ * If your application enables [[\yii\web\UrlManager::enablePrettyUrl|pretty URLs]] and you have defined
+ * custom URL rules or enabled [[\yii\web\UrlManager::enableStrictParsing], you may need to add
+ * the following URL rules at the beginning of your URL rule set in your application configuration
+ * in order to access Gii:
+ *
+ * ~~~
+ * 'rules' => [
+ *     'gii' => 'gii',
+ *     'gii/<controller>' => 'gii/<controller>',
+ *     'gii/<controller>/<action>' => 'gii/<controller>/<action>',
+ *     ...
+ * ],
+ * ~~~
+ *
+ * You can then access Gii via URL: `http://localhost/path/to/index.php/gii`
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Module extends \yii\base\Module implements BootstrapInterface
+class Module extends \yii\base\Module
 {
     /**
      * @inheritdoc
@@ -78,17 +90,15 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public $newDirMode = 0777;
 
-
     /**
      * @inheritdoc
      */
-    public function bootstrap($app)
+    public function init()
     {
-        $app->getUrlManager()->addRules([
-            $this->id => $this->id . '/default/index',
-            $this->id . '/<id:\w+>' => $this->id . '/default/view',
-            $this->id . '/<controller:\w+>/<action:\w+>' => $this->id . '/<controller>/<action>',
-        ], false);
+        parent::init();
+        foreach (array_merge($this->coreGenerators(), $this->generators) as $id => $config) {
+            $this->generators[$id] = Yii::createObject($config);
+        }
     }
 
     /**
@@ -96,29 +106,11 @@ class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function beforeAction($action)
     {
-        if (!parent::beforeAction($action)) {
-            return false;
-        }
-
-        if (!$this->checkAccess()) {
+        if ($this->checkAccess()) {
+            return parent::beforeAction($action);
+        } else {
             throw new ForbiddenHttpException('You are not allowed to access this page.');
         }
-
-        foreach (array_merge($this->coreGenerators(), $this->generators) as $id => $config) {
-            $this->generators[$id] = Yii::createObject($config);
-        }
-
-        $this->resetGlobalSettings();
-
-        return true;
-    }
-
-    /**
-     * Resets potentially incompatible global settings done in app config.
-     */
-    protected function resetGlobalSettings()
-    {
-        Yii::$app->assetManager->bundles = [];
     }
 
     /**

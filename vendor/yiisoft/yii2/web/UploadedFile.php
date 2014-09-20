@@ -28,6 +28,8 @@ use yii\helpers\Html;
  */
 class UploadedFile extends Object
 {
+    private static $_files;
+
     /**
      * @var string the original name of the file being uploaded
      */
@@ -53,8 +55,6 @@ class UploadedFile extends Object
      * @see http://www.php.net/manual/en/features.file-upload.errors.php
      */
     public $error;
-
-    private static $_files;
 
 
     /**
@@ -223,7 +223,7 @@ class UploadedFile extends Object
             foreach ($names as $i => $name) {
                 self::loadFilesRecursive($key . '[' . $i . ']', $name, $tempNames[$i], $types[$i], $sizes[$i], $errors[$i]);
             }
-        } elseif ($errors !== UPLOAD_ERR_NO_FILE) {
+        } else {
             self::$_files[$key] = new static([
                 'name' => $names,
                 'tempName' => $tempNames,

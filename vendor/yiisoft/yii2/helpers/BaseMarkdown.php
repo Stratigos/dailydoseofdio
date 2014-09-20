@@ -33,7 +33,7 @@ class BaseMarkdown
             'html5' => true,
         ],
         'gfm-comment' => [
-            'class' => 'cebe\markdown\GithubMarkdown',
+            'class' => 'cebe\markdown\Markdown',
             'html5' => true,
             'enableNewlines' => true,
         ],
@@ -44,7 +44,6 @@ class BaseMarkdown
      * @see $flavors
      */
     public static $defaultFlavor = 'original';
-
 
     /**
      * Converts markdown into HTML.
@@ -85,7 +84,7 @@ class BaseMarkdown
      */
     protected static function getParser($flavor)
     {
-        /* @var $parser \cebe\markdown\Markdown */
+        /** @var \cebe\markdown\Markdown $parser */
         if (!isset(static::$flavors[$flavor])) {
             throw new InvalidParamException("Markdown flavor '$flavor' is not defined.'");
         } elseif (!is_object($config = static::$flavors[$flavor])) {

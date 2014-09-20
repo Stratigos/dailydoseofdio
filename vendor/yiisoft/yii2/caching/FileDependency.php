@@ -7,7 +7,6 @@
 
 namespace yii\caching;
 
-use Yii;
 use yii\base\InvalidConfigException;
 
 /**
@@ -22,11 +21,10 @@ use yii\base\InvalidConfigException;
 class FileDependency extends Dependency
 {
     /**
-     * @var string the file path or path alias whose last modification time is used to
+     * @var string the name of the file whose last modification time is used to
      * check if the dependency has been changed.
      */
     public $fileName;
-
 
     /**
      * Generates the data needed to determine if dependency has been changed.
@@ -41,6 +39,6 @@ class FileDependency extends Dependency
             throw new InvalidConfigException('FileDependency::fileName must be set');
         }
 
-        return @filemtime(Yii::getAlias($this->fileName));
+        return @filemtime($this->fileName);
     }
 }

@@ -53,7 +53,6 @@ class CheckboxColumn extends Column
      */
     public $multiple = true;
 
-
     /**
      * @inheritdoc
      * @throws \yii\base\InvalidConfigException if [[name]] is not set.
@@ -64,7 +63,7 @@ class CheckboxColumn extends Column
         if (empty($this->name)) {
             throw new InvalidConfigException('The "name" property must be set.');
         }
-        if (substr_compare($this->name, '[]', -2)) {
+        if (substr($this->name, -2) !== '[]') {
             $this->name .= '[]';
         }
     }

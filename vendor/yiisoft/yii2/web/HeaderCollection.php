@@ -28,7 +28,6 @@ class HeaderCollection extends Object implements \IteratorAggregate, \ArrayAcces
      */
     private $_headers = [];
 
-
     /**
      * Returns an iterator for traversing the headers in the collection.
      * This method is required by the SPL interface `IteratorAggregate`.

@@ -19,16 +19,7 @@ namespace yii\validators;
 class DefaultValueValidator extends Validator
 {
     /**
-     * @var mixed the default value or a PHP callable that returns the default value which will
-     * be assigned to the attributes being validated if they are empty. The signature of the PHP callable
-     * should be as follows,
-     *
-     * ```php
-     * function foo($model, $attribute) {
-     *     // compute value
-     *     return $value;
-     * }
-     * ```
+     * @var mixed the default value to be set to the specified attributes.
      */
     public $value;
     /**
@@ -37,18 +28,13 @@ class DefaultValueValidator extends Validator
      */
     public $skipOnEmpty = false;
 
-
     /**
      * @inheritdoc
      */
     public function validateAttribute($object, $attribute)
     {
         if ($this->isEmpty($object->$attribute)) {
-            if ($this->value instanceof \Closure) {
-                $object->$attribute = call_user_func($this->value, $object, $attribute);
-            } else {
-                $object->$attribute = $this->value;
-            }
+            $object->$attribute = $this->value;
         }
     }
 }

@@ -135,7 +135,6 @@ class UrlRule extends CompositeUrlRule
      */
     public $pluralize = true;
 
-
     /**
      * @inheritdoc
      */
@@ -218,7 +217,7 @@ class UrlRule extends CompositeUrlRule
         foreach ($this->rules as $urlName => $rules) {
             if (strpos($pathInfo, $urlName) !== false) {
                 foreach ($rules as $rule) {
-                    /* @var $rule \yii\web\UrlRule */
+                    /** @var \yii\web\UrlRule $rule */
                     if (($result = $rule->parseRequest($manager, $request)) !== false) {
                         Yii::trace("Request parsed with URL rule: {$rule->name}", __METHOD__);
 
@@ -239,7 +238,7 @@ class UrlRule extends CompositeUrlRule
         foreach ($this->controller as $urlName => $controller) {
             if (strpos($route, $controller) !== false) {
                 foreach ($this->rules[$urlName] as $rule) {
-                    /* @var $rule \yii\web\UrlRule */
+                    /** @var \yii\web\UrlRule $rule */
                     if (($url = $rule->createUrl($manager, $route, $params)) !== false) {
                         return $url;
                     }

@@ -73,12 +73,6 @@ class Formatter extends \yii\base\Formatter
      * If not set, the thousand separator corresponding to [[locale]] will be used.
      */
     public $thousandSeparator;
-    /**
-     * @var string the international currency code displayed when formatting a number.
-     * If not set, the currency code corresponding to [[locale]] will be used.
-     */
-    public $currencyCode;
-
 
     /**
      * Initializes the component.
@@ -94,16 +88,13 @@ class Formatter extends \yii\base\Formatter
         if ($this->locale === null) {
             $this->locale = Yii::$app->language;
         }
-        if ($this->decimalSeparator === null || $this->thousandSeparator === null || $this->currencyCode === null) {
+        if ($this->decimalSeparator === null || $this->thousandSeparator === null) {
             $formatter = new NumberFormatter($this->locale, NumberFormatter::DECIMAL);
             if ($this->decimalSeparator === null) {
                 $this->decimalSeparator = $formatter->getSymbol(NumberFormatter::DECIMAL_SEPARATOR_SYMBOL);
             }
             if ($this->thousandSeparator === null) {
                 $this->thousandSeparator = $formatter->getSymbol(NumberFormatter::GROUPING_SEPARATOR_SYMBOL);
-            }
-            if ($this->currencyCode === null) {
-                $this->currencyCode = $formatter->getSymbol(NumberFormatter::INTL_CURRENCY_SYMBOL);
             }
         }
 
@@ -249,7 +240,7 @@ class Formatter extends \yii\base\Formatter
     /**
      * Formats the value as a decimal number.
      * @param mixed $value the value to be formatted
-     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details)
+     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#_details)
      * for details on how to specify a format.
      * @return string the formatted result.
      */
@@ -266,19 +257,14 @@ class Formatter extends \yii\base\Formatter
      * Formats the value as a currency number.
      * @param mixed $value the value to be formatted
      * @param string $currency the 3-letter ISO 4217 currency code indicating the currency to use.
-     * If null, [[currencyCode]] will be used.
-     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details)
+     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#_details)
      * for details on how to specify a format.
      * @return string the formatted result.
      */
-    public function asCurrency($value, $currency = null, $format = null)
+    public function asCurrency($value, $currency = 'USD', $format = null)
     {
         if ($value === null) {
             return $this->nullDisplay;
-        }
-        
-        if ($currency === null){
-            $currency = $this->currencyCode;
         }
 
         return $this->createNumberFormatter(NumberFormatter::CURRENCY, $format)->formatCurrency($value, $currency);
@@ -287,7 +273,7 @@ class Formatter extends \yii\base\Formatter
     /**
      * Formats the value as a percent number.
      * @param mixed $value the value to be formatted
-     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details)
+     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#_details)
      * for details on how to specify a format.
      * @return string the formatted result.
      */
@@ -303,7 +289,7 @@ class Formatter extends \yii\base\Formatter
     /**
      * Formats the value as a scientific number.
      * @param mixed $value the value to be formatted
-     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details)
+     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#_details)
      * for details on how to specify a format.
      * @return string the formatted result.
      */
@@ -319,7 +305,7 @@ class Formatter extends \yii\base\Formatter
     /**
      * Creates a number formatter based on the given type and format.
      * @param integer $type the type of the number formatter
-     * @param string $format the format to be used. Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#details)
+     * @param string $format the format to be used.  Please refer to [ICU manual](http://www.icu-project.org/apiref/icu4c/classDecimalFormat.html#_details)
      * @return NumberFormatter the created formatter instance
      */
     protected function createNumberFormatter($type, $format)

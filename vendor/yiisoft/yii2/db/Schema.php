@@ -12,7 +12,7 @@ use yii\base\Object;
 use yii\base\NotSupportedException;
 use yii\base\InvalidCallException;
 use yii\caching\Cache;
-use yii\caching\TagDependency;
+use yii\caching\GroupDependency;
 
 /**
  * Schema is the base class for concrete DBMS-specific schema classes.
@@ -25,10 +25,6 @@ use yii\caching\TagDependency;
  * @property string[] $tableNames All table names in the database. This property is read-only.
  * @property TableSchema[] $tableSchemas The metadata for all tables in the database. Each array element is an
  * instance of [[TableSchema]] or its child class. This property is read-only.
- * @property string $transactionIsolationLevel The transaction isolation level to use for this transaction.
- * This can be one of [[Transaction::READ_UNCOMMITTED]], [[Transaction::READ_COMMITTED]],
- * [[Transaction::REPEATABLE_READ]] and [[Transaction::SERIALIZABLE]] but also a string containing DBMS specific
- * syntax to be used after `SET TRANSACTION ISOLATION LEVEL`. This property is write-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -64,14 +60,6 @@ abstract class Schema extends Object
      */
     public $defaultSchema;
     /**
-     * @var array map of DB errors and corresponding exceptions
-     * If left part is found in DB error message exception class from the right part is used.
-     */
-    public $exceptionMap = [
-        'SQLSTATE[23' => 'yii\db\IntegrityException',
-    ];
-
-    /**
      * @var array list of ALL table names in the database
      */
     private $_tableNames = [];
@@ -83,16 +71,6 @@ abstract class Schema extends Object
      * @var QueryBuilder the query builder for this database
      */
     private $_builder;
-
-
-    /**
-     * @return \yii\db\ColumnSchema
-     * @throws \yii\base\InvalidConfigException
-     */
-    protected function createColumnSchema()
-    {
-        return Yii::createObject('yii\db\ColumnSchema');
-    }
 
     /**
      * Loads the metadata for the specified table.
@@ -117,15 +95,15 @@ abstract class Schema extends Object
         $realName = $this->getRawTableName($name);
 
         if ($db->enableSchemaCache && !in_array($name, $db->schemaCacheExclude, true)) {
-            /* @var $cache Cache */
+            /** @var Cache $cache */
             $cache = is_string($db->schemaCache) ? Yii::$app->get($db->schemaCache, false) : $db->schemaCache;
             if ($cache instanceof Cache) {
                 $key = $this->getCacheKey($name);
                 if ($refresh || ($table = $cache->get($key)) === false) {
                     $this->_tables[$name] = $table = $this->loadTableSchema($realName);
                     if ($table !== null) {
-                        $cache->set($key, $table, $db->schemaCacheDuration, new TagDependency([
-                            'tags' => $this->getCacheTag(),
+                        $cache->set($key, $table, $db->schemaCacheDuration, new GroupDependency([
+                            'group' => $this->getCacheGroup(),
                         ]));
                     }
                 } else {
@@ -155,11 +133,11 @@ abstract class Schema extends Object
     }
 
     /**
-     * Returns the cache tag name.
+     * Returns the cache group name.
      * This allows [[refresh()]] to invalidate all cached table schemas.
-     * @return string the cache tag name
+     * @return string the cache group name
      */
-    protected function getCacheTag()
+    protected function getCacheGroup()
     {
         return md5(serialize([
             __CLASS__,
@@ -248,10 +226,10 @@ abstract class Schema extends Object
      */
     public function refresh()
     {
-        /* @var $cache Cache */
+        /** @var Cache $cache */
         $cache = is_string($this->db->schemaCache) ? Yii::$app->get($this->db->schemaCache, false) : $this->db->schemaCache;
         if ($this->db->enableSchemaCache && $cache instanceof Cache) {
-            TagDependency::invalidate($cache, $this->getCacheTag());
+            GroupDependency::invalidate($cache, $this->getCacheGroup());
         }
         $this->_tableNames = [];
         $this->_tables = [];
@@ -286,8 +264,8 @@ abstract class Schema extends Object
      *
      * ~~~
      * [
-     *  'IndexName1' => ['col1' [, ...]],
-     *  'IndexName2' => ['col2' [, ...]],
+     *	 'IndexName1' => ['col1' [, ...]],
+     *	 'IndexName2' => ['col2' [, ...]],
      * ]
      * ~~~
      *
@@ -354,19 +332,6 @@ abstract class Schema extends Object
     }
 
     /**
-     * Sets the isolation level of the current transaction.
-     * @param string $level The transaction isolation level to use for this transaction.
-     * This can be one of [[Transaction::READ_UNCOMMITTED]], [[Transaction::READ_COMMITTED]], [[Transaction::REPEATABLE_READ]]
-     * and [[Transaction::SERIALIZABLE]] but also a string containing DBMS specific syntax to be used
-     * after `SET TRANSACTION ISOLATION LEVEL`.
-     * @see http://en.wikipedia.org/wiki/Isolation_%28database_systems%29#Isolation_levels
-     */
-    public function setTransactionIsolationLevel($level)
-    {
-        $this->db->createCommand("SET TRANSACTION ISOLATION LEVEL $level;")->execute();
-    }
-
-    /**
      * Quotes a string value for use in a query.
      * Note that if the parameter is not a string, it will be returned without change.
      * @param string $str string to be quoted
@@ -379,10 +344,11 @@ abstract class Schema extends Object
             return $str;
         }
 
-        if (($value = $this->db->getSlavePdo()->quote($str)) !== false) {
+        $this->db->open();
+        if (($value = $this->db->pdo->quote($str)) !== false) {
             return $value;
-        } else {
-            // the driver doesn't support quote (e.g. oci)
+        } else { // the driver doesn't support quote (e.g. oci)
+
             return "'" . addcslashes(str_replace("'", "''", $str), "\000\n\r\\\032") . "'";
         }
     }
@@ -486,60 +452,20 @@ abstract class Schema extends Object
      */
     protected function getColumnPhpType($column)
     {
-        static $typeMap = [
-            // abstract type => php type
+        static $typeMap = [ // abstract type => php type
             'smallint' => 'integer',
             'integer' => 'integer',
-            'bigint' => 'integer',
             'boolean' => 'boolean',
             'float' => 'double',
-            'binary' => 'resource',
         ];
         if (isset($typeMap[$column->type])) {
-            if ($column->type === 'bigint') {
-                return PHP_INT_SIZE == 8 && !$column->unsigned ? 'integer' : 'string';
-            } elseif ($column->type === 'integer') {
-                return PHP_INT_SIZE == 4 && $column->unsigned ? 'string' : 'integer';
+            if ($column->type === 'integer') {
+                return $column->unsigned ? 'string' : 'integer';
             } else {
                 return $typeMap[$column->type];
             }
         } else {
             return 'string';
         }
-    }
-
-    /**
-     * Converts a DB exception to a more concrete one if possible.
-     *
-     * @param \Exception $e
-     * @param string $rawSql SQL that produced exception
-     * @return Exception
-     */
-    public function convertException(\Exception $e, $rawSql)
-    {
-        if ($e instanceof Exception) {
-            return $e;
-        }
-
-        $exceptionClass = '\yii\db\Exception';
-        foreach ($this->exceptionMap as $error => $class) {
-            if (strpos($e->getMessage(), $error) !== false) {
-                $exceptionClass = $class;
-            }
-        }
-        $message = $e->getMessage()  . "\nThe SQL being executed was: $rawSql";
-        $errorInfo = $e instanceof \PDOException ? $e->errorInfo : null;
-        return new $exceptionClass($message, $errorInfo, (int) $e->getCode(), $e);
-    }
-
-    /**
-     * Returns a value indicating whether a SQL statement is for read purpose.
-     * @param string $sql the SQL statement
-     * @return boolean whether a SQL statement is for read purpose.
-     */
-    public function isReadQuery($sql)
-    {
-        $pattern = '/^\s*(SELECT|SHOW|DESCRIBE)\b/i';
-        return preg_match($pattern, $sql) > 0;
     }
 }

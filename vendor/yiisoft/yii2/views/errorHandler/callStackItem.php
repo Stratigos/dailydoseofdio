@@ -1,13 +1,15 @@
 <?php
-/* @var $file string|null */
-/* @var $line integer|null */
-/* @var $class string|null */
-/* @var $method string|null */
-/* @var $index integer */
-/* @var $lines string[] */
-/* @var $begin integer */
-/* @var $end integer */
-/* @var $handler \yii\web\ErrorHandler */
+/**
+ * @var string|null $file
+ * @var integer|null $line
+ * @var string|null $class
+ * @var string|null $method
+ * @var integer $index
+ * @var string[] $lines
+ * @var integer $begin
+ * @var integer $end
+ * @var \yii\web\ErrorHandler $handler
+ */
 ?>
 <li class="<?php if (!$handler->isCoreFile($file) || $index === 1) echo 'application'; ?> call-stack-item"
     data-line="<?= (int) ($line - $begin) ?>">
@@ -18,7 +20,7 @@
             <?php if ($method !== null): ?>
                 <span class="call">
                     <?php if ($file !== null) echo '&ndash;' ?>
-                    <?= ($class !== null ? $handler->addTypeLinks("$class::$method") : $handler->htmlEncode($method)) . '(' . $handler->argumentsToString($args) . ')' ?>
+                    <?= $class !== null ? $handler->addTypeLinks("$class::$method()") : $method . '()' ?>
                 </span>
             <?php endif; ?>
             <span class="at"><?php if ($line !== null) echo 'at line'; ?></span>

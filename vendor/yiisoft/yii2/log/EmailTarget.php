@@ -16,28 +16,7 @@ use yii\mail\MailerInterface;
  * EmailTarget sends selected log messages to the specified email addresses.
  *
  * You may configure the email to be sent by setting the [[message]] property, through which
- * you can set the target email addresses, subject, etc.:
- *
- * ```php
- * 'components' => [
- *     'log' => [
- *          'targets' => [
- *              [
- *                  'class' => 'yii\log\EmailTarget',
- *                  'mailer' =>'mailer',
- *                  'levels' => ['error', 'warning'],
- *                  'message' => [
- *                      'from' => ['log@example.com'],
- *                      'to' => ['developer1@example.com', 'developer2@example.com'],
- *                      'subject' => 'Log message',
- *                  ],
- *              ],
- *          ],
- *     ],
- * ],
- * ```
- *
- * In the above `mailer` is ID of the component that sends email and should be already configured.
+ * you can set the target email addresses, subject, etc.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -54,8 +33,7 @@ class EmailTarget extends Target
      * After the EmailTarget object is created, if you want to change this property, you should only assign it
      * with a mailer object.
      */
-    public $mailer = 'mailer';
-
+    public $mail = 'mail';
 
     /**
      * @inheritdoc
@@ -66,7 +44,7 @@ class EmailTarget extends Target
         if (empty($this->message['to'])) {
             throw new InvalidConfigException('The "to" option must be set for EmailTarget::message.');
         }
-        $this->mailer = Instance::ensure($this->mailer, 'yii\mail\MailerInterface');
+        $this->mail = Instance::ensure($this->mail, 'yii\mail\MailerInterface');
     }
 
     /**
@@ -81,7 +59,7 @@ class EmailTarget extends Target
         }
         $messages = array_map([$this, 'formatMessage'], $this->messages);
         $body = wordwrap(implode("\n", $messages), 70);
-        $this->composeMessage($body)->send($this->mailer);
+        $this->composeMessage($body)->send($this->mail);
     }
 
     /**
@@ -91,7 +69,7 @@ class EmailTarget extends Target
      */
     protected function composeMessage($body)
     {
-        $message = $this->mailer->compose();
+        $message = $this->mail->compose();
         Yii::configure($message, $this->message);
         $message->setTextBody($body);
 

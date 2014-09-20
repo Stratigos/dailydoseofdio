@@ -9,6 +9,7 @@ namespace yii\rest;
 
 use Yii;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 use yii\helpers\Url;
 
 /**
@@ -24,10 +25,13 @@ class CreateAction extends Action
      */
     public $scenario = Model::SCENARIO_DEFAULT;
     /**
+     * @var boolean whether to start a DB transaction when saving the model.
+     */
+    public $transactional = true;
+    /**
      * @var string the name of the view action. This property is need to create the URL when the mode is successfully created.
      */
     public $viewAction = 'view';
-
 
     /**
      * Creates a new model.
@@ -40,13 +44,31 @@ class CreateAction extends Action
             call_user_func($this->checkAccess, $this->id);
         }
 
-        /* @var $model \yii\db\ActiveRecord */
+        /**
+         * @var \yii\db\ActiveRecord $model
+         */
         $model = new $this->modelClass([
             'scenario' => $this->scenario,
         ]);
 
         $model->load(Yii::$app->getRequest()->getBodyParams(), '');
-        if ($model->save()) {
+
+        if ($this->transactional && $model instanceof ActiveRecord) {
+            if ($model->validate()) {
+                $transaction = $model->getDb()->beginTransaction();
+                try {
+                    $model->insert(false);
+                    $transaction->commit();
+                } catch (\Exception $e) {
+                    $transaction->rollback();
+                    throw $e;
+                }
+            }
+        } else {
+            $model->save();
+        }
+
+        if (!$model->hasErrors()) {
             $response = Yii::$app->getResponse();
             $response->setStatusCode(201);
             $id = implode(',', array_values($model->getPrimaryKey(true)));

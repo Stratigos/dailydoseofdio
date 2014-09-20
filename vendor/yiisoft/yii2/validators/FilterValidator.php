@@ -50,7 +50,6 @@ class FilterValidator extends Validator
      */
     public $skipOnEmpty = false;
 
-
     /**
      * @inheritdoc
      */

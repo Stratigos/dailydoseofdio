@@ -23,8 +23,6 @@
     };
 
     var defaults = {
-        // whether to encode the error summary
-        encodeErrorSummary: true,
         // the jQuery selector for the error summary
         errorSummary: undefined,
         // whether to perform validation before submitting the form.
@@ -43,21 +41,9 @@
         // a callback that is called before validating each attribute. The signature of the callback should be:
         // function ($form, attribute, messages) { ...return false to cancel the validation...}
         beforeValidate: undefined,
-        // a callback that is called before validation starts (This callback is only called when the form is submitted). This signature of the callback should be:
-        // function($form, data) { ...return false to cancel the validation...}
-        beforeValidateAll: undefined,
         // a callback that is called after an attribute is validated. The signature of the callback should be:
         // function ($form, attribute, messages)
         afterValidate: undefined,
-        // a callback that is called after all validation has run (This callback is only called when the form is submitted). The signature of the callback should be:
-        // function ($form, data, messages)
-        afterValidateAll: undefined,
-        // a pre-request callback function on AJAX-based validation. The signature of the callback should be:
-        // function ($form, jqXHR, textStatus)
-        ajaxBeforeSend: undefined,
-        // a function to be called when the request finishes on AJAX-based validation. The signature of the callback should be:
-        // function ($form, jqXHR, textStatus)
-        ajaxComplete: undefined,
         // the GET parameter name indicating an AJAX-based validation
         ajaxParam: 'ajax',
         // the type of data that you're expecting back from the server
@@ -75,12 +61,8 @@
         input: undefined,
         // the jQuery selector of the error tag
         error: undefined,
-        // whether to encode the error
-        encodeError: true,
         // whether to perform validation when a change is detected on the input
         validateOnChange: false,
-        // whether to perform validation when the input loses focus
-        validateOnBlur: false,
         // whether to perform validation when the user is typing.
         validateOnType: false,
         // number of milliseconds that the validation should be delayed when a user is typing in the input field.
@@ -129,14 +111,14 @@
                     $form.on('mouseup.yiiActiveForm keyup.yiiActiveForm', ':submit', function () {
                         $form.data('yiiActiveForm').submitObject = $(this);
                     });
-                    $form.on('submit.yiiActiveForm', methods.submitForm);
+                    $form.on('submit', methods.submitForm);
                 }
             });
         },
 
         destroy: function () {
             return this.each(function () {
-                $(this).unbind('.yiiActiveForm');
+                $(window).unbind('.yiiActiveForm');
                 $(this).removeData('yiiActiveForm');
             });
         },
@@ -164,11 +146,6 @@
                 clearTimeout(data.settings.timer);
             }
             data.submitting = true;
-            
-            if (data.settings.beforeValidateAll && !data.settings.beforeValidateAll($form, data)) {
-                data.submitting = false;
-                return false;
-            }
             validate($form, function (messages) {
                 var errors = [];
                 $.each(data.attributes, function () {
@@ -176,11 +153,6 @@
                         errors.push(this.input);
                     }
                 });
-                
-                if (data.settings.afterValidateAll) {
-                    data.settings.afterValidateAll($form, data, messages);
-                }
-                
                 updateSummary($form, messages);
                 if (errors.length) {
                     var top = $form.find(errors.join(',')).first().offset().top;
@@ -237,10 +209,7 @@
             if (attribute.validateOnChange) {
                 $input.on('change.yiiActiveForm',function () {
                     validateAttribute($form, attribute, false);
-                });
-            }
-            if (attribute.validateOnBlur) {
-                $input.on('blur.yiiActiveForm', function () {
+                }).on('blur.yiiActiveForm', function () {
                     if (attribute.status == 0 || attribute.status == 1) {
                         validateAttribute($form, attribute, !attribute.status);
                     }
@@ -295,20 +264,7 @@
             });
         }, data.settings.validationDelay);
     };
-    
-    /**
-     * Returns an array prototype with a shortcut method for adding a new deferred.
-     * The context of the callback will be the deferred object so it can be resolved like ```this.resolve()```
-     * @returns Array
-     */
-    var deferredArray = function () {
-        var array = [];
-        array.add = function(callback) {
-            this.push(new $.Deferred(callback));
-        };
-        return array;
-    };
-    
+
     /**
      * Performs validation.
      * @param $form jQuery the jquery representation of the form
@@ -318,78 +274,60 @@
     var validate = function ($form, successCallback, errorCallback) {
         var data = $form.data('yiiActiveForm'),
             needAjaxValidation = false,
-            messages = {},
-            deferreds = deferredArray();
+            messages = {};
 
         $.each(data.attributes, function () {
             if (data.submitting || this.status === 2 || this.status === 3) {
                 var msg = [];
-                messages[this.id] = msg;
                 if (!data.settings.beforeValidate || data.settings.beforeValidate($form, this, msg)) {
                     if (this.validate) {
-                        this.validate(this, getValue($form, this), msg, deferreds);
+                        this.validate(this, getValue($form, this), msg);
                     }
-                    if (this.enableAjaxValidation) {
+                    if (msg.length) {
+                        messages[this.id] = msg;
+                    } else if (this.enableAjaxValidation) {
                         needAjaxValidation = true;
                     }
                 }
             }
         });
 
-        $.when.apply(this, deferreds).always(function() {
-            //Remove empty message arrays
-            for (var i in messages) {
-                if (0 === messages[i].length) {
-                    delete messages[i];
-                }
+        if (needAjaxValidation && (!data.submitting || $.isEmptyObject(messages))) {
+            // Perform ajax validation when at least one input needs it.
+            // If the validation is triggered by form submission, ajax validation
+            // should be done only when all inputs pass client validation
+            var $button = data.submitObject,
+                extData = '&' + data.settings.ajaxParam + '=' + $form.prop('id');
+            if ($button && $button.length && $button.prop('name')) {
+                extData += '&' + $button.prop('name') + '=' + $button.prop('value');
             }
-            if (needAjaxValidation && (!data.submitting || $.isEmptyObject(messages))) {
-                // Perform ajax validation when at least one input needs it.
-                // If the validation is triggered by form submission, ajax validation
-                // should be done only when all inputs pass client validation
-                var $button = data.submitObject,
-                    extData = '&' + data.settings.ajaxParam + '=' + $form.prop('id');
-                if ($button && $button.length && $button.prop('name')) {
-                    extData += '&' + $button.prop('name') + '=' + $button.prop('value');
-                }
-                $.ajax({
-                    url: data.settings.validationUrl,
-                    type: $form.prop('method'),
-                    data: $form.serialize() + extData,
-                    dataType: data.settings.ajaxDataType,
-                    complete: function (jqXHR, textStatus) {
-                        if (data.settings.ajaxComplete) {
-                            data.settings.ajaxComplete($form, jqXHR, textStatus);
-                        }
-                    },
-                    beforeSend: function (jqXHR, textStatus) {
-                        if (data.settings.ajaxBeforeSend) {
-                            data.settings.ajaxBeforeSend($form, jqXHR, textStatus);
-                        }
-                    },
-                    success: function (msgs) {
-                        if (msgs !== null && typeof msgs === 'object') {
-                            $.each(data.attributes, function () {
-                                if (!this.enableAjaxValidation) {
-                                    delete msgs[this.id];
-                                }
-                            });
-                            successCallback($.extend({}, messages, msgs));
-                        } else {
-                            successCallback(messages);
-                        }
-                    },
-                    error: errorCallback
-                });
-            } else if (data.submitting) {
-                // delay callback so that the form can be submitted without problem
-                setTimeout(function () {
-                    successCallback(messages);
-                }, 200);
-            } else {
+            $.ajax({
+                url: data.settings.validationUrl,
+                type: $form.prop('method'),
+                data: $form.serialize() + extData,
+                dataType: data.settings.ajaxDataType,
+                success: function (msgs) {
+                    if (msgs !== null && typeof msgs === 'object') {
+                        $.each(data.attributes, function () {
+                            if (!this.enableAjaxValidation) {
+                                delete msgs[this.id];
+                            }
+                        });
+                        successCallback($.extend({}, messages, msgs));
+                    } else {
+                        successCallback(messages);
+                    }
+                },
+                error: errorCallback
+            });
+        } else if (data.submitting) {
+            // delay callback so that the form can be submitted without problem
+            setTimeout(function () {
                 successCallback(messages);
-            }
-        });
+            }, 200);
+        } else {
+            successCallback(messages);
+        }
     };
 
     /**
@@ -413,15 +351,11 @@
             var $container = $form.find(attribute.container);
             var $error = $container.find(attribute.error);
             if (hasError) {
-                if (attribute.encodeError) {
-                    $error.text(messages[attribute.id][0]);
-                } else {
-                    $error.html(messages[attribute.id][0]);
-                }
+                $error.text(messages[attribute.id][0]);
                 $container.removeClass(data.settings.validatingCssClass + ' ' + data.settings.successCssClass)
                     .addClass(data.settings.errorCssClass);
             } else {
-                $error.empty();
+                $error.text('');
                 $container.removeClass(data.settings.validatingCssClass + ' ' + data.settings.errorCssClass + ' ')
                     .addClass(data.settings.successCssClass);
             }
@@ -438,18 +372,12 @@
     var updateSummary = function ($form, messages) {
         var data = $form.data('yiiActiveForm'),
             $summary = $form.find(data.settings.errorSummary),
-            $ul = $summary.find('ul').empty();
+            $ul = $summary.find('ul').html('');
 
         if ($summary.length && messages) {
             $.each(data.attributes, function () {
                 if ($.isArray(messages[this.id]) && messages[this.id].length) {
-                    var error = $('<li/>');
-                    if (data.settings.encodeErrorSummary) {
-                        error.text(messages[this.id][0]);
-                    } else {
-                        error.html(messages[this.id][0]);
-                    }
-                    $ul.append(error);
+                    $ul.append($('<li/>').text(messages[this.id][0]));
                 }
             });
             $summary.toggle($ul.find('li').length > 0);

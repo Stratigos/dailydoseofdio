@@ -9,19 +9,18 @@ namespace yii\log;
 
 use Yii;
 use yii\base\Component;
-use yii\base\ErrorHandler;
 
 /**
  * Dispatcher manages a set of [[Target|log targets]].
  *
- * Dispatcher implements the [[dispatch()]]-method that forwards the log messages from a [[Logger]] to
+ * Dispatcher implements [[dispatch()]] that forwards the log messages from [[Logger]] to
  * the registered log [[targets]].
  *
- * An instance of Dispatcher is registered as a core application component and can be accessed using `Yii::$app->log`.
+ * Dispatcher is registered as a core application component and can be accessed using `Yii::$app->log`.
  *
  * You may configure the targets in application configuration, like the following:
  *
- * ```php
+ * ~~~
  * [
  *     'components' => [
  *         'log' => [
@@ -42,13 +41,14 @@ use yii\base\ErrorHandler;
  *         ],
  *     ],
  * ]
- * ```
+ * ~~~
  *
- * Each log target can have a name and can be referenced via the [[targets]] property as follows:
+ * Each log target can have a name and can be referenced via the [[targets]] property
+ * as follows:
  *
- * ```php
+ * ~~~
  * Yii::$app->log->targets['file']->enabled = false;
- * ```
+ * ~~~
  *
  * @property integer $flushInterval How many messages should be logged before they are sent to targets. This
  * method returns the value of [[Logger::flushInterval]].
@@ -66,7 +66,6 @@ class Dispatcher extends Component
      * or the configuration for creating the log target instance.
      */
     public $targets = [];
-
     /**
      * @var Logger the logger.
      */
@@ -78,7 +77,6 @@ class Dispatcher extends Component
      */
     public function __construct($config = [])
     {
-        // ensure logger gets set before any other config option
         if (isset($config['logger'])) {
             $this->setLogger($config['logger']);
             unset($config['logger']);
@@ -176,26 +174,10 @@ class Dispatcher extends Component
      */
     public function dispatch($messages, $final)
     {
-        $targetErrors = [];
         foreach ($this->targets as $target) {
             if ($target->enabled) {
-                try {
-                    $target->collect($messages, $final);
-                } catch (\Exception $e) {
-                    $target->enabled = false;
-                    $targetErrors[] = [
-                        'Unable to send log via ' . get_class($target) . ': ' . ErrorHandler::convertExceptionToString($e),
-                        Logger::LEVEL_WARNING,
-                        __METHOD__,
-                        microtime(true),
-                        [],
-                    ];
-                }
+                $target->collect($messages, $final);
             }
-        }
-
-        if (!empty($targetErrors)) {
-            $this->dispatch($targetErrors, true);
         }
     }
 }

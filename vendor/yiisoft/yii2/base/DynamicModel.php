@@ -10,7 +10,7 @@ namespace yii\base;
 use yii\validators\Validator;
 
 /**
- * DynamicModel is a model class primarily used to support ad hoc data validation.
+ * DynamicModel is a model class primarily used to support ad-hoc data validation.
  *
  * The typical usage of DynamicModel is as follows,
  *
@@ -18,7 +18,7 @@ use yii\validators\Validator;
  * public function actionSearch($name, $email)
  * {
  *     $model = DynamicModel::validateData(compact('name', 'email'), [
- *         [['name', 'email'], 'string', 'max' => 128],
+ *         [['name', 'email'], 'string', 'max' => 128]],
  *         ['email', 'email'],
  *     ]);
  *     if ($model->hasErrors()) {
@@ -56,7 +56,6 @@ use yii\validators\Validator;
 class DynamicModel extends Model
 {
     private $_attributes = [];
-
 
     /**
      * Constructors.
@@ -171,7 +170,7 @@ class DynamicModel extends Model
      */
     public static function validateData(array $data, $rules = [])
     {
-        /* @var $model DynamicModel */
+        /** @var DynamicModel $model */
         $model = new static($data);
         if (!empty($rules)) {
             $validators = $model->getValidators();
@@ -185,9 +184,8 @@ class DynamicModel extends Model
                     throw new InvalidConfigException('Invalid validation rule: a rule must specify both attribute names and validator type.');
                 }
             }
+            $model->validate();
         }
-
-        $model->validate();
 
         return $model;
     }

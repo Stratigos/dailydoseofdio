@@ -79,7 +79,6 @@ class Theme extends Component
      */
     public $pathMap;
 
-
     /**
      * Initializes the theme.
      * @throws InvalidConfigException if [[basePath]] is not set.
@@ -182,7 +181,6 @@ class Theme extends Component
      * Converts a relative file path into an absolute one using [[basePath]].
      * @param string $path the relative file path to be converted.
      * @return string the absolute file path
-     * @throws InvalidConfigException if [[baseUrl]] is not set
      */
     public function getPath($path)
     {

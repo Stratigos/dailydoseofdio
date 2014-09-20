@@ -7,7 +7,6 @@
 
 namespace yii\db\sqlite;
 
-use yii\db\Connection;
 use yii\db\Exception;
 use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;
@@ -42,7 +41,6 @@ class QueryBuilder extends \yii\db\QueryBuilder
         Schema::TYPE_MONEY => 'decimal(19,4)',
     ];
 
-
     /**
      * Generates a batch INSERT SQL statement.
      * For example,
@@ -64,17 +62,14 @@ class QueryBuilder extends \yii\db\QueryBuilder
      */
     public function batchInsert($table, $columns, $rows)
     {
-        // SQLite supports batch insert natively since 3.7.11
-        // http://www.sqlite.org/releaselog/3_7_11.html
-        if (version_compare(\SQLite3::version()['versionString'], '3.7.11', '>=')) {
-            return parent::batchInsert($table, $columns, $rows);
-        }
-
-        $schema = $this->db->getSchema();
-        if (($tableSchema = $schema->getTableSchema($table)) !== null) {
+        if (($tableSchema = $this->db->getTableSchema($table)) !== null) {
             $columnSchemas = $tableSchema->columns;
         } else {
             $columnSchemas = [];
+        }
+
+        foreach ($columns as $i => $name) {
+            $columns[$i] = $this->db->quoteColumnName($name);
         }
 
         $values = [];
@@ -82,10 +77,10 @@ class QueryBuilder extends \yii\db\QueryBuilder
             $vs = [];
             foreach ($row as $i => $value) {
                 if (!is_array($value) && isset($columnSchemas[$columns[$i]])) {
-                    $value = $columnSchemas[$columns[$i]]->dbTypecast($value);
+                    $value = $columnSchemas[$columns[$i]]->typecast($value);
                 }
                 if (is_string($value)) {
-                    $value = $schema->quoteValue($value);
+                    $value = $this->db->quoteValue($value);
                 } elseif ($value === false) {
                     $value = 0;
                 } elseif ($value === null) {
@@ -96,11 +91,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
             $values[] = implode(', ', $vs);
         }
 
-        foreach ($columns as $i => $name) {
-            $columns[$i] = $schema->quoteColumnName($name);
-        }
-
-        return 'INSERT INTO ' . $schema->quoteTableName($table)
+        return 'INSERT INTO ' . $this->db->quoteTableName($table)
         . ' (' . implode(', ', $columns) . ') SELECT ' . implode(' UNION SELECT ', $values);
     }
 
@@ -122,9 +113,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
             if ($value === null) {
                 $key = reset($table->primaryKey);
                 $tableName = $db->quoteTableName($tableName);
-                $value = $this->db->useMaster(function (Connection $db) use ($key, $tableName) {
-                    return $db->createCommand("SELECT MAX('$key') FROM $tableName")->queryScalar();
-                });
+                $value = $db->createCommand("SELECT MAX('$key') FROM $tableName")->queryScalar();
             } else {
                 $value = (int) $value - 1;
             }
@@ -150,7 +139,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
      */
     public function checkIntegrity($check = true, $schema = '', $table = '')
     {
-        return 'PRAGMA foreign_keys='.(int)$check;
+        throw new NotSupportedException(__METHOD__ . ' is not supported by SQLite.');
     }
 
     /**
@@ -265,7 +254,7 @@ class QueryBuilder extends \yii\db\QueryBuilder
      * @param string $name the name of the primary key constraint to be removed.
      * @param string $table the table that the primary key constraint will be removed from.
      * @return string the SQL statement for removing a primary key constraint from an existing table.
-     * @throws NotSupportedException this is not supported by SQLite
+     * @throws NotSupportedException this is not supported by SQLite	 *
      */
     public function dropPrimaryKey($name, $table)
     {

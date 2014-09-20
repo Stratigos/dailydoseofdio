@@ -73,11 +73,6 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     use ActiveRelationTrait;
 
     /**
-     * @event Event an event that is triggered when the query is initialized via [[init()]].
-     */
-    const EVENT_INIT = 'init';
-
-    /**
      * @var string the SQL statement to be executed for retrieving AR records.
      * This is set by [[ActiveRecord::findBySql()]].
      */
@@ -108,18 +103,6 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     }
 
     /**
-     * Initializes the object.
-     * This method is called at the end of the constructor. The default implementation will trigger
-     * an [[EVENT_INIT]] event. If you override this method, make sure you call the parent implementation at the end
-     * to ensure triggering of the event.
-     */
-    public function init()
-    {
-        parent::init();
-        $this->trigger(self::EVENT_INIT);
-    }
-
-    /**
      * Executes query and returns all results as an array.
      * @param Connection $db the DB connection used to create the DB command.
      * If null, the DB connection returned by [[modelClass]] will be used.
@@ -141,7 +124,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
         }
 
         if (empty($this->from)) {
-            /* @var $modelClass ActiveRecord */
+            /** @var ActiveRecord $modelClass */
             $modelClass = $this->modelClass;
             $tableName = $modelClass::tableName();
             $this->from = [$tableName];
@@ -198,7 +181,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     private function removeDuplicatedModels($models)
     {
         $hash = [];
-        /* @var $class ActiveRecord */
+        /** @var ActiveRecord $class */
         $class = $this->modelClass;
         $pks = $class::primaryKey();
 
@@ -240,10 +223,27 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      */
     public function one($db = null)
     {
-        $row = parent::one($db);
+        $command = $this->createCommand($db);
+        $row = $command->queryOne();
         if ($row !== false) {
-            $models = $this->prepareResult([$row]);
-            return reset($models) ?: null;
+            if ($this->asArray) {
+                $model = $row;
+            } else {
+                /** @var ActiveRecord $class */
+                $class = $this->modelClass;
+                $model = $class::instantiate($row);
+                $class::populateRecord($model, $row);
+            }
+            if (!empty($this->with)) {
+                $models = [$model];
+                $this->findWith($this->with, $models);
+                $model = $models[0];
+            }
+            if (!$this->asArray) {
+                $model->afterFind();
+            }
+
+            return $model;
         } else {
             return null;
         }
@@ -283,7 +283,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      */
     protected function createCommandInternal($db)
     {
-        /* @var $modelClass ActiveRecord */
+        /** @var ActiveRecord $modelClass */
         $modelClass = $this->modelClass;
         if ($db === null) {
             $db = $modelClass::getDb();
@@ -314,7 +314,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
             $this->filterByModels($viaModels);
         } elseif (is_array($this->via)) {
             // via relation
-            /* @var $viaQuery ActiveQuery */
+            /** @var ActiveQuery $viaQuery */
             list($viaName, $viaQuery) = $this->via;
             if ($viaQuery->multiple) {
                 $viaModels = $viaQuery->all();
@@ -416,7 +416,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
         // remove duplicated joins added by joinWithRelations that may be added
         // e.g. when joining a relation and a via relation at the same time
         $uniqueJoins = [];
-        foreach ($this->join as $j) {
+        foreach($this->join as $j) {
             $uniqueJoins[serialize($j)] = $j;
         }
         $this->join = array_values($uniqueJoins);
@@ -511,7 +511,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     private function getQueryTableName($query)
     {
         if (empty($query->from)) {
-            /* @var $modelClass ActiveRecord */
+            /** @var ActiveRecord $modelClass */
             $modelClass = $query->modelClass;
             $tableName = $modelClass::tableName();
         } else {
@@ -641,7 +641,6 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      * The new condition and the existing one will be joined using the 'AND' operator.
      * @param string|array $condition the new ON condition. Please refer to [[where()]]
      * on how to specify this parameter.
-     * @param array $params the parameters (name => value) to be bound to the query.
      * @return static the query object itself
      * @see onCondition()
      * @see orOnCondition()
@@ -662,7 +661,6 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      * The new condition and the existing one will be joined using the 'OR' operator.
      * @param string|array $condition the new ON condition. Please refer to [[where()]]
      * on how to specify this parameter.
-     * @param array $params the parameters (name => value) to be bound to the query.
      * @return static the query object itself
      * @see onCondition()
      * @see andOnCondition()
@@ -700,7 +698,7 @@ class ActiveQuery extends Query implements ActiveQueryInterface
      * @return static
      * @see via()
      */
-    public function viaTable($tableName, $link, callable $callable = null)
+    public function viaTable($tableName, $link, $callable = null)
     {
         $relation = new ActiveQuery(get_class($this->primaryModel), [
             'from' => [$tableName],

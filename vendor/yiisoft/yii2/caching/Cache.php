@@ -7,13 +7,14 @@
 
 namespace yii\caching;
 
+use Yii;
 use yii\base\Component;
 use yii\helpers\StringHelper;
 
 /**
- * Cache is the base class for cache classes supporting different cache storage implementations.
+ * Cache is the base class for cache classes supporting different cache storage implementation.
  *
- * A data item can be stored in the cache by calling [[set()]] and be retrieved back
+ * A data item can be stored in cache by calling [[set()]] and be retrieved back
  * later (in the same or different request) by [[get()]]. In both operations,
  * a key identifying the data item is required. An expiration time and/or a [[Dependency|dependency]]
  * can also be specified when calling [[set()]]. If the data item expires or the dependency
@@ -21,23 +22,23 @@ use yii\helpers\StringHelper;
  *
  * A typical usage pattern of cache is like the following:
  *
- * ```php
+ * ~~~
  * $key = 'demo';
  * $data = $cache->get($key);
  * if ($data === false) {
  *     // ...generate $data here...
  *     $cache->set($key, $data, $duration, $dependency);
  * }
- * ```
+ * ~~~
  *
  * Because Cache implements the ArrayAccess interface, it can be used like an array. For example,
  *
- * ```php
+ * ~~~
  * $cache['foo'] = 'some data';
  * echo $cache['foo'];
- * ```
+ * ~~~
  *
- * Derived classes should implement the following methods which do the actual cache storage operations:
+ * Derived classes should implement the following methods:
  *
  * - [[getValue()]]: retrieve the value with a key (if any) from cache
  * - [[setValue()]]: store the value with a key into cache
@@ -51,9 +52,10 @@ use yii\helpers\StringHelper;
 abstract class Cache extends Component implements \ArrayAccess
 {
     /**
-     * @var string a string prefixed to every cache key so that it is unique globally in the whole cache storage.
-     * It is recommended that you set a unique cache key prefix for each application if the same cache
-     * storage is being used by different applications.
+     * @var string a string prefixed to every cache key so that it is unique. If not set,
+     * it will use a prefix generated from [[\yii\base\Application::id]]. You may set this property to be an empty string
+     * if you don't want to use key prefix. It is recommended that you explicitly set this property to some
+     * static value if the cached data needs to be shared among multiple applications.
      *
      * To ensure interoperability, only alphanumeric characters should be used.
      */
@@ -69,6 +71,17 @@ abstract class Cache extends Component implements \ArrayAccess
      */
     public $serializer;
 
+    /**
+     * Initializes the application component.
+     * This method overrides the parent implementation by setting default cache key prefix.
+     */
+    public function init()
+    {
+        parent::init();
+        if ($this->keyPrefix === null) {
+            $this->keyPrefix = substr(md5(Yii::$app->id), 0, 5);
+        }
+    }
 
     /**
      * Builds a normalized cache key from a given key.
@@ -80,7 +93,7 @@ abstract class Cache extends Component implements \ArrayAccess
      * @param mixed $key the key to be normalized
      * @return string the generated cache key
      */
-    public function buildKey($key)
+    protected function buildKey($key)
     {
         if (is_string($key)) {
             $key = ctype_alnum($key) && StringHelper::byteLength($key) <= 32 ? $key : md5($key);
@@ -141,7 +154,7 @@ abstract class Cache extends Component implements \ArrayAccess
      * Some caches (such as memcache, apc) allow retrieving multiple cached values at the same time,
      * which may improve the performance. In case a cache does not support this feature natively,
      * this method will try to simulate it.
-     * @param string[] $keys list of string keys identifying the cached values
+     * @param array $keys list of keys identifying the cached values
      * @return array list of cached values corresponding to the specified keys. The array
      * is returned in terms of (key, value) pairs.
      * If a value is not cached or expired, the corresponding array value will be false.

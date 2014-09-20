@@ -57,7 +57,6 @@ class Captcha extends InputWidget
      */
     public $options = ['class' => 'form-control'];
 
-
     /**
      * Initializes the widget.
      */
@@ -115,16 +114,9 @@ class Captcha extends InputWidget
      */
     protected function getClientOptions()
     {
-        $route = $this->captchaAction;
-        if (is_array($route)) {
-            $route[CaptchaAction::REFRESH_GET_VAR] = 1;
-        } else {
-            $route = [$route, CaptchaAction::REFRESH_GET_VAR => 1];
-        }
-
         $options = [
-            'refreshUrl' => Url::toRoute($route),
-            'hashKey' => "yiiCaptcha/{$route[0]}",
+            'refreshUrl' => Url::to(['/' . $this->captchaAction, CaptchaAction::REFRESH_GET_VAR => 1]),
+            'hashKey' => "yiiCaptcha/{$this->captchaAction}",
         ];
 
         return $options;

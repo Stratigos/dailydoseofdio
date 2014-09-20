@@ -8,7 +8,6 @@
 namespace yii\rest;
 
 use Yii;
-use yii\base\Arrayable;
 use yii\base\Component;
 use yii\base\Model;
 use yii\data\DataProviderInterface;
@@ -98,7 +97,6 @@ class Serializer extends Component
      */
     public $response;
 
-
     /**
      * @inheritdoc
      */
@@ -123,10 +121,8 @@ class Serializer extends Component
      */
     public function serialize($data)
     {
-        if ($data instanceof Model && $data->hasErrors()) {
-            return $this->serializeModelErrors($data);
-        } elseif ($data instanceof Arrayable) {
-            return $this->serializeModel($data);
+        if ($data instanceof Model) {
+            return $data->hasErrors() ? $this->serializeModelErrors($data) : $this->serializeModel($data);
         } elseif ($data instanceof DataProviderInterface) {
             return $this->serializeDataProvider($data);
         } else {
@@ -221,7 +217,7 @@ class Serializer extends Component
 
     /**
      * Serializes a model object.
-     * @param Arrayable $model
+     * @param Model $model
      * @return array the array representation of the model
      */
     protected function serializeModel($model)
@@ -230,6 +226,7 @@ class Serializer extends Component
             return null;
         } else {
             list ($fields, $expand) = $this->getRequestedFields();
+
             return $model->toArray($fields, $expand);
         }
     }
@@ -262,7 +259,7 @@ class Serializer extends Component
     {
         list ($fields, $expand) = $this->getRequestedFields();
         foreach ($models as $i => $model) {
-            if ($model instanceof Arrayable) {
+            if ($model instanceof Model) {
                 $models[$i] = $model->toArray($fields, $expand);
             } elseif (is_array($model)) {
                 $models[$i] = ArrayHelper::toArray($model);

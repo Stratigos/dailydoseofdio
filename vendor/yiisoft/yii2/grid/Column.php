@@ -32,8 +32,7 @@ class Column extends Object
      */
     public $footer;
     /**
-     * @var callable This is a callable that will be used to generated the content of each cell.
-     * The signature of the function should be the following: `function ($model, $key, $index, $column)`.
+     * @var callable
      */
     public $content;
     /**
@@ -52,8 +51,8 @@ class Column extends Object
     public $headerOptions = [];
     /**
      * @var array|\Closure the HTML attributes for the data cell tag. This can either be an array of
-     * attributes or an anonymous function ([[Closure]]) that returns such an array.
-     * The signature of the function should be the following: `function ($model, $key, $index, $column)`.
+     * attributes or an anonymous function that ([[Closure]]) that returns such an array.
+     * The signature of the function should be the following: `function ($model, $key, $index, $gridView)`.
      * A function may be used to assign different attributes to different rows based on the data in that row.
      *
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
@@ -69,7 +68,6 @@ class Column extends Object
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $filterOptions = [];
-
 
     /**
      * Renders the header cell.

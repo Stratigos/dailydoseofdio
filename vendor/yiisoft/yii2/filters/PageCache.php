@@ -13,29 +13,31 @@ use yii\base\Action;
 use yii\caching\Dependency;
 
 /**
- * PageCache implements server-side caching of whole pages.
+ * The PageCache provides functionality for whole page caching
  *
  * It is an action filter that can be added to a controller and handles the `beforeAction` event.
  *
  * To use PageCache, declare it in the `behaviors()` method of your controller class.
- * In the following example the filter will be applied to the `index` action and
+ * In the following example the filter will be applied to the `list`-action and
  * cache the whole page for maximum 60 seconds or until the count of entries in the post table changes.
- * It also stores different versions of the page depending on the application language.
+ * It also stores different versions of the page depended on the route ([[varyByRoute]] is true by default),
+ * the application language and user id.
  *
  * ~~~
  * public function behaviors()
  * {
  *     return [
  *         'pageCache' => [
- *             'class' => 'yii\filters\PageCache',
- *             'only' => ['index'],
+ *             'class' => \yii\filters\PageCache::className(),
+ *             'only' => ['list'],
  *             'duration' => 60,
  *             'dependency' => [
  *                 'class' => 'yii\caching\DbDependency',
  *                 'sql' => 'SELECT COUNT(*) FROM post',
  *             ],
  *             'variations' => [
- *                 \Yii::$app->language,
+ *                 Yii::$app->language,
+ *                 Yii::$app->user->id
  *             ]
  *         ],
  *     ];
@@ -69,7 +71,7 @@ class PageCache extends ActionFilter
      * ~~~
      * [
      *     'class' => 'yii\caching\DbDependency',
-     *     'sql' => 'SELECT MAX(updated_at) FROM post',
+     *     'sql' => 'SELECT MAX(lastModified) FROM Post',
      * ]
      * ~~~
      *
@@ -101,10 +103,6 @@ class PageCache extends ActionFilter
      */
     public $view;
 
-
-    /**
-     * @inheritdoc
-     */
     public function init()
     {
         parent::init();
@@ -132,6 +130,7 @@ class PageCache extends ActionFilter
             return true;
         } else {
             Yii::$app->getResponse()->content = ob_get_clean();
+
             return false;
         }
     }
@@ -143,6 +142,7 @@ class PageCache extends ActionFilter
     {
         echo $result;
         $this->view->endCache();
+
         return ob_get_clean();
     }
 }
