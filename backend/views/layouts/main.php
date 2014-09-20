@@ -31,9 +31,7 @@ AppAsset::register($this);
                 'brandUrl'   => Yii::$app->homeUrl,
                 'options'    => [
                     'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-
-
+                ]
             ]);
             $menuItems = [
                 [
@@ -45,15 +43,15 @@ AppAsset::register($this);
                     'items' => [
                         [
                             'label' => 'Posts',
-                            'url'   => '/index.php?r=post/index'
+                            'url'   => Yii::$app->urlManager->createUrl('post/index')
                         ],
                         [
                             'label' => 'Pages',
-                            'url'   => '/index.php?r=page/index'
+                            'url'   => Yii::$app->urlManager->createUrl('page/index')
                         ],
                         [
                             'label' => 'Dio Sites',
-                            'url'   => '/index.php?r=diosite/index'
+                            'url'   => Yii::$app->urlManager->createUrl('diosite/index')
                         ]
                     ]
                 ],
@@ -62,19 +60,19 @@ AppAsset::register($this);
                     'items' => [
                         [
                             'label' => 'Blogs',
-                            'url'   => 'index.php?r=blog/index'
+                            'url'   => Yii::$app->urlManager->createUrl('blog/index')
                         ],
                         [
                             'label' => 'Bloggers',
-                            'url'   => 'index.php?r=blogger/index'
+                            'url'   => Yii::$app->urlManager->createUrl('blogger/index')
                         ],
                         [
                             'label' => 'Categories',
-                            'url'   => '/index.php?r=category/index'
+                            'url'   => Yii::$app->urlManager->createUrl('category/index')
                         ],
                         [
                             'label' => 'Tags',
-                            'url'   => '/index.php?r=tag/index'
+                            'url'   => Yii::$app->urlManager->createUrl('tag/index')
                         ]
                     ]
                 ],
@@ -106,11 +104,11 @@ AppAsset::register($this);
                         '<li class="dropdown-header">Misc</li>',
                         [
                             'label' => 'Home',
-                            'url'   => ['/site/index']
+                            'url'   => [Yii::$app->urlManager->createUrl('site/index')]
                         ],
                         [
                             'label'       => 'Logout',
-                            'url'         => ['/site/logout'],
+                            'url'         => [Yii::$app->urlManager->createUrl('site/logout')],
                             'linkOptions' => ['data-method' => 'post']
                         ]
                     ]
