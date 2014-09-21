@@ -9,6 +9,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
+        "aws/aws-sdk-php": "2.*",
         "bower-asset/jquery": "@stable",
         "bower-asset/bootstrap": "@stable",
         "bower-asset/jquery-ui": "@stable",
