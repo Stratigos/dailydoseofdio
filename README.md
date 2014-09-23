@@ -5,9 +5,11 @@ Yii2 Beta Advanced Application
 
 ...Under Construction...
 
-i) Use "composer update" to load vendor/ dir and external dependencies.
+i) Add necessary environment params to webserver config (TBD)
 
-ii) Use "php init" to initialize application.
+1) Use "composer update" to load vendor/ dir and external dependencies.
 
-iii) Use "php yii migrate/up" to initialize database.
+2) Use "php init" to initialize application.
+
+3) Use "php yii migrate/up" to initialize database.
 
