@@ -73,11 +73,17 @@ class BloggerController extends Controller
     public function actionCreate()
     {
         $errors  = [];
+        $image   = new UploadForm();
         $blogger = new Blogger();
         $blogger->loadDefaultValues();
 
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
+            $image->image = UploadedFile::getInstance($image, 'image');
+            if(!empty($image) && $image->validate()) {
+                $image->image->saveAs('uploads/' . $image->image->baseName . '.' . $image->image->extension);
+                $blogger->image = 'uploads/' . $image->image->baseName . '.' . $image->image->extension;
+            }
             if($blogger->save()) {
                 return $this->redirect(['index']);
             } else {
@@ -89,7 +95,8 @@ class BloggerController extends Controller
             'create',
             [
                 'blogger' => $blogger,
-                'errors'   => $errors
+                'image'   => $image,
+                'errors'  => $errors
             ]
         );
     }
