@@ -12,3 +12,4 @@ Thumbs.db
 # Resources / Dependencies Installed and Updated via Composer
 ##############################################################
 vendor/
+backend/web/uploads/

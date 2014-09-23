@@ -2,13 +2,15 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\HttpException;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Blogger;
+use common\models\UploadForm;
 
 /**
  * CRUD operations for Bloggers
@@ -98,7 +100,8 @@ class BloggerController extends Controller
     public function actionUpdate($id)
     {
         $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
-        $errors = [];
+        $image   = new UploadForm();
+        $errors  = [];
 
         if($blogger === NULL) {
             throw new HttpException(404, "Blogger {$id} Not Found");
@@ -106,6 +109,11 @@ class BloggerController extends Controller
 
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
+            $image->image = UploadedFile::getInstance($image, 'image');
+            if(!empty($image) && $image->validate()) {
+                $image->image->saveAs('uploads/' . $image->image->baseName . '.' . $image->image->extension);
+                $blogger->image = 'uploads/' . $image->image->baseName . '.' . $image->image->extension;
+            }
             if($blogger->save()) {
                 return $this->redirect(['index']);
             } else {
@@ -117,7 +125,8 @@ class BloggerController extends Controller
             'update',
             [
                 'blogger' => $blogger,
-                'errors'   => $errors
+                'image'   => $image,
+                'errors'  => $errors
             ]
         );
     }

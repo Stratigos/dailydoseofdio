@@ -55,7 +55,7 @@ class Blogger extends ActiveRecord
             [['shortname'], 'string', 'length' => [3, 32]],
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
-            // IMAGE RULES...
+            [['image'], 'string'],
             [['short_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 2000],
             [['dio_favorite'], 'string', 'max' => 255],

@@ -15,11 +15,14 @@
     </div>
     <?php $form = ActiveForm::begin([
         'id'      => 'blogger-form',
-        'options' => ['class' => 'form-horizontal']
+        'options' => [
+            'class'   => 'form-horizontal',
+            'enctype' => 'multipart/form-data'
+        ]
     ]); ?>
         <?= $form->field($blogger, 'name'); ?>
         <?= $form->field($blogger, 'shortname'); ?>
-        <!-- IMAGE GOES HERE -->
+        <?= $form->field($image,   'image')->fileInput(); ?>
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
         <?= $form->field($blogger, 'description')->textarea(); ?>
         <?= $form->field($blogger, 'dio_favorite'); ?>
