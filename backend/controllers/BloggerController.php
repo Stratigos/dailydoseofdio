@@ -130,7 +130,6 @@ class BloggerController extends Controller
                 $dirname      = 'uploads/' . substr($blogger->className(), (strrpos($blogger->className(), '\\') + 1));
                 $full_dirname = getcwd() . '/' . $dirname;
                 if(!file_exists($full_dirname) && !is_dir($full_dirname)) {
-                    error_log("\n\n TRYING TO MAKE DIR: {$full_dirname} \n\n");
                     mkdir($full_dirname, 0774);         
                 } 
                 if(is_dir($full_dirname)) {
