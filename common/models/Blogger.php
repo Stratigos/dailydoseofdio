@@ -86,6 +86,7 @@ class Blogger extends ActiveRecord
         return [
             'name'              => 'Name',
             'shortname'         => 'Shortname (URL name)',
+            'image_path'        => 'Image Path',
             'short_description' => 'Short Description',
             'description'       => 'Description',
             'dio_favorite'      => 'Dio-Favorite',
