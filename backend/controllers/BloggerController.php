@@ -10,9 +10,6 @@ use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Blogger;
-use common\models\UploadForm;
-use Aws\S3\S3Client;
-
 
 /**
  * CRUD operations for Bloggers
@@ -109,7 +106,7 @@ class BloggerController extends Controller
     public function actionUpdate($id)
     {
         $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
-        $image   = new UploadForm();
+        $blogger->image_file = new UploadForm():
         $errors  = [];
 
         if($blogger === NULL) {
@@ -122,8 +119,8 @@ class BloggerController extends Controller
              * @todo MOVE TO UPLOADABLEIMAGEBEHAVIOR::UPLOADIMAGE();
              */
             // ////////////// IMAGE UPLOAD TO S3 SEQUENCE //////////////////////////////////////////////////////////////
-            $image->image = UploadedFile::getInstance($image, 'image');
-            if(!empty($image) && $image->validate()) {
+            $blogger->image_file->image = UploadedFile::getInstance($blogger->image_file, 'image');
+            if(!empty($blogger->image_file) && $blogger->image_file->validate()) {
                 // create local file
                 $uploaded     = null;
                 $filename     = null;

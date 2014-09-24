@@ -34,7 +34,7 @@
                 <p>NO IMAGE UPLOADED</p>
             <?php endif;?>
         </div>
-        <?= $form->field($image,   'image')->fileInput(); ?>
+        <?= $form->field($blogger, 'image_file')->fileInput(); ?>
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
         <?= $form->field($blogger, 'description')->textarea(); ?>
         <?= $form->field($blogger, 'dio_favorite'); ?>

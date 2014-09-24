@@ -19,6 +19,11 @@ class Blogger extends ActiveRecord
     private static $shortnameFriendlyPattern = '/[^a-z0-9-]+/';
 
     /**
+     * holds image file to be uploaded
+     */
+    public $image_file;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -39,6 +44,12 @@ class Blogger extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
+            'localUpload' => [
+                'class' => 'backend\components\LocalImageUploadBehavior'
+            ],
+            'CDNUpload' => [
+                'class' => 'backend\components\CDNImageUploadBehavior'
+            ]
         ];
     }
 
@@ -60,7 +71,16 @@ class Blogger extends ActiveRecord
             [['description'], 'string', 'max' => 2000],
             [['dio_favorite'], 'string', 'max' => 255],
             [['rank'], 'integer', 'min' => 0, 'max' => 999],
-            [['status'], 'integer', 'min' => 0, 'max' => 1]
+            [['status'], 'integer', 'min' => 0, 'max' => 1],
+            [
+                ['image_file'],
+                'image',
+                'extensions' => ['png', 'jpg', 'gif'],
+                'mimeTypes'  => ['image/png', 'image/jpeg', 'image/gif'],
+                'maxSize'    => 2000000,
+                'minWidth'   => 100,
+                'minHeight'  => 100
+            ]
         ];
     }
 
