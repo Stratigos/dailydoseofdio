@@ -22,16 +22,18 @@
     ]); ?>
         <?= $form->field($blogger, 'name'); ?>
         <?= $form->field($blogger, 'shortname'); ?>
-        <?php if(!empty($blogger->image)) : ?>
-            <div class="form-group blogger-image-display">
+        <div class="form-group blogger-image-display">
+             <?php if($blogger->image) : ?>
                 <img
-                    src="<?= Yii::$app->urlManager->createUrl($blogger->image) ?>"
+                    src="<?= $blogger->image ?>"
                     alt="BLOGGER IMAGE"
                     height="200"
                     width="200"
                 />
-            </div>
-        <?php endif; ?>
+            <?php else : ?>
+                <p>NO IMAGE UPLOADED</p>
+            <?php endif;?>
+        </div>
         <?= $form->field($image,   'image')->fileInput(); ?>
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
         <?= $form->field($blogger, 'description')->textarea(); ?>

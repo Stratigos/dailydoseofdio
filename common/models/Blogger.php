@@ -55,7 +55,7 @@ class Blogger extends ActiveRecord
             [['shortname'], 'string', 'length' => [3, 32]],
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
-            [['image'], 'string'],
+            [['image_path'], 'string'],
             [['short_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 2000],
             [['dio_favorite'], 'string', 'max' => 255],
@@ -100,5 +100,15 @@ class Blogger extends ActiveRecord
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['blogger_id' => 'id'])->inverseOf('blogger');
+    }
+
+    /**
+     * get full url to a Blogger's image.
+     * @todo ADD S3 URL TO CONFIG
+     * @return String
+     */
+    public function getImage()
+    {
+        return isset($this->image_path) ? ' https://ddoddev.s3.amazonaws.com/' . $this->image_path : null;
     }
 }
