@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 class Blogger extends ActiveRecord
@@ -22,6 +23,18 @@ class Blogger extends ActiveRecord
      * holds image file to be uploaded
      */
     public $image_file;
+
+    /**
+     * @inheritdoc
+     * - initializes $image_file to UploadForm instance if loaded in backend
+     */
+    public function init()
+    {
+        parent::init();
+        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+            $this->image_file = new UploadForm();
+        }
+    }
 
     /**
      * @inheritdoc

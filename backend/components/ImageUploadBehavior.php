@@ -1,7 +1,7 @@
 <?php
-/***********************************
-* I HAVE NO IDEA WHAT I AM DOING!
-************************************/
+/*****************************************************************
+* Behavior component for uploading a Model's thumbnail attribute.
+******************************************************************/
 
 namespace backend\components;
 
