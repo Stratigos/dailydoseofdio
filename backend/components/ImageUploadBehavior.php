@@ -26,8 +26,10 @@ class ImageUploadBehavior extends Behavior
 
     /**
      * Model attribute with uniqueness, to assist with uniquely identifying 
-     *  image file according to model instance. Attribute must be available
-     *  at time of validation (thus, primary key may not be suitable).
+     *  image file according to model instance by prefixing filename with a 
+     *  hashed value. Attribute must be available at time of validation, thus,
+     *  primary key may not be suitable. If configured unset, will result in
+     *  unix timestamp as image name prefix.
      */
     public $model_unique_attr;
 
@@ -43,8 +45,6 @@ class ImageUploadBehavior extends Behavior
     public function events()
     {
         return [
-            // ActiveRecord::EVENT_BEFORE_INSERT => 'uploadToCDN',
-            // ActiveRecord::EVENT_BEFORE_UPDATE => 'uploadToCDN',
             ActiveRecord::EVENT_BEFORE_VALIDATE => 'uploadToCDN',
             ActiveRecord::EVENT_AFTER_DELETE    => 'deleteFromCDN'
         ];
@@ -85,13 +85,18 @@ class ImageUploadBehavior extends Behavior
     }
 
     /**
-     * @todo DOCUMENT
+     * Retrieves uploaded instance from $owner, via $owner's instance of
+     *  UploadForm, and performs upload. Image is loaded via UploadedFile,
+     *  validated, saved locally, sent to the CDN, then deleted locally, and
+     *  the resulting filename is saved to the $owner's 
+     *  $image_path_field_name. Must be evoked before $owner->save().
+     *  @param NULL
+     *  @return Boolean
+     *   Value representing successful upload, or failure.  
      */
     public function uploadToCDN()
     {
-        //$upload_file_field_name = $this->upload_file_field_name;
-        //$image_path_field_name  = $this->image_path_field_name;
-        $success                = FALSE;
+        $success = FALSE;
 
         if(!empty($this->owner->{$this->upload_file_field_name})) {
             $image_file        = $this->owner->{$this->upload_file_field_name};
@@ -109,9 +114,9 @@ class ImageUploadBehavior extends Behavior
                         (
                             (isset($this->model_unique_attr) && isset($this->owner->{$this->model_unique_attr})) ?
                                 md5($this->owner->{$this->model_unique_attr}) :
-                                ''
+                                time()
                         ) .
-                        '-' . $image_file->image->baseName .
+                        '-' . md5($image_file->image->baseName) .
                         '.' . $image_file->image->extension
                     ;
                     // save the file locally, then upload to CDN

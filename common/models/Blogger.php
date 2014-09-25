@@ -45,7 +45,8 @@ class Blogger extends ActiveRecord
                 ],
             ],
             'imageUpload' => [
-                'class' => 'backend\components\ImageUploadBehavior'
+                'class'             => 'backend\components\ImageUploadBehavior',
+                'model_unique_attr' => 'shortname'
             ]
         ];
     }
