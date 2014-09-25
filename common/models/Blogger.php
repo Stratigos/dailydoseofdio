@@ -44,11 +44,8 @@ class Blogger extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
-            'localUpload' => [
-                'class' => 'backend\components\LocalImageUploadBehavior'
-            ],
-            'CDNUpload' => [
-                'class' => 'backend\components\CDNImageUploadBehavior'
+            'imageUpload' => [
+                'class' => 'backend\components\ImageUploadBehavior'
             ]
         ];
     }
