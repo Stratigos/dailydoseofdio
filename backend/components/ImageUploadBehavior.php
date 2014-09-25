@@ -5,6 +5,7 @@
 
 namespace backend\components;
 
+use Yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
@@ -12,7 +13,6 @@ use Aws\S3\S3Client;
 
 class ImageUploadBehavior extends Behavior
 {
-
     /**
      * Model attribute which holds image file validation rule,
      *  such as UploadForm instance.
@@ -35,9 +35,9 @@ class ImageUploadBehavior extends Behavior
 
     /**
      * base directory for file / image uploads
-     * @todo PASS IN VIA CONFIG PARAM
+     * @see getUploadBaseDir()
      */
-    private $upload_base_dir = 'uploads/';
+    private $upload_base_dir;
 
     /**
      * @inheritdoc
@@ -55,6 +55,9 @@ class ImageUploadBehavior extends Behavior
      */
     public function getUploadBaseDir()
     {
+        if(!isset($this->upload_base_dir)) {
+            $this->upload_base_dir = Yii::$app->params['uploadBaseDir'];
+        }
         return $this->upload_base_dir;
     }
 

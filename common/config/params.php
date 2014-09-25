@@ -4,5 +4,6 @@ return [
     'supportEmail'                  => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
     'isBackend'                     => FALSE,
-    'imageDomain'                   => ''
+    'imageDomain'                   => '',
+    'uploadBaseDir'                 => ''
 ];
