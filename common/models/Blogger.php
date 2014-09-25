@@ -136,11 +136,10 @@ class Blogger extends ActiveRecord
 
     /**
      * get full url to a Blogger's image.
-     * @todo ADD S3 URL TO CONFIG
      * @return String
      */
     public function getImage()
     {
-        return isset($this->image_path) ? ' https://ddoddev.s3.amazonaws.com/' . $this->image_path : null;
+        return isset($this->image_path) ? Yii::$app->params['imageDomain'] . $this->image_path : null;
     }
 }
