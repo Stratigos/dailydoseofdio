@@ -6,13 +6,10 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\HttpException;
 use yii\web\Controller;
-use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Blogger;
 use common\models\UploadForm;
-use Aws\S3\S3Client;
-
 
 /**
  * CRUD operations for Bloggers
@@ -75,17 +72,13 @@ class BloggerController extends Controller
     public function actionCreate()
     {
         $errors  = [];
-        $image   = new UploadForm();
         $blogger = new Blogger();
         $blogger->loadDefaultValues();
+        $blogger->image_file = new UploadForm();
+
 
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
-            $image->image = UploadedFile::getInstance($image, 'image');
-            if(!empty($image) && $image->validate()) {
-                $image->image->saveAs('uploads/' . $image->image->baseName . '.' . $image->image->extension);
-                $blogger->image = 'uploads/' . $image->image->baseName . '.' . $image->image->extension;
-            }
             if($blogger->save()) {
                 return $this->redirect(['index']);
             } else {
@@ -97,7 +90,6 @@ class BloggerController extends Controller
             'create',
             [
                 'blogger' => $blogger,
-                'image'   => $image,
                 'errors'  => $errors
             ]
         );
@@ -108,9 +100,9 @@ class BloggerController extends Controller
      */
     public function actionUpdate($id)
     {
-        $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
-        $image   = new UploadForm();
         $errors  = [];
+        $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
+        $blogger->image_file = new UploadForm();
 
         if($blogger === NULL) {
             throw new HttpException(404, "Blogger {$id} Not Found");
@@ -118,12 +110,10 @@ class BloggerController extends Controller
 
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
-            /**
-             * @todo MOVE TO UPLOADABLEIMAGEBEHAVIOR::UPLOADIMAGE();
-             */
+
             // ////////////// IMAGE UPLOAD TO S3 SEQUENCE //////////////////////////////////////////////////////////////
-            $image->image = UploadedFile::getInstance($image, 'image');
-            if(!empty($image) && $image->validate()) {
+            /*$blogger->image_file->image = UploadedFile::getInstance($blogger->image_file, 'image');
+            if(!empty($blogger->image_file) && $blogger->image_file->validate()) {
                 // create local file
                 $uploaded     = null;
                 $filename     = null;
@@ -170,7 +160,7 @@ class BloggerController extends Controller
                     // add to model's errors
                     error_log("\n\n SOMETHING IS FUCKED WITH MAKING A LOCAL DIR: {$full_dirname} \n\n");
                 }
-            }
+            }*/
             // ////////////////// END IMAGE UPLOAD SEQUENCE ////////////////////////////////////////////////////////
             if($blogger->save()) {
                 return $this->redirect(['index']);
@@ -183,7 +173,6 @@ class BloggerController extends Controller
             'update',
             [
                 'blogger' => $blogger,
-                'image'   => $image,
                 'errors'  => $errors
             ]
         );

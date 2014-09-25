@@ -7,8 +7,7 @@
             $this->render(
                 '_blogger_form',
                 [
-                    'blogger' => $blogger,
-                    'image'   => $image
+                    'blogger' => $blogger
                 ]
             )
         ); ?>

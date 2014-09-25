@@ -25,8 +25,10 @@
         <div class="form-group blogger-image-display">
              <?php if($blogger->image) : ?>
                 <img
+                    class="form-model-thumbnail"
                     src="<?= $blogger->image ?>"
                     alt="BLOGGER IMAGE"
+                    title="Blogger Image"
                     height="200"
                     width="200"
                 />
@@ -34,7 +36,7 @@
                 <p>NO IMAGE UPLOADED</p>
             <?php endif;?>
         </div>
-        <?= $form->field($image,   'image')->fileInput(); ?>
+        <?= $form->field($blogger->image_file, 'image')->fileInput(); ?>
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
         <?= $form->field($blogger, 'description')->textarea(); ?>
         <?= $form->field($blogger, 'dio_favorite'); ?>
