@@ -12,4 +12,8 @@ Thumbs.db
 # Resources / Dependencies Installed and Updated via Composer
 ##############################################################
 vendor/
+
+############################################
+# Application File / Image Upload Directory
+############################################
 backend/web/uploads/
