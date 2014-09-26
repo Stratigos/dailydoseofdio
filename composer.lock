@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ab363f80fb678d262ec167f53de7e0b7",
+    "hash": "ca2036b5952a3f08603f1a3f1ace83fd",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -330,16 +330,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.26",
+            "version": "3.1.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "dffa7d6dcb9f279b6df93407f7a76f7044528933"
+                "reference": "ebd3493bfbe032aa568c3574546402a60edd3ce5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/dffa7d6dcb9f279b6df93407f7a76f7044528933",
-                "reference": "dffa7d6dcb9f279b6df93407f7a76f7044528933",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/ebd3493bfbe032aa568c3574546402a60edd3ce5",
+                "reference": "ebd3493bfbe032aa568c3574546402a60edd3ce5",
                 "shasum": ""
             },
             "require": {
@@ -745,12 +745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "122cd39a3b511a162de140c9514e8303d65c0922"
+                "reference": "78a83ec13e5d6aa1476a743ecb7bae4c64767350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/122cd39a3b511a162de140c9514e8303d65c0922",
-                "reference": "122cd39a3b511a162de140c9514e8303d65c0922",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/78a83ec13e5d6aa1476a743ecb7bae4c64767350",
+                "reference": "78a83ec13e5d6aa1476a743ecb7bae4c64767350",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-09-26 11:25:21"
+            "time": "2014-09-26 20:35:15"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -969,6 +969,49 @@
                 "yii2"
             ],
             "time": "2014-09-22 15:37:19"
+        },
+        {
+            "name": "yurkinx/yii2-image",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yurkinx/yii2-image.git",
+                "reference": "094488a6c644ebb2678858b82c335d24ddf46961"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/094488a6c644ebb2678858b82c335d24ddf46961",
+                "reference": "094488a6c644ebb2678858b82c335d24ddf46961",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\image\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yuri Kileev",
+                    "email": "kileev@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension for image manipulating using Kohana Image Library.",
+            "homepage": "https://github.com/yurkinx/yii2-image",
+            "keywords": [
+                "extension",
+                "image",
+                "yii2"
+            ],
+            "time": "2014-07-09 21:11:29"
         },
         {
             "name": "zelenin/yii2-summernote-widget",
@@ -1231,7 +1274,8 @@
         "bower-asset/jquery-ui": 0,
         "bower-asset/jquery.inputmask": 0,
         "bower-asset/punycode": 0,
-        "zelenin/yii2-summernote-widget": 20
+        "zelenin/yii2-summernote-widget": 20,
+        "yurkinx/yii2-image": 20
     },
     "prefer-stable": false,
     "platform": {
