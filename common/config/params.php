@@ -5,5 +5,6 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'isBackend'                     => FALSE,
     'imageDomain'                   => '',
-    'uploadBaseDir'                 => ''
+    'uploadBaseDir'                 => '',
+    's3Bucket'                      => ''
 ];

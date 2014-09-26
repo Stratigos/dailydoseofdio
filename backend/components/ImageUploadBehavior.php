@@ -137,7 +137,7 @@ class ImageUploadBehavior extends Behavior
                             );
                             $uploaded = $client->putObject(
                                 [
-                                    'Bucket'     => 'ddoddev',
+                                    'Bucket'     => Yii::$app->params['s3Bucket'],
                                     'Key'        => $filename,
                                     'SourceFile' => $full_filename,
                                     'ACL'        => 'public-read'
