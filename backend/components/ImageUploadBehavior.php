@@ -84,7 +84,7 @@ class ImageUploadBehavior extends Behavior
      */
     public function getFullDirPath()
     {
-        return getcwd() . '/' . $this->partialDirPath;
+        return PROJECT_WEB_DIR . '/' . $this->partialDirPath;
     }
 
     /**
@@ -124,10 +124,7 @@ class ImageUploadBehavior extends Behavior
                     ;
                     // save the file locally, then upload to CDN
                     if($image_file->image->saveAs($filename)) {
-                        /**
-                         * @todo USE DEFINED CONST / CONFIG PARAM TO REPRESENT FULL PATH, NOT CWD
-                         */
-                        $full_filename = getcwd() . '/' . $filename;
+                        $full_filename = PROJECT_WEB_DIR . '/' . $filename;
                         if(file_exists($full_filename)) {
                             $client = S3Client::factory(
                                 [
