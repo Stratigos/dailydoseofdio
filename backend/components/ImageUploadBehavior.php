@@ -107,8 +107,8 @@ class ImageUploadBehavior extends Behavior
 
             if($image_file->validate()) {
                 // create local file, and local directory if necessary
-                $uploaded = null;
-                $filename = null;
+                $uploaded = NULL;
+                $filename = NULL;
                 if(!file_exists($this->fullDirPath) && !is_dir($this->fullDirPath)) {
                     mkdir($this->fullDirPath, 0774);         
                 } 
