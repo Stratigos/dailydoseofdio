@@ -9,7 +9,6 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use common\models\Blogger;
-use common\models\UploadForm;
 
 /**
  * CRUD operations for Bloggers
