@@ -1063,16 +1063,16 @@
     "packages-dev": [
         {
             "name": "bower-asset/typeahead.js",
-            "version": "v0.10.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twitter/typeahead.js.git",
-                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742"
+                "reference": "a9c3bb1068e7e33eabc3e5e1cd4fc0139ea382f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/5f198b87d1af845da502ea9df93a5e84801ce742",
-                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742",
+                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/a9c3bb1068e7e33eabc3e5e1cd4fc0139ea382f5",
+                "reference": "a9c3bb1068e7e33eabc3e5e1cd4fc0139ea382f5",
                 "shasum": ""
             },
             "require": {
@@ -1086,7 +1086,8 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
-            }
+            },
+            "time": "2014-09-16 14:50:58"
         },
         {
             "name": "phpspec/php-diff",
