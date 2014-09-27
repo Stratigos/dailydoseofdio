@@ -9,6 +9,7 @@ use Yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
+use yii\image\drivers\Image; // Kohana Image
 use Aws\S3\S3Client;
 
 class ImageUploadBehavior extends Behavior
@@ -122,6 +123,10 @@ class ImageUploadBehavior extends Behavior
                     mkdir($this->fullDirPath, 0774);         
                 } 
                 if(is_dir($this->fullDirPath)) {
+                    /**
+                     * @todo - experiment with removing the second hash of image->basename
+                     *  from the filename, which may result in not needing delete from S3
+                     */
                     $filename = $this->partialDirPath . '/' .
                         (
                             (isset($this->model_unique_attr) && isset($this->owner->{$this->model_unique_attr})) ?
@@ -134,24 +139,41 @@ class ImageUploadBehavior extends Behavior
                     // save the file locally, then upload to CDN
                     if($image_file->image->saveAs($filename_ext)) {
                         $full_filename = PROJECT_WEB_DIR . '/' . $filename_ext;
-                        /**
-                         * @todo implement config array of image sizes foreach
-                         *  datatype, then load array of sizes based on $owner
-                         *  classname, then loop through sizes and upload
-                         */
-                        // foreach ... Yii::$app->params['imageSizes'][strtolower($this->ownerClassName)]
-                        // // $file  = Yii::getAlias($full_filename); 
-                        // $image = Yii::$app->image->load($full_filename);
-                        // ... copy to new file, then resize...
-                        // $image->resize(500,500)->render();
-                        // $file_to_upload = $image->file;
-
                         if(file_exists($full_filename)) {
                             $uploaded = $this->_uploadToS3($filename_ext, $full_filename);
-                            // save the image's path to the model instance, and delete local file
+                            // save the image's path to the model instance,
+                            //  upload any additional sizes, and delete local file
                             if($uploaded) {
                                 $this->owner->{$this->image_path_field_name} = $filename;
                                 $this->owner->{$this->image_ext_field_name}  = $image_file->image->extension;
+                                $_ownerClassLC = strtolower($this->ownerClassName);
+                                if(
+                                    isset(Yii::$app->params['imageSizes'][$_ownerClassLC]) &&
+                                    !empty(Yii::$app->params['imageSizes'][$_ownerClassLC])
+                                ) {
+                                    foreach(Yii::$app->params['imageSizes'][$_ownerClassLC] as $size_key => $sizes) {
+                                        $_resized_name = $filename . $size_key . '.' . $image_file->image->extension;
+                                        //$image_file->image->saveAs($_resized_name); // prior local save worked, right?
+
+                                        // create instance of Kohana image resizer
+                                        $_full_resized_name = PROJECT_WEB_DIR . '/' . $_resized_name;                                        
+                                        $_image             = Yii::$app->image->load($full_filename);
+
+                                        // resizes to WxH, keeping original aspect ratio, saving to new file
+                                        $_image->
+                                            resize($sizes['width'], $sizes['height'], Image::INVERSE)->
+                                            save($_full_resized_name, $sizes['quality'])
+                                        ;
+
+                                        if(!($this->_uploadToS3($_resized_name, $_full_resized_name))) {
+                                            // should probably flag as some kind of warning, and log the error
+                                            error_log("\n\n UPLOAD RESIZED TO S3 FAIL: {$_full_resized_name} \n\n");
+                                        }
+
+                                        unlink($_full_resized_name);
+                                    }
+                                }
+
                                 unlink($full_filename);
                             } else {
                                 // add to model's errors
