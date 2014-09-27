@@ -25,6 +25,11 @@ class ImageUploadBehavior extends Behavior
     public $image_path_field_name = 'image_path';
 
     /**
+     * Model attribute which holds image's extension (jpg, gif, etc)
+     */
+    public $image_ext_field_name = 'image_ext';
+
+    /**
      * Model attribute with uniqueness, to assist with uniquely identifying 
      *  image file according to model instance by prefixing filename with a 
      *  hashed value. Attribute must be available at time of validation, thus,
@@ -51,6 +56,17 @@ class ImageUploadBehavior extends Behavior
     }
 
     /**
+     * returns $this->owner classname with no namespacing
+     * @todo add this functionality to a child of ActiveRecord, and have
+     *  all classes inherit from it (DDODActiveRecord?)
+     * @return String
+     */
+    public function getOwnerClassName()
+    {
+        return substr($this->owner->className(), (strrpos($this->owner->className(), '\\') + 1));
+    }
+
+    /**
      * get base directory for uploads
      */
     public function getUploadBaseDir()
@@ -66,14 +82,7 @@ class ImageUploadBehavior extends Behavior
      */
     public function getPartialDirPath()
     {
-        return $this->uploadBaseDir . 
-            strtolower(
-                substr(
-                    $this->owner->className(),
-                    (strrpos($this->owner->className(), '\\') + 1)
-                )
-            )
-        ;
+        return $this->uploadBaseDir . strtolower($this->ownerClassName);
     }
 
     /**
@@ -119,49 +128,41 @@ class ImageUploadBehavior extends Behavior
                                 md5($this->owner->{$this->model_unique_attr}) :
                                 time()
                         ) .
-                        '-' . md5($image_file->image->baseName) .
-                        '.' . $image_file->image->extension
+                        '-' . md5($image_file->image->baseName);
                     ;
+                    $filename_ext = $filename . '.' . $image_file->image->extension;
                     // save the file locally, then upload to CDN
-                    if($image_file->image->saveAs($filename)) {
-                        $full_filename = PROJECT_WEB_DIR . '/' . $filename;
-
+                    if($image_file->image->saveAs($filename_ext)) {
+                        $full_filename = PROJECT_WEB_DIR . '/' . $filename_ext;
                         /**
                          * @todo implement config array of image sizes foreach
                          *  datatype, then load array of sizes based on $owner
                          *  classname, then loop through sizes and upload
                          */
+                        // foreach ... Yii::$app->params['imageSizes'][strtolower($this->ownerClassName)]
                         // // $file  = Yii::getAlias($full_filename); 
                         // $image = Yii::$app->image->load($full_filename);
+                        // ... copy to new file, then resize...
                         // $image->resize(500,500)->render();
                         // $file_to_upload = $image->file;
 
                         if(file_exists($full_filename)) {
-                            $client = S3Client::factory(
-                                [
-                                    'key'    => getenv('AWS_ACCESS_KEY_ID'),
-                                    'secret' => getenv('AWS_SECRET_ACCESS_KEY')
-                                ]
-                            );
-                            $uploaded = $client->putObject(
-                                [
-                                    'Bucket'     => Yii::$app->params['s3Bucket'],
-                                    'Key'        => $filename,
-                                    'SourceFile' => $full_filename,
-                                    'ACL'        => 'public-read'
-                                ]
-                            );
+                            $uploaded = $this->_uploadToS3($filename_ext, $full_filename);
                             // save the image's path to the model instance, and delete local file
-                            if(!empty($uploaded) && isset($uploaded['ObjectURL']) && !empty($uploaded['ObjectURL'])) {
+                            if($uploaded) {
                                 $this->owner->{$this->image_path_field_name} = $filename;
+                                $this->owner->{$this->image_ext_field_name}  = $image_file->image->extension;
                                 unlink($full_filename);
+                            } else {
+                                // add to model's errors
+                                error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");
                             }
                         } else {
-                            error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME {$full_filename} \n\n");
+                            error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME: {$full_filename} \n\n");
                         }
                     } else {
                         // add to model's errors
-                        error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY {$filename} \n\n");
+                        error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY: {$filename} \n\n");
                     }
                 } else {
                     // add to model's errors
@@ -173,6 +174,38 @@ class ImageUploadBehavior extends Behavior
                 error_log("\n\n IMAGE DID NOT VALIDATE \n\n");
             }
         }
+        return $success;
+    }
+
+    /**
+     * helper function for Amazon S3 upload routine
+     * @param $filename String 
+     *  name of object in S3
+     * @param $source_file String
+     *  full path to image being uploaded, and filename
+     * @return Boolean
+     */
+    private function _uploadToS3($filename, $source_file)
+    {
+        $success = FALSE;
+        $client  = S3Client::factory(
+            [
+                'key'    => getenv('AWS_ACCESS_KEY_ID'),
+                'secret' => getenv('AWS_SECRET_ACCESS_KEY')
+            ]
+        );
+        $uploaded = $client->putObject(
+            [
+                'Bucket'     => Yii::$app->params['s3Bucket'],
+                'Key'        => $filename,
+                'SourceFile' => $source_file,
+                'ACL'        => 'public-read'
+            ]
+        );
+        if(!empty($uploaded) && isset($uploaded['ObjectURL']) && !empty($uploaded['ObjectURL'])) {
+            $success = TRUE;
+        }
+
         return $success;
     }
 

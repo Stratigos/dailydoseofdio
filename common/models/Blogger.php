@@ -78,6 +78,7 @@ class Blogger extends ActiveRecord
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
             [['image_path'], 'string'],
+            [['image_ext'], 'string'],
             [['short_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 2000],
             [['dio_favorite'], 'string', 'max' => 255],
@@ -118,6 +119,7 @@ class Blogger extends ActiveRecord
             'name'              => 'Name',
             'shortname'         => 'Shortname (URL name)',
             'image_path'        => 'Image Path',
+            'image_ext'         => 'Image Extension',
             'short_description' => 'Short Description',
             'description'       => 'Description',
             'dio_favorite'      => 'Dio-Favorite',
@@ -136,10 +138,15 @@ class Blogger extends ActiveRecord
 
     /**
      * get full url to a Blogger's image.
+     * @param $size_key String
+     *  name of a configured image size (e.g., '75x75')
      * @return String
      */
-    public function getImage()
+    public function getImage($size_key = '')
     {
-        return isset($this->image_path) ? Yii::$app->params['imageDomain'] . $this->image_path : null;
+        return isset($this->image_path) ?
+            Yii::$app->params['imageDomain'] . $this->image_path  . $size_key . '.' . $this->image_ext :
+            NULL
+        ;
     }
 }
