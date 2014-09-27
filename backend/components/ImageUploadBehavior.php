@@ -131,7 +131,7 @@ class ImageUploadBehavior extends Behavior
                          *  datatype, then load array of sizes based on $owner
                          *  classname, then loop through sizes and upload
                          */
-                        // $file  = Yii::getAlias($full_filename); 
+                        // // $file  = Yii::getAlias($full_filename); 
                         // $image = Yii::$app->image->load($full_filename);
                         // $image->resize(500,500)->render();
                         // $file_to_upload = $image->file;
