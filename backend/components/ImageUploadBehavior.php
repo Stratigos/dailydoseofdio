@@ -125,6 +125,17 @@ class ImageUploadBehavior extends Behavior
                     // save the file locally, then upload to CDN
                     if($image_file->image->saveAs($filename)) {
                         $full_filename = PROJECT_WEB_DIR . '/' . $filename;
+
+                        /**
+                         * @todo implement config array of image sizes foreach
+                         *  datatype, then load array of sizes based on $owner
+                         *  classname, then loop through sizes and upload
+                         */
+                        // $file  = Yii::getAlias($full_filename); 
+                        // $image = Yii::$app->image->load($full_filename);
+                        // $image->resize(500,500)->render();
+                        // $file_to_upload = $image->file;
+
                         if(file_exists($full_filename)) {
                             $client = S3Client::factory(
                                 [
