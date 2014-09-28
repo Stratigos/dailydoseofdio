@@ -26,11 +26,9 @@
              <?php if($blogger->image) : ?>
                 <img
                     class="form-model-thumbnail"
-                    src="<?= $blogger->image ?>"
-                    alt="BLOGGER IMAGE"
+                    src="<?= $blogger->getImage('200x200') ?>"
+                    alt="BLOGGER IMAGE APPEARS HERE, IN THIS SPOT"
                     title="Blogger Image"
-                    height="200"
-                    width="200"
                 />
             <?php else : ?>
                 <p>NO IMAGE UPLOADED</p>
