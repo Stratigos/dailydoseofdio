@@ -26,18 +26,6 @@ class Blogger extends ActiveRecord
 
     /**
      * @inheritdoc
-     * - initializes $image_file to UploadForm instance if loaded in backend
-     */
-    public function init()
-    {
-        parent::init();
-        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
-            $this->image_file = new UploadForm();
-        }
-    }
-
-    /**
-     * @inheritdoc
      */
     public static function tableName()
     {
@@ -49,7 +37,7 @@ class Blogger extends ActiveRecord
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
@@ -62,6 +50,14 @@ class Blogger extends ActiveRecord
                 'model_unique_attr' => 'shortname'
             ]
         ];
+
+        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+            $behaviors['imageFileAttribute'] = [
+                'class' => 'backend\components\ModelImageFileAttributeBehavior'
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
