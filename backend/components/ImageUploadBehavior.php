@@ -89,8 +89,6 @@ class ImageUploadBehavior extends Behavior
     /**
      * get full directory path to file, for directory creation, 
      *  and file streaming/upload to CDN
-     * @todo USE DEFINED CONSTANT OR SOME SORT OF CONFIG PARAM, 
-     *  INSTEAD OF ASSUMING CURRENT WORKING DIRECTORY IS CORRECT
      */
     public function getFullDirPath()
     {
