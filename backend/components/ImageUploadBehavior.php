@@ -10,13 +10,14 @@ use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yii\image\drivers\Image; // Kohana Image
+use common\models\UploadForm;
 use Aws\S3\S3Client;
 
 class ImageUploadBehavior extends Behavior
 {
     /**
-     * Model attribute which holds image file validation rule,
-     *  such as UploadForm instance.
+     * Model attribute which is assigned instance of UploadForm
+     * @see UploadForm::rules()
      */
     public $upload_file_field_name = 'image_file';
 
@@ -26,13 +27,13 @@ class ImageUploadBehavior extends Behavior
     public $image_path_field_name = 'image_path';
 
     /**
-     * Model attribute which holds image's extension (jpg, gif, etc)
+     * Model attribute which holds image's extension (jpg, gif, png)
      */
     public $image_ext_field_name = 'image_ext';
 
     /**
      * Model attribute with uniqueness, to assist with uniquely identifying 
-     *  image file according to model instance by prefixing filename with a 
+     *  image file to model instance by prefixing filename with a 
      *  hashed value. Attribute must be available at time of validation, thus,
      *  primary key may not be suitable. If configured unset, will result in
      *  unix timestamp as image name prefix.
@@ -51,6 +52,7 @@ class ImageUploadBehavior extends Behavior
     public function events()
     {
         return [
+            ActiveRecord::EVENT_INIT            => 'initializeImageFileAttribute',
             ActiveRecord::EVENT_BEFORE_VALIDATE => 'uploadToCDN',
             ActiveRecord::EVENT_AFTER_DELETE    => 'deleteFromCDN'
         ];
@@ -96,6 +98,14 @@ class ImageUploadBehavior extends Behavior
     }
 
     /**
+     * assigns an instance of UploadForm to Owner's image file attribute
+     */
+    public function initializeImageFileAttribute()
+    {
+        $this->owner->{$this->upload_file_field_name} = new UploadForm();
+    }
+
+    /**
      * Retrieves uploaded instance from $owner, via $owner's instance of
      *  UploadForm, and performs upload. Image is loaded via UploadedFile,
      *  validated, saved locally, sent to the CDN, then deleted locally, and
@@ -121,10 +131,6 @@ class ImageUploadBehavior extends Behavior
                     mkdir($this->fullDirPath, 0774);         
                 } 
                 if(is_dir($this->fullDirPath)) {
-                    /**
-                     * @todo - experiment with removing the second hash of image->basename
-                     *  from the filename, which may result in not needing delete from S3
-                     */
                     $filename = $this->partialDirPath . '/' .
                         (
                             (isset($this->model_unique_attr) && isset($this->owner->{$this->model_unique_attr})) ?

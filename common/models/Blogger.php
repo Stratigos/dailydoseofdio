@@ -44,16 +44,13 @@ class Blogger extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
-            ],
-            'imageUpload' => [
-                'class'             => 'backend\components\ImageUploadBehavior',
-                'model_unique_attr' => 'shortname'
             ]
         ];
 
         if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
-            $behaviors['imageFileAttribute'] = [
-                'class' => 'backend\components\ModelImageFileAttributeBehavior'
+            $behaviors['imageUpload'] = [
+                'class'             => 'backend\components\ImageUploadBehavior',
+                'model_unique_attr' => 'shortname'
             ];
         }
 
