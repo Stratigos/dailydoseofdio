@@ -689,12 +689,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "ea86d91a10c5737a1e043aa29fe05837f942d163"
+                "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/ea86d91a10c5737a1e043aa29fe05837f942d163",
-                "reference": "ea86d91a10c5737a1e043aa29fe05837f942d163",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
+                "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
                 "shasum": ""
             },
             "require": {
@@ -738,7 +738,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-28 16:15:31"
+            "time": "2014-10-01 05:53:11"
         },
         {
             "name": "yiisoft/yii2",
@@ -746,12 +746,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "a28f18d760100f875c35d183d6dbed8b081867f7"
+                "reference": "e16233a290f369b850f5caa047f2aa94791520d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/a28f18d760100f875c35d183d6dbed8b081867f7",
-                "reference": "a28f18d760100f875c35d183d6dbed8b081867f7",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e16233a290f369b850f5caa047f2aa94791520d1",
+                "reference": "e16233a290f369b850f5caa047f2aa94791520d1",
                 "shasum": ""
             },
             "require": {
@@ -826,7 +826,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-09-30 08:32:21"
+            "time": "2014-10-01 10:25:08"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -834,12 +834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "71d5e817161704eb501141c149d688ed07db68c0"
+                "reference": "362bda685d5d9424bf59ad315d7c76fbde27bdc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/71d5e817161704eb501141c149d688ed07db68c0",
-                "reference": "71d5e817161704eb501141c149d688ed07db68c0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/362bda685d5d9424bf59ad315d7c76fbde27bdc7",
+                "reference": "362bda685d5d9424bf59ad315d7c76fbde27bdc7",
                 "shasum": ""
             },
             "require": {
@@ -872,7 +872,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-09-30 08:15:28"
+            "time": "2014-09-30 20:46:56"
         },
         {
             "name": "yiisoft/yii2-composer",
