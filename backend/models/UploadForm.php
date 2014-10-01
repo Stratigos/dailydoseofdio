@@ -1,6 +1,6 @@
 <?php
 /******************************************************
-* Basic class for uploading images/files
+* Basic class for validating images/files
 *  - currently holds image upload, add more attributes
 *    and rules for uploading other file types
 *******************************************************/
