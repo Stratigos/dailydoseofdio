@@ -5,15 +5,9 @@
 namespace common\models;
 
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class UploadForm extends Model
 {
-    /**
-     * @var Uploaded file|Null general file attribute
-     */
-    public $file;
-
     /**
      * @var Uploaded image|Null image-specific attribute
      */
@@ -25,7 +19,6 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['file'], 'file'],
             [
                 ['image'],
                 'image',
