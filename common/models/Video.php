@@ -2,7 +2,6 @@
 /***************************************************************************
 * A Video is a link to a web video / media player, or a web video API which
 *  loads a media player, and belongs to an instance of Post.
-*  - Currently only Youtube share links supported.
 ****************************************************************************/
 namespace common\models;
 
@@ -26,8 +25,8 @@ class Video extends ActiveRecord
         return [
             [['post_id'], 'required'],
             [['post_id'], 'integer'],
-            [['embed'], 'required'],
-            [['embed'], 'string', 'max' => 2000],
+            [['video_id'], 'required'],
+            [['video_id'], 'string', 'max' => 128],
             [['title'], 'string', 'length' => [3, 128]]
         ];
     }
@@ -38,9 +37,9 @@ class Video extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'post_id' => 'Post ID',
-            'embed'   => 'Video Player Embed Code',
-            'title'   => 'Video Title'
+            'post_id'  => 'Post ID',
+            'video_id' => 'Video Asset ID',
+            'title'    => 'Video Title'
         ];
     }
 
@@ -50,5 +49,13 @@ class Video extends ActiveRecord
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id'])->inverseOf('video');
+    }
+
+    /**
+     * builds URL to Youtube embed
+     */
+    public function getYoutubeUrl()
+    {
+
     }
 }
