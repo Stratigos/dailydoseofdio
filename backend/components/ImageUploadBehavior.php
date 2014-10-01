@@ -10,7 +10,7 @@ use yii\base\Behavior;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yii\image\drivers\Image; // Kohana Image
-use common\models\UploadForm;
+use backend\models\UploadForm;
 use Aws\S3\S3Client;
 
 class ImageUploadBehavior extends Behavior
