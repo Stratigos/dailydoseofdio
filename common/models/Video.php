@@ -5,16 +5,42 @@
 ****************************************************************************/
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 class Video extends ActiveRecord
 {
+
+    /**
+     * @var VideoForm | NULL
+     *  holds VideoForm instance for Video create/update
+     *  @see VideoForm
+     *  @see VideoEmbedParseBehavior
+     */
+    public $video_code;
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return '{{%videos}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $behaviors = [];
+
+        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+            $behaviors['videoParse'] = [
+                'class' => 'backend\components\VideoEmbedParseBehavior'
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**

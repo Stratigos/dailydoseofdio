@@ -21,6 +21,8 @@ class Blogger extends ActiveRecord
 
     /**
      * holds image file to be uploaded
+     * @see UploadForm
+     * @see ImageUploadBehavior
      */
     public $image_file;
 

@@ -179,6 +179,7 @@ class ImageUploadBehavior extends Behavior
                                 }
 
                                 unlink($full_filename);
+                                $success = TRUE;
                             } else {
                                 // add to model's errors
                                 error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");

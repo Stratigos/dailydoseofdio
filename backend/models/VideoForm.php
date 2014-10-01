@@ -13,7 +13,7 @@ class VideoForm extends Model
      * @var String | NULL
      *  video embed code / share url
      */
-    public $video_code;
+    public $code;
 
     /**
      * @var String
@@ -22,6 +22,8 @@ class VideoForm extends Model
      *  - note: capture ID with match $5
      */
     private static $youtube_regex = '/(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)/';
+    // '/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/'
+    // '/(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)/';
 
     /**
      * @inheritdoc
@@ -29,13 +31,13 @@ class VideoForm extends Model
     public function rules()
     {
         return [
-            [['video_code'], 'string', 'min' => 10], // arbitrarily chosen minimal length
-            [['video_code'], 'validateVideoService']
+            [['code'], 'string', 'min' => 10], // arbitrarily chosen minimal length
+            [['code'], 'validateVideoService']
         ];
     }
 
     /**
-     * Validates $video_code such that the correct service is being used,
+     * Validates $code such that the correct service is being used,
      *  and that the structure of the embed code or share URL is correct.
      *  - at this time, only Youtube embeds/shares are allowed
      */
@@ -61,16 +63,15 @@ class VideoForm extends Model
     public function attributeLabels()
     {
         return [
-            'video_code' => 'Video Embed Code / Share URL'
+            'code' => 'Video Embed Code / Share URL'
         ];
     }
 
     /**
-     * parses $video_code for important metadata (video ID)
-     * @todo
+     * @todo Document
      */
-    public function parseVideoCode()
+    public function getVideoRegex()
     {
-
+        return self::$youtube_regex;
     }
 }
