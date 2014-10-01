@@ -1,7 +1,9 @@
 <?php
-/*****************************************
+/******************************************************
 * Basic class for uploading images/files
-******************************************/
+*  - currently holds image upload, add more attributes
+*    and rules for uploading other file types
+*******************************************************/
 namespace common\models;
 
 use yii\base\Model;
