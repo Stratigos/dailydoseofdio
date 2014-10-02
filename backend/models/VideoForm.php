@@ -74,4 +74,14 @@ class VideoForm extends Model
     {
         return self::$youtube_regex;
     }
+
+    /**
+     * retrieves data from current HTTP Request (POST data)
+     * @todo DOCUMENT
+     * @see UploadedFile::getInstance()
+     */
+    public function getInstance()
+    {
+        // DO STUFF WITH A COMPUTER
+    }
 }
