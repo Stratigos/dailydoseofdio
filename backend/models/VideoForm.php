@@ -21,9 +21,7 @@ class VideoForm extends Model
      * @see https://gist.github.com/afeld/1254889
      *  - note: capture ID with match $5
      */
-    private static $youtube_regex = '/(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)/';
-    // '/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/'
-    // '/(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)/';
+    private static $youtube_regex = '/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
 
     /**
      * @inheritdoc
@@ -46,10 +44,7 @@ class VideoForm extends Model
         $value   = $this->{$attribute};
         $matches = array();
         if(preg_match(self::$youtube_regex, $value, $matches)) {
-            error_log("\n\n MATCHES: \n");
-            error_log(print_r($matches, 1));
-            error_log("\n\n ----------------------- \n\n");
-            if(!isset($matches[5])) {
+            if(!isset($matches[1])) {
                 $this->addError($attribute, 'Malformed video code - unable to extract ID');
             }
         } else {
@@ -73,15 +68,5 @@ class VideoForm extends Model
     public function getVideoRegex()
     {
         return self::$youtube_regex;
-    }
-
-    /**
-     * retrieves data from current HTTP Request (POST data)
-     * @todo DOCUMENT
-     * @see UploadedFile::getInstance()
-     */
-    public function getInstance()
-    {
-        // DO STUFF WITH A COMPUTER
     }
 }

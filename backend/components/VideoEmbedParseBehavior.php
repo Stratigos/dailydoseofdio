@@ -56,17 +56,11 @@ class VideoEmbedParseBehavior extends Behavior
 
         if(!empty($this->owner->{$this->video_code_field_name})) {
             $video_code = $this->owner->{$this->video_code_field_name};
+            $video_code->load(Yii::$app->request->post());
             if($video_code->validate()) {
                 $matches = array();
-                error_log("\n\n REGEX: {$video_code->videoRegex} \n\n");
-                error_log("\n\n CODE: {$video_code->code} \n\n");
                 $match   = preg_match($video_code->videoRegex, $video_code->code, $matches);
-                error_log("\n\n MATCH: {$match} \n\n");
                 if($match) {
-                    echo('<pre>');
-                    print_r($matches);
-                    echo('</pre>');
-                    die();
                     $this->owner->{$this->video_id_field_name} = $matches[1];
                     /**
                      * @todo DO A SINGLE MODEL ATTRIBUTE VALIDATION HERE!

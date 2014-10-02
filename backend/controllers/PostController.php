@@ -154,10 +154,6 @@ class PostController extends Controller
 
         if(Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
-            echo('<pre>');
-            print_r($post_request_data);
-            echo('</pre>');
-            die();
             $post->load($post_request_data);
             // load Post's media instance here, to preserve form data on error
             if(isset($post_media)) {
