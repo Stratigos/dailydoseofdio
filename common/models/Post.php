@@ -6,6 +6,7 @@
 *****************************************************************************/
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 class Post extends ActiveRecord
@@ -57,15 +58,27 @@ class Post extends ActiveRecord
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-                ],
-            ],
+                ]
+            ]
         ];
+
+        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+            // $behaviors['imageUpload'] = [
+            //     'class'             => 'backend\components\ImageUploadBehavior',
+            //     'model_unique_attr' => 'shortname'
+            // ];
+            $behaviors['postTagsAttribution'] = [
+                'class' => 'backend\components\PostTagsAttributionBehavior',
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**

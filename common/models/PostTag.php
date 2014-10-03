@@ -9,6 +9,12 @@ use yii\db\ActiveRecord;
 class PostTag extends ActiveRecord
 {
     /**
+     * @var String
+     *  name of input field for Tags
+     */
+    private static $input_field_name = 'post_tag_names_selected';
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -39,4 +45,12 @@ class PostTag extends ActiveRecord
             'tag_id'  => 'Tag ID'
         ];
     }
+
+    /**
+     * @return String
+     */
+    public function getInputFieldName()
+    {
+        return self::$input_field_name;
+    } 
 }

@@ -3,6 +3,7 @@
     use yii\widgets\ActiveForm;
     use yii\web\JsExpression;
     use common\models\Post;
+    use common\models\PostTag;
     use common\models\Quote;
     use Zelenin\yii\widgets\Summernote\Summernote;
     use dosamigos\datetimepicker\DateTimePicker;
@@ -71,7 +72,7 @@
         <div class="form-group field-post-tags-selected">
             <label class="control-label" for="post-tags-selected">Post Tags</label>
             <?= Selectize::widget([
-                'name'          => 'post_tag_names_selected',
+                'name'          => PostTag::getInputFieldName(),
                 'value'         => $post_tags,
                 'url'           => ['tag/list'],
                 'options'       => [
