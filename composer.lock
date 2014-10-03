@@ -746,12 +746,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e16233a290f369b850f5caa047f2aa94791520d1"
+                "reference": "72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e16233a290f369b850f5caa047f2aa94791520d1",
-                "reference": "e16233a290f369b850f5caa047f2aa94791520d1",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5",
+                "reference": "72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5",
                 "shasum": ""
             },
             "require": {
@@ -826,7 +826,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-01 10:25:08"
+            "time": "2014-10-03 03:46:11"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1064,16 +1064,16 @@
     "packages-dev": [
         {
             "name": "bower-asset/typeahead.js",
-            "version": "v0.10.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twitter/typeahead.js.git",
-                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742"
+                "reference": "0fd2467baa3e0593b91794b485be0bd725b7d2cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/5f198b87d1af845da502ea9df93a5e84801ce742",
-                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742",
+                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/0fd2467baa3e0593b91794b485be0bd725b7d2cb",
+                "reference": "0fd2467baa3e0593b91794b485be0bd725b7d2cb",
                 "shasum": ""
             },
             "require": {
@@ -1087,7 +1087,8 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
-            }
+            },
+            "time": "2014-10-01 14:38:12"
         },
         {
             "name": "phpspec/php-diff",
@@ -1221,12 +1222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "72fcfc5bcdf2cd08132f8c247073488b832b54bd"
+                "reference": "df3fbe3ec64b8748dbdd0d413fddd62a78535af5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/72fcfc5bcdf2cd08132f8c247073488b832b54bd",
-                "reference": "72fcfc5bcdf2cd08132f8c247073488b832b54bd",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/df3fbe3ec64b8748dbdd0d413fddd62a78535af5",
+                "reference": "df3fbe3ec64b8748dbdd0d413fddd62a78535af5",
                 "shasum": ""
             },
             "require": {
@@ -1262,7 +1263,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-09-28 05:44:31"
+            "time": "2014-10-03 03:10:50"
         }
     ],
     "aliases": [
