@@ -16,6 +16,13 @@ class PostTagsAttributionBehavior extends Behavior
 {
 
     /**
+     * @var String
+     *  Model attribute used for assigning errors. Typically, PostTag is not a
+     *  property of its owner (Post), and has no associated attribute.
+     */
+    public $model_error_attribute = 'id';
+
+    /**
      * @inheritdoc
      */
     public function events()
@@ -36,8 +43,8 @@ class PostTagsAttributionBehavior extends Behavior
         $post_data = Yii::$app->request->post();
         // remove current set of PostTags 
         if(!empty($this->owner->postTags)) {
-            foreach($this->owner->postTags as $postTag) {
-                $postTag->delete();
+            foreach($this->owner->postTags as $_post_tag) {
+                $_post_tag->delete();
             }
         }
         //@todo add regex check for letters, numbers, commas, and spaces
@@ -51,21 +58,20 @@ class PostTagsAttributionBehavior extends Behavior
                         $post_tag->post_id = $this->owner->id;
                         $post_tag->tag_id  = $tag->id;
                         if(!$post_tag->save()) {
-                            // add to errors
-                            //$errors[PostTag::className()][$tag->id] = $post_tag->getErrors();
-                            error_log("\n\n ERROR SAVING POST TAG \n\n");
+                            $this->owner->addError($this->model_error_attribute, $post_tag->getErrors());
                         }
                     } else {
-                        // add to application logs
-                        error_log("\n\n INVALID TAG SUBMITTED {$tag_name} \n\n");
+                        $this->owner->addError($this->model_error_attribute, 'Invalid Tags Submission');
                     }
                 }
-                // check for errors first...
-                $success = TRUE;
-            } else {
-                // add to application logs
-                error_log("\n\n EMPTY TAGS SUBMISSION \n\n");
+                if(!$this->owner->hasErrors('id')) {
+                    $success = TRUE;
+                }
             }
+        } else {
+            $success = TRUE;
         }
+
+        return $success;
     }
 }

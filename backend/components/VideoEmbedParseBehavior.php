@@ -75,6 +75,8 @@ class VideoEmbedParseBehavior extends Behavior
                     error_log("\n\n VIDEOEMBEDPARSEBEHAVIOR - ERROR PARSING VIDEO CODE! \n\n");
                 }
             }
+        } else {
+            $success = TRUE;
         }
 
         return $success;

@@ -200,7 +200,10 @@ class ImageUploadBehavior extends Behavior
                 // add to model's errors?
                 error_log("\n\n IMAGE DID NOT VALIDATE \n\n");
             }
+        } else {
+            $success = TRUE;
         }
+
         return $success;
     }
 
