@@ -34,8 +34,13 @@ class PostTagsAttributionBehavior extends Behavior
     }
 
     /**
-     * @todo DOCUMENT
-     * - remove all, re-add all, instead of passing deltas
+     * Saves the relationship of Tags to a Post. All existing PostTags
+     *  are deleted for the current Post, and any Tags added to the
+     *  appropriate input field are added to the Post.
+     *  @see PostTag::getInputFieldName()
+     *  @return Boolean
+     *   TRUE on successful save or no action required, FALSE if 
+     *   any PostTags fail to save. Errors are attributed to $owner. 
      */
     public function saveTags()
     {
