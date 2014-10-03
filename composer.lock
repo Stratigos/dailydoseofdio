@@ -746,12 +746,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5"
+                "reference": "29f86280bbe59f8c12f9a8ad6977482f11a5920f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5",
-                "reference": "72c8e6c86bd4ac46dd7b3570cbb517fe910cfcf5",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/29f86280bbe59f8c12f9a8ad6977482f11a5920f",
+                "reference": "29f86280bbe59f8c12f9a8ad6977482f11a5920f",
                 "shasum": ""
             },
             "require": {
@@ -826,7 +826,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-03 03:46:11"
+            "time": "2014-10-03 14:32:08"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -834,12 +834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "362bda685d5d9424bf59ad315d7c76fbde27bdc7"
+                "reference": "9b8ca6d43cf82c6a771461fbfa78db02fa0f95cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/362bda685d5d9424bf59ad315d7c76fbde27bdc7",
-                "reference": "362bda685d5d9424bf59ad315d7c76fbde27bdc7",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/9b8ca6d43cf82c6a771461fbfa78db02fa0f95cf",
+                "reference": "9b8ca6d43cf82c6a771461fbfa78db02fa0f95cf",
                 "shasum": ""
             },
             "require": {
@@ -872,7 +872,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-09-30 20:46:56"
+            "time": "2014-10-03 13:39:50"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1064,16 +1064,16 @@
     "packages-dev": [
         {
             "name": "bower-asset/typeahead.js",
-            "version": "dev-master",
+            "version": "v0.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twitter/typeahead.js.git",
-                "reference": "0fd2467baa3e0593b91794b485be0bd725b7d2cb"
+                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/0fd2467baa3e0593b91794b485be0bd725b7d2cb",
-                "reference": "0fd2467baa3e0593b91794b485be0bd725b7d2cb",
+                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/5f198b87d1af845da502ea9df93a5e84801ce742",
+                "reference": "5f198b87d1af845da502ea9df93a5e84801ce742",
                 "shasum": ""
             },
             "require": {
@@ -1087,8 +1087,7 @@
             "type": "bower-asset-library",
             "extra": {
                 "bower-asset-main": "dist/typeahead.bundle.js"
-            },
-            "time": "2014-10-01 14:38:12"
+            }
         },
         {
             "name": "phpspec/php-diff",
@@ -1222,12 +1221,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "df3fbe3ec64b8748dbdd0d413fddd62a78535af5"
+                "reference": "16f1cda56308b40c6bc96ace0507dbcf391096d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/df3fbe3ec64b8748dbdd0d413fddd62a78535af5",
-                "reference": "df3fbe3ec64b8748dbdd0d413fddd62a78535af5",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/16f1cda56308b40c6bc96ace0507dbcf391096d3",
+                "reference": "16f1cda56308b40c6bc96ace0507dbcf391096d3",
                 "shasum": ""
             },
             "require": {
@@ -1263,7 +1262,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-10-03 03:10:50"
+            "time": "2014-10-03 13:49:54"
         }
     ],
     "aliases": [
