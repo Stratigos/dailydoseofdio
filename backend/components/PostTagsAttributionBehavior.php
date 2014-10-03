@@ -21,17 +21,25 @@ class PostTagsAttributionBehavior extends Behavior
     public function events()
     {
         return [
-            ActiveRecord::EVENT_BEFORE_VALIDATE => 'saveTags'
+            ActiveRecord::EVENT_AFTER_INSERT => 'saveTags',
+            ActiveRecord::EVENT_AFTER_UPDATE => 'saveTags'
         ];
     }
 
     /**
      * @todo DOCUMENT
+     * - remove all, re-add all, instead of passing deltas
      */
     public function saveTags()
     {
         $success   = FALSE; 
         $post_data = Yii::$app->request->post();
+        // remove current set of PostTags 
+        if(!empty($this->owner->postTags)) {
+            foreach($this->owner->postTags as $postTag) {
+                $postTag->delete();
+            }
+        }
         //@todo add regex check for letters, numbers, commas, and spaces
         if(isset($post_data[PostTag::getInputFieldName()]) && !empty($post_data[PostTag::getInputFieldName()])) {
             $post_tags_arr = explode(',', $post_data[PostTag::getInputFieldName()]);
@@ -44,12 +52,19 @@ class PostTagsAttributionBehavior extends Behavior
                         $post_tag->tag_id  = $tag->id;
                         if(!$post_tag->save()) {
                             // add to errors
+                            //$errors[PostTag::className()][$tag->id] = $post_tag->getErrors();
                             error_log("\n\n ERROR SAVING POST TAG \n\n");
                         }
+                    } else {
+                        // add to application logs
+                        error_log("\n\n INVALID TAG SUBMITTED {$tag_name} \n\n");
                     }
                 }
                 // check for errors first...
                 $success = TRUE;
+            } else {
+                // add to application logs
+                error_log("\n\n EMPTY TAGS SUBMISSION \n\n");
             }
         }
     }
