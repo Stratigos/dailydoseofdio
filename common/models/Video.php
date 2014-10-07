@@ -79,9 +79,20 @@ class Video extends ActiveRecord
 
     /**
      * builds URL to Youtube embed
+     * @return String
+     *  Youtube <iframe>, or NULL on unset $video_id
      */
-    public function getYoutubeUrl()
+    public function getYoutubeEmbed()
     {
+        $embed = NULL;
 
+        if(!empty($this->video_id)) {
+            $embed = '<iframe width="420" height="315" src="//www.youtube.com/embed/' .
+                $this->video_id .
+                '" frameborder="0" allowfullscreen></iframe>'
+            ;
+        }
+
+        return $embed;
     }
 }
