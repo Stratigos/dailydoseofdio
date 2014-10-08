@@ -146,16 +146,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "af60cdbc21fbe972926ecbcc20030dac36c74623"
+                "reference": "c540fa2c66daf91383a2cd7fc044765f2da2aa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/af60cdbc21fbe972926ecbcc20030dac36c74623",
-                "reference": "af60cdbc21fbe972926ecbcc20030dac36c74623",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c540fa2c66daf91383a2cd7fc044765f2da2aa52",
+                "reference": "c540fa2c66daf91383a2cd7fc044765f2da2aa52",
                 "shasum": ""
             },
             "require": {
-                "guzzle/guzzle": ">=3.7.0,<=3.9.9",
+                "guzzle/guzzle": ">=3.7,<4",
                 "php": ">=5.3.3"
             },
             "require-dev": {
@@ -175,7 +175,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-09-17 16:02:42"
+            "time": "2014-10-08 19:18:30"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -540,16 +540,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "54991459675c1a2924122afbb0e5609ade581155"
+                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/54991459675c1a2924122afbb0e5609ade581155",
-                "reference": "54991459675c1a2924122afbb0e5609ade581155",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d27346b6c8cb6a42092e763f8a2f674dfc560956",
+                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956",
                 "shasum": ""
             },
             "require": {
@@ -628,7 +628,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-08-11 04:32:36"
+            "time": "2014-09-16 21:19:27"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -746,12 +746,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "87fa19a687e2ef166e14fe59275660b6cbe986cb"
+                "reference": "d428289396576e8204b3019ab6c035c36271de73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/87fa19a687e2ef166e14fe59275660b6cbe986cb",
-                "reference": "87fa19a687e2ef166e14fe59275660b6cbe986cb",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d428289396576e8204b3019ab6c035c36271de73",
+                "reference": "d428289396576e8204b3019ab6c035c36271de73",
                 "shasum": ""
             },
             "require": {
@@ -826,7 +826,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-07 13:21:21"
+            "time": "2014-10-08 10:39:13"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -834,12 +834,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "cbd7c0da6c5f9acd82b6404104d573fd2adddc4d"
+                "reference": "aee59d63f963d46fb1bca8e6f5ecf74072cbc15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/cbd7c0da6c5f9acd82b6404104d573fd2adddc4d",
-                "reference": "cbd7c0da6c5f9acd82b6404104d573fd2adddc4d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/aee59d63f963d46fb1bca8e6f5ecf74072cbc15f",
+                "reference": "aee59d63f963d46fb1bca8e6f5ecf74072cbc15f",
                 "shasum": ""
             },
             "require": {
@@ -872,7 +872,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-10-04 21:51:34"
+            "time": "2014-10-07 19:08:39"
         },
         {
             "name": "yiisoft/yii2-composer",
