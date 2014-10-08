@@ -94,7 +94,7 @@ class ImageUploadBehavior extends Behavior
      */
     public function getFullDirPath()
     {
-        return PROJECT_WEB_DIR . '/' . $this->partialDirPath;
+        return Yii::getAlias('@webroot') . '/' . $this->partialDirPath;
     }
 
     /**
@@ -142,7 +142,7 @@ class ImageUploadBehavior extends Behavior
                     $filename_ext = $filename . '.' . $image_file->image->extension;
                     // save the file locally, then upload to CDN
                     if($image_file->image->saveAs($filename_ext)) {
-                        $full_filename = PROJECT_WEB_DIR . '/' . $filename_ext;
+                        $full_filename = Yii::getAlias('@webroot') . '/' . $filename_ext;
                         if(file_exists($full_filename)) {
                             $uploaded = $this->_uploadToS3($filename_ext, $full_filename);
                             // save the image's path to the model instance,
@@ -160,7 +160,7 @@ class ImageUploadBehavior extends Behavior
                                         //$image_file->image->saveAs($_resized_name); // prior local save worked, right?
 
                                         // create instance of Kohana image resizer
-                                        $_full_resized_name = PROJECT_WEB_DIR . '/' . $_resized_name;                                        
+                                        $_full_resized_name = Yii::getAlias('@webroot') . '/' . $_resized_name;                                        
                                         $_image             = Yii::$app->image->load($full_filename);
 
                                         // resizes to WxH, keeping original aspect ratio, saving to new file
