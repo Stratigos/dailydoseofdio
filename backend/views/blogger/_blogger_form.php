@@ -2,6 +2,7 @@
 	use yii\helpers\Html;
     use yii\widgets\ActiveForm;
     use common\models\Blogger;
+    use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
     <div id="blogger-form-errors" class="form-errors-cont">
@@ -36,7 +37,7 @@
         </div>
         <?= $form->field($blogger->image_file, 'image')->fileInput(); ?>
         <?= $form->field($blogger, 'short_description')->textarea(); ?>
-        <?= $form->field($blogger, 'description')->textarea(); ?>
+        <?= $form->field($blogger, 'description')->widget(Summernote::className(), []) ?>
         <?= $form->field($blogger, 'dio_favorite'); ?>
         <?= $form->field($blogger, 'rank')->input('text', array('size' => 20, 'maxlength' => 3)); ?>
         <?= $form->field($blogger, 'status')->radioList(

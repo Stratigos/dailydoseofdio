@@ -1,6 +1,7 @@
 <?php
 	use yii\helpers\Html;
     use yii\widgets\ActiveForm;
+    use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
     <div id="page-form-errors" class="form-errors-cont">
@@ -18,7 +19,7 @@
     ]); ?>
         <?= $form->field($page, 'title'); ?>
         <?= $form->field($page, 'shortname'); ?>
-        <?= $form->field($page, 'body')->textarea(); ?>
+        <?= $form->field($page, 'body')->widget(Summernote::className(), []) ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>

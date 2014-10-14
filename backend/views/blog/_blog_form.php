@@ -2,6 +2,7 @@
 	use yii\helpers\Html;
     use yii\widgets\ActiveForm;
     use common\models\Blog;
+    use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
     <div id="blog-form-errors" class="form-errors-cont">
@@ -21,7 +22,7 @@
         <?= $form->field($blog, 'shortname'); ?>
         <!-- IMAGE GOES HERE -->
         <?= $form->field($blog, 'short_description')->textarea(); ?>
-        <?= $form->field($blog, 'description')->textarea(); ?>
+        <?= $form->field($blog, 'description')->widget(Summernote::className(), []) ?>
         <?= $form->field($blog, 'keywords'); ?>
         <?= $form->field($blog, 'rank')->input('text', array('size' => 20, 'maxlength' => 3)); ?>
         <?= $form->field($blog, 'status')->radioList(
