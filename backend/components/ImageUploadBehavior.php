@@ -119,86 +119,90 @@ class ImageUploadBehavior extends Behavior
     {
         $success = FALSE;
 
+        // check to ensure UploadForm instance is loaded into $owner's upload field
         if(!empty($this->owner->{$this->upload_file_field_name})) {
             $image_file        = $this->owner->{$this->upload_file_field_name};
             $image_file->image = UploadedFile::getInstance($image_file, 'image');
 
-            if($image_file->validate()) {
-                // create local file, and local directory if necessary
-                $uploaded = NULL;
-                $filename = NULL;
-                if(!file_exists($this->fullDirPath) && !is_dir($this->fullDirPath)) {
-                    mkdir($this->fullDirPath, 0774);         
-                } 
-                if(is_dir($this->fullDirPath)) {
-                    $filename = $this->partialDirPath . '/' .
-                        (
-                            (isset($this->model_unique_attr) && isset($this->owner->{$this->model_unique_attr})) ?
-                                md5($this->owner->{$this->model_unique_attr}) :
-                                time()
-                        ) .
-                        '-' . md5($image_file->image->baseName);
-                    ;
-                    $filename_ext = $filename . '.' . $image_file->image->extension;
-                    // save the file locally, then upload to CDN
-                    if($image_file->image->saveAs($filename_ext)) {
-                        $full_filename = Yii::getAlias('@webroot') . '/' . $filename_ext;
-                        if(file_exists($full_filename)) {
-                            $uploaded = $this->_uploadToS3($filename_ext, $full_filename);
-                            // save the image's path to the model instance,
-                            //  upload any additional sizes, and delete local file
-                            if($uploaded) {
-                                $this->owner->{$this->image_path_field_name} = $filename;
-                                $this->owner->{$this->image_ext_field_name}  = $image_file->image->extension;
-                                $_ownerClassLC = strtolower($this->ownerClassName);
-                                if(
-                                    isset(Yii::$app->params['imageSizes'][$_ownerClassLC]) &&
-                                    !empty(Yii::$app->params['imageSizes'][$_ownerClassLC])
-                                ) {
-                                    foreach(Yii::$app->params['imageSizes'][$_ownerClassLC] as $size_key => $sizes) {
-                                        $_resized_name = $filename . $size_key . '.' . $image_file->image->extension;
-                                        //$image_file->image->saveAs($_resized_name); // prior local save worked, right?
+            // check to ensure a file was selected
+            if(!empty($image_file->image)) {
+                if($image_file->validate()) {
+                    // create local file, and local directory if necessary
+                    $uploaded = NULL;
+                    $filename = NULL;
+                    if(!file_exists($this->fullDirPath) && !is_dir($this->fullDirPath)) {
+                        mkdir($this->fullDirPath, 0774);         
+                    } 
+                    if(is_dir($this->fullDirPath)) {
+                        $filename = $this->partialDirPath . '/' .
+                            (
+                                (isset($this->model_unique_attr) && isset($this->owner->{$this->model_unique_attr})) ?
+                                    md5($this->owner->{$this->model_unique_attr}) :
+                                    time()
+                            ) .
+                            '-' . md5($image_file->image->baseName);
+                        ;
+                        $filename_ext = $filename . '.' . $image_file->image->extension;
+                        // save the file locally, then upload to CDN
+                        if($image_file->image->saveAs($filename_ext)) {
+                            $full_filename = Yii::getAlias('@webroot') . '/' . $filename_ext;
+                            if(file_exists($full_filename)) {
+                                $uploaded = $this->_uploadToS3($filename_ext, $full_filename);
+                                // save the image's path to the model instance,
+                                //  upload any additional sizes, and delete local file
+                                if($uploaded) {
+                                    $this->owner->{$this->image_path_field_name} = $filename;
+                                    $this->owner->{$this->image_ext_field_name}  = $image_file->image->extension;
+                                    $_ownerClassLC = strtolower($this->ownerClassName);
+                                    if(
+                                        isset(Yii::$app->params['imageSizes'][$_ownerClassLC]) &&
+                                        !empty(Yii::$app->params['imageSizes'][$_ownerClassLC])
+                                    ) {
+                                        foreach(Yii::$app->params['imageSizes'][$_ownerClassLC] as $size_key => $sizes) {
+                                            $_resized_name = $filename . $size_key . '.' . $image_file->image->extension;
+                                            //$image_file->image->saveAs($_resized_name); // prior local save worked, right?
 
-                                        // create instance of Kohana image resizer
-                                        $_full_resized_name = Yii::getAlias('@webroot') . '/' . $_resized_name;                                        
-                                        $_image             = Yii::$app->image->load($full_filename);
+                                            // create instance of Kohana image resizer
+                                            $_full_resized_name = Yii::getAlias('@webroot') . '/' . $_resized_name;                                        
+                                            $_image             = Yii::$app->image->load($full_filename);
 
-                                        // resizes to WxH, keeping original aspect ratio, saving to new file
-                                        $_image->
-                                            resize($sizes['width'], $sizes['height'], Image::INVERSE)->
-                                            save($_full_resized_name, $sizes['quality'])
-                                        ;
+                                            // resizes to WxH, keeping original aspect ratio, saving to new file
+                                            $_image->
+                                                resize($sizes['width'], $sizes['height'], Image::INVERSE)->
+                                                save($_full_resized_name, $sizes['quality'])
+                                            ;
 
-                                        if(!($this->_uploadToS3($_resized_name, $_full_resized_name))) {
-                                            // should probably flag as some kind of warning, and log the error
-                                            error_log("\n\n UPLOAD RESIZED TO S3 FAIL: {$_full_resized_name} \n\n");
+                                            if(!($this->_uploadToS3($_resized_name, $_full_resized_name))) {
+                                                // should probably flag as some kind of warning, and log the error
+                                                error_log("\n\n UPLOAD RESIZED TO S3 FAIL: {$_full_resized_name} \n\n");
+                                            }
+
+                                            unlink($_full_resized_name);
                                         }
-
-                                        unlink($_full_resized_name);
                                     }
-                                }
 
-                                unlink($full_filename);
-                                $success = TRUE;
+                                    unlink($full_filename);
+                                    $success = TRUE;
+                                } else {
+                                    // add to model's errors
+                                    error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");
+                                }
                             } else {
-                                // add to model's errors
-                                error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");
+                                error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME: {$full_filename} \n\n");
                             }
                         } else {
-                            error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME: {$full_filename} \n\n");
+                            // add to model's errors
+                            error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY: {$filename} \n\n");
                         }
                     } else {
                         // add to model's errors
-                        error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY: {$filename} \n\n");
+                        error_log("\n\n SOMETHING IS FUCKED WITH MAKING A LOCAL DIR: {$this->fullDirPath} \n\n");
                     }
-                } else {
-                    // add to model's errors
-                    error_log("\n\n SOMETHING IS FUCKED WITH MAKING A LOCAL DIR: {$this->fullDirPath} \n\n");
-                }
 
-            } else {
-                // add to model's errors?
-                error_log("\n\n IMAGE DID NOT VALIDATE \n\n");
+                } else {
+                    // add to model's errors?
+                    error_log("\n\n IMAGE DID NOT VALIDATE \n\n");
+                }
             }
         } else {
             $success = TRUE;
@@ -209,6 +213,8 @@ class ImageUploadBehavior extends Behavior
 
     /**
      * helper function for Amazon S3 upload routine
+     * @todo add AWS environment params to config, load into config from getenv
+     *  to maintain consistency with using app config  
      * @param $filename String 
      *  name of object in S3
      * @param $source_file String
