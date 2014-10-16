@@ -853,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "232701b45b343cccae89fa7ca192805a5e9a5f1a"
+                "reference": "40f7059b344b41001da0979eaba5fb84011037f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/232701b45b343cccae89fa7ca192805a5e9a5f1a",
-                "reference": "232701b45b343cccae89fa7ca192805a5e9a5f1a",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/40f7059b344b41001da0979eaba5fb84011037f3",
+                "reference": "40f7059b344b41001da0979eaba5fb84011037f3",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-15 13:41:40"
+            "time": "2014-10-16 13:30:12"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1290,12 +1290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "f2cde70dc8d4571b5c2de8c0a71e4a99a464305d"
+                "reference": "98ff493da618dda60ffd4cecccc9ff7867410d1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/f2cde70dc8d4571b5c2de8c0a71e4a99a464305d",
-                "reference": "f2cde70dc8d4571b5c2de8c0a71e4a99a464305d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/98ff493da618dda60ffd4cecccc9ff7867410d1d",
+                "reference": "98ff493da618dda60ffd4cecccc9ff7867410d1d",
                 "shasum": ""
             },
             "require": {
@@ -1329,7 +1329,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-10-15 08:16:41"
+            "time": "2014-10-16 13:30:12"
         },
         {
             "name": "yiisoft/yii2-gii",
