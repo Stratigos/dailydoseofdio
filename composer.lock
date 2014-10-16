@@ -146,24 +146,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c540fa2c66daf91383a2cd7fc044765f2da2aa52"
+                "reference": "8670f75a5b73dca8883a7faf18b2f81d144863bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c540fa2c66daf91383a2cd7fc044765f2da2aa52",
-                "reference": "c540fa2c66daf91383a2cd7fc044765f2da2aa52",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8670f75a5b73dca8883a7faf18b2f81d144863bc",
+                "reference": "8670f75a5b73dca8883a7faf18b2f81d144863bc",
                 "shasum": ""
             },
             "require": {
-                "guzzle/guzzle": ">=3.7,<4",
+                "guzzle/guzzle": "~3.7",
                 "php": ">=5.3.3"
             },
             "require-dev": {
                 "doctrine/cache": "~1.0",
                 "ext-openssl": "*",
-                "monolog/monolog": "1.4.*",
-                "phpunit/phpunit": "4.*",
-                "symfony/yaml": "2.*"
+                "monolog/monolog": "~1.4",
+                "phpunit/phpunit": "~4.0",
+                "symfony/yaml": "~2.1"
             },
             "suggest": {
                 "doctrine/cache": "Adds support for caching of credentials and responses",
@@ -175,7 +175,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7.x-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-10-08 19:18:30"
+            "time": "2014-10-14 20:29:35"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
+                "reference": "29be39a569fad0b08c55089eb496730df174b994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
+                "reference": "29be39a569fad0b08c55089eb496730df174b994",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-10 02:49:40"
+            "time": "2014-10-12 22:42:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -400,16 +400,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.32",
+            "version": "3.1.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "bb776eb7e7be594fa77d5598e6f89d96029a8bac"
+                "reference": "0c6ce85c1bc12e81ecb0df62fbc62db116b7b53d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/bb776eb7e7be594fa77d5598e6f89d96029a8bac",
-                "reference": "bb776eb7e7be594fa77d5598e6f89d96029a8bac",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/0c6ce85c1bc12e81ecb0df62fbc62db116b7b53d",
+                "reference": "0c6ce85c1bc12e81ecb0df62fbc62db116b7b53d",
                 "shasum": ""
             },
             "require": {
@@ -484,12 +484,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/HackerWins/summernote.git",
-                "reference": "5a33f2f1bd116afceef16dabfae8d06c6f0ec3da"
+                "reference": "29a6f4f83735e259a915f431a607c485a479c220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HackerWins/summernote/zipball/5a33f2f1bd116afceef16dabfae8d06c6f0ec3da",
-                "reference": "5a33f2f1bd116afceef16dabfae8d06c6f0ec3da",
+                "url": "https://api.github.com/repos/HackerWins/summernote/zipball/29a6f4f83735e259a915f431a607c485a479c220",
+                "reference": "29a6f4f83735e259a915f431a607c485a479c220",
                 "shasum": ""
             },
             "require": {
@@ -511,7 +511,7 @@
                     "tests"
                 ]
             },
-            "time": "2014-10-07 08:01:25"
+            "time": "2014-10-11 01:19:26"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -651,12 +651,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956"
+                "reference": "3c0ca2255751631f1dd64eb16bbe3b9440258297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d27346b6c8cb6a42092e763f8a2f674dfc560956",
-                "reference": "d27346b6c8cb6a42092e763f8a2f674dfc560956",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/3c0ca2255751631f1dd64eb16bbe3b9440258297",
+                "reference": "3c0ca2255751631f1dd64eb16bbe3b9440258297",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +735,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-09-16 21:19:27"
+            "time": "2014-10-15 19:36:56"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -853,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "4b46a68dfbddcba32b94c49821e505aa3e1ef1c9"
+                "reference": "232701b45b343cccae89fa7ca192805a5e9a5f1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/4b46a68dfbddcba32b94c49821e505aa3e1ef1c9",
-                "reference": "4b46a68dfbddcba32b94c49821e505aa3e1ef1c9",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/232701b45b343cccae89fa7ca192805a5e9a5f1a",
+                "reference": "232701b45b343cccae89fa7ca192805a5e9a5f1a",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-14 13:36:43"
+            "time": "2014-10-15 13:41:40"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1290,12 +1290,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "5c2ef58d2b6855a674c0bd16701cd49c90cb965d"
+                "reference": "f2cde70dc8d4571b5c2de8c0a71e4a99a464305d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/5c2ef58d2b6855a674c0bd16701cd49c90cb965d",
-                "reference": "5c2ef58d2b6855a674c0bd16701cd49c90cb965d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/f2cde70dc8d4571b5c2de8c0a71e4a99a464305d",
+                "reference": "f2cde70dc8d4571b5c2de8c0a71e4a99a464305d",
                 "shasum": ""
             },
             "require": {
@@ -1329,7 +1329,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-10-13 21:58:38"
+            "time": "2014-10-15 08:16:41"
         },
         {
             "name": "yiisoft/yii2-gii",
