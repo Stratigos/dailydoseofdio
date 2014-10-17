@@ -5,13 +5,21 @@
     use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
-    <div id="blogger-form-errors" class="form-errors-cont">
+    <div id="blogger-form-errors" class="form-errors-cont has-error">
         <?php if(isset($errors) && !empty($errors)) : ?>
-            <ul class="form-errors-list">
-                <?php foreach($errors as $error) : ?>
-                    <li><?= $error ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <div class="help-block">ERRORS:</div>
+            <pre><?php echo(print_r($errors, 1)); ?></pre>
+            <!-- <ul class="form-errors-list">
+                <?php /* foreach($errors as $error_key => $error_key_val) : ?>
+                    <?php if(is_array($error_key_val)) : ?>
+                        <?php foreach($error_key_val as $error): ?>
+                            <li class="help-block"><?= "{$error_key} : {$error}" ?></li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li class="help-block"><?= $error_key_val ?></li>
+                    <?php endif; ?>
+                <?php endforeach; */ ?>
+            </ul> -->
         <?php endif; ?>
     </div>
     <?php $form = ActiveForm::begin([

@@ -22,7 +22,7 @@
                     <?php endforeach; ?>                    
                 <?php endforeach; */ ?>
             </ul> -->
-            <pre><?php echo(print_r($errors)); ?>
+            <pre><?php echo(print_r($errors)); ?></pre>
         <?php endif; ?>
     </div>
     <?php $form = ActiveForm::begin([

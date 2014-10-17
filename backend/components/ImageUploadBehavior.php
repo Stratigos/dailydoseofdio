@@ -186,24 +186,24 @@ class ImageUploadBehavior extends Behavior
                                     unlink($full_filename);
                                     $success = TRUE;
                                 } else {
-                                    // add to model's errors
+                                    // add to sitewide notification component (TBD)
                                     error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");
                                 }
                             } else {
+                                // add to sitewaide notification component (TBD)
                                 error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME: {$full_filename} \n\n");
                             }
                         } else {
-                            // add to model's errors
+                            // add to sitewaide notification component (TBD)
                             error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY: {$filename} \n\n");
                         }
                     } else {
-                        // add to model's errors
+                        // add to sitewaide notification component (TBD)
                         error_log("\n\n SOMETHING IS FUCKED WITH MAKING A LOCAL DIR: {$this->fullDirPath} \n\n");
                     }
 
                 } else {
-                    // add to model's errors?
-                    error_log("\n\n IMAGE DID NOT VALIDATE \n\n");
+                    $this->owner->addError('image_file', $this->owner->image_file->getErrors());
                 }
             }
         } else {
