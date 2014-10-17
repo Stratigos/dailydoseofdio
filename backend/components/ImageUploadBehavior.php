@@ -16,23 +16,25 @@ use Aws\S3\S3Client;
 class ImageUploadBehavior extends Behavior
 {
     /**
-     * Model attribute which is assigned instance of UploadForm
+     * Attribute which is assigned instance of UploadForm. Assigned
+     *  to Owner upon initialization of this Behavior.
+     * @see ImageUploadBehavior::initializeImageFileAttribute()
      * @see UploadForm::rules()
      */
-    public $upload_file_field_name = 'image_file';
+    public $image_file;
 
     /**
-     * Model attribute which holds resultant image path.
+     * Owner attribute which holds resultant image path.
      */
     public $image_path_field_name = 'image_path';
 
     /**
-     * Model attribute which holds image's extension (jpg, gif, png)
+     * Owner attribute which holds image's extension (jpg, gif, png)
      */
     public $image_ext_field_name = 'image_ext';
 
     /**
-     * Model attribute with uniqueness, to assist with uniquely identifying 
+     * Owner attribute with uniqueness, to assist with uniquely identifying 
      *  image file to model instance by prefixing filename with a 
      *  hashed value. Attribute must be available at time of validation, thus,
      *  primary key may not be suitable. If configured unset, will result in
@@ -102,7 +104,7 @@ class ImageUploadBehavior extends Behavior
      */
     public function initializeImageFileAttribute()
     {
-        $this->owner->{$this->upload_file_field_name} = new UploadForm();
+        $this->owner->image_file = new UploadForm();
     }
 
     /**
@@ -120,8 +122,8 @@ class ImageUploadBehavior extends Behavior
         $success = FALSE;
 
         // check to ensure UploadForm instance is loaded into $owner's upload field
-        if(!empty($this->owner->{$this->upload_file_field_name})) {
-            $image_file        = $this->owner->{$this->upload_file_field_name};
+        if(!empty($this->owner->image_file)) {
+            $image_file        = $this->owner->image_file;
             $image_file->image = UploadedFile::getInstance($image_file, 'image');
 
             // check to ensure a file was selected
