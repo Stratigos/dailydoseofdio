@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+use frontend\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -125,6 +126,7 @@ AppAsset::register($this);
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
+            <?php $alerts = new Alert(); /* @todo find means of producing alert without var assign */ ?>
             <?= $content ?>
         </div>
     </div>

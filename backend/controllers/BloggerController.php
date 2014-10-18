@@ -77,6 +77,7 @@ class BloggerController extends Controller
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
             if($blogger->save()) {
+                Yii::$app->session->setFlash('success', "Blogger {$blogger->name} created!");
                 return $this->redirect(['index']);
             } else {
                 $errors = $blogger->getErrors();
@@ -107,6 +108,7 @@ class BloggerController extends Controller
         if(Yii::$app->request->isPost) {
             $blogger->load(Yii::$app->request->post());
             if($blogger->save()) {
+                Yii::$app->session->setFlash('success', "Blogger {$blogger->name} updated!");
                 return $this->redirect(['index']);
             } else {
                 $errors = $blogger->getErrors();
@@ -131,6 +133,7 @@ class BloggerController extends Controller
         if($blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one()) {
             $blogger->deleted_at = time();
             if($blogger->save()) {
+                Yii::$app->session->setFlash('success', "Blogger {$blogger->name} deleted!");
                 return $this->redirect(['index']);
             } else {
                 $errors[] = "Error deleting blogger: {$id}";
