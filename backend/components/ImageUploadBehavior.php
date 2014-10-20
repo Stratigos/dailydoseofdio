@@ -162,7 +162,6 @@ class ImageUploadBehavior extends Behavior
                                     ) {
                                         foreach(Yii::$app->params['imageSizes'][$_ownerClassLC] as $size_key => $sizes) {
                                             $_resized_name = $filename . $size_key . '.' . $image_file->image->extension;
-                                            //$image_file->image->saveAs($_resized_name); // prior local save worked, right?
 
                                             // create instance of Kohana image resizer
                                             $_full_resized_name = Yii::getAlias('@webroot') . '/' . $_resized_name;                                        
