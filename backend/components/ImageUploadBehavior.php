@@ -119,7 +119,9 @@ class ImageUploadBehavior extends Behavior
      */
     public function uploadToCDN()
     {
-        $success = FALSE;
+        // return value which describes if $owner should complete or fail
+        //  on save() routine
+        $process_complete = FALSE;
 
         // check to ensure UploadForm instance is loaded into $owner's upload field
         if(!empty($this->owner->image_file)) {
@@ -181,24 +183,33 @@ class ImageUploadBehavior extends Behavior
                                             unlink($_full_resized_name);
                                         }
                                     }
-
+                                    // TODO: GET MULTIPLE FLASH MESSAGES WORKING (line below wont display)
+                                    // Yii::$app->session->setFlash('success', "Image {$filename} uploaded!");
                                     unlink($full_filename);
-                                    $success = TRUE;
                                 } else {
-                                    // add to sitewide notification component (TBD)
-                                    error_log("\n\n SOMETHING IS FUCKED WITH S3, UPLOAD FAILED: {$full_filename} \n\n");
+                                    Yii::$app->session->setFlash(
+                                        'danger',
+                                        "SOMETHING IS FUCKED WITH S3, IMAGE UPLOAD FAILED: {$full_filename}!"
+                                    );
                                 }
+                                $process_complete = TRUE;
                             } else {
-                                // add to sitewaide notification component (TBD)
-                                error_log("\n\n SOMETHING IS FUCKED WITH ACCESSING FULL FILENAME: {$full_filename} \n\n");
+                                Yii::$app->session->setFlash(
+                                    'error',
+                                    "IMAGE UPLOAD FAILED: UNABLE TO ACCESS LOCALLY CREATED FILE: {$full_filename}!"
+                                );
                             }
                         } else {
-                            // add to sitewaide notification component (TBD)
-                            error_log("\n\n SOMETHIGN IS FUCKED WITH SAVING AN IMAGE LOCALLY: {$filename} \n\n");
+                            Yii::$app->session->setFlash(
+                                'error',
+                                "IMAGE UPLOAD FAILED: UNABLE TO SAVE IMAGE LOCALLY: {$filename}!"
+                            );
                         }
                     } else {
-                        // add to sitewaide notification component (TBD)
-                        error_log("\n\n SOMETHING IS FUCKED WITH MAKING A LOCAL DIR: {$this->fullDirPath} \n\n");
+                        Yii::$app->session->setFlash(
+                            'error',
+                            "IAMGE UPLOAD FAILED: UNABLE TO CREATE LOCAL DIRECTORY TO SAVE FILES: {$this->fullDirPath}!"
+                        );
                     }
 
                 } else {
@@ -206,10 +217,10 @@ class ImageUploadBehavior extends Behavior
                 }
             }
         } else {
-            $success = TRUE;
+            $process_complete = TRUE;
         }
 
-        return $success;
+        return $process_complete;
     }
 
     /**
@@ -224,7 +235,7 @@ class ImageUploadBehavior extends Behavior
      */
     private function _uploadToS3($filename, $source_file)
     {
-        $success = FALSE;
+        $process_complete = FALSE;
         $client  = S3Client::factory(
             [
                 'key'    => getenv('AWS_ACCESS_KEY_ID'),
@@ -240,10 +251,10 @@ class ImageUploadBehavior extends Behavior
             ]
         );
         if(!empty($uploaded) && isset($uploaded['ObjectURL']) && !empty($uploaded['ObjectURL'])) {
-            $success = TRUE;
+            $process_complete = TRUE;
         }
 
-        return $success;
+        return $process_complete;
     }
 
     /**
