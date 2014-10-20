@@ -9,7 +9,7 @@ use yii\widgets\Breadcrumbs;
 /* @var $this \yii\web\View */
 /* @var $content string */
 if(empty($this->title)) {
-    $this->title = 'DDOD Manage';
+    $this->title = Yii::$app->params['defaultTitle'];
 }
 AppAsset::register($this);
 ?>
