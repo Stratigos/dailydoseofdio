@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994"
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-12 22:42:00"
+            "time": "2014-10-10 02:49:40"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -484,12 +484,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/HackerWins/summernote.git",
-                "reference": "29a6f4f83735e259a915f431a607c485a479c220"
+                "reference": "5a33f2f1bd116afceef16dabfae8d06c6f0ec3da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/HackerWins/summernote/zipball/29a6f4f83735e259a915f431a607c485a479c220",
-                "reference": "29a6f4f83735e259a915f431a607c485a479c220",
+                "url": "https://api.github.com/repos/HackerWins/summernote/zipball/5a33f2f1bd116afceef16dabfae8d06c6f0ec3da",
+                "reference": "5a33f2f1bd116afceef16dabfae8d06c6f0ec3da",
                 "shasum": ""
             },
             "require": {
@@ -511,7 +511,7 @@
                     "tests"
                 ]
             },
-            "time": "2014-10-11 01:19:26"
+            "time": "2014-10-07 08:01:25"
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -853,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "a3a6e388d6494d829bf80274af455a834ade07f6"
+                "reference": "e2d7565ceacb115d5140e0cb36ca0ce4f0225e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/a3a6e388d6494d829bf80274af455a834ade07f6",
-                "reference": "a3a6e388d6494d829bf80274af455a834ade07f6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e2d7565ceacb115d5140e0cb36ca0ce4f0225e3e",
+                "reference": "e2d7565ceacb115d5140e0cb36ca0ce4f0225e3e",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-20 13:46:44"
+            "time": "2014-10-21 15:26:29"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
