@@ -20,7 +20,19 @@
     ]); ?>
         <?= $form->field($blog, 'title'); ?>
         <?= $form->field($blog, 'shortname'); ?>
-        <!-- IMAGE GOES HERE -->
+        <div class="form-group blog-image-display">
+             <?php if($blog->image) : ?>
+                <img
+                    class="form-model-thumbnail"
+                    src="<?= $blog->getImage('200x200') ?>"
+                    alt="BLOG IMAGE APPEARS HERE, IN THIS SPOT"
+                    title="Blog Image"
+                />
+            <?php else : ?>
+                <p>NO IMAGE UPLOADED</p>
+            <?php endif;?>
+        </div>
+        <?= $form->field($blog->image_file, 'image')->fileInput(); ?>
         <?= $form->field($blog, 'short_description')->textarea(); ?>
         <?= $form->field($blog, 'description')->widget(Summernote::className(), []) ?>
         <?= $form->field($blog, 'keywords'); ?>

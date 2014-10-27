@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 
 class Blog extends ActiveRecord
@@ -31,15 +32,24 @@ class Blog extends ActiveRecord
      */
     public function behaviors()
     {
-        return [
+        $behaviors = [
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
-            ],
+            ]
         ];
+
+        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+            $behaviors['imageUpload'] = [
+                'class'             => 'backend\components\ImageUploadBehavior',
+                'model_unique_attr' => 'shortname'
+            ];
+        }
+
+        return $behaviors;
     }
 
     /**
@@ -55,7 +65,8 @@ class Blog extends ActiveRecord
             [['shortname'], 'string', 'length' => [3, 32]],
             [['shortname'], 'unique'],
             [['shortname'], 'validateShortnameURLFriendly'],
-            // IMAGE RULES...
+            [['image_path'], 'string'],
+            [['image_ext'], 'string'],
             [['short_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 2000],
             [['keywords'], 'string', 'max' => 2000],
@@ -86,6 +97,8 @@ class Blog extends ActiveRecord
         return [
             'title'             => 'Title',
             'shortname'         => 'Shortname (URL name)',
+            'image_path'        => 'Image Path',
+            'image_ext'         => 'Image Extension',
             'short_description' => 'Short Description',
             'description'       => 'Description',
             'keywords'          => 'Keywords',
@@ -100,5 +113,19 @@ class Blog extends ActiveRecord
     public function getPosts()
     {
         return $this->hasMany(Post::className(), ['blog_id' => 'id'])->inverseOf('blog');
+    }
+
+    /**
+     * get full url to a Blog's image.
+     * @param $size_key String
+     *  name of a configured image size (e.g., '75x75')
+     * @return String
+     */
+    public function getImage($size_key = '')
+    {
+        return isset($this->image_path) ?
+            Yii::$app->params['imageDomain'] . $this->image_path  . $size_key . '.' . $this->image_ext :
+            NULL
+        ;
     }
 }
