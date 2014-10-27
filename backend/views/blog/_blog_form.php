@@ -16,7 +16,10 @@
     </div>
     <?php $form = ActiveForm::begin([
         'id'      => 'blog-form',
-        'options' => ['class' => 'form-horizontal']
+        'options' => [
+            'class'   => 'form-horizontal',
+            'enctype' => 'multipart/form-data'
+        ]
     ]); ?>
         <?= $form->field($blog, 'title'); ?>
         <?= $form->field($blog, 'shortname'); ?>
