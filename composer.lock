@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "0b856068520707bbf92930a5f3cfe1d5512f8f2a"
+                "reference": "68ffb37002c2d10dee2a7b5db98e674803672f02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0b856068520707bbf92930a5f3cfe1d5512f8f2a",
-                "reference": "0b856068520707bbf92930a5f3cfe1d5512f8f2a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/68ffb37002c2d10dee2a7b5db98e674803672f02",
+                "reference": "68ffb37002c2d10dee2a7b5db98e674803672f02",
                 "shasum": ""
             },
             "require": {
@@ -205,24 +205,24 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-10-24 22:37:40"
+            "time": "2014-10-29 20:27:28"
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "c068162161154a4b85110ea1e7dd3d7897ce2b72"
+                "reference": "16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/c068162161154a4b85110ea1e7dd3d7897ce2b72",
-                "reference": "c068162161154a4b85110ea1e7dd3d7897ce2b72",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a",
+                "reference": "16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.0"
+                "bower-asset/jquery": ">=1.9.1"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -236,7 +236,7 @@
                     "dist/fonts/glyphicons-halflings-regular.woff"
                 ],
                 "bower-asset-ignore": [
-                    ".*",
+                    "/.*",
                     "_config.yml",
                     "CNAME",
                     "composer.json",
@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
+                "reference": "29be39a569fad0b08c55089eb496730df174b994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
+                "reference": "29be39a569fad0b08c55089eb496730df174b994",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,11 +290,11 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-10 02:49:40"
+            "time": "2014-10-12 22:42:00"
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "dev-master",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
@@ -327,8 +327,7 @@
                 "MIT",
                 "CC-BY-3.0"
             ],
-            "description": "Font Awesome",
-            "time": "2014-08-26 16:36:44"
+            "description": "Font Awesome"
         },
         {
             "name": "bower-asset/jquery",
@@ -480,7 +479,7 @@
         },
         {
             "name": "bower-asset/summernote",
-            "version": "dev-master",
+            "version": "v0.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/HackerWins/summernote.git",
@@ -510,8 +509,7 @@
                     "test",
                     "tests"
                 ]
-            },
-            "time": "2014-10-07 08:01:25"
+            }
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -651,12 +649,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "3c0ca2255751631f1dd64eb16bbe3b9440258297"
+                "reference": "5e6fb7097efac7180bd75006079144025255eb63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/3c0ca2255751631f1dd64eb16bbe3b9440258297",
-                "reference": "3c0ca2255751631f1dd64eb16bbe3b9440258297",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/5e6fb7097efac7180bd75006079144025255eb63",
+                "reference": "5e6fb7097efac7180bd75006079144025255eb63",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +733,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-10-15 19:36:56"
+            "time": "2014-10-29 23:08:23"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -743,12 +741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "613354e08fbddce0943646932b007be9873c658f"
+                "reference": "d0f361d88e5de851bbb8c542d3b6aa46d61a9ffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/613354e08fbddce0943646932b007be9873c658f",
-                "reference": "613354e08fbddce0943646932b007be9873c658f",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d0f361d88e5de851bbb8c542d3b6aa46d61a9ffc",
+                "reference": "d0f361d88e5de851bbb8c542d3b6aa46d61a9ffc",
                 "shasum": ""
             },
             "require": {
@@ -787,7 +785,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-10-05 19:53:07"
+            "time": "2014-10-30 13:41:35"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -848,17 +846,59 @@
             "time": "2014-10-26 07:50:57"
         },
         {
+            "name": "twbs/bootstrap",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "6d03173a1aad98e75f7d33e65b411c519176c59a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6d03173a1aad98e75f7d33e65b411c519176c59a",
+                "reference": "6d03173a1aad98e75f7d33e65b411c519176c59a",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "bootstrap",
+                "css"
+            ],
+            "time": "2013-12-05 16:09:10"
+        },
+        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "983c5f43bcab2aa36af674ace29c00fa50e13f80"
+                "reference": "90845f7b98f4d7be265f595fca705f9fad2aaa47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/983c5f43bcab2aa36af674ace29c00fa50e13f80",
-                "reference": "983c5f43bcab2aa36af674ace29c00fa50e13f80",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/90845f7b98f4d7be265f595fca705f9fad2aaa47",
+                "reference": "90845f7b98f4d7be265f595fca705f9fad2aaa47",
                 "shasum": ""
             },
             "require": {
@@ -933,32 +973,27 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-10-27 01:03:03"
+            "time": "2014-11-02 00:41:34"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "dev-master",
+            "version": "2.0.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "416510b4ca19243b6b2a15205fc43e9ed174b0af"
+                "reference": "d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/416510b4ca19243b6b2a15205fc43e9ed174b0af",
-                "reference": "416510b4ca19243b6b2a15205fc43e9ed174b0af",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4",
+                "reference": "d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/bootstrap": "3.2.* | 3.1.*",
+                "twbs/bootstrap": "3.0.*",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "yii\\bootstrap\\": ""
@@ -971,7 +1006,9 @@
             "authors": [
                 {
                     "name": "Qiang Xue",
-                    "email": "qiang.xue@gmail.com"
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/",
+                    "role": "Founder and project lead"
                 }
             ],
             "description": "The Twitter Bootstrap extension for the Yii framework",
@@ -979,7 +1016,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-10-25 13:35:50"
+            "time": "2014-04-13 21:58:59"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1127,20 +1164,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zelenin/yii2-summernote-widget.git",
-                "reference": "0becc1caf61a1c43a7d7e86c3dc3deeadd9cdbe0"
+                "reference": "054e475415cbd0fcb6578111a269c6314d8538f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zelenin/yii2-summernote-widget/zipball/0becc1caf61a1c43a7d7e86c3dc3deeadd9cdbe0",
-                "reference": "0becc1caf61a1c43a7d7e86c3dc3deeadd9cdbe0",
+                "url": "https://api.github.com/repos/zelenin/yii2-summernote-widget/zipball/054e475415cbd0fcb6578111a269c6314d8538f5",
+                "reference": "054e475415cbd0fcb6578111a269c6314d8538f5",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/codemirror": "@stable",
-                "bower-asset/fontawesome": "@stable",
-                "bower-asset/summernote": "@stable",
-                "php": ">=5.4.0",
-                "yiisoft/yii2": "*"
+                "bower-asset/fontawesome": "~4@stable",
+                "bower-asset/summernote": "~0.5@stable",
+                "yiisoft/yii2": "~2"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1174,7 +1210,7 @@
                 "wysiwyg",
                 "yii2"
             ],
-            "time": "2014-10-27 13:21:30"
+            "time": "2014-11-02 19:22:59"
         }
     ],
     "packages-dev": [
