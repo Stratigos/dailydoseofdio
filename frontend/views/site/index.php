@@ -1,47 +1,172 @@
-<div class="site-index">
+<div class="container">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <div class="row">
 
-        <p class="lead">You have successfully created your *frontend* Yii-powered application.</p>
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+            <!-- Blog Post -->
 
-    <div class="body-content">
+            <!-- Title -->
+            <h1>Daily Dose of Dio</h1>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <!-- Author -->
+            <p class="lead"><em>In Rememberance of Ronnie James Dio</em></p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+            <hr>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+
+            <hr>
+
+            <!-- Blog Comments -->
+
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+            <hr>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+            <!-- Posted Comments -->
+
+            <!-- Comment -->
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Start Bootstrap
+                        <small>August 25, 2014 at 9:30 PM</small>
+                    </h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <!-- Comment -->
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Start Bootstrap
+                        <small>August 25, 2014 at 9:30 PM</small>
+                    </h4>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                    <!-- Nested Comment -->
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Nested Start Bootstrap
+                                <small>August 25, 2014 at 9:30 PM</small>
+                            </h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                    <!-- End Nested Comment -->
+                </div>
             </div>
+
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Search for your Daily Dose</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Bacon ipsum dolor amet ground round veniam officia tri-tip magna shank velit landjaeger occaecat
+                    adipisicing non. Pork chop hamburger rump, elit ut in sirloin jowl. Flank filet mignon cow
+                    meatball dolore, adipisicing aute irure ex non strip steak chuck spare ribs. Meatloaf enim
+                    bacon, deserunt hamburger andouille nostrud. Officia andouille strip steak,
+                    velit porchetta tempor exercitation consectetur labore pork chop quis eiusmod irure ad.</p>
+            </div>
+
         </div>
 
     </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copywright &copy; Dudeman Somebody</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
+
 </div>
+<!-- /.container -->
