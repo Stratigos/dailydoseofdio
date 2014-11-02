@@ -8,6 +8,9 @@ use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+if(empty($this->title)) {
+    $this->title = Yii::$app->params['defaultTitle'];
+}
 
 AppAsset::register($this);
 ?>
