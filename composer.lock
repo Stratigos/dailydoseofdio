@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994"
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-12 22:42:00"
+            "time": "2014-10-10 02:49:40"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -399,16 +399,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.34",
+            "version": "3.1.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "f48d10463039a23469e65cc4b5c0b4409e8fb596"
+                "reference": "dc1039e8b08fee22aca2003c4559530ce111f947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/f48d10463039a23469e65cc4b5c0b4409e8fb596",
-                "reference": "f48d10463039a23469e65cc4b5c0b4409e8fb596",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/dc1039e8b08fee22aca2003c4559530ce111f947",
+                "reference": "dc1039e8b08fee22aca2003c4559530ce111f947",
                 "shasum": ""
             },
             "require": {
@@ -893,12 +893,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "90845f7b98f4d7be265f595fca705f9fad2aaa47"
+                "reference": "7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/90845f7b98f4d7be265f595fca705f9fad2aaa47",
-                "reference": "90845f7b98f4d7be265f595fca705f9fad2aaa47",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d",
+                "reference": "7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d",
                 "shasum": ""
             },
             "require": {
@@ -973,7 +973,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-02 00:41:34"
+            "time": "2014-11-03 20:27:08"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
