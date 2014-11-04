@@ -1,29 +1,34 @@
-<!-- Page Content -->
 <div class="container">
-
     <div class="row">
-
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
             <h1 class="page-header">
-                Page Heading
-                <small>Secondary Text</small>
+                <p>Daily Dose of Dio</p>
+                <small>Dedicated to the life, art, and work of Ronnie James Dio</small>
             </h1>
 
             <!-- First Blog Post -->
             <h2>
-                <a href="#">Blog Post Title</a>
+                <a href="#">Bacon ipsum dolor amet</a>
             </h2>
             <p class="lead">
                 by <a href="index.php">Start Bootstrap</a>
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM</p>
             <hr>
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <img class="img-responsive" src="http://placehold.it/250x155" alt="">
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    Qui pastrami turkey deserunt frankfurter ham kielbasa ea adipisicing non ribeye velit bacon.
+                    Eiusmod beef ribs frankfurter, shankle corned beef laboris enim prosciutto. Salami pig magna t-bone
+                    biltong rump. Tempor meatloaf minim, velit spare ribs ad leberkas labore corned beef dolore.
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <a class="btn btn-primary media" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
 
@@ -134,17 +139,6 @@
     <!-- /.row -->
 
     <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-    </footer>
 
 </div>
 <!-- /.container -->
