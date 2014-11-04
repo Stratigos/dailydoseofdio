@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "68ffb37002c2d10dee2a7b5db98e674803672f02"
+                "reference": "2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/68ffb37002c2d10dee2a7b5db98e674803672f02",
-                "reference": "68ffb37002c2d10dee2a7b5db98e674803672f02",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6",
+                "reference": "2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-10-29 20:27:28"
+            "time": "2014-11-04 18:32:36"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -399,16 +399,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.35",
+            "version": "3.1.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "dc1039e8b08fee22aca2003c4559530ce111f947"
+                "reference": "1e667db21e878105686e636efea883fa23b54fb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/dc1039e8b08fee22aca2003c4559530ce111f947",
-                "reference": "dc1039e8b08fee22aca2003c4559530ce111f947",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/1e667db21e878105686e636efea883fa23b54fb2",
+                "reference": "1e667db21e878105686e636efea883fa23b54fb2",
                 "shasum": ""
             },
             "require": {
@@ -846,59 +846,17 @@
             "time": "2014-11-03 03:55:50"
         },
         {
-            "name": "twbs/bootstrap",
-            "version": "v3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "6d03173a1aad98e75f7d33e65b411c519176c59a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6d03173a1aad98e75f7d33e65b411c519176c59a",
-                "reference": "6d03173a1aad98e75f7d33e65b411c519176c59a",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
-            "homepage": "http://getbootstrap.com",
-            "keywords": [
-                "bootstrap",
-                "css"
-            ],
-            "time": "2013-12-05 16:09:10"
-        },
-        {
             "name": "yiisoft/yii2",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d"
+                "reference": "884a74d7cf401cf828ad9b669d5e7ed8d57beb76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d",
-                "reference": "7ebba5f6a01ea2b500d4f2a87990abf1dbe02d0d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/884a74d7cf401cf828ad9b669d5e7ed8d57beb76",
+                "reference": "884a74d7cf401cf828ad9b669d5e7ed8d57beb76",
                 "shasum": ""
             },
             "require": {
@@ -973,27 +931,32 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-03 20:27:08"
+            "time": "2014-11-04 10:05:47"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.0-beta",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4"
+                "reference": "b06278004ed4ff3c524d2c13795575679f85c4f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4",
-                "reference": "d2518d1f6fb0b3e0e3aba50b9c35f56d580eb3c4",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/b06278004ed4ff3c524d2c13795575679f85c4f8",
+                "reference": "b06278004ed4ff3c524d2c13795575679f85c4f8",
                 "shasum": ""
             },
             "require": {
-                "twbs/bootstrap": "3.0.*",
+                "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "yii\\bootstrap\\": ""
@@ -1006,9 +969,7 @@
             "authors": [
                 {
                     "name": "Qiang Xue",
-                    "email": "qiang.xue@gmail.com",
-                    "homepage": "http://www.yiiframework.com/",
-                    "role": "Founder and project lead"
+                    "email": "qiang.xue@gmail.com"
                 }
             ],
             "description": "The Twitter Bootstrap extension for the Yii framework",
@@ -1016,7 +977,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-04-13 21:58:59"
+            "time": "2014-11-03 22:51:11"
         },
         {
             "name": "yiisoft/yii2-composer",
