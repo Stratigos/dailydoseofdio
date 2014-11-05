@@ -6,8 +6,9 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+// use yii\data\ActiveDataProvider;
+// use yii\data\Pagination;
+use backend\dataproviders\PageControllerIndexDataProvider;
 use common\models\Page;
 
 /**
@@ -15,6 +16,18 @@ use common\models\Page;
  */
 class PageController extends Controller
 {
+
+    /**
+     * @var PageControllerIndexDataProvider
+     */
+    public $indexDataProvider;
+
+    public function init()
+    {
+        parent::init();
+        $this->indexDataProvider = new PageControllerIndexDataProvider();
+    }
+
     /**
      * @inheritdoc
      */
@@ -51,17 +64,11 @@ class PageController extends Controller
      */
     public function actionIndex()
     {
-        // TODO - move instance to controller property
-        $pagesDataProvider = new ActiveDataProvider([
-            'query'      => Page::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]),
-            'pagination' => ['pageSize' => 10]
-        ]);
-
         return $this->render(
             'index',
             [
                 'createPageUrl'     => Yii::$app->urlManager->createUrl('page/create'),
-                'pagesDataProvider' => $pagesDataProvider
+                'pagesDataProvider' => $this->indexDataProvider
             ]
         );
     }
