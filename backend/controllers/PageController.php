@@ -1,7 +1,7 @@
 <?php
 /*****************************
- * CRUD operations for Pages
- *****************************/
+* CRUD operations for Pages
+******************************/
 namespace backend\controllers;
 
 use Yii;

@@ -1,4 +1,7 @@
 <?php
+/****************************
+* CRUD operations for Blogs
+*****************************/
 namespace backend\controllers;
 
 use Yii;
@@ -6,13 +9,9 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+use backend\dataproviders\BlogControllerIndexDataProvider;
 use common\models\Blog;
 
-/**
- * CRUD operations for Blogs
- */
 class BlogController extends Controller
 {
     /**
@@ -51,16 +50,11 @@ class BlogController extends Controller
      */
     public function actionIndex()
     {
-        $blogDataProvider = new ActiveDataProvider([
-            'query'      => Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]),
-            'pagination' => ['pageSize' => 10]
-        ]);
-
         return $this->render(
             'index',
             [
                 'createBlogUrl'    => Yii::$app->urlManager->createUrl('blog/create'),
-                'blogDataProvider' => $blogDataProvider
+                'blogDataProvider' => new BlogControllerIndexDataProvider()
             ]
         );
     }
