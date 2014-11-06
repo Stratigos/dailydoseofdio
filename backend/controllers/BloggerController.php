@@ -6,8 +6,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\HttpException;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+use backend\dataproviders\BloggerControllerIndexDataProvider;
 use common\models\Blogger;
 
 /**
@@ -51,16 +50,11 @@ class BloggerController extends Controller
      */
     public function actionIndex()
     {
-        $bloggersDataProvider = new ActiveDataProvider([
-            'query'      => Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC]),
-            'pagination' => ['pageSize' => 10]
-        ]);
-
         return $this->render(
             'index',
             [
                 'createBloggerUrl'     => Yii::$app->urlManager->createUrl('blogger/create'),
-                'bloggersDataProvider' => $bloggersDataProvider
+                'bloggersDataProvider' => new BloggerControllerIndexDataProvider()
             ]
         );
     }
