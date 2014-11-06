@@ -6,8 +6,7 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+use backend\dataproviders\DiositeControllerIndexDataProvider;
 use common\models\DioSite;
 
 /**
@@ -51,17 +50,11 @@ class DiositeController extends Controller
      */
     public function actionIndex()
     {
-        // TODO - move instance to controller property
-        $dioSitesDataProvider = new ActiveDataProvider([
-            'query'      => DioSite::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]),
-            'pagination' => ['pageSize' => 10]
-        ]);
-
         return $this->render(
             'index',
             [
                 'createDioSiteUrl'     => Yii::$app->urlManager->createUrl('diosite/create'),
-                'dioSitesDataProvider' => $dioSitesDataProvider
+                'dioSitesDataProvider' => new DiositeControllerIndexDataProvider()
             ]
         );
     }
