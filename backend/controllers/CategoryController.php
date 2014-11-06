@@ -1,4 +1,7 @@
 <?php
+/*********************************
+* CRUD operations for Categories
+**********************************/
 namespace backend\controllers;
 
 use Yii;
@@ -9,9 +12,6 @@ use yii\web\Controller;
 use backend\dataproviders\CategoryControllerIndexDataProvider;
 use common\models\Category;
 
-/**
- * CRUD operations for Categories
- */
 class CategoryController extends Controller
 {
     /**

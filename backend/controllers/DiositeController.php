@@ -1,4 +1,7 @@
 <?php
+/*******************************
+* CRUD operations for DioSites
+********************************/
 namespace backend\controllers;
 
 use Yii;
@@ -9,9 +12,6 @@ use yii\web\Controller;
 use backend\dataproviders\DiositeControllerIndexDataProvider;
 use common\models\DioSite;
 
-/**
- * CRUD operations for DioSites
- */
 class DiositeController extends Controller
 {
     /**
