@@ -6,8 +6,7 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+use backend\dataproviders\CategoryControllerIndexDataProvider;
 use common\models\Category;
 
 /**
@@ -57,16 +56,11 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
-        $categoriesDataProvider = new ActiveDataProvider([
-            'query'      => Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC]),
-            'pagination' => ['pageSize' => 10]
-        ]);
-
         return $this->render(
             'index',
             [
-                'createCategoryUrl'     => Yii::$app->urlManager->createUrl('category/create'),
-                'categoriesDataProvider' => $categoriesDataProvider
+                'createCategoryUrl'      => Yii::$app->urlManager->createUrl('category/create'),
+                'categoriesDataProvider' => new CategoryControllerIndexDataProvider()
             ]
         );
     }
