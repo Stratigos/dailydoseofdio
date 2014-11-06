@@ -6,9 +6,8 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
+use backend\dataproviders\PostControllerIndexDataProvider;
 use common\models\Category;
 use common\models\Blog;
 use common\models\Blogger;
@@ -58,21 +57,11 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
-        $postsDataProvider = new ActiveDataProvider([
-            'pagination' => ['pageSize' => 50],
-            'query'      => Post::find()->where(['deleted_at' => 0])->orderBy(
-                [
-                    'published_at' => SORT_DESC,
-                    'created_at'   => SORT_DESC
-                ]
-            )
-        ]);
-
         return $this->render(
             'index',
             [
                 'createPostUrl'     => Yii::$app->urlManager->createUrl('post/selectmediatype'),
-                'postsDataProvider' => $postsDataProvider
+                'postsDataProvider' => new PostControllerIndexDataProvider()
             ]
         );
     }
