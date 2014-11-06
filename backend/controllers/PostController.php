@@ -1,4 +1,7 @@
 <?php
+/***************************
+* CRUD operations for Posts
+****************************/
 namespace backend\controllers;
 
 use Yii;
@@ -16,9 +19,6 @@ use common\models\PostTag;
 use common\models\Post;
 use common\models\Quote;
 
-/**
- * CRUD operations for Posts
- */
 class PostController extends Controller
 {
     /**
