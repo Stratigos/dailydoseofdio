@@ -1,4 +1,7 @@
 <?php
+/*****************************
+ * CRUD operations for Pages
+ *****************************/
 namespace backend\controllers;
 
 use Yii;
@@ -6,28 +9,11 @@ use yii\web\HttpException;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-// use yii\data\ActiveDataProvider;
-// use yii\data\Pagination;
 use backend\dataproviders\PageControllerIndexDataProvider;
 use common\models\Page;
 
-/**
- * CRUD operations for Pages
- */
 class PageController extends Controller
 {
-
-    /**
-     * @var PageControllerIndexDataProvider
-     */
-    public $indexDataProvider;
-
-    public function init()
-    {
-        parent::init();
-        $this->indexDataProvider = new PageControllerIndexDataProvider();
-    }
-
     /**
      * @inheritdoc
      */
@@ -68,7 +54,7 @@ class PageController extends Controller
             'index',
             [
                 'createPageUrl'     => Yii::$app->urlManager->createUrl('page/create'),
-                'pagesDataProvider' => $this->indexDataProvider
+                'pagesDataProvider' => new PageControllerIndexDataProvider()
             ]
         );
     }
