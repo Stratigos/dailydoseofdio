@@ -72,8 +72,7 @@ class PostController extends Controller
             'index',
             [
                 'createPostUrl'     => Yii::$app->urlManager->createUrl('post/selectmediatype'),
-                'postsDataProvider' => $postsDataProvider,
-                'title' => 'derpwad'
+                'postsDataProvider' => $postsDataProvider
             ]
         );
     }
