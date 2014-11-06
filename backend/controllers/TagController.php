@@ -1,4 +1,7 @@
 <?php
+/***************************
+* CRUD operations for Tags
+****************************/
 namespace backend\controllers;
 
 use Yii;
@@ -7,13 +10,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
+use backend\dataproviders\TagControllerIndexDataProvider;
 use common\models\Tag;
 
-/**
- * CRUD operations for Tags
- */
 class TagController extends Controller
 {
     /**
@@ -60,17 +59,11 @@ class TagController extends Controller
      */
     public function actionIndex()
     {
-        // TODO - move instance to controller property
-        $tagsDataProvider = new ActiveDataProvider([
-            'query'      => Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC]),
-            'pagination' => ['pageSize' => 50]
-        ]);
-
         return $this->render(
             'index',
             [
                 'createTagUrl'     => Yii::$app->urlManager->createUrl('tag/create'),
-                'tagsDataProvider' => $tagsDataProvider
+                'tagsDataProvider' => new TagControllerIndexDataProvider()
             ]
         );
     }
