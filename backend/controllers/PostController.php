@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\helpers\ArrayHelper;
 use backend\dataproviders\PostControllerIndexDataProvider;
+use backend\dataproviders\PostControllerRelationalContentDataProvider;
 use common\models\Category;
 use common\models\Blog;
 use common\models\Blogger;
@@ -109,36 +110,27 @@ class PostController extends Controller
     {
         $post_media_types = Post::getMediaTypes();
         if(!array_key_exists($media_type, $post_media_types)) {
-            throw new HttpException(404, "Invalid Post Media Type.");
+            throw new HttpException(404, 'Invalid Post Media Type.');
         }
 
-        $post_media         = null;
+        $post_media         = NULL;
         $post_tags          = '';
         $media_type_partial = '';
         $errors             = [];
-        $categories         = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $blogs              = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
-        $bloggers           = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $tags               = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $rel_content_dp     = new PostControllerRelationalContentDataProvider();
         $post               = new Post();
 
-        // load Post defaults, and load additional media partial, if needed
+        // load Post defaults, relational/taxonomic entities, and load
+        //  additional media partial, if needed
         $post->loadDefaultValues();
-        $post->type_id = $media_type;
+        $post->type_id      = $media_type;
+        $relational_content = $rel_content_dp->formattedContent;
 
         // load the Quote, Video, or Image partial-form, if appropriate type
         if($post->type_id) {
             $_classname = 'common\\models\\' . ucfirst($post->getMediaTypeName());
             $post_media = new $_classname;
         }
-
-        // create array of relational datatypes' id => name/title for <select>
-        $categories = ArrayHelper::map($categories, 'id', 'name');
-        $blogs      = ArrayHelper::map($blogs, 'id', 'title');
-        $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
-        array_unshift($categories, 'None');
-        array_unshift($blogs, 'None');
-        array_unshift($bloggers, 'None');
 
         if(Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
@@ -181,10 +173,10 @@ class PostController extends Controller
         return $this->render(
             'create',
             [
-                'categories' => $categories,
-                'blogs'      => $blogs,
-                'bloggers'   => $bloggers,
-                'tags'       => $tags,
+                'categories' => $relational_content['categories'],
+                'blogs'      => $relational_content['blogs'],
+                'bloggers'   => $relational_content['bloggers'],
+                'tags'       => $relational_content['tags'],
                 'post'       => $post,
                 'post_tags'  => $post_tags,
                 'post_media' => $post_media,
@@ -201,40 +193,26 @@ class PostController extends Controller
      *  Array of errors from actionCreate() that occurred while
      *  saving the original Post or its relational objects.
      */
-    public function actionUpdate($id, $create_errors = null)
+    public function actionUpdate($id, $create_errors = NULL)
     {
 
-        $post_media = null;
-        $post_tags  = '';
-        $categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
-        $bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
-        $post       = Post::find()->where('id = :_id', [':_id' => $id])->one();
-        $errors     = (isset($create_errors) && is_array($create_errors) && !empty($create_errors)) ?
+        $post_tags      = '';
+        $rel_content_dp = new PostControllerRelationalContentDataProvider();
+        $post           = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        $post_media     = $post ? $post->media : NULL;
+        $errors         = (isset($create_errors) && is_array($create_errors) && !empty($create_errors)) ?
             $create_errors :
             []
         ;
-
         if($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
         }
+        $relational_content = $rel_content_dp->formattedContent;
         // load Tags associated with Post
         if(!empty($post->tags)) {
             $post_tags = ArrayHelper::map($post->tags, 'id', 'name');
             $post_tags = implode(',', $post_tags);
         }
-        // load the Quote, Video, or Image, if appropriate type
-        if($_type = $post->getMediaTypeName()) {
-            $post_media = $post->media;
-        }
-
-        $categories = ArrayHelper::map($categories, 'id', 'name');
-        $blogs      = ArrayHelper::map($blogs, 'id', 'title');
-        $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
-        array_unshift($categories, 'None');
-        array_unshift($blogs, 'None');
-        array_unshift($bloggers, 'None');
 
         if(Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
@@ -266,10 +244,10 @@ class PostController extends Controller
         return $this->render(
             'update',
             [
-                'categories' => $categories,
-                'blogs'      => $blogs,
-                'bloggers'   => $bloggers,
-                'tags'       => $tags,
+                'categories' => $relational_content['categories'],
+                'blogs'      => $relational_content['blogs'],
+                'bloggers'   => $relational_content['bloggers'],
+                'tags'       => $relational_content['tags'],
                 'post'       => $post,
                 'post_tags'  => $post_tags,
                 'post_media' => $post_media,

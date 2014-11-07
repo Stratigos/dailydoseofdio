@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 use common\models\Category;
 use common\models\Blog;
 use common\models\Blogger;
+use common\models\Tag;
 
 class PostControllerRelationalContentDataProvider extends ActiveDataProvider
 {
@@ -33,6 +34,12 @@ class PostControllerRelationalContentDataProvider extends ActiveDataProvider
     protected $bloggers;
 
     /**
+     * @var Array
+     *  List of all available Tags
+     */
+    protected $tags;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -42,31 +49,32 @@ class PostControllerRelationalContentDataProvider extends ActiveDataProvider
         $this->categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $this->blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $this->bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
+        $this->tags       = Tag::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
     }
 
     /**
      * @todo DOCUMENT
      */
-    public static function getFormattedContent()
+    public function getFormattedContent()
     {
         $content = [
-            'categories' => [],
-            'blogs'      => [],
-            'bloggers'   => []
+            'categories' => ['None'],
+            'blogs'      => ['None'],
+            'bloggers'   => ['None'],
+            'tags'       => self::getTags()
         ];
         // create array of relational datatypes' id => name/title for <select>
 
         if($_categories = self::getCategories()) {
-            $content['categories'] = ArrayHelper::map($_categories, 'id', 'name');
-            array_unshift($content['categories'], 'None')
+            $content['categories'] += ArrayHelper::map($_categories, 'id', 'name');
+            //array_unshift($content['categories'], 'None')
         }
-
-        // TODO - REPEAT FOR BLOGS N BLOGGERS, REPLACE REPEATED CODEBLOCK IN POSTCONTROLLER WITH THIS
-        
-        // $blogs      = ArrayHelper::map($blogs, 'id', 'title');
-        // $bloggers   = ArrayHelper::map($bloggers, 'id', 'name');
-        // array_unshift($blogs, 'None');
-        // array_unshift($bloggers, 'None');
+        if($_blogs = self::getBlogs()) {
+            $content['blogs'] += ArrayHelper::map($_blogs, 'id', 'title');
+        }
+        if($_bloggers = self::getBloggers()) {
+            $content['bloggers'] += ArrayHelper::map($_bloggers, 'id', 'name');
+        }
 
         return $content;
     }
@@ -93,5 +101,13 @@ class PostControllerRelationalContentDataProvider extends ActiveDataProvider
     public function getBloggers()
     {
         return $this->bloggers;
+    }
+
+    /**
+     *
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

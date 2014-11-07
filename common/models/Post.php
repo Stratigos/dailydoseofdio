@@ -165,7 +165,7 @@ class Post extends ActiveRecord
      */
     public function getMedia()
     {
-        $media = null;
+        $media = NULL;
         switch($this->type_id) {
             case self::POST_TYPE_VIDEO :
                 $media = $this->video;
