@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\helpers\ArrayHelper;
 use backend\dataproviders\PostControllerIndexDataProvider;
 use backend\dataproviders\PostControllerRelationalContentDataProvider;
+use backend\models\PostMediaFactory;
 use common\models\Category;
 use common\models\Blog;
 use common\models\Blogger;
@@ -125,12 +126,7 @@ class PostController extends Controller
         $post->loadDefaultValues();
         $post->type_id      = $media_type;
         $relational_content = $rel_content_dp->formattedContent;
-
-        // load the Quote, Video, or Image partial-form, if appropriate type
-        if($post->type_id) {
-            $_classname = 'common\\models\\' . ucfirst($post->getMediaTypeName());
-            $post_media = new $_classname;
-        }
+        $post_media         = PostMediaFactory::instantiatePostMedia($post->getMediaTypeName());
 
         if(Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
