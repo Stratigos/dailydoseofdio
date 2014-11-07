@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6"
+                "reference": "142116308c921e18777fb73a46e87f7f899209b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6",
-                "reference": "2d9e30ff8f92b8e4afc4e4b8a9bad2d0fcbba5f6",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/142116308c921e18777fb73a46e87f7f899209b2",
+                "reference": "142116308c921e18777fb73a46e87f7f899209b2",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-11-04 18:32:36"
+            "time": "2014-11-06 22:36:17"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
+                "reference": "29be39a569fad0b08c55089eb496730df174b994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
+                "reference": "29be39a569fad0b08c55089eb496730df174b994",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-10 02:49:40"
+            "time": "2014-10-12 22:42:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -851,12 +851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "95d709c7a059ee27760b54267d7f1ff8462b4f90"
+                "reference": "886f6dd50dbe7bd800d0a5f57a7d8c41fda46a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/95d709c7a059ee27760b54267d7f1ff8462b4f90",
-                "reference": "95d709c7a059ee27760b54267d7f1ff8462b4f90",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/886f6dd50dbe7bd800d0a5f57a7d8c41fda46a4a",
+                "reference": "886f6dd50dbe7bd800d0a5f57a7d8c41fda46a4a",
                 "shasum": ""
             },
             "require": {
@@ -931,7 +931,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-06 16:16:14"
+            "time": "2014-11-06 22:58:37"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -939,12 +939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "b06278004ed4ff3c524d2c13795575679f85c4f8"
+                "reference": "f07e49c539e579b7888839160ca7f7ed717d1a79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/b06278004ed4ff3c524d2c13795575679f85c4f8",
-                "reference": "b06278004ed4ff3c524d2c13795575679f85c4f8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/f07e49c539e579b7888839160ca7f7ed717d1a79",
+                "reference": "f07e49c539e579b7888839160ca7f7ed717d1a79",
                 "shasum": ""
             },
             "require": {
@@ -977,7 +977,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-11-03 22:51:11"
+            "time": "2014-11-06 22:56:17"
         },
         {
             "name": "yiisoft/yii2-composer",
