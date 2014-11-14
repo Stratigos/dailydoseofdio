@@ -41,6 +41,7 @@ return [
                 'diosite/create'              => 'diosite/create',
                 'diosite/update/<id:\d+>'     => 'diosite/update',
                 'diosite/delete/<id:\d+>'     => 'diosite/delete',
+                'pages/<page:\d+>'            => 'page/index',
                 'pages'                       => 'page/index',
                 'page/create'                 => 'page/create',
                 'page/update/<id:\d+>'        => 'page/update',
