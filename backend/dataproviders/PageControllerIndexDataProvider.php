@@ -5,16 +5,13 @@
 **************************************************/
 namespace backend\dataproviders;
 
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use common\models\Page;
 
-class PageControllerIndexDataProvider extends ActiveDataProvider
+class PageControllerIndexDataProvider extends IndexDataProvider
 {
     public function init()
     {
         parent::init();
-        $this->pagination->pageSize = 10;
-        $this->query                = Page::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]);
+        $this->query = Page::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]);
     }
 }

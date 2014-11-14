@@ -45,7 +45,7 @@ class PostControllerRelationalContentDataProvider extends ActiveDataProvider
     public function init()
     {
         parent::init();
-        $this->pagination = false;
+        $this->pagination = FALSE;
         $this->categories = Category::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();
         $this->blogs      = Blog::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC])->all();
         $this->bloggers   = Blogger::find()->where(['deleted_at' => 0])->orderBy(['name' => SORT_ASC])->all();

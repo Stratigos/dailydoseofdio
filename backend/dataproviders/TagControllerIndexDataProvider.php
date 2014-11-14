@@ -5,11 +5,9 @@
 ****************************************************/
 namespace backend\dataproviders;
 
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use common\models\Tag;
 
-class TagControllerIndexDataProvider extends ActiveDataProvider
+class TagControllerIndexDataProvider extends IndexDataProvider
 {
     public function init()
     {

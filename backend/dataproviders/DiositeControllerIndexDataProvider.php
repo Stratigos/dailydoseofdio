@@ -5,16 +5,13 @@
 ****************************************************/
 namespace backend\dataproviders;
 
-use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use common\models\DioSite;
 
-class DiositeControllerIndexDataProvider extends ActiveDataProvider
+class DiositeControllerIndexDataProvider extends IndexDataProvider
 {
     public function init()
     {
         parent::init();
-        $this->pagination->pageSize = 10;
-        $this->query                = DioSite::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]);
+        $this->query = DioSite::find()->where(['deleted_at' => 0])->orderBy(['title' => SORT_ASC]);
     }
 }
