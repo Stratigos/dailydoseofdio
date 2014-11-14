@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994"
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
-                "reference": "29be39a569fad0b08c55089eb496730df174b994",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
+                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-12 22:42:00"
+            "time": "2014-10-10 02:49:40"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -851,12 +851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ae326d8c6d15198f34f0d11993917a70bebca8e7"
+                "reference": "6d94671fc6ef82e8e8a01a6ba286481630936cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ae326d8c6d15198f34f0d11993917a70bebca8e7",
-                "reference": "ae326d8c6d15198f34f0d11993917a70bebca8e7",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6d94671fc6ef82e8e8a01a6ba286481630936cb4",
+                "reference": "6d94671fc6ef82e8e8a01a6ba286481630936cb4",
                 "shasum": ""
             },
             "require": {
@@ -931,7 +931,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-13 13:27:24"
+            "time": "2014-11-14 02:28:47"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
