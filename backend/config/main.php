@@ -25,18 +25,22 @@ return [
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
              */
             'rules'               => [
+                'blogs/<page:\d+>'            => 'blog/index',
                 'blogs'                       => 'blog/index',
                 'blog/create'                 => 'blog/create',
                 'blog/update/<id:\d+>'        => 'blog/update',
                 'blog/delete/<id:\d+>'        => 'blog/delete',
+                'bloggers/<page:\d+>'         => 'blogger/index',
                 'bloggers'                    => 'blogger/index',
                 'blogger/create'              => 'blogger/create',
                 'blogger/update/<id:\d+>'     => 'blogger/update',
                 'blogger/delete/<id:\d+>'     => 'blogger/delete',
+                'categories/<page:\d+>'       => 'category/index',
                 'categories'                  => 'category/index',
                 'category/create'             => 'category/create',
                 'category/update/<id:\d+>'    => 'category/update',
                 'category/delete/<id:\d+>'    => 'category/delete',
+                'diosites/<page:\d+>'         => 'diosite/index',
                 'diosites'                    => 'diosite/index',
                 'diosite/create'              => 'diosite/create',
                 'diosite/update/<id:\d+>'     => 'diosite/update',
@@ -46,6 +50,7 @@ return [
                 'page/create'                 => 'page/create',
                 'page/update/<id:\d+>'        => 'page/update',
                 'page/delete/<id:\d+>'        => 'page/delete',
+                'posts/<page:\d+>'            => 'post/index',
                 'posts'                       => 'post/index',
                 'post/create/<media_type:\d>' => 'post/create',
                 'post/update/<id:\d+>'        => 'post/update',
@@ -53,10 +58,11 @@ return [
                 '/'                           => 'site/index',
                 'logout'                      => 'site/logout',
                 'login'                       => 'site/login',
+                'tags/<page:\d+>'             => 'tag/index',
                 'tags'                        => 'tag/index',
                 'tag/create'                  => 'tag/create',
                 'tag/update/<id:\d+>'         => 'tag/update',
-                'tag/delete/<id:\d+>'         => 'tag/delete',
+                'tag/delete/<id:\d+>'         => 'tag/delete'
             ]
         ],
         'user' => [
