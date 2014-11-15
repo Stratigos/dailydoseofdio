@@ -70,11 +70,7 @@ class SiteController extends Controller
     {
         $posts = Post::find()->
             where(
-                [
-                    //'published_at'  => '<'.time(),
-                    'status'        => Post::STATUS_PUBLISHED,
-                    'deleted_at'    => 0
-                ]
+                'published_at <= ' . time() . ' AND status = '. Post::STATUS_PUBLISHED . ' AND deleted_at = 0'
             )->
             orderBy(
                 [
