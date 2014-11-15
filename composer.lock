@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a514b00acb75af5470057c5cc4a90cb01b935eb8"
+                "reference": "47e5e310ba9fc4b247464b367ac02878523abf18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a514b00acb75af5470057c5cc4a90cb01b935eb8",
-                "reference": "a514b00acb75af5470057c5cc4a90cb01b935eb8",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/47e5e310ba9fc4b247464b367ac02878523abf18",
+                "reference": "47e5e310ba9fc4b247464b367ac02878523abf18",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-11-13 17:14:36"
+            "time": "2014-11-15 02:22:36"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -851,12 +851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "c29a7a697c941487db8b8fbf12c7a5a911a415c4"
+                "reference": "621bedea5f3963799ff9c6eedfff76673a9b35bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c29a7a697c941487db8b8fbf12c7a5a911a415c4",
-                "reference": "c29a7a697c941487db8b8fbf12c7a5a911a415c4",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/621bedea5f3963799ff9c6eedfff76673a9b35bc",
+                "reference": "621bedea5f3963799ff9c6eedfff76673a9b35bc",
                 "shasum": ""
             },
             "require": {
@@ -931,7 +931,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-14 22:26:49"
+            "time": "2014-11-15 13:38:24"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
