@@ -1,11 +1,6 @@
 <?php
 use yii\db\Schema;
 use yii\db\Migration;
-use common\models\Category;
-use common\models\Tag;
-use common\models\Blog;
-use common\models\Blogger;
-use common\models\User;
 
 /**
  * Migration to initialize DDoD Web Application
@@ -212,94 +207,6 @@ class m130524_201442_init extends Migration
             $tableOptions
         );
 
-        // create initial Categories
-        $_cats = [
-            ['name' => 'Rainbow',       'shortname' => 'rainbow'],
-            ['name' => 'Black Sabbath', 'shortname' => 'black-sabbath'],
-            ['name' => 'Dio',           'shortname' => 'dio'] // the band...
-        ];
-        foreach($_cats as $_cat) {
-            $category            = new Category;
-            $category->name      = $_cat['name'];
-            $category->shortname = $_cat['shortname'];
-            try {
-                $category->save();
-                // if(!$category->save()) {
-                //     echo(print_r($category->getErrors(), 1));
-                // }
-            } catch(Exception $e) {
-                echo("\n");
-                echo($e->getMessage());
-                echo("\n");
-            }
-        }
-        echo("\n    FINISHED ADDING CATEGORIES \n");
-
-        // create some sample Tags
-        $_tags = [
-            ['name' => '70s',            'shortname' => '70s'],
-            ['name' => '80s',            'shortname' => '80s'],
-            ['name' => 'Music Industry', 'shortname' => 'music-industry'],
-            ['name' => 'Poetic Lyrics',  'shortname' => 'poetic-lyrics'],
-            ['name' => 'Rockin Solos',   'shortname' => 'rockin-solos']
-        ];
-        foreach($_tags as $_tag) {
-            $tag            = new Tag;
-            $tag->name      = $_tag['name'];
-            $tag->shortname = $_tag['shortname'];
-            try {
-                $tag->save();
-            } catch(Exception $e) {
-                echo("\n");
-                echo($e->getMessage());
-                echo("\n");
-            }
-        }
-        echo("\n    FINISHED ADDING SAMPLE TAGS \n");
-
-        // create initial Blog
-        $blog            = new Blog;
-        $blog->title     = 'Doses';
-        $blog->shortname = 'doses';
-        try {
-            $blog->save();
-        } catch (Exception $e) {
-            echo("\n");
-            echo($e->getMessage());
-            echo("\n");
-        }
-        echo("\n    FINISHED ADDING FIRST BLOG \n");
-
-        // create initial Blogger
-        $blogger            = new Blogger;
-        $blogger->name      = 'Todd Stargazer';
-        $blogger->shortname = 'todd-stargazer';
-        try {
-            $blogger->save();
-        } catch (Exception $e) {
-            echo("\n");
-            echo($e->getMessage());
-            echo("\n");
-        }
-        echo("\n    FINISHED ADDING FIRST BLOGGER \n");
-
-        // create initial admin User
-        $password       = 'admin';
-        $user           = new User();
-        $user->username = 'admin';
-        $user->password = $password;
-        $user->email    = 'dont@spam.me';
-        try {
-            $user->save();
-        } catch(Exception $e) {
-            echo("\n");
-            echo($e->getMessage());
-            echo("\n");
-        }
-        echo(
-            "\n    New user with username: '{$user->username}' and password '{$password}' created." . 
-            "\n    ~ !! After migrations finish, log in, and update this user with a secure password !! ~\n"
-        );
     }
 
     public function down()
