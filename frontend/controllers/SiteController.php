@@ -68,15 +68,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $posts = Post::find()->published()->
-            orderBy(
-                [
-                    'published_at' => SORT_DESC
-                ]
-            )->
-            limit(10)->
-            all()
-        ;
+        $posts = Post::find()->publishedDesc()->limit(10)->all();
 
         return $this->render(
             'index',
