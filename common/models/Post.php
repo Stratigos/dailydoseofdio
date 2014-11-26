@@ -40,6 +40,16 @@ class Post extends ActiveRecord
     }
 
     /**
+     * Overriding find() to allow for custom scopes
+     * @inheritdoc
+     * @return PostQuery
+     */
+    public static function find()
+    {
+        return new PostQuery(get_called_class());
+    }
+
+    /**
      * returns an array of each posts.type_id value as keys, with
      *  text representations of the types as values.
      */

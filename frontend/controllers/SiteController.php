@@ -68,10 +68,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $posts = Post::find()->
-            where(
-                'published_at <= ' . time() . ' AND status = '. Post::STATUS_PUBLISHED . ' AND deleted_at = 0'
-            )->
+        $posts = Post::find()->published()->
             orderBy(
                 [
                     'published_at' => SORT_DESC
