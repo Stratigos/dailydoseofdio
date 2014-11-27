@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Post;
+use frontend\dataproviders\HomepagePostsDataProvider;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -68,12 +69,12 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $posts = Post::find()->publishedDesc()->limit(10)->all();
+        $postsDP = new HomepagePostsDataProvider;
 
         return $this->render(
             'index',
             [
-                'posts' => $posts
+                'posts' => $postsDP->getModels()
             ]
         );
     }
