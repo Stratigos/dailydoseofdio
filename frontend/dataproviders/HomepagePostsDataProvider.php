@@ -15,6 +15,6 @@ class HomepagePostsDataProvider extends ActiveDataProvider
         parent::init();
         $this->pagination->defaultPageSize = 10;
         $this->pagination->pageSizeParam   = FALSE;
-        $this->query = Post::find()->publishedDesc();
+        $this->query = Post::find()->publishedDesc()->with('blogger');
     }
 }
