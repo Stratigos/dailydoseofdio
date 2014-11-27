@@ -1,3 +1,4 @@
+<?php use yii\widgets\LinkPager; ?>
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
@@ -12,6 +13,7 @@
                 <?php foreach($posts as $post) : ?>
                     <?= $this->context->renderPartial('partials/_hpBlogPost', array('post' => $post)); ?>
                 <?php endforeach; ?>
+                <?= LinkPager::widget(['pagination' => $pagination]); ?>
             <?php else : ?>
                 <p>No Posts found.</p>
             <?php endif;?>

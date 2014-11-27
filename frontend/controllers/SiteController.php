@@ -67,14 +67,20 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * DOING THINGS WITH COMPUTERS
+     * @todo document this, h'aint?
+     * @return VOID
+     */
     public function actionIndex()
     {
-        $postsDP = new HomepagePostsDataProvider;
+        $postsDP = new HomepagePostsDataProvider();
 
         return $this->render(
             'index',
             [
-                'posts' => $postsDP->getModels()
+                'posts'       => $postsDP->getModels(),
+                'pagination'  => $postsDP->pagination
             ]
         );
     }

@@ -1,6 +1,6 @@
 <?php
 /*************************************************
-*
+* Selects pages of Posts for index vertical
 **************************************************/
 namespace frontend\dataproviders;
 
