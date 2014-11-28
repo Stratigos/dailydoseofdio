@@ -35,8 +35,27 @@ AppAsset::register($this);
                 ]
             ]);
             $menuItems = [
-                ['label' => 'About',   'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']]
+                [
+                    'label' => 'Genres',
+                    'items' => [
+                        [
+                            'label' => 'Rainbow',
+                            'url'   => Yii::$app->urlManager->createUrl('category/rainbow')
+                        ],
+                        [
+                            'label' => 'Black Sabbath',
+                            'url'   => Yii::$app->urlManager->createUrl('category/black-sabbath')
+                        ],
+                        [
+                            'label' => 'Dio',
+                            'url'   => Yii::$app->urlManager->createUrl('category/dio')
+                        ]
+                    ]
+                ],
+                ['label' => 'Anthems', 'url' => ['/blogs']],
+                ['label' => 'Bards',   'url' => ['/bloggers']],
+                ['label' => 'Odes',    'url' => ['/site/about']],
+                ['label' => 'Cheers',  'url' => ['/site/contact']]
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
