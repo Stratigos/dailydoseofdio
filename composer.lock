@@ -794,12 +794,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "30e571ce1bba949b44f49b977966898a41c77a01"
+                "reference": "0d2ee92af48d0e18ef575b1ca0f13ffc6b7901ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/30e571ce1bba949b44f49b977966898a41c77a01",
-                "reference": "30e571ce1bba949b44f49b977966898a41c77a01",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/0d2ee92af48d0e18ef575b1ca0f13ffc6b7901ec",
+                "reference": "0d2ee92af48d0e18ef575b1ca0f13ffc6b7901ec",
                 "shasum": ""
             },
             "require": {
@@ -843,7 +843,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-11-20 13:24:30"
+            "time": "2014-11-28 10:00:56"
         },
         {
             "name": "yiisoft/yii2",
@@ -851,12 +851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "583af36ba1d16a75a747f413b88baa05e3d8be6b"
+                "reference": "e7220d6996bc07c4341bdc5dd76b451bc63ff318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/583af36ba1d16a75a747f413b88baa05e3d8be6b",
-                "reference": "583af36ba1d16a75a747f413b88baa05e3d8be6b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e7220d6996bc07c4341bdc5dd76b451bc63ff318",
+                "reference": "e7220d6996bc07c4341bdc5dd76b451bc63ff318",
                 "shasum": ""
             },
             "require": {
@@ -931,7 +931,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-11-27 17:42:31"
+            "time": "2014-11-28 14:13:52"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
