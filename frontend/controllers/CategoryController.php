@@ -4,9 +4,11 @@
 ********************************************/
 namespace frontend\controllers;
 
-use frontend\dataproviders\CategoriesDataProvider;
+use common\models\Category;
+use frontend\dataproviders\CategoryPostsDataProvider;
 //use yii\filters\VerbFilter;
 //use yii\filters\AccessControl;
+use yii\web\HttpException;
 
 class CategoryController extends FrontendController
 {
@@ -60,11 +62,20 @@ class CategoryController extends FrontendController
      * Lists all Posts in a Category
      * @return VOID
      */
-    public function actionCategory()
+    public function actionCategory($shortname)
     {
-        // DO STUFF
+        if(!($category = Category::find()->published()->andWhere(['shortname' => $shortname])->one())) {
+            throw new HttpException(404, "YOUR MOM");
+        }
+        $catPostsDP = new CategoryPostsDataProvider(['category_id' => $category->id]);
 
-        return $this->render('category');
+        return $this->render(
+            'category',
+            [
+                'category' => $category,
+                'postsDP'  => $catPostsDP
+            ]
+        );
     }
 
 }

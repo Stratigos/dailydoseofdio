@@ -1,8 +1,24 @@
+<?php use yii\widgets\LinkPager; ?>
 <div class="container">
     <div class="col-md-8">
-        <h1 class="page-header">
-            <p>Category: </p>
-        </h1>
-        <p>Things and stuff!</p>
+        <div class="container">
+            <h1 class="page-header">
+                <p><?= $category->name; ?></p>
+            </h1>
+            <p><b>Description:</b>&nbsp;<?= $category->description; ?> </p>
+        </div>
+        <div class="container">
+            <?php if($posts = $postsDP->getModels()): ?>
+                <?php foreach($posts as $post): ?>
+                    <?= $this->context->renderPartial(
+                        '@frontend/views/_partials/postDefault.php',
+                        ['post' => $post]
+                    ); ?>
+                <?php endforeach; ?>
+                <?= LinkPager::widget(['pagination' => $postsDP->pagination]); ?>
+            <?php else : ?>
+                <p>No Posts found.</p>
+            <?php endif;?>
+        </div>
     </div>
 </div>
