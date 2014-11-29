@@ -42,6 +42,9 @@ class Category extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
             ],
+            'linkBehavior' => [
+                'class' => 'common\behaviors\CategoryLinkBehavior'
+            ]
         ];
     }
 
