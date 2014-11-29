@@ -1,9 +1,10 @@
 <?php
-/**
-* UNDER CONSTRUCTION
-**/
+/*******************************************
+* Category indices/verticals
+********************************************/
 namespace frontend\controllers;
 
+use frontend\dataproviders\CategoriesDataProvider;
 //use yii\filters\VerbFilter;
 //use yii\filters\AccessControl;
 
@@ -41,17 +42,16 @@ class CategoryController extends FrontendController
     // }
 
     /**
-     * DOING THINGS WITH COMPUTERS
-     * @todo document this, h'aint?
+     * Produce list of Category names and URLs
      * @return VOID
      */
     public function actionIndex()
     {
+        $categoryDP = new CategoriesDataProvider();
         return $this->render(
             'index',
             [
-                //'posts'       => $postsDP->getModels(),
-                //'pagination'  => $postsDP->pagination
+                'categories' => $categoryDP->getModels()
             ]
         );
     }
