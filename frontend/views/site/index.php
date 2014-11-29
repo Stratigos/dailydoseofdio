@@ -11,7 +11,10 @@
 
             <?php if(isset($posts) && !empty($posts)) :?>
                 <?php foreach($posts as $post) : ?>
-                    <?= $this->context->renderPartial('partials/_hpBlogPost', array('post' => $post)); ?>
+                    <?= $this->context->renderPartial(
+                        '@frontend/views/_partials/postDefault.php',
+                        ['post' => $post]
+                    ); ?>
                 <?php endforeach; ?>
                 <?= LinkPager::widget(['pagination' => $pagination]); ?>
             <?php else : ?>
