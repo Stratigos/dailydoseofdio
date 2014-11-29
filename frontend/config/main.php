@@ -7,31 +7,40 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'id'                  => 'app-frontend',
+    'basePath'            => dirname(__DIR__),
+    'bootstrap'           => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'components' => [
-        'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'ihavenoideawhatiamdoing!',
+    'components'          => [
+        'request' => ['cookieValidationKey' => 'ihaznoideawhatiamdoing'], // required for cookie validation
+        'urlManager' => [
+            'enablePrettyUrl'     => TRUE,
+            'enableStrictParsing' => TRUE,
+            'showScriptName'      => FALSE,
+            'class'               => 'yii\web\UrlManager',
+            /**
+             * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
+             */
+            'rules'               => [
+                '/'                                   => 'site/index',
+                'categories'                          => 'category/index',
+                'category/<shortname:\w+>'            => 'category/category',
+                'category/<shortname:\w+>/<page:\d+>' => 'category/category'
+            ]
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-        ],
-        'log' => [
+        //'user' => ['identityClass' => 'common\models\User'],
+        'log'  => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets'    => [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
-                ],
-            ],
+                ]
+            ]
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
+        ]
     ],
-    'params' => $params,
+    'params' => $params
 ];
