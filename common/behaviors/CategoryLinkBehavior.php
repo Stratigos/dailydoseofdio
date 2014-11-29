@@ -1,7 +1,7 @@
 <?php
-/************
+/********************************************
 * Produce URLs and link tags for a Category
-*/
+*********************************************/
 
 namespace common\behaviors;
 
