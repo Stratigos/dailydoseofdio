@@ -37,6 +37,7 @@ AppAsset::register($this);
             $menuItems = [
                 [
                     'label' => 'Genres',
+                    'url'   => Yii::$app->urlManager->createUrl('categories'),
                     'items' => [
                         [
                             'label' => 'Rainbow',
