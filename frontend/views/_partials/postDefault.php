@@ -1,6 +1,6 @@
 <?php use yii\helpers\Html; ?>
 <h2>
-    <a href="#"><?= Html::a(Html::encode($post->title), /*$data->url*/ '#'); ?></a>
+    <a href="#"><?= Html::a(Html::encode($post->title), $post->url); ?></a>
 </h2>
 <p class="lead">
     by <a href="index.php"><?= $post->blogger? $post->blogger->name : 'Nobody Special'; ?></a>

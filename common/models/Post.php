@@ -75,6 +75,12 @@ class Post extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ]
+            ],
+            'permaLinkBehavior' => [
+                'class'         => 'common\behaviors\PermaLinkBehavior',
+                'pathname'      => 'dose',
+                'shortnameAttr' => 'shortname',
+                'linknameAttr'  => 'title'
             ]
         ];
 
