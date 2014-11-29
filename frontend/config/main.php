@@ -22,10 +22,10 @@ return [
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
              */
             'rules'               => [
-                '/'                                   => 'site/index',
-                'categories'                          => 'category/index',
-                'category/<shortname:\w+>'            => 'category/category',
-                'category/<shortname:\w+>/<page:\d+>' => 'category/category'
+                '/'                                      => 'site/index',
+                'categories'                             => 'category/index',
+                'category/<shortname:[\w-]+>'            => 'category/category',
+                'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'
             ]
         ],
         //'user' => ['identityClass' => 'common\models\User'],
