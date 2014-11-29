@@ -20,6 +20,16 @@ class Category extends ActiveRecord
     }
 
     /**
+     * Overriding find() to allow for custom scopes
+     * @inheritdoc
+     * @return CategoryQuery
+     */
+    public static function find()
+    {
+        return new CategoryQuery(get_called_class());
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
