@@ -56,4 +56,15 @@ class CategoryController extends FrontendController
         );
     }
 
+    /**
+     * Lists all Posts in a Category
+     * @return VOID
+     */
+    public function actionCategory()
+    {
+        // DO STUFF
+
+        return $this->render('category');
+    }
+
 }
