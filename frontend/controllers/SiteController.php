@@ -11,8 +11,7 @@ class SiteController extends FrontendController
 {
 
     /**
-     * DOING THINGS WITH COMPUTERS
-     * @todo document this, h'aint?
+     * Homepage action
      * @return VOID
      */
     public function actionIndex()
