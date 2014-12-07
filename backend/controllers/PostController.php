@@ -150,6 +150,7 @@ class PostController extends Controller
                     }
                 }
                 if(!empty($errors)) {
+                    Yii::$app->session->setFlash('success', "Post: {$post->id} created!");
                     return $this->redirect(
                         Yii::$app->urlManager->createUrl(
                             [
@@ -230,7 +231,8 @@ class PostController extends Controller
                 }
                 // if everything saved correctly, refresh current page
                 if(empty($errors)) {
-                    $this->refresh();
+                    Yii::$app->session->setFlash('success', "Post: {$post->id} updated!");
+                    return $this->refresh();
                 }
             } else {
                 $errors = array_merge($errors, $post->getErrors());
