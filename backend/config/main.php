@@ -13,13 +13,24 @@ return [
     'bootstrap'           => ['log'],
     'modules'             => [],
     'components'          => [
+        'errorHandler' => [
+            'errorAction' => 'site/error'
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets'    => [
+                [
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ]
+            ]
+        ],
         'request' => [
-            'cookieValidationKey' => 'ihavenoideawhatiamdoing',
+            'cookieValidationKey' => 'ihavenoideawhatiamdoing'
         ],
         'urlManager' => [
-            'enablePrettyUrl'     => TRUE,
-            //'enableStrictParsing' => TRUE, // if TRUE, will only allow routes defined in 'rules'
-            'showScriptName'      => FALSE,
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
             'class'               => 'yii\web\UrlManager',
             /**
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
@@ -66,20 +77,8 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
+            'identityClass'   => 'common\models\User',
+            'enableAutoLogin' => true
         ]
     ],
     'params' => $params
