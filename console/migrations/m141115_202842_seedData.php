@@ -132,11 +132,11 @@ class m141115_202842_seedData extends Migration
         // create initial administrative Users
         $users = [
             [
-                'username' => 'todd',
+                'username' => 'toddmorningstar',
                 'email'    => 'dont@spam.me'
             ],
             [
-                'username' => 'lucy',
+                'username' => 'lucyappleschen',
                 'email'    => 'dont@spam2.me'
             ]
         ];
