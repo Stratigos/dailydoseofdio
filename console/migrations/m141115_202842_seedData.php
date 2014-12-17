@@ -152,13 +152,14 @@ class m141115_202842_seedData extends Migration
 
     public function down()
     {
-        echo("\n DELETING ALL Post, Page, Category, Tag, Blog, AND Blogger RECORDS... \n");
+        echo("\n DELETING ALL Post, Page, Category, Tag, Blog, Blogger, and User RECORDS... \n");
         Page::deleteAll();
         Post::deleteAll();
         Category::deleteAll();
         Tag::deleteAll();
         Blog::deleteAll();
         Blogger::deleteAll();
+        User::deleteAll();
         echo("\n ...FINISHED \n");
 
         return TRUE;
