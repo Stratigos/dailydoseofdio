@@ -129,23 +129,37 @@ class m141115_202842_seedData extends Migration
         }
         echo("\n    FINISHED ADDING FIRST BLOGGER \n");
 
-        // create initial admin User
-        $password       = 'admin';
-        $user           = new User();
-        $user->username = 'admin';
-        $user->password = $password;
-        $user->email    = 'dont@spam.me';
-        try {
-            $user->save();
-        } catch(Exception $e) {
-            echo("\n");
-            echo($e->getMessage());
-            echo("\n");
+        // create initial administrative Users
+        $users = [
+            [
+                'username' => 'todd',
+                'email'    => 'dont@spam.me'
+            ],
+            [
+                'username' => 'lucy',
+                'email'    => 'dont@spam2.me'
+            ]
+        ];
+        $password = 'admin';
+        foreach($users as $usr) {
+            $user           = new User();
+            $user->username = $usr['username'];
+            $user->password = $password;
+            $user->email    = $usr['email'];
+            try {
+                $user->save();
+            } catch(Exception $e) {
+                echo("\n");
+                echo($e->getMessage());
+                echo("\n");
+            }
+            echo(
+                "\n    New User created with id: {$user->id},  username: '{$user->username}'," .
+                " and password '{$password}'."
+            );
         }
-        echo(
-            "\n    New user with username: '{$user->username}' and password '{$password}' created." . 
-            "\n    ~ !! After migrations finish, log in, and update this user with a secure password !! ~\n"
-        );
+
+        echo("\n    ~ !! After migrations finish, log in, and update all users with a secure password !! ~\n");
 
         return TRUE;
     }
