@@ -7,20 +7,26 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'id'                  => 'app-console',
+    'basePath'            => dirname(__DIR__),
+    'bootstrap'           => ['log'],
     'controllerNamespace' => 'console\controllers',
-    'modules' => [],
-    'components' => [
+    'modules'             => [],
+    'components'          => [
+        'authManager' => [
+            'class'          => 'yii\rbac\PhpManager',
+            'assignmentFile' => '@backend/rbac/assignments.php',
+            'itemFile'       => '@backend/rbac/items.php',
+            'ruleFile'       => '@backend/rbac/rules.php'
+        ],
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning']
+                ]
+            ]
+        ]
     ],
-    'params' => $params,
+    'params' => $params
 ];
