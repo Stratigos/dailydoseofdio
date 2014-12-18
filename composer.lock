@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "07aed453474847b32a1078972b1db7a9afaca3cb"
+                "reference": "2672fbfe5e169d1ee0189295e78e4b46334eb672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/07aed453474847b32a1078972b1db7a9afaca3cb",
-                "reference": "07aed453474847b32a1078972b1db7a9afaca3cb",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2672fbfe5e169d1ee0189295e78e4b46334eb672",
+                "reference": "2672fbfe5e169d1ee0189295e78e4b46334eb672",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-12-12 20:21:42"
+            "time": "2014-12-18 00:26:26"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -264,12 +264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863"
+                "reference": "29be39a569fad0b08c55089eb496730df174b994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/5432702a06696d52dc3fa4cee7909403b55a3863",
-                "reference": "5432702a06696d52dc3fa4cee7909403b55a3863",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/29be39a569fad0b08c55089eb496730df174b994",
+                "reference": "29be39a569fad0b08c55089eb496730df174b994",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -290,7 +290,7 @@
                     "package.json"
                 ]
             },
-            "time": "2014-10-10 02:49:40"
+            "time": "2014-10-12 22:42:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -482,12 +482,12 @@
             "version": "v0.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/summernote/summernote.git",
+                "url": "https://github.com/HackerWins/summernote.git",
                 "reference": "79b50f5d3037a3ffd0f16b501c218f2a6030dea6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summernote/summernote/zipball/79b50f5d3037a3ffd0f16b501c218f2a6030dea6",
+                "url": "https://api.github.com/repos/HackerWins/summernote/zipball/79b50f5d3037a3ffd0f16b501c218f2a6030dea6",
                 "reference": "79b50f5d3037a3ffd0f16b501c218f2a6030dea6",
                 "shasum": ""
             },
@@ -544,12 +544,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cebe/markdown.git",
-                "reference": "a0eeeacbed0864ceb47432cd5be4ed71664a63d8"
+                "reference": "f89dc1da1fc6823f0286d6cad736a642efd0f59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cebe/markdown/zipball/a0eeeacbed0864ceb47432cd5be4ed71664a63d8",
-                "reference": "a0eeeacbed0864ceb47432cd5be4ed71664a63d8",
+                "url": "https://api.github.com/repos/cebe/markdown/zipball/f89dc1da1fc6823f0286d6cad736a642efd0f59e",
+                "reference": "f89dc1da1fc6823f0286d6cad736a642efd0f59e",
                 "shasum": ""
             },
             "require": {
@@ -596,7 +596,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2014-12-07 13:29:05"
+            "time": "2014-12-18 00:45:32"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -1391,6 +1391,7 @@
         "yurkinx/yii2-image": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4.0"
     },
