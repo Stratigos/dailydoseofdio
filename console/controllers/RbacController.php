@@ -5,6 +5,7 @@
 namespace console\controllers;
 
 use Yii;
+use backend\rbac\AuthorRule;
 use common\models\User;
 use yii\console\Controller;
 
@@ -24,7 +25,12 @@ class RbacController extends Controller
 
         if($userTodd && $userLucy) {
             echo("\n  USERS FOUND, CREATING RBAC SYSTEM...\n");
-            // PERMISSIONS ////////////////////////////////////////////////////////
+
+            // RULES //////////////////////////////////////////////////////////
+            $authorRule = new AuthorRule;
+            $auth->add($authorRule);
+
+            // PERMISSIONS ////////////////////////////////////////////////////
 
             // Blogs
             $createBlog              = $auth->createPermission('createBlog');
@@ -103,6 +109,11 @@ class RbacController extends Controller
             $updatePost->description = 'Update Post';
             $auth->add($updatePost);
 
+            $updateOwnPost              = $auth->createPermission('updateOwnPost');
+            $updateOwnPost->description = 'Update Own Post';
+            $updateOwnPost->ruleName    = $authorRule->name;
+            $auth->add()$updateOwnPost;
+
             $viewPost              = $auth->createPermission('viewPost');
             $viewPost->description = 'View Post';
             $auth->add($viewPost);
@@ -145,16 +156,18 @@ class RbacController extends Controller
             $deleteDioSite->description = 'Delete DioSite';
             $auth->add($deleteDioSite);
 
-            // ROLES //////////////////////////////////////////////////////////////
+            // ROLES //////////////////////////////////////////////////////////
+
+            // add "updateOwnPost" to "updatePost" Permission
+            $auth->addChild($updateOwnPost, $updatePost);
 
             // creating "author" role and giving permission for almost everything 
             //  except modifying Pages and taxonomic records
             $author = $auth->createRole('author');
             $auth->add($author);
             $auth->addChild($author, $createPost);
-            $auth->addChild($author, $updatePost);
             $auth->addChild($author, $viewPost);
-            $auth->addChild($author, $deletePost);
+            $auth->addChild($author, $updateOwnPost);
             $auth->addChild($author, $createDioSite);
             $auth->addChild($author, $updateDioSite);
             $auth->addChild($author, $viewDioSite);
@@ -171,9 +184,11 @@ class RbacController extends Controller
             $admin = $auth->createRole('admin');
             $auth->add($admin);
             $auth->addChild($admin, $author);
+            $auth->addChild($admin, $updatePost);
+            $auth->addChild($admin, $deletePost);
             $auth->addChild($admin, $createPage);
             $auth->addChild($admin, $updatePage);
-            $auth->addChild($admin, $deletePost);
+            $auth->addChild($admin, $deletePage);
             $auth->addChild($admin, $createBlog);
             $auth->addChild($admin, $updateBlog);
             $auth->addChild($admin, $deleteBlog);
