@@ -35,13 +35,13 @@ class RbacController extends Controller
             $updateBlog->description = 'Update Blog';
             $auth->add($updateBlog);
 
-            $updateBlog              = $auth->createPermission('viewBlog');
-            $updateBlog->description = 'View Blog';
-            $auth->add($updateBlog);
+            $viewBlog              = $auth->createPermission('viewBlog');
+            $viewBlog->description = 'View Blog';
+            $auth->add($viewBlog);
 
-            $updateBlog              = $auth->createPermission('deleteBlog');
-            $updateBlog->description = 'Delete Blog';
-            $auth->add($updateBlog);
+            $deleteBlog              = $auth->createPermission('deleteBlog');
+            $deleteBlog->description = 'Delete Blog';
+            $auth->add($deleteBlog);
 
             // Bloggers
             $createBlogger              = $auth->createPermission('createBlogger');
@@ -52,13 +52,13 @@ class RbacController extends Controller
             $updateBlogger->description = 'Update Blogger';
             $auth->add($updateBlogger);
 
-            $updateBlogger              = $auth->createPermission('viewBlogger');
-            $updateBlogger->description = 'View Blogger';
-            $auth->add($updateBlogger);
+            $viewBlogger              = $auth->createPermission('viewBlogger');
+            $viewBlogger->description = 'View Blogger';
+            $auth->add($viewBlogger);
 
-            $updateBlogger              = $auth->createPermission('deleteBlogger');
-            $updateBlogger->description = 'Delete Blogger';
-            $auth->add($updateBlogger);
+            $deleteBlogger              = $auth->createPermission('deleteBlogger');
+            $deleteBlogger->description = 'Delete Blogger';
+            $auth->add($deleteBlogger);
 
             // Categories
             $createCategory              = $auth->createPermission('createCategory');
@@ -69,13 +69,13 @@ class RbacController extends Controller
             $updateCategory->description = 'Update Category';
             $auth->add($updateCategory);
 
-            $updateCategory              = $auth->createPermission('viewCategory');
-            $updateCategory->description = 'View Category';
-            $auth->add($updateCategory);
+            $viewCategory              = $auth->createPermission('viewCategory');
+            $viewCategory->description = 'View Category';
+            $auth->add($viewCategory);
 
-            $updateCategory              = $auth->createPermission('deleteCategory');
-            $updateCategory->description = 'Delete Category';
-            $auth->add($updateCategory);
+            $deleteCategory              = $auth->createPermission('deleteCategory');
+            $deleteCategory->description = 'Delete Category';
+            $auth->add($deleteCategory);
 
             // Tags
             $createTag              = $auth->createPermission('createTag');
@@ -86,13 +86,13 @@ class RbacController extends Controller
             $updateTag->description = 'Update Tag';
             $auth->add($updateTag);
 
-            $updateTag              = $auth->createPermission('viewTag');
-            $updateTag->description = 'View Tag';
-            $auth->add($updateTag);
+            $viewTag              = $auth->createPermission('viewTag');
+            $viewTag->description = 'View Tag';
+            $auth->add($viewTag);
 
-            $updateTag              = $auth->createPermission('deleteTag');
-            $updateTag->description = 'Delete Tag';
-            $auth->add($updateTag);
+            $deleteTag              = $auth->createPermission('deleteTag');
+            $deleteTag->description = 'Delete Tag';
+            $auth->add($deleteTag);
 
             // Posts
             $createPost              = $auth->createPermission('createPost');
@@ -103,13 +103,13 @@ class RbacController extends Controller
             $updatePost->description = 'Update Post';
             $auth->add($updatePost);
 
-            $updatePost              = $auth->createPermission('viewPost');
-            $updatePost->description = 'View Post';
-            $auth->add($updatePost);
+            $viewPost              = $auth->createPermission('viewPost');
+            $viewPost->description = 'View Post';
+            $auth->add($viewPost);
 
-            $updatePost              = $auth->createPermission('deletePost');
-            $updatePost->description = 'Delete Post';
-            $auth->add($updatePost);
+            $deletePost              = $auth->createPermission('deletePost');
+            $deletePost->description = 'Delete Post';
+            $auth->add($deletePost);
 
             // Pages
             $createPage              = $auth->createPermission('createPage');
@@ -120,13 +120,13 @@ class RbacController extends Controller
             $updatePage->description = 'Update Page';
             $auth->add($updatePage);
 
-            $updatePage              = $auth->createPermission('viewPage');
-            $updatePage->description = 'View Page';
-            $auth->add($updatePage);
+            $viewPage              = $auth->createPermission('viewPage');
+            $viewPage->description = 'View Page';
+            $auth->add($viewPage);
 
-            $updatePage              = $auth->createPermission('deletePage');
-            $updatePage->description = 'Delete Page';
-            $auth->add($updatePage);
+            $deletePage              = $auth->createPermission('deletePage');
+            $deletePage->description = 'Delete Page';
+            $auth->add($deletePage);
 
             // Dio Sites
             $createDioSite              = $auth->createPermission('createDioSite');
@@ -137,13 +137,13 @@ class RbacController extends Controller
             $updateDioSite->description = 'Update DioSite';
             $auth->add($updateDioSite);
 
-            $updateDioSite              = $auth->createPermission('viewDioSite');
-            $updateDioSite->description = 'View DioSite';
-            $auth->add($updateDioSite);
+            $viewDioSite              = $auth->createPermission('viewDioSite');
+            $viewDioSite->description = 'View DioSite';
+            $auth->add($viewDioSite);
 
-            $updateDioSite              = $auth->createPermission('deleteDioSite');
-            $updateDioSite->description = 'Delete DioSite';
-            $auth->add($updateDioSite);
+            $deleteDioSite              = $auth->createPermission('deleteDioSite');
+            $deleteDioSite->description = 'Delete DioSite';
+            $auth->add($deleteDioSite);
 
             // ROLES //////////////////////////////////////////////////////////////
 
@@ -170,6 +170,7 @@ class RbacController extends Controller
             //  and also everything else :)
             $admin = $auth->createRole('admin');
             $auth->add($admin);
+            $auth->addChild($admin, $author);
             $auth->addChild($admin, $createPage);
             $auth->addChild($admin, $updatePage);
             $auth->addChild($admin, $deletePost);
@@ -184,7 +185,6 @@ class RbacController extends Controller
             $auth->addChild($admin, $deleteCategory);
             $auth->addChild($admin, $updateTag);
             $auth->addChild($admin, $deleteTag);
-            $auth->addChild($admin, $author);
 
             // ASSIGNMENTS
 
