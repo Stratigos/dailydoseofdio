@@ -112,7 +112,7 @@ class RbacController extends Controller
             $updateOwnPost              = $auth->createPermission('updateOwnPost');
             $updateOwnPost->description = 'Update Own Post';
             $updateOwnPost->ruleName    = $authorRule->name;
-            $auth->add()$updateOwnPost;
+            $auth->add($updateOwnPost);
 
             $viewPost              = $auth->createPermission('viewPost');
             $viewPost->description = 'View Post';
