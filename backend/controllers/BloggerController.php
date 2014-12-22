@@ -24,7 +24,7 @@ class BloggerController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete'],
+                        'actions' => ['create', 'view', 'index', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
@@ -55,6 +55,28 @@ class BloggerController extends Controller
             [
                 'createBloggerUrl'     => Yii::$app->urlManager->createUrl('blogger/create'),
                 'bloggersDataProvider' => new BloggerControllerIndexDataProvider()
+            ]
+        );
+    }
+
+    /**
+     * render a view of a Blogger's data
+     * @param Int $id
+     *  valid bloggers.id value
+     */
+    public function actionView($id)
+    {
+        $blogger = Blogger::find()->where('id = :_id', [':_id' => $id])->one();
+
+        if($blogger === NULL) {
+            throw new HttpException(404, "Blogger {$id} Not Found");
+        }
+
+        return $this->render(
+            'view',
+            [
+                'indexUrl' => Yii::$app->urlManager->createUrl('blogger/index'),
+                'blogger'  => $blogger
             ]
         );
     }

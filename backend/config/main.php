@@ -47,6 +47,7 @@ return [
                 'blog/delete/<id:\d+>'        => 'blog/delete',
                 'bloggers/<page:\d+>'         => 'blogger/index',
                 'bloggers'                    => 'blogger/index',
+                'blogger/view/<id:\d+>'       => 'blogger/view',
                 'blogger/create'              => 'blogger/create',
                 'blogger/update/<id:\d+>'     => 'blogger/update',
                 'blogger/delete/<id:\d+>'     => 'blogger/delete',

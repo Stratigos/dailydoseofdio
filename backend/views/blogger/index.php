@@ -11,9 +11,6 @@ use yii\grid\GridView;
             <p><a href="<?= $createBloggerUrl ?>">Create a new Blogger</a></p>
         </div>
         <div>
-            <p><em>Note: at this time, images are unavailable.</em></p>
-        </div>
-        <div>
             <?php echo(
                 GridView::widget([
                     'dataProvider' => $bloggersDataProvider,
@@ -51,10 +48,7 @@ use yii\grid\GridView;
                                 return date('Y-m-d H:i:s', $data->updated_at);
                             }
                         ],
-                        [
-                            'class'    => 'yii\grid\ActionColumn',
-                            'template' => '{update} {delete}'
-                        ]
+                        ['class'    => 'yii\grid\ActionColumn']
                     ]
                 ])
             ); ?>
