@@ -155,6 +155,8 @@ class PostController extends Controller
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
+            // set current User as author
+            $post->created_by = Yii::$app->user->id;
             if($post->save()) {
                 // check for any media, and save relation to Post
                 if($post->type_id && isset($post_media)) {
