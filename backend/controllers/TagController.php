@@ -25,20 +25,25 @@ class TagController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'create', 'index', 'update', 'delete', 'list'],
-                        'allow' => true,
-                        'roles' => ['@']
+                        'actions' => ['view'],
+                        'allow'   => true,
+                        'roles'   => ['@']
+                    ],
+                    [
+                        'actions' => ['index', 'create'],
+                        'allow'   => true,
+                        'roles'   => ['author']
+                    ],
+                    [
+                        'actions' => ['update', 'delete'],
+                        'allow'   => true,
+                        'roles'   => ['admin']
                     ]
-                    // TODO - implement ACLs or Roles, and create lesser role with access to /view/$id
-
-                ]
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new HttpException(403, "Invalid authorization for this action.");
+                }
             ]
-            // 'verbs' => [
-            //     'class'   => VerbFilter::className(),
-            //     'actions' => [
-            //         'logout' => ['post'],
-            //     ],
-            // ],
         ];
     }
 
