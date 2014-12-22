@@ -48,6 +48,7 @@ class m130524_201442_init extends Migration
                 'shortname'    => Schema::TYPE_STRING  . '(128) NOT NULL',
                 'body'         => Schema::TYPE_TEXT    . ' DEFAULT NULL',
                 'status'       => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
+                'created_by'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'published_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'created_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
                 'updated_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',

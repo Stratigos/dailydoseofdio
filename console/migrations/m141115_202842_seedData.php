@@ -17,6 +17,40 @@ class m141115_202842_seedData extends Migration
 
     public function up()
     {
+        // create initial administrative Users
+        $users = [
+            [
+                'username' => 'toddmorningstar',
+                'email'    => 'dont@spam.me'
+            ],
+            [
+                'username' => 'lucyappleschen',
+                'email'    => 'dont@spam2.me'
+            ]
+        ];
+        $password = 'admin';
+        foreach($users as $usr) {
+            $user           = new User();
+            $user->username = $usr['username'];
+            $user->password = $password;
+            $user->email    = $usr['email'];
+            try {
+                $user->save();
+            } catch(Exception $e) {
+                echo("\n");
+                echo($e->getMessage());
+                echo("\n");
+            }
+            echo(
+                "\n    New User created with id: {$user->id},  username: '{$user->username}'," .
+                " and password '{$password}'."
+            );
+        }
+
+        // get User data for Post authorship
+        $userTodd = User::find()->where(['username' => 'toddmorningstar'])->one();
+        $userLucy = User::find()->where(['username' => 'lucyappleschen'])->one();
+
         // create initial Page
         $page            = new Page;
         $page->title     = 'About';
@@ -33,6 +67,12 @@ class m141115_202842_seedData extends Migration
 
         // create initial Posts
         for($i = 0; $i < 24; $i++) {
+            // create some sample posts by Lucy
+            $created_by_id = $userTodd->id;
+            if($i % 3 == 0) {
+                $created_by_id = $userLucy->id;
+            }
+
             $post              = new Post;
             $post->type_id     = 0;
             $post->category_id = 0;
@@ -42,6 +82,7 @@ class m141115_202842_seedData extends Migration
             $post->title       = "Test Post {$i}";
             $post->shortname   = "test-post-{$i}";
             $post->body        = '<p>This is some initial content: ' . mt_rand() . '</p>';
+            $post->created_by  = $created_by_id;
             try {
                 if(!$post->save()) {
                     echo("\n        ERROR SAVING POST {$i} : \n");
@@ -128,36 +169,6 @@ class m141115_202842_seedData extends Migration
             echo("\n");
         }
         echo("\n    FINISHED ADDING FIRST BLOGGER \n");
-
-        // create initial administrative Users
-        $users = [
-            [
-                'username' => 'toddmorningstar',
-                'email'    => 'dont@spam.me'
-            ],
-            [
-                'username' => 'lucyappleschen',
-                'email'    => 'dont@spam2.me'
-            ]
-        ];
-        $password = 'admin';
-        foreach($users as $usr) {
-            $user           = new User();
-            $user->username = $usr['username'];
-            $user->password = $password;
-            $user->email    = $usr['email'];
-            try {
-                $user->save();
-            } catch(Exception $e) {
-                echo("\n");
-                echo($e->getMessage());
-                echo("\n");
-            }
-            echo(
-                "\n    New User created with id: {$user->id},  username: '{$user->username}'," .
-                " and password '{$password}'."
-            );
-        }
 
         echo("\n    ~ !! After migrations finish, log in, and update all users with a secure password !! ~\n");
 
