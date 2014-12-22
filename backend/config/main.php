@@ -78,6 +78,7 @@ return [
                 'login'                       => 'site/login',
                 'tags/<page:\d+>'             => 'tag/index',
                 'tags'                        => 'tag/index',
+                'tag/view/<id:\d+>'           => 'tag/view',
                 'tag/create'                  => 'tag/create',
                 'tag/update/<id:\d+>'         => 'tag/update',
                 'tag/delete/<id:\d+>'         => 'tag/delete'
