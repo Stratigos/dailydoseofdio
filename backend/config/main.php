@@ -53,6 +53,7 @@ return [
                 'blogger/delete/<id:\d+>'     => 'blogger/delete',
                 'categories/<page:\d+>'       => 'category/index',
                 'categories'                  => 'category/index',
+                'category/view/<id:\d+>'      => 'category/view',
                 'category/create'             => 'category/create',
                 'category/update/<id:\d+>'    => 'category/update',
                 'category/delete/<id:\d+>'    => 'category/delete',
