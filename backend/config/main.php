@@ -66,6 +66,7 @@ return [
                 'page/delete/<id:\d+>'        => 'page/delete',
                 'posts/<page:\d+>'            => 'post/index',
                 'posts'                       => 'post/index',
+                'post/view/<id:\d+>'          => 'post/view',
                 'post/create/<media_type:\d>' => 'post/create',
                 'post/update/<id:\d+>'        => 'post/update',
                 'post/delete/<id:\d+>'        => 'post/delete',
