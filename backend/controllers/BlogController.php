@@ -24,7 +24,7 @@ class BlogController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete'],
+                        'actions' => ['view', 'create', 'index', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@']
                     ]
@@ -55,6 +55,28 @@ class BlogController extends Controller
             [
                 'createBlogUrl'    => Yii::$app->urlManager->createUrl('blog/create'),
                 'blogDataProvider' => new BlogControllerIndexDataProvider()
+            ]
+        );
+    }
+
+    /**
+     * render a view of a Blog's data
+     * @param Int $id
+     *  valid blogs.id value
+     */
+    public function actionView($id)
+    {
+        $blog = Blog::find()->where('id = :_id', [':_id' => $id])->one();
+
+        if($blog === NULL) {
+            throw new HttpException(404, "Blog {$id} Not Found");
+        }
+
+        return $this->render(
+            'view',
+            [
+                'indexUrl' => Yii::$app->urlManager->createUrl('blog/index'),
+                'blog'     => $blog
             ]
         );
     }
