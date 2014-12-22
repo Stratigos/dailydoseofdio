@@ -24,18 +24,25 @@ class CategoryController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'create', 'index', 'update', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@']
+                        'actions' => ['view'],
+                        'allow'   => true,
+                        'roles'   => ['@']
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow'   => true,
+                        'roles'   => ['author']
+                    ],
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow'   => true,
+                        'roles'   => ['admin']
                     ]
-                ]
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new HttpException(403, "Invalid authorization for this action.");
+                }
             ]
-            // 'verbs' => [
-            //     'class'   => VerbFilter::className(),
-            //     'actions' => [
-            //         'logout' => ['post'],
-            //     ],
-            // ],
         ];
     }
 

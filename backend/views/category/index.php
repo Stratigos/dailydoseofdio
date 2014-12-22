@@ -44,10 +44,7 @@ use yii\grid\GridView;
                                 return date('Y-m-d H:i:s', $data->updated_at);
                             }
                         ],
-                        [
-                            'class'    => 'yii\grid\ActionColumn',
-                            'template' => '{update} {delete}'
-                        ]
+                        ['class' => 'yii\grid\ActionColumn']
                     ]
                 ])
             ); ?>
