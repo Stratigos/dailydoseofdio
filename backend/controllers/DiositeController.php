@@ -26,7 +26,7 @@ class DiositeController extends Controller
                     [
                         'actions' => ['create', 'index', 'update', 'delete'],
                         'allow'   => true,
-                        'roles'   => ['@']
+                        'roles'   => ['author']
                     ]
                 ]
             ]
