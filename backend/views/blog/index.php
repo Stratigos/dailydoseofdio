@@ -11,9 +11,6 @@ use yii\grid\GridView;
             <p><a href="<?= $createBlogUrl ?>">Create a new Blog</a></p>
         </div>
         <div>
-            <p><em>Note: at this time, images are unavailable.</em></p>
-        </div>
-        <div>
             <?php echo(
                 GridView::widget([
                     'dataProvider' => $blogDataProvider,
