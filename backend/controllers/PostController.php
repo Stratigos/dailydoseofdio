@@ -34,11 +34,24 @@ class PostController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view', 'selectmediatype', 'create', 'index', 'update', 'delete'],
+                        'actions' => ['view'],
                         'allow'   => true,
                         'roles'   => ['@']
+                    ],
+                    [
+                        'actions' => ['selectmediatype', 'create', 'index', 'update'],
+                        'allow'   => true,
+                        'roles'   => ['author']
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow'   => true,
+                        'roles'   => ['admin']
                     ]
-                ]
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new HttpException(403, "Invalid authorization for this action.");
+                }
             ]
         ];
     }
