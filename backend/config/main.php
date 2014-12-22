@@ -41,6 +41,7 @@ return [
             'rules'               => [
                 'blogs/<page:\d+>'            => 'blog/index',
                 'blogs'                       => 'blog/index',
+                'blog/view/<id:\d+>'          => 'blog/view',
                 'blog/create'                 => 'blog/create',
                 'blog/update/<id:\d+>'        => 'blog/update',
                 'blog/delete/<id:\d+>'        => 'blog/delete',
