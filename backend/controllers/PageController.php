@@ -24,11 +24,19 @@ class PageController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'update', 'delete'],
+                        'actions' => ['index', 'view'],
                         'allow'   => true,
-                        'roles'   => ['@']
+                        'roles'   => ['author']
+                    ],
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow'   => true,
+                        'roles'   => ['admin']
                     ]
-                ]
+                ],
+                'denyCallback' => function ($rule, $action) {
+                    throw new HttpException(403, "Invalid authorization for this action.");
+                }
             ]
         ];
     }
@@ -55,6 +63,28 @@ class PageController extends Controller
             [
                 'createPageUrl'     => Yii::$app->urlManager->createUrl('page/create'),
                 'pagesDataProvider' => new PageControllerIndexDataProvider()
+            ]
+        );
+    }
+
+    /**
+     * render a view of a Page's data
+     * @param Int $id
+     *  valid pages.id value
+     */
+    public function actionView($id)
+    {
+        $page = Page::find()->where('id = :_id', [':_id' => $id])->one();
+
+        if($page === NULL) {
+            throw new HttpException(404, "Page {$id} Not Found");
+        }
+
+        return $this->render(
+            'view',
+            [
+                'indexUrl' => Yii::$app->urlManager->createUrl('page/index'),
+                'page'     => $page
             ]
         );
     }
