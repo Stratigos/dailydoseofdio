@@ -10,7 +10,7 @@
             </pre>
         </p>
         <p>
-        	&#10144;&nbsp;<a href="<?= $indexUrl ?>">Return to Post Index</a>
+            &#10144;&nbsp;<a href="<?= $indexUrl ?>">Return to Post Index</a>
         </p>
     </div>
 </div>
