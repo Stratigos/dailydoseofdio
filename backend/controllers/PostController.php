@@ -20,6 +20,7 @@ use common\models\Tag;
 use common\models\PostTag;
 use common\models\Post;
 use common\models\Quote;
+use common\models\User;
 
 class PostController extends Controller
 {
@@ -183,7 +184,8 @@ class PostController extends Controller
     }
 
     /**
-     * Edit an existing Post record.
+     * Edit an existing Post record. Current User must have the "updateOwnPost"
+     *  permission to perform this Action.
      * @param Int $id
      *  valid posts.id value.
      * @param Array $create_errors
@@ -192,18 +194,21 @@ class PostController extends Controller
      */
     public function actionUpdate($id, $create_errors = NULL)
     {
-
+        $post = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        if(empty($post)) {
+            throw new HttpException(404, "Post {$id} Not Found");
+        }
+        if(!Yii::$app->user->can('updatePost', ['post' => $post])) {
+            throw new HttpException(403, "You must be the author of this Post.");
+        }
         $post_tags      = '';
         $rel_content_dp = new PostControllerRelationalContentDataProvider();
-        $post           = Post::find()->where('id = :_id', [':_id' => $id])->one();
+        
         $post_media     = $post ? $post->media : NULL;
         $errors         = (isset($create_errors) && is_array($create_errors) && !empty($create_errors)) ?
             $create_errors :
             []
         ;
-        if($post === NULL) {
-            throw new HttpException(404, "Post {$id} Not Found");
-        }
         $relational_content = $rel_content_dp->formattedContent;
         // load Tags associated with Post
         if(!empty($post->tags)) {
@@ -247,6 +252,7 @@ class PostController extends Controller
                 'bloggers'   => $relational_content['bloggers'],
                 'tags'       => $relational_content['tags'],
                 'post'       => $post,
+                'authorname' => User::findIdentity($post->created_by)->username,
                 'post_tags'  => $post_tags,
                 'post_media' => $post_media,
                 'errors'     => $errors

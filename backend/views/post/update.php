@@ -9,6 +9,7 @@
 <div class="post-index">
     <div>
         <h3>Update Post (ID: <?= $post->id ?>)</h3>
+        <div>Created by: <?= $authorname ?></div>
     </div>
     <div class="body-content">
         <?php echo(

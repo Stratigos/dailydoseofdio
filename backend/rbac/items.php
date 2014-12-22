@@ -72,6 +72,14 @@ return [
         'type' => 2,
         'description' => 'Update Post',
     ],
+    'updateOwnPost' => [
+        'type' => 2,
+        'description' => 'Update Own Post',
+        'ruleName' => 'isAuthor',
+        'children' => [
+            'updatePost',
+        ],
+    ],
     'viewPost' => [
         'type' => 2,
         'description' => 'View Post',
@@ -116,9 +124,8 @@ return [
         'type' => 1,
         'children' => [
             'createPost',
-            'updatePost',
             'viewPost',
-            'deletePost',
+            'updateOwnPost',
             'createDioSite',
             'updateDioSite',
             'viewDioSite',
@@ -135,9 +142,11 @@ return [
         'type' => 1,
         'children' => [
             'author',
+            'updatePost',
+            'deletePost',
             'createPage',
             'updatePage',
-            'deletePost',
+            'deletePage',
             'createBlog',
             'updateBlog',
             'deleteBlog',
