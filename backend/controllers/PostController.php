@@ -99,7 +99,7 @@ class PostController extends Controller
         return $this->render(
             'view',
             [
-                'indexUrl' => Yii::$app->urlManager->createUrl('post/selectmediatype'),
+                'indexUrl' => Yii::$app->urlManager->createUrl('post/index'),
                 'post'     => $post
             ]
         );
