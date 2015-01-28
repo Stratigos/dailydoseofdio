@@ -55,7 +55,7 @@ class m141115_202842_seedData extends Migration
         $page            = new Page;
         $page->title     = 'About';
         $page->shortname = 'about';
-        $page ->body     = '<p><h3><em>We Rock!</em></h3></p>';
+        $page->body     = '<p><h3><em>We Rock!</em></h3></p>';
         try {
             $page->save();
         } catch(Exception $e) {
@@ -67,22 +67,25 @@ class m141115_202842_seedData extends Migration
 
         // create initial Posts
         for($i = 0; $i < 24; $i++) {
-            // create some sample posts by Lucy
+            // create some sample posts by Lucy and Todd
+            $time          = time();
             $created_by_id = $userTodd->id;
             if($i % 3 == 0) {
                 $created_by_id = $userLucy->id;
             }
 
-            $post              = new Post;
-            $post->type_id     = 0;
-            $post->category_id = 0;
-            $post->blog_id     = 0;
-            $post->blogger_id  = 0;
-            $post->status      = 0;
-            $post->title       = "Test Post {$i}";
-            $post->shortname   = "test-post-{$i}";
-            $post->body        = '<p>This is some initial content: ' . mt_rand() . '</p>';
-            $post->created_by  = $created_by_id;
+            $post               = new Post;
+            $post->type_id      = 0;
+            $post->category_id  = 0;
+            $post->blog_id      = 0;
+            $post->blogger_id   = 0;
+            $post->status       = 1;
+            $post->title        = "Test Post {$i}";
+            $post->shortname    = "test-post-{$i}";
+            $post->body         = '<p>This is some initial content: ' . mt_rand() . '</p>';
+            $post->created_by   = $created_by_id;
+            $post->created_at   = $time;
+            $post->published_at = $time;
             try {
                 if(!$post->save()) {
                     echo("\n        ERROR SAVING POST {$i} : \n");
