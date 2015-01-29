@@ -22,7 +22,10 @@ return [
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
              */
             'rules'               => [
+
                 '/'                                      => 'site/index',
+                'archives/<page:\d+>'                    => 'archive/index',
+                'archives'                               => 'archive/index',
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'

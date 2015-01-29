@@ -4,10 +4,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="page-header">
-                <p>Daily Dose of Dio</p>
-                <small>Dedicated to the life, art, and work of Ronnie James Dio</small>
-            </h1>
+            <h1 class="page-header">Dose Archives</h1>
 
             <?php if(isset($posts) && !empty($posts)) :?>
                 <?php foreach($posts as $post) : ?>
@@ -16,10 +13,7 @@
                         ['post' => $post]
                     ); ?>
                 <?php endforeach; ?>
-                <a
-                    class="btn btn-primary"
-                    href="<?= $archiveUrl ?>"
-                >More Doses<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <?= LinkPager::widget(['pagination' => $pagination]); ?>
             <?php else : ?>
                 <p>No Posts found.</p>
             <?php endif;?>

@@ -7,12 +7,13 @@ namespace frontend\dataproviders;
 use yii\data\ActiveDataProvider;
 use common\models\Post;
 
-class HomepagePostsDataProvider extends ActiveDataProvider
+class PostsDataProvider extends ActiveDataProvider
 {
     public function init()
     {
         parent::init();
-        $this->pagination = false;
-        $this->query      = Post::find()->publishedDesc()->with('blogger')->limit(10);
+        $this->pagination->defaultPageSize = 10;
+        $this->pagination->pageSizeParam   = false;
+        $this->query      				   = Post::find()->publishedDesc()->with('blogger');
     }
 }

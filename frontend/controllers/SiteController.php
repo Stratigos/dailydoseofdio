@@ -4,6 +4,7 @@
 *******************************/
 namespace frontend\controllers;
 
+use Yii;
 use frontend\dataproviders\HomepagePostsDataProvider;
 use frontend\models\ContactForm;
 
@@ -21,8 +22,13 @@ class SiteController extends FrontendController
         return $this->render(
             'index',
             [
-                'posts'       => $postsDP->getModels(),
-                'pagination'  => $postsDP->pagination
+                'posts'      => $postsDP->getModels(),
+                'archiveUrl' => Yii::$app->urlManager->createUrl(
+                    array(
+                        'archive/index',
+                        'page' => 2
+                    )
+                )
             ]
         );
     }
