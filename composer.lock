@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "fbaa02d06ccea42fc177df5bda9e2ee27f321240"
+                "reference": "3067949cd0332f8f60763c5968859cef1361bf01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/fbaa02d06ccea42fc177df5bda9e2ee27f321240",
-                "reference": "fbaa02d06ccea42fc177df5bda9e2ee27f321240",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3067949cd0332f8f60763c5968859cef1361bf01",
+                "reference": "3067949cd0332f8f60763c5968859cef1361bf01",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-01-27 23:48:35"
+            "time": "2015-01-29 01:45:37"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -399,16 +399,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.58",
+            "version": "3.1.59",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "8579f56b86f78accbaf03c28d44be35ca1e346a5"
+                "reference": "6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/8579f56b86f78accbaf03c28d44be35ca1e346a5",
-                "reference": "8579f56b86f78accbaf03c28d44be35ca1e346a5",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba",
+                "reference": "6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba",
                 "shasum": ""
             },
             "require": {
@@ -656,12 +656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "5e9f5528619bde654375c012ac172fb199f43dda"
+                "reference": "d898326a716f23fdd778942ea9404aeccbe16a46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/5e9f5528619bde654375c012ac172fb199f43dda",
-                "reference": "5e9f5528619bde654375c012ac172fb199f43dda",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/d898326a716f23fdd778942ea9404aeccbe16a46",
+                "reference": "d898326a716f23fdd778942ea9404aeccbe16a46",
                 "shasum": ""
             },
             "require": {
@@ -702,6 +702,9 @@
                 "zendframework/zend-cache": "2.*,<2.3",
                 "zendframework/zend-log": "2.*,<2.3"
             },
+            "suggest": {
+                "guzzlehttp/guzzle": "Guzzle 5 has moved to a new package name. The package you have installed, Guzzle 3, is deprecated."
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -729,7 +732,7 @@
                     "homepage": "https://github.com/guzzle/guzzle/contributors"
                 }
             ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "description": "PHP HTTP client. This library is deprecated in favor of https://packagist.org/packages/guzzlehttp/guzzle",
             "homepage": "http://guzzlephp.org/",
             "keywords": [
                 "client",
@@ -740,7 +743,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-12-18 23:26:35"
+            "time": "2015-01-28 21:05:25"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -858,12 +861,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d8f8e23d44730dc8d4a6faf85ab08697d0d2ab2e"
+                "reference": "7de535eb3b0c9acd04d8b565107561561cb27e3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d8f8e23d44730dc8d4a6faf85ab08697d0d2ab2e",
-                "reference": "d8f8e23d44730dc8d4a6faf85ab08697d0d2ab2e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7de535eb3b0c9acd04d8b565107561561cb27e3a",
+                "reference": "7de535eb3b0c9acd04d8b565107561561cb27e3a",
                 "shasum": ""
             },
             "require": {
@@ -939,7 +942,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-01-28 02:46:23"
+            "time": "2015-01-29 18:27:47"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
