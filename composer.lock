@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3067949cd0332f8f60763c5968859cef1361bf01"
+                "reference": "c9c3c1f5397c136555784bf1e61f294f43d2d63f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3067949cd0332f8f60763c5968859cef1361bf01",
-                "reference": "3067949cd0332f8f60763c5968859cef1361bf01",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c9c3c1f5397c136555784bf1e61f294f43d2d63f",
+                "reference": "c9c3c1f5397c136555784bf1e61f294f43d2d63f",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-01-29 01:45:37"
+            "time": "2015-02-10 23:54:02"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -291,6 +291,44 @@
                 ]
             },
             "time": "2015-01-27 22:04:04"
+        },
+        {
+            "name": "bower-asset/font-awesome",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./css/font-awesome.css",
+                    "./fonts/*"
+                ],
+                "bower-asset-ignore": [
+                    "*/.*",
+                    "*.json",
+                    "src",
+                    "*.yml",
+                    "Gemfile",
+                    "Gemfile.lock",
+                    "*.md"
+                ]
+            },
+            "license": [
+                "OFL-1.1",
+                "MIT",
+                "CC-BY-3.0"
+            ],
+            "description": "Font Awesome",
+            "time": "2015-01-22 18:09:42"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -399,16 +437,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.59",
+            "version": "3.1.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba"
+                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba",
-                "reference": "6fcd2cf28ee111f8aadcd42a1b8d43d6f7a5c0ba",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
+                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
                 "shasum": ""
             },
             "require": {
@@ -479,21 +517,21 @@
         },
         {
             "name": "bower-asset/summernote",
-            "version": "v0.6.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/summernote/summernote.git",
-                "reference": "79b50f5d3037a3ffd0f16b501c218f2a6030dea6"
+                "reference": "ab6772d07073683b2c463ff765085e5d0ad575a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summernote/summernote/zipball/79b50f5d3037a3ffd0f16b501c218f2a6030dea6",
-                "reference": "79b50f5d3037a3ffd0f16b501c218f2a6030dea6",
+                "url": "https://api.github.com/repos/summernote/summernote/zipball/ab6772d07073683b2c463ff765085e5d0ad575a0",
+                "reference": "ab6772d07073683b2c463ff765085e5d0ad575a0",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": ">=3.0.1",
-                "bower-asset/fontawesome": ">=4.1.0",
+                "bower-asset/font-awesome": ">=4.2.0",
                 "bower-asset/jquery": ">=1.9.0"
             },
             "type": "bower-asset-library",
@@ -804,12 +842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7"
+                "reference": "2dc33aff298b20ad099ac456034aebc5055f02fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/7a26717d431dfb092198d7c55f06788b2de5aaf7",
-                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2dc33aff298b20ad099ac456034aebc5055f02fb",
+                "reference": "2dc33aff298b20ad099ac456034aebc5055f02fb",
                 "shasum": ""
             },
             "require": {
@@ -853,7 +891,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-16 15:11:56"
+            "time": "2015-02-11 07:17:51"
         },
         {
             "name": "yiisoft/yii2",
@@ -861,12 +899,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "7de535eb3b0c9acd04d8b565107561561cb27e3a"
+                "reference": "b6f3d57b1be3c71e7464f3120dcef6af6eb666b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7de535eb3b0c9acd04d8b565107561561cb27e3a",
-                "reference": "7de535eb3b0c9acd04d8b565107561561cb27e3a",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b6f3d57b1be3c71e7464f3120dcef6af6eb666b2",
+                "reference": "b6f3d57b1be3c71e7464f3120dcef6af6eb666b2",
                 "shasum": ""
             },
             "require": {
@@ -942,7 +980,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-01-29 18:27:47"
+            "time": "2015-02-10 18:36:05"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
