@@ -25,6 +25,9 @@ return [
 
                 '/'                                      => 'site/index',
                 'archives/<page:\d+>'                    => 'archive/index',
+                'blogs'                                  => 'blog/index',
+                'blog/<shortname:[\w-]+>'                => 'blog/blog',
+                'blog/<shortname:[\w-]+>/<page:\d+>'     => 'blog/blog',
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'

@@ -28,6 +28,16 @@ class Blog extends ActiveRecord
     }
 
     /**
+     * Overriding find() to allow for custom scopes
+     * @inheritdoc
+     * @return BlogQuery
+     */
+    public static function find()
+    {
+        return new BlogQuery(get_called_class());
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -131,7 +141,7 @@ class Blog extends ActiveRecord
     {
         return isset($this->image_path) ?
             Yii::$app->params['imageDomain'] . $this->image_path  . $size_key . '.' . $this->image_ext :
-            NULL
+            null
         ;
     }
 }
