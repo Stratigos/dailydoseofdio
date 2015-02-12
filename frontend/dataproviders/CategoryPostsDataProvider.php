@@ -25,7 +25,7 @@ class CategoryPostsDataProvider extends ActiveDataProvider
         parent::init();
         
         $this->pagination->defaultPageSize = 10;
-        $this->pagination->pageSizeParam   = FALSE;
+        $this->pagination->pageSizeParam   = false;
 
         $this->query = Post::find()->publishedDesc()->andWhere(['category_id' => $this->category_id]);
     }
