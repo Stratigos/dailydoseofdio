@@ -5,6 +5,7 @@
 namespace frontend\controllers;
 
 use common\models\Category;
+use frontend\dataproviders\CategoriesDataProvider;
 use frontend\dataproviders\CategoryPostsDataProvider;
 //use yii\filters\VerbFilter;
 //use yii\filters\AccessControl;
