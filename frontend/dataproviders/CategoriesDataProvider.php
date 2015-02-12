@@ -14,7 +14,7 @@ class CategoriesDataProvider extends ActiveDataProvider
     {
         parent::init();
         $this->pagination->defaultPageSize = 50;
-        $this->pagination->pageSizeParam   = FALSE;
-        $this->query = Category::find()->publishedDesc();
+        $this->pagination->pageSizeParam   = false;
+        $this->query 					   = Category::find()->publishedDesc();
     }
 }
