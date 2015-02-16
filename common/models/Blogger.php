@@ -28,6 +28,16 @@ class Blogger extends ActiveRecord
     }
 
     /**
+     * Overriding find() to allow for custom scopes
+     * @inheritdoc
+     * @return BloggerQuery
+     */
+    public static function find()
+    {
+        return new BloggerQuery(get_called_class());
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
