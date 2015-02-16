@@ -14,6 +14,6 @@ class BlogsDataProvider extends ActiveDataProvider
     {
         parent::init();
         $this->pagination->pageSizeParam = false;
-        $this->query 					 = Blog::find()->publishedRank();
+        $this->query                     = Blog::find()->publishedRank();
     }
 }
