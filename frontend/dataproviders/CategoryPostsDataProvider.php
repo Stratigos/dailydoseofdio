@@ -5,7 +5,6 @@
 namespace frontend\dataproviders;
 
 use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use common\models\Post;
 
 class CategoryPostsDataProvider extends ActiveDataProvider
