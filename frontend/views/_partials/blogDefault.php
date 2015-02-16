@@ -9,6 +9,6 @@
 <div class="clearfix"></div>
 <a
     class="btn btn-primary media"
-    href="<?= Yii::$app->urlManager->createUrl(['blog/blog', 'shortname' => $blog->shortname]) ?>"
+    href="<?= Yii::$app->urlManager->createUrl($blog->url) ?>"
 >Read Blog <span class="glyphicon glyphicon-chevron-right"></span></a>
 <hr />
