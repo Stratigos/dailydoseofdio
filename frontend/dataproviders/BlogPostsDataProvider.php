@@ -10,15 +10,15 @@ use common\models\Post;
 class BlogPostsDataProvider extends ActiveDataProvider
 {
 
-	/**
-	 * @var $blog_id Int
-	 *	blogs.id from which to select posts
-	 */
-	public $blog_id = 0;
+    /**
+     * @var $blog_id Int
+     *  blogs.id from which to select posts
+     */
+    public $blog_id = 0;
 
-	/**
-	 * @inheritdoc
-	 */
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
