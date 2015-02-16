@@ -34,7 +34,7 @@ class BlogController extends FrontendController
     public function actionBlog($shortname)
     {
         if(!($blog = Blog::find()->published()->andWhere(['shortname' => $shortname])->one())) {
-            throw new HttpException(404, "YOUR BLOG AINT FOUND");
+            throw new HttpException(404, 'YOUR BLOG AINT FOUND');
         }
         $blogPostsDP = new BlogPostsDataProvider(['blog_id' => $blog->id]);
 
