@@ -9,7 +9,7 @@ use frontend\dataproviders\BloggersDataProvider;
 // use frontend\dataproviders\BloggerPostsDataProvider;
 use yii\web\HttpException;
 
-class BlogController extends FrontendController
+class BloggerController extends FrontendController
 {
 
     /**
