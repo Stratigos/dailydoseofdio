@@ -25,7 +25,7 @@ class BlogQuery extends ActiveQuery
     }
 
     /**
-     * Adds descending sort by name to published() criteria
+     * Adds descending sort by rank to published() criteria
      * @return self
      */
     public function publishedRank()
