@@ -29,6 +29,8 @@ return [
                 'blog/<shortname:[\w-]+>'                => 'blog/blog',
                 'blog/<shortname:[\w-]+>/<page:\d+>'     => 'blog/blog',
                 'bloggers'                               => 'blogger/index',
+                'blogger/<shortname:[\w-]+>'             => 'blogger/blogger',
+                'blogger/<shortname:[\w-]+>/<page:\d+>'  => 'blogger/blogger',
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'

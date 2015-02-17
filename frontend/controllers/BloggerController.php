@@ -6,7 +6,7 @@ namespace frontend\controllers;
 
 use common\models\Blogger;
 use frontend\dataproviders\BloggersDataProvider;
-// use frontend\dataproviders\BloggerPostsDataProvider;
+use frontend\dataproviders\BloggerPostsDataProvider;
 use yii\web\HttpException;
 
 class BloggerController extends FrontendController
@@ -33,16 +33,16 @@ class BloggerController extends FrontendController
      */
     public function actionBlogger($shortname)
     {
-        if(!($blog = Blog::find()->published()->andWhere(['shortname' => $shortname])->one())) {
+        if(!($blogger = Blogger::find()->published()->andWhere(['shortname' => $shortname])->one())) {
             throw new HttpException(404, 'Blogger not found.');
         }
-        $blogPostsDP = new BloggerPostsDataProvider(['blog_id' => $blog->id]);
+        $bloggerPostsDP = new BloggerPostsDataProvider(['blogger_id' => $blogger->id]);
 
         return $this->render(
-            'blog',
+            'blogger',
             [
-                'blog'    => $blog,
-                'postsDP' => $blogPostsDP
+                'blogger' => $blogger,
+                'postsDP' => $bloggerPostsDP
             ]
         );
     }
