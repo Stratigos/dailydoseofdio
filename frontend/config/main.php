@@ -22,7 +22,6 @@ return [
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
              */
             'rules'               => [
-
                 '/'                                      => 'site/index',
                 'archives/<page:\d+>'                    => 'archive/index',
                 'blogs'                                  => 'blog/index',
@@ -36,7 +35,6 @@ return [
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'
             ]
         ],
-        //'user' => ['identityClass' => 'common\models\User'],
         'log'  => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets'    => [
