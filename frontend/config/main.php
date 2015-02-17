@@ -14,9 +14,9 @@ return [
     'components'          => [
         'request' => ['cookieValidationKey' => 'ihaznoideawhatiamdoing'], // required for cookie validation
         'urlManager' => [
-            'enablePrettyUrl'     => TRUE,
-            'enableStrictParsing' => TRUE,
-            'showScriptName'      => FALSE,
+            'enablePrettyUrl'     => true,
+            'enableStrictParsing' => true,
+            'showScriptName'      => false,
             'class'               => 'yii\web\UrlManager',
             /**
              * @todo MOVE URL RULES TO SOME KIND OF routes.php SCRIPT
@@ -32,7 +32,13 @@ return [
                 'blogger/<shortname:[\w-]+>/<page:\d+>'  => 'blogger/blogger',
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
-                'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category'
+                'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category',
+                // Pages (custom URLs with no controller name in path)
+                [
+                    'pattern'  => 'about',
+                    'route'    => 'page/page',
+                    'defaults' => ['shortname' => 'about']
+                ]
             ]
         ],
         'log'  => [

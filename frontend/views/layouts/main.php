@@ -55,7 +55,7 @@ AppAsset::register($this);
                 ],
                 ['label' => 'Anthems', 'url' => ['/blogs']],
                 ['label' => 'Bards',   'url' => ['/bloggers']],
-                ['label' => 'Odes',    'url' => ['/site/about']],
+                ['label' => 'Odes',    'url' => ['/about']],
                 ['label' => 'Cheers',  'url' => ['/site/contact']]
             ];
             echo Nav::widget([
