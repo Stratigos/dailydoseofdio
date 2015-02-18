@@ -10,7 +10,7 @@ class PostTag extends ActiveRecord
 {
     /**
      * @var String
-     *  name of input field for Tags
+     *  name of input field for Tags (within CMS)
      */
     private static $input_field_name = 'post_tag_names_selected';
 
