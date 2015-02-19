@@ -33,6 +33,7 @@ return [
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category',
+                'sites'                                  => 'diosite/index',
                 'tag/<shortname:[\w-]+>'                 => 'tag/tag',
                 'tag/<shortname:[\w-]+>/<page:\d+>'      => 'tag/tag',
                 // Pages (custom URLs with no controller name in path)

@@ -2,6 +2,7 @@
 namespace common\models;
 
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
 
 class DioSite extends ActiveRecord
 {
@@ -51,5 +52,21 @@ class DioSite extends ActiveRecord
             'url'   => 'URL',
             'title' => 'Title'
         ];
+    }
+
+    /**
+     * Produce an <a> tag for the Dio site.
+     * @return String
+     */
+    public function getExternalLinkTag()
+    {
+        return Html::a(
+            $this->title,
+            $this->url,
+            [
+                'title'  => "External Link to {$this->title}",
+                'target' => '_blank'
+            ]
+        );
     }
 }
