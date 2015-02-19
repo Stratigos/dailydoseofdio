@@ -33,6 +33,7 @@ return [
                 'categories'                             => 'category/index',
                 'category/<shortname:[\w-]+>'            => 'category/category',
                 'category/<shortname:[\w-]+>/<page:\d+>' => 'category/category',
+                'dose/<shortname:[\w-]+>'                => 'post/view',
                 'sites'                                  => 'diosite/index',
                 'tag/<shortname:[\w-]+>'                 => 'tag/tag',
                 'tag/<shortname:[\w-]+>/<page:\d+>'      => 'tag/tag',
