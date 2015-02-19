@@ -3,7 +3,6 @@
         <h1 class="page-header">
             <p>Categories</p>
         </h1>
-
         <?php if(isset($categories) && !empty($categories)) :?>
             <ul>
                 <?php foreach($categories as $category) : ?>
