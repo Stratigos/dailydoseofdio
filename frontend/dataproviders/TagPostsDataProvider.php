@@ -10,7 +10,6 @@ use common\models\Tag;
 
 class TagPostsDataProvider extends ActiveDataProvider
 {
-
     /**
      * @var $tag_id Int
      *  tags.id from which to select posts
