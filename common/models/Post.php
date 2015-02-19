@@ -26,6 +26,11 @@ class Post extends ActiveRecord
     const POST_TYPE_IMAGE = 3;
 
     /**
+     * value to represent presentable date format
+     */
+    const DATE_FORMAT = 'F dS, Y';
+
+    /**
      * Regular expression used to validate posts.shortname such that only lc letters,
      *  numbers, and dashes are allowed.
      */

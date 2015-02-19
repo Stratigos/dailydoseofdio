@@ -3,7 +3,9 @@
     <div class="row">
         <div class="col-lg-8">
             <h1><?= $post->title ?></h1>
-            <h2><?= Html::a($post->blog->title, $post->blog->url); ?></h2>
+            <?php if($post->blog) : ?>
+                <h2><?= Html::a($post->blog->title, $post->blog->url); ?></h2>
+            <?php endif; ?>
             <?php if($post->blogger): ?>
                 <p class="lead">
                     by <?= Html::a($post->blogger->name, $post->blogger->url);?>
@@ -79,7 +81,6 @@
                     </button>
                     </span>
                 </div>
-                <!-- /.input-group -->
             </div>
 
             <!-- Blog Categories Well -->
@@ -111,7 +112,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- /.row -->
             </div>
 
             <!-- Side Widget Well -->

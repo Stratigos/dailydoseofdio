@@ -20,7 +20,7 @@ class PostController extends FrontendController
         if(!($post = Post::find()->published()->andWhere(['shortname' => $shortname])->one())) {
             throw new HttpException(404, 'No dose found.');
         }
-        $date = date('F dS, Y', $post->published_at);
+        $date = date(Post::DATE_FORMAT, $post->published_at);
 
         return $this->render(
             'view',
