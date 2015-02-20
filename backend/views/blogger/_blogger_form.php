@@ -33,12 +33,14 @@
         <?= $form->field($blogger, 'shortname'); ?>
         <div class="form-group blogger-image-display">
              <?php if($blogger->image) : ?>
-                <img
-                    class="form-model-thumbnail"
-                    src="<?= $blogger->getImage('200x200') ?>"
-                    alt="BLOGGER IMAGE APPEARS HERE, IN THIS SPOT"
-                    title="Blogger Image"
-                />
+                <?= Html::img(
+                    $blogger->getImage('200x200'),
+                    [
+                        'class' => 'form-model-thumbnail',
+                        'alt'   => 'BLOGGER IMAGE APPEARS HERE',
+                        'title' => 'Blogger Image'
+                    ]
+                ); ?>
             <?php else : ?>
                 <p>NO IMAGE UPLOADED</p>
             <?php endif;?>

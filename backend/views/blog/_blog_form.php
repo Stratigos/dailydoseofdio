@@ -25,12 +25,14 @@
         <?= $form->field($blog, 'shortname'); ?>
         <div class="form-group blog-image-display">
              <?php if($blog->image) : ?>
-                <img
-                    class="form-model-thumbnail"
-                    src="<?= $blog->getImage('200x200') ?>"
-                    alt="BLOG IMAGE APPEARS HERE, IN THIS SPOT"
-                    title="Blog Image"
-                />
+                <?= Html::img(
+                    $blog->getImage('200x200'),
+                    [
+                        'class' => 'form-model-thumbnail',
+                        'alt'   => 'BLOG IMAGE APPEARS HERE',
+                        'title' => 'Blog Image'
+                    ]
+                ); ?>
             <?php else : ?>
                 <p>NO IMAGE UPLOADED</p>
             <?php endif;?>
