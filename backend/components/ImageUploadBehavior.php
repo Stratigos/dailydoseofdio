@@ -183,7 +183,7 @@ class ImageUploadBehavior extends Behavior
                                             unlink($_full_resized_name);
                                         }
                                     }
-                                    // TODO: GET MULTIPLE FLASH MESSAGES WORKING (line below wont display)
+                                    // TODO: GET MULTIPLE FLASH MESSAGES WORKING (setFlash line below wont display)
                                     // Yii::$app->session->setFlash('success', "Image {$filename} uploaded!");
                                     unlink($full_filename);
                                 } else {
