@@ -1,8 +1,6 @@
 <?php use yii\helpers\Html; ?>
-<h2><?= Html::a(Html::encode($post->title), $post->url); ?></h2>
-<p class="lead">
-    by <a href="index.php"><?= $post->blogger? $post->blogger->name : 'Nobody Special'; ?></a>
-</p>
+<p class="lead"><?= Html::a(Html::encode($post->title), $post->url); ?></p>
+<p>by <a href="index.php"><?= $post->blogger? $post->blogger->name : 'Nobody Special'; ?></a></p>
 <p><span class="glyphicon glyphicon-time"></span> <?= date('Y-m-d H:i:s', $post->published_at); ?></p>
 <hr />
 <div class="row">
