@@ -4,11 +4,13 @@
     <div class="col-md-8">
         <div class="container">
             <h1 class="page-header"><?= $blogger->name; ?></h1>
-            <?= Html::img($blogger->getImage('200x200')); ?>
+            <p><?= Html::img($blogger->getImage('500x500')); ?></p>
+            <p><?= $blogger->description; ?></p>
             <p><b>Favorite Dio Track:</b>&nbsp;<i><?= $blogger->dio_favorite ?></i></p>
-            <p><b>Description:</b>&nbsp;<?= $blogger->description; ?> </p>
+            <hr />
         </div>
         <div class="container">
+            <h2>Doses from <?= $blogger->name ?></h2>
             <?php if($posts = $postsDP->getModels()): ?>
                 <?php foreach($posts as $post): ?>
                     <?= $this->context->renderPartial(
