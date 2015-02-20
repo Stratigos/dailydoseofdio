@@ -5,7 +5,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4 col-sm-4">
-        <img class="img-responsive" src="http://placehold.it/250x155" alt="">
+        <?php if($post->image_path) : ?>
+            <?= Html::img($post->getImage('250x155'), ['title' => "{$post->title} Thumbnail"]); ?>
+        <?php else: ?>
+            <img class="img-responsive" src="http://placehold.it/250x155" alt="">
+        <?php endif; ?>
     </div>
     <div class="col-md-8 col-sm-8"><?= substr($post->body, 0, 200) . '...' ?><p></div>
 </div>
