@@ -90,10 +90,10 @@ class Post extends ActiveRecord
         ];
 
         if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
-            // $behaviors['imageUpload'] = [
-            //     'class'             => 'backend\components\ImageUploadBehavior',
-            //     'model_unique_attr' => 'shortname'
-            // ];
+            $behaviors['imageUpload'] = [
+                'class'             => 'backend\components\ImageUploadBehavior',
+                'model_unique_attr' => 'shortname'
+            ];
             $behaviors['postTagsAttribution'] = [
                 'class' => 'backend\components\PostTagsAttributionBehavior',
             ];
@@ -257,5 +257,19 @@ class Post extends ActiveRecord
     public function getVideo()
     {
         return $this->hasOne(Video::className(), ['post_id' => 'id'])->inverseOf('post');
+    }
+
+    /**
+     * get full url to a Post's image.
+     * @param $size_key String
+     *  name of a configured image size (e.g., '250x155')
+     * @return String
+     */
+    public function getImage($size_key = '')
+    {
+        return isset($this->image_path) ?
+            Yii::$app->params['imageDomain'] . $this->image_path  . $size_key . '.' . $this->image_ext :
+            null
+        ;
     }
 }

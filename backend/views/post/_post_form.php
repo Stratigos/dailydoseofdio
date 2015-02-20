@@ -27,7 +27,10 @@
     </div>
     <?php $form = ActiveForm::begin([
         'id'      => 'post-form',
-        'options' => ['class' => 'form-horizontal']
+        'options' => [
+            'class'   => 'form-horizontal',
+            'enctype' => 'multipart/form-data'
+        ]
     ]); ?>
         <?= $form->field($post, 'status')->radioList(
             array(
@@ -59,6 +62,21 @@
         <?= $form->field($post, 'category_id')->dropDownList($categories); ?>
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
+        <div class="form-group post-image-display">
+             <?php if($post->image) : ?>
+                <?= Html::img(
+                    $post->getImage('250x155'),
+                    [
+                        'class' => 'form-model-thumbnail',
+                        'alt'   => 'POST IMAGE APPEARS HERE',
+                        'title' => 'Post image'
+                    ]
+                ); ?>
+            <?php else : ?>
+                <p>NO IMAGE UPLOADED</p>
+            <?php endif;?>
+        </div>
+        <?= $form->field($post->image_file, 'image')->fileInput(); ?>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
         <?php if($post->type_id) : ?>
             <?= $this->render(
