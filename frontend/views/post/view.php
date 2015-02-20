@@ -11,10 +11,7 @@
                     by <?= Html::a($post->blogger->name, $post->blogger->url);?>
                 </p>
             <?php endif; ?>
-            <hr>
             <p><span class="glyphicon glyphicon-time"></span> <?= $date ?></p>
-            <hr>
-            <img class="img-responsive" src="http://placehold.it/900x300" alt="POST IMAGE GOES HERE" title="POST IMAGE GOES HERE" />
             <hr>
             <p class="lead"><?= $post->body ?></p>
             <hr>
