@@ -26,7 +26,7 @@ class Post extends ActiveRecord
     const POST_TYPE_IMAGE = 3;
 
     /**
-     * value to represent presentable date format
+     * value to represent user-facing, presentable date format
      */
     const DATE_FORMAT = 'F dS, Y';
 
