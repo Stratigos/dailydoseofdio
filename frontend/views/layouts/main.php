@@ -55,8 +55,7 @@ AppAsset::register($this);
                 ],
                 ['label' => 'Anthems', 'url' => ['/blogs']],
                 ['label' => 'Bards',   'url' => ['/bloggers']],
-                ['label' => 'Odes',    'url' => ['/about']],
-                ['label' => 'Cheers',  'url' => ['/site/contact']]
+                ['label' => 'Odes',    'url' => ['/about']]
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
