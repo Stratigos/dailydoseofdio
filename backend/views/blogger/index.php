@@ -28,7 +28,7 @@ use yii\grid\GridView;
                         [
                             'label' => 'Description',
                             'value' => function($data) {
-                                return empty($data->description) ? '' : substr($data->description, 0, 50);
+                                return empty($data->description) ? '' : substr(strip_tags($data->description), 0, 50);
                             }
                         ],
                         'dio_favorite',
