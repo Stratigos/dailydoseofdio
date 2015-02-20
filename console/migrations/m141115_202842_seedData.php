@@ -160,18 +160,34 @@ class m141115_202842_seedData extends Migration
         }
         echo("\n    FINISHED ADDING FIRST BLOG \n");
 
-        // create initial Blogger
-        $blogger            = new Blogger;
-        $blogger->name      = 'Todd Stargazer';
-        $blogger->shortname = 'todd-stargazer';
-        try {
-            $blogger->save();
-        } catch (Exception $e) {
-            echo("\n");
-            echo($e->getMessage());
-            echo("\n");
+        // create initial Bloggers
+        $blogger_data = [
+            [
+                'name'      => 'Todd Stargazer',
+                'shortname' => 'todd-stargazer';
+            ],
+            [
+                'name'      => 'Hans Hairbanger',
+                'shortname' => 'hans-hairbanger';
+            ],
+            [
+                'name'      => 'Raine',
+                'shortname' => 'raine';
+            ]
+        ];
+        foreach($blogger_data as $blgr) {
+            $blogger            = new Blogger;
+            $blogger->name      = $blgr['name'],
+            $blogger->shortname = $blgr['shortname'];
+            try {
+                $blogger->save();
+            } catch (Exception $e) {
+                echo("\n");
+                echo($e->getMessage());
+                echo("\n");
+            }
         }
-        echo("\n    FINISHED ADDING FIRST BLOGGER \n");
+        echo("\n    FINISHED ADDING BLOGGERS \n");
 
         echo("\n    ~ !! After migrations finish, log in, and update all users with a secure password !! ~\n");
 
