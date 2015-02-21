@@ -18,11 +18,10 @@ class BloggerController extends FrontendController
      */
     public function actionIndex()
     {
-        $blogDP = new BloggersDataProvider();
         return $this->render(
             'index',
             [
-                'bloggers' => $blogDP->getModels()
+                'bloggersDP' => new BloggersDataProvider()
             ]
         );
     }
@@ -36,13 +35,12 @@ class BloggerController extends FrontendController
         if(!($blogger = Blogger::find()->published()->andWhere(['shortname' => $shortname])->one())) {
             throw new HttpException(404, 'Blogger not found.');
         }
-        $bloggerPostsDP = new BloggerPostsDataProvider(['blogger_id' => $blogger->id]);
 
         return $this->render(
             'blogger',
             [
                 'blogger' => $blogger,
-                'postsDP' => $bloggerPostsDP
+                'postsDP' => new BloggerPostsDataProvider(['blogger_id' => $blogger->id])
             ]
         );
     }

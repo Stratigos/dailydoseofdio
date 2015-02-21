@@ -1,17 +1,16 @@
+<?php use yii\helpers\Html; ?>
+<?php use yii\widgets\ListView; ?>
 <div class="container">
     <div class="col-md-8">
         <h1 class="page-header">
             <p>Bloggers</p>
         </h1>
-        <?php if(isset($bloggers) && !empty($bloggers)) :?>
-            <?php foreach($bloggers as $blogger) : ?>
-                <?= $this->context->renderPartial(
-                    '@frontend/views/_partials/bloggerDefault.php',
-                    ['blogger' => $blogger]
-                ); ?>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>No Bloggers found.</p>
-        <?php endif;?>
+        <?= ListView::widget([
+            'dataProvider' => $bloggersDP,
+            'itemView'     => '@frontend/views/_partials/bloggerDefault.php',
+            'emptyText'    => 'No Bloggers found.',
+            'separator'    => Html::tag('hr'),
+            'summary'      => ''
+        ]); ?>
     </div>
 </div>

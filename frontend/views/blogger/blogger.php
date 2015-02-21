@@ -1,5 +1,5 @@
-<?php use yii\widgets\LinkPager; ?>
 <?php use yii\helpers\Html; ?>
+<?php use yii\widgets\ListView; ?>
 <div class="container">
     <div class="col-md-8">
         <div class="container">
@@ -10,18 +10,13 @@
             <hr />
         </div>
         <div class="container">
-            <h2>Doses from <?= $blogger->name ?></h2>
-            <?php if($posts = $postsDP->getModels()): ?>
-                <?php foreach($posts as $post): ?>
-                    <?= $this->context->renderPartial(
-                        '@frontend/views/_partials/postDefault.php',
-                        ['post' => $post]
-                    ); ?>
-                <?php endforeach; ?>
-                <?= LinkPager::widget(['pagination' => $postsDP->pagination]); ?>
-            <?php else : ?>
-                <p>No Posts found.</p>
-            <?php endif;?>
+            <?= ListView::widget([
+                'dataProvider' => $postsDP,
+                'itemView'     => '@frontend/views/_partials/postDefault.php',
+                'emptyText'    => 'No Doses found.',
+                'separator'    => Html::tag('hr'),
+                'summary'      => "<h2>Doses from {$blogger->name}</h2>"
+            ]); ?>
         </div>
     </div>
 </div>
