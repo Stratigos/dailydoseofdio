@@ -1,28 +1,26 @@
-<?php use yii\widgets\LinkPager; ?>
+<?php use yii\helpers\Html; ?>
+<?php use yii\widgets\ListView; ?>
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-
             <h1 class="page-header">
                 <p>Daily Dose of Dio</p>
                 <small>Dedicated to the life, art, and work of Ronnie James Dio</small>
             </h1>
-
-            <?php if(isset($posts) && !empty($posts)) :?>
-                <?php foreach($posts as $post) : ?>
-                    <?= $this->context->renderPartial(
-                        '@frontend/views/_partials/postDefault.php',
-                        ['post' => $post]
-                    ); ?>
-                <?php endforeach; ?>
+            <?= ListView::widget([
+                'dataProvider' => $postsDP,
+                'itemView'     => '@frontend/views/_partials/postDefault.php',
+                'emptyText'    => 'No Doses found.',
+                'separator'    => Html::tag('hr'),
+                'summary'      => ''
+            ]); ?>
+            <p>            
                 <a
                     class="btn btn-primary"
                     href="<?= $archiveUrl ?>"
                 >More Doses<span class="glyphicon glyphicon-chevron-right"></span></a>
-            <?php else : ?>
-                <p>No Posts found.</p>
-            <?php endif;?>
+            </p>
         </div>
 
         <!-- Blog Sidebar Widgets Column -->

@@ -17,12 +17,10 @@ class SiteController extends FrontendController
      */
     public function actionIndex()
     {
-        $postsDP = new HomepagePostsDataProvider();
-
         return $this->render(
             'index',
             [
-                'posts'      => $postsDP->getModels(),
+                'postsDP'    => new HomepagePostsDataProvider(),
                 'archiveUrl' => Yii::$app->urlManager->createUrl(
                     array(
                         'archive/index',
