@@ -18,13 +18,7 @@ class BlogController extends FrontendController
      */
     public function actionIndex()
     {
-        $blogDP = new BlogsDataProvider();
-        return $this->render(
-            'index',
-            [
-                'blogs' => $blogDP->getModels()
-            ]
-        );
+        return $this->render('index', ['blogsDP' => new BlogsDataProvider()]);
     }
 
     /**
@@ -36,13 +30,12 @@ class BlogController extends FrontendController
         if(!($blog = Blog::find()->published()->andWhere(['shortname' => $shortname])->one())) {
             throw new HttpException(404, 'YOUR BLOG AINT FOUND');
         }
-        $blogPostsDP = new BlogPostsDataProvider(['blog_id' => $blog->id]);
 
         return $this->render(
             'blog',
             [
                 'blog'    => $blog,
-                'postsDP' => $blogPostsDP
+                'postsDP' => new BlogPostsDataProvider(['blog_id' => $blog->id])
             ]
         );
     }

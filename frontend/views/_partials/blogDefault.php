@@ -1,14 +1,14 @@
 <?php use yii\helpers\Html; ?>
-<h2><?= Html::a(Html::encode($blog->title), $blog->url); ?></h2>
+<h2><?= Html::a(Html::encode($model->title), $model->url); ?></h2>
 <div class="row">
-    <?= Html::img($blog->getImage('200x200')); ?>
+    <?= Html::img($model->getImage('200x200')); ?>
 </div>
 <div class="row">
-    <p><?= $blog->short_description ?></p>
+    <p><?= $model->short_description ?></p>
 </div>
 <div class="clearfix"></div>
 <a
     class="btn btn-primary media"
-    href="<?= Yii::$app->urlManager->createUrl($blog->url) ?>"
+    href="<?= Yii::$app->urlManager->createUrl($model->url) ?>"
 >Read Blog <span class="glyphicon glyphicon-chevron-right"></span></a>
 <hr />
