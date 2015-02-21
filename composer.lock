@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "90f05731657eb4ae801fec88db946501c43fce1d"
+                "reference": "a3275993df4414bcaa61177df5a8d2ce502f927b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/90f05731657eb4ae801fec88db946501c43fce1d",
-                "reference": "90f05731657eb4ae801fec88db946501c43fce1d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a3275993df4414bcaa61177df5a8d2ce502f927b",
+                "reference": "a3275993df4414bcaa61177df5a8d2ce502f927b",
                 "shasum": ""
             },
             "require": {
@@ -205,7 +205,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-02-20 00:21:26"
+            "time": "2015-02-20 18:30:16"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -842,12 +842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "2dc33aff298b20ad099ac456034aebc5055f02fb"
+                "reference": "ce9246f87133be616f5db06b5e162f5210f95280"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2dc33aff298b20ad099ac456034aebc5055f02fb",
-                "reference": "2dc33aff298b20ad099ac456034aebc5055f02fb",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/ce9246f87133be616f5db06b5e162f5210f95280",
+                "reference": "ce9246f87133be616f5db06b5e162f5210f95280",
                 "shasum": ""
             },
             "require": {
@@ -858,6 +858,7 @@
                 "symfony/config": "~2.0,>=2.0.5|~3.0.0",
                 "symfony/dependency-injection": "~2.6|~3.0.0",
                 "symfony/expression-language": "~2.6|~3.0.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0.0",
                 "symfony/stopwatch": "~2.3|~3.0.0"
             },
             "suggest": {
@@ -891,7 +892,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-11 07:17:51"
+            "time": "2015-02-18 10:38:04"
         },
         {
             "name": "yiisoft/yii2",
@@ -899,12 +900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "ae22def7095f93698d89530dd207945320c6e89b"
+                "reference": "5e6dc3aa53aef8aa48b99225f1b05d37ae2bf452"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ae22def7095f93698d89530dd207945320c6e89b",
-                "reference": "ae22def7095f93698d89530dd207945320c6e89b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5e6dc3aa53aef8aa48b99225f1b05d37ae2bf452",
+                "reference": "5e6dc3aa53aef8aa48b99225f1b05d37ae2bf452",
                 "shasum": ""
             },
             "require": {
@@ -980,7 +981,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-02-20 03:46:49"
+            "time": "2015-02-21 03:03:39"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
