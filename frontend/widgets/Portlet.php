@@ -7,7 +7,7 @@
 *      https://github.com/netyum/blog2.0/blob/master/www/css/site.css
 ******************************************************************************/
 
-namespace app\widgets;
+namespace frontend\widgets;
 
 use \yii\helpers\Html;
 use \yii\base\Widget;
@@ -33,28 +33,34 @@ class Portlet extends Widget
      * @var string the tag name for the portlet container tag. Defaults to 'div'.
      */
     public $tagName='div';
+
     /**
      * @var array the HTML attributes for the portlet container tag.
      */
     public $htmlOptions=array('class'=>'portlet');
+
     /**
      * @var string the title of the portlet. Defaults to null.
      * When this is not set, Decoration will not be displayed.
      * Note that the title will not be HTML-encoded when rendering.
      */
     public $title;
+
     /**
      * @var string the CSS class for the decoration container tag. Defaults to 'portlet-decoration'.
      */
     public $decorationCssClass='';
+
     /**
      * @var string the CSS class for the portlet title tag. Defaults to 'portlet-title'.
      */
     public $titleCssClass='portlet-title';
+
     /**
      * @var string the CSS class for the content container tag. Defaults to 'portlet-content'.
      */
     public $contentCssClass='portlet-body';
+    
     /**
      * @var boolean whether to hide the portlet when the body content is empty. Defaults to true.
      * @since 1.1.4
@@ -88,9 +94,11 @@ class Portlet extends Widget
     public function run()
     {
         $this->renderContent();
-        $content=ob_get_clean();
-        if($this->hideOnEmpty && trim($content)==='')
+        $content = ob_get_clean();
+        if ($this->hideOnEmpty && trim($content) === '') {
             return;
+        }
+
         echo $this->_beginTag;
         echo $content;
         echo '</div>';
@@ -103,9 +111,8 @@ class Portlet extends Widget
      */
     protected function renderDecoration()
     {
-        if($this->title!==null)
-        {
-                        echo "<h4 class=\"{$this->titleCssClass}\">{$this->title}</h4>\n";
+        if ($this->title !== null) {
+            echo "<h4 class=\"{$this->titleCssClass}\">{$this->title}</h4>\n";
         }
     }
 
@@ -113,7 +120,5 @@ class Portlet extends Widget
      * Renders the content of the portlet.
      * Child classes should override this method to render the actual content.
      */
-    protected function renderContent()
-    {
-    }
+    protected function renderContent() {}
 }

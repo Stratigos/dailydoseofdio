@@ -1,5 +1,8 @@
-<?php use yii\helpers\Html; ?>
-<?php use yii\widgets\ListView; ?>
+<?php
+    use frontend\widgets\DailyQuotePortlet;
+    use yii\helpers\Html;
+    use yii\widgets\ListView;
+?>
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
@@ -75,6 +78,9 @@
             </div>
 
             <!-- Side Widget Well -->
+            <div class="well">
+                <?= DailyQuotePortlet::widget() ?>
+            </div>
             <div class="well">
                 <h4>Some Widget Text to Read</h4>
                 <p>
