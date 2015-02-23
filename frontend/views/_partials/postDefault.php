@@ -11,7 +11,7 @@
             <img class="img-responsive" src="http://placehold.it/250x155" alt="">
         <?php endif; ?>
     </div>
-    <div class="col-md-8 col-sm-8"><?= substr($model->body, 0, 200) . '...' ?><p></div>
+    <div class="col-md-8 col-sm-8"><?= substr(strip_tags($model->body), 0, 200) . '...' ?><p></div>
 </div>
 <div class="clearfix"></div>
 <a class="btn btn-primary media" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
