@@ -78,9 +78,7 @@
             </div>
 
             <!-- Side Widget Well -->
-            <div class="well">
-                <?= DailyQuotePortlet::widget() ?>
-            </div>
+            <?= DailyQuotePortlet::widget() ?>
             <div class="well">
                 <h4>Some Widget Text to Read</h4>
                 <p>
