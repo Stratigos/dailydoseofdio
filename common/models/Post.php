@@ -272,4 +272,27 @@ class Post extends ActiveRecord
             null
         ;
     }
+
+    /**
+     * get a summary of the Post body, for display in lists
+     * @param $length Int
+     *  Length of summarized text, after tags removed. Defaults to 200.
+     * @param $allowable_tags String
+     *  List of HTML tags to allow.
+     *  @see http://php.net/manual/en/function.strip-tags.php
+     * @return String
+     */
+    public function getSummary($length = 200, $allowable_tags = '<i><b><em><strong>')
+    {
+        $summary = null;
+
+        if(!empty($this->body)) {
+            $summary = substr(strip_tags($this->body, $allowable_tags), 0, $length);
+            if($length < strlen($this->body)) {
+                $summary .= ' &hellip;';
+            }
+        }
+
+        return $summary;
+    }
 }
