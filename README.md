@@ -7,6 +7,8 @@ Yii2 Beta Advanced Application
 
 i) Add necessary environment params to webserver config (TBD)
 
+ii) Create a new database and add the credentials to it to the appropriate config params file.
+
 1) Use "composer update" to load vendor/ dir and external dependencies.
 
 2) Use "php init" to initialize application.
