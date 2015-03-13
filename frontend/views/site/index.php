@@ -7,10 +7,12 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <h1 class="page-header">
-                <p>Daily Dose of Dio</p>
-                <small>Dedicated to the life, art, and work of Ronnie James Dio</small>
-            </h1>
+            <div class="well">
+                <h1 class="page-header text-center">
+                    <p>Daily Dose of Dio</p>
+                    <small>Dedicated to the life, art,<br/> and work of Ronnie James Dio</small>
+                </h1>
+            </div>
             <?= ListView::widget([
                 'dataProvider' => $postsDP,
                 'itemView'     => '@frontend/views/_partials/postDefault.php',
