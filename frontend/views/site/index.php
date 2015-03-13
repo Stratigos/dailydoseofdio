@@ -31,18 +31,31 @@
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
 
-            <!-- Blog Search Well -->
+            <!-- Blog Search Well TODO: MAKE INTO A WIDGET -->
             <div class="well">
                 <h4>Search for a Dose</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
-                <!-- /.input-group -->
+                <form method="get" target="_blank" id="search" action="http://duckduckgo.com/">
+                    <div class="input-group">
+                        <input type="hidden" name="ka" value="h"/>
+                        <input type="hidden" name="kn" value="1"/>
+                        <input type="hidden" name="kt" value="Helvetica"/>
+                        <input type="hidden" name="kae" value="d"/>
+                        <input type="hidden" name="sites" value="dailydoseofdio.com"/>
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="q"
+                            maxlength="255"
+                            placeholder="Powered by DuckDuckGo"
+                        />
+                        <!-- <input type="submit" value="DuckDuckGo Search" style="visibility: hidden;" /> -->
+                        <span class="input-group-btn">
+                            <button id="ddgsearchbtn" class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form> 
             </div>
 
             <!-- Blog Categories Well -->
