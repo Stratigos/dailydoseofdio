@@ -7,11 +7,11 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <div class="well">
-                <h1 class="page-header text-center">
-                    <p>Daily Dose of Dio</p>
-                    <small>Dedicated to the life, art,<br/> and work of Ronnie James Dio</small>
-                </h1>
+            <div class="well well-sm text-center">
+                <div class="page-header">
+                    <h1>Daily Dose of Dio</h1>
+                    <h4>Dedicated to the music, poetry, and life<br/>of Ronnie James Dio</h4>
+                </div>
             </div>
             <?= ListView::widget([
                 'dataProvider' => $postsDP,
