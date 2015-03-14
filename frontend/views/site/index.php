@@ -1,5 +1,6 @@
 <?php
     use frontend\widgets\DailyQuotePortlet;
+    use frontend\widgets\DuckDuckGoSearchPortlet;
     use yii\helpers\Html;
     use yii\widgets\ListView;
 ?>
@@ -32,6 +33,7 @@
         <div class="col-md-4">
 
             <!-- Blog Search Well TODO: MAKE INTO A WIDGET -->
+            <?= DuckDuckGoSearchPortlet::widget() ?>
             <div class="well">
                 <h4>Search for a Dose</h4>
                 <form method="get" target="_blank" id="search" action="http://duckduckgo.com/">
