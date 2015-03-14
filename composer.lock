@@ -526,16 +526,16 @@
         },
         {
             "name": "bower-asset/summernote",
-            "version": "v0.6.1",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/summernote/summernote.git",
-                "reference": "ab6772d07073683b2c463ff765085e5d0ad575a0"
+                "reference": "1b3c114efd7e26ed5b87c2aea75e25541768660e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summernote/summernote/zipball/ab6772d07073683b2c463ff765085e5d0ad575a0",
-                "reference": "ab6772d07073683b2c463ff765085e5d0ad575a0",
+                "url": "https://api.github.com/repos/summernote/summernote/zipball/1b3c114efd7e26ed5b87c2aea75e25541768660e",
+                "reference": "1b3c114efd7e26ed5b87c2aea75e25541768660e",
                 "shasum": ""
             },
             "require": {
@@ -798,12 +798,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "db95cfa68a8bc91d1c54f75c416f481c9a8bd100"
+                "reference": "048be6f7c19944d604e321347990543bc2bbe10b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/db95cfa68a8bc91d1c54f75c416f481c9a8bd100",
-                "reference": "db95cfa68a8bc91d1c54f75c416f481c9a8bd100",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/048be6f7c19944d604e321347990543bc2bbe10b",
+                "reference": "048be6f7c19944d604e321347990543bc2bbe10b",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +815,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.3-dev"
+                    "dev-master": "5.4-dev"
                 }
             },
             "autoload": {
@@ -842,7 +842,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-01-18 13:49:36"
+            "time": "2015-03-14 06:07:26"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -851,12 +851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "ce9246f87133be616f5db06b5e162f5210f95280"
+                "reference": "186349c2966529804e38685f671e64746dde220b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/ce9246f87133be616f5db06b5e162f5210f95280",
-                "reference": "ce9246f87133be616f5db06b5e162f5210f95280",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/186349c2966529804e38685f671e64746dde220b",
+                "reference": "186349c2966529804e38685f671e64746dde220b",
                 "shasum": ""
             },
             "require": {
@@ -901,7 +901,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-02-18 10:38:04"
+            "time": "2015-03-13 17:50:01"
         },
         {
             "name": "yiisoft/yii2",
