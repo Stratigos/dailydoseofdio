@@ -32,8 +32,6 @@
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
-
-            <!-- Blog Search Well TODO: MAKE INTO A WIDGET -->
             <?= DuckDuckGoSearchPortlet::widget() ?>
             <div class="well">
                 <h4>Search for a Dose</h4>
