@@ -10,7 +10,7 @@
                 <?php foreach($posts as $post): ?>
                     <?= $this->context->renderPartial(
                         '@frontend/views/_partials/postDefault.php',
-                        ['post' => $post]
+                        ['model' => $post]
                     ); ?>
                 <?php endforeach; ?>
                 <?= LinkPager::widget(['pagination' => $postsDP->pagination]); ?>
