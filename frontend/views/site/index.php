@@ -21,11 +21,12 @@
                 'separator'    => Html::tag('hr'),
                 'summary'      => ''
             ]); ?>
+            <br />
             <p>            
                 <a
                     class="btn btn-primary"
                     href="<?= $archiveUrl ?>"
-                >More Doses<span class="glyphicon glyphicon-chevron-right"></span></a>
+                >More Doses <span class="glyphicon glyphicon-chevron-right"></span></a>
             </p>
         </div>
 
