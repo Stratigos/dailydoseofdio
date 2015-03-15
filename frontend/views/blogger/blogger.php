@@ -9,14 +9,12 @@
             <p><b>Favorite Dio Track:</b>&nbsp;<i><?= $blogger->dio_favorite ?></i></p>
             <hr />
         </div>
-        <div class="container">
-            <?= ListView::widget([
-                'dataProvider' => $postsDP,
-                'itemView'     => '@frontend/views/_partials/postDefault.php',
-                'emptyText'    => 'No Doses found.',
-                'separator'    => Html::tag('hr'),
-                'summary'      => "<h2>Doses from {$blogger->name}</h2>"
-            ]); ?>
-        </div>
+        <?= ListView::widget([
+            'dataProvider' => $postsDP,
+            'itemView'     => '@frontend/views/_partials/postDefault.php',
+            'emptyText'    => "No Doses found from {$blogger->name}.",
+            'separator'    => Html::tag('hr'),
+            'summary'      => "<h2>Doses from {$blogger->name}</h2>"
+        ]); ?>
     </div>
 </div>
