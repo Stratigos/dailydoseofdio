@@ -13,4 +13,7 @@
             'summary'      => ''
         ]); ?>
     </div>
+    <div class="col-md-4">
+        <?= $this->context->renderPartial('@frontend/views/_partials/sidebar.php'); ?>
+    </div>
 </div>

@@ -1,5 +1,7 @@
-<?php use yii\helpers\Html; ?>
-<?php use yii\widgets\ListView; ?>
+<?php
+    use yii\helpers\Html;
+    use yii\widgets\ListView;
+?>
 <div class="container">
     <div class="col-md-8">
         <h1 class="page-header">
@@ -12,5 +14,8 @@
             'separator'    => Html::tag('hr'),
             'summary'      => ''
         ]); ?>
+    </div>
+    <div class="col-md-4">
+        <?= $this->context->renderPartial('@frontend/views/_partials/sidebar.php'); ?>
     </div>
 </div>

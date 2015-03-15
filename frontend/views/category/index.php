@@ -1,16 +1,17 @@
 <div class="container">
-    <div class="col-md-8">
-        <h1 class="page-header">
-            <p>Categories</p>
-        </h1>
+    <div class="col-md-8 text-center">
+        <h1 class="page-header">Categories</h1>
         <?php if(isset($categories) && !empty($categories)) :?>
-            <ul>
+            <div class="list-group">
                 <?php foreach($categories as $category) : ?>
-                    <li><?= $category->linkTag; ?></li>
+                    <a href="<?= $category->url ?>" class="list-group-item"><strong><?= $category->name ?></strong></a>
                 <?php endforeach; ?>
-            </ul>
+            </div>
         <?php else : ?>
             <p>No Categories found.</p>
         <?php endif;?>
+    </div>
+    <div class="col-md-4">
+        <?= $this->context->renderPartial('@frontend/views/_partials/sidebar.php'); ?>
     </div>
 </div>

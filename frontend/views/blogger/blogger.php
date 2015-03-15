@@ -1,8 +1,10 @@
-<?php use yii\helpers\Html; ?>
-<?php use yii\widgets\ListView; ?>
+<?php
+    use yii\helpers\Html;
+    use yii\widgets\ListView;
+?>
 <div class="container">
     <div class="col-md-8">
-        <div class="container">
+        <div>
             <h1 class="page-header"><?= $blogger->name; ?></h1>
             <p><?= Html::img($blogger->getImage('500x500')); ?></p>
             <p><?= $blogger->description; ?></p>
@@ -16,5 +18,8 @@
             'separator'    => Html::tag('hr'),
             'summary'      => "<h2>Doses from {$blogger->name}</h2>"
         ]); ?>
+    </div>
+    <div class="col-md-4">
+        <?= $this->context->renderPartial('@frontend/views/_partials/sidebar.php'); ?>
     </div>
 </div>

@@ -1,9 +1,10 @@
-<?php use yii\widgets\LinkPager; ?>
-<?php use yii\widgets\ListView; ?>
-<?php use yii\helpers\Html; ?>
+<?php
+    use yii\widgets\ListView;
+    use yii\helpers\Html;
+?>
 <div class="container">
     <div class="col-md-8">
-        <div class="container">
+        <div>
             <h1 class="page-header"><?= $category->name; ?></h1>
             <p><b>Description:</b>&nbsp;<?= $category->description; ?> </p>
         </div>
@@ -14,5 +15,8 @@
             'separator'    => Html::tag('hr'),
             'summary'      => ''
         ]); ?>
+    </div>
+    <div class="col-md-4">
+        <?= $this->context->renderPartial('@frontend/views/_partials/sidebar.php'); ?>
     </div>
 </div>
