@@ -1,4 +1,5 @@
 <?php
+    use frontend\widgets\AdSidebar;
     use frontend\widgets\DailyQuotePortlet;
     use frontend\widgets\DuckDuckGoSearchPortlet;
     use yii\helpers\Html;
@@ -68,7 +69,8 @@
                 <!-- /.row -->
             </div>
 
-            <!-- Side Widget Well -->
+            <!-- Side Widget Wells -->
+            <?= AdSidebar::widget() ?>
             <?= DailyQuotePortlet::widget() ?>
             <div class="well">
                 <h4>Some Widget Text to Read</h4>
