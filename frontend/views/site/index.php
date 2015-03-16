@@ -2,6 +2,7 @@
     use frontend\widgets\AdSidebar;
     use frontend\widgets\DailyQuotePortlet;
     use frontend\widgets\DuckDuckGoSearchPortlet;
+    use frontend\widgets\SocialSidebar;
     use yii\helpers\Html;
     use yii\widgets\ListView;
 ?>
@@ -33,43 +34,9 @@
 
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
-            <?= DuckDuckGoSearchPortlet::widget() ?>
-
-            <!-- Blog Categories Well -->
-            <div class="well">
-                <h4>Doses by Category</h4>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.col-lg-6 -->
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.col-lg-6 -->
-                </div>
-                <!-- /.row -->
-            </div>
-
             <!-- Side Widget Wells -->
+            <?= DuckDuckGoSearchPortlet::widget() ?>
+            <?= SocialSidebar::widget() ?>
             <?= AdSidebar::widget() ?>
             <?= DailyQuotePortlet::widget() ?>
             <div class="well">
