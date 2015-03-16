@@ -21,10 +21,18 @@ class DailyQuotePortlet extends Portlet
     protected function renderContent()
     {
         if ($quotePost = Post::find()->published()->joinWith('quote', true, 'RIGHT JOIN')->orderBy('RAND()')->one()) {
-            echo Html::beginTag('p');
-            echo Html::tag('p', $quotePost->quote->body);
-            echo Html::tag('p', Html::tag('em', Html::a($quotePost->quote->source, $quotePost->url)));
-            echo Html::endTag('p');
+            $quotePortletContent = Html::beginTag('p');
+                $quotePortletContent .= Html::tag('p', $quotePost->quote->body);
+                $quotePortletContent .= Html::tag(
+                    'p',
+                    Html::tag(
+                        'em',
+                        Html::a($quotePost->quote->source, $quotePost->url)
+                    )
+                );
+            $quotePortletContent .= Html::endTag('p');
+
+            echo $quotePortletContent;
         }
 
         return;
