@@ -11,19 +11,12 @@ use yii\web\HttpException;
 
 class ArchiveController extends FrontendController
 {
-	/**
-	 * Produce list of Category names and URLs
-	 * @return VOID
-	 */
-	public function actionIndex()
-	{
-	    $postsDP = new PostsDataProvider();
-	    return $this->render(
-	        'index',
-	        [
-	            'posts'      => $postsDP->getModels(),
-	            'pagination' => $postsDP->pagination
-	        ]
-	    );
-	}
+    /**
+     * Produce list of Category names and URLs
+     * @return VOID
+     */
+    public function actionIndex()
+    {
+        return $this->render('index', ['postsDP' => new PostsDataProvider()]);
+    }
 }
