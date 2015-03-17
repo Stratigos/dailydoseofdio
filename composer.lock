@@ -55,22 +55,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/2amigos/yii2-date-time-picker-widget.git",
-                "reference": "42a69c097e26259eb796338ec46c82822e8a7ced"
+                "reference": "3c3d41499a2551581c4550fc689356e971a27b4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-date-time-picker-widget/zipball/42a69c097e26259eb796338ec46c82822e8a7ced",
-                "reference": "42a69c097e26259eb796338ec46c82822e8a7ced",
+                "url": "https://api.github.com/repos/2amigos/yii2-date-time-picker-widget/zipball/3c3d41499a2551581c4550fc689356e971a27b4c",
+                "reference": "3c3d41499a2551581c4550fc689356e971a27b4c",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/smalot-bootstrap-datetimepicker": "2.3.1",
-                "php": ">=5.4.0",
                 "yiisoft/yii2": "*",
                 "yiisoft/yii2-bootstrap": "*"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
             },
             "type": "yii2-extension",
             "extra": {
@@ -99,13 +99,17 @@
                 }
             ],
             "description": "Bootstrap DateTimePicker widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/bootstrap-datetimepicker-widget",
             "keywords": [
-                "datepicker",
+                "2amigos",
+                "DateTimePicker",
                 "extension",
                 "widget",
-                "yii"
+                "yii",
+                "yii 2",
+                "yii2"
             ],
-            "time": "2015-03-16 13:07:30"
+            "time": "2015-03-16 23:33:54"
         },
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -161,12 +165,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "4f6d91af55be4b02bf1c8881cc6eee270d8e1487"
+                "reference": "2d8a04c9a3cc6a6993b42199c81e301d552079f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/4f6d91af55be4b02bf1c8881cc6eee270d8e1487",
-                "reference": "4f6d91af55be4b02bf1c8881cc6eee270d8e1487",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2d8a04c9a3cc6a6993b42199c81e301d552079f6",
+                "reference": "2d8a04c9a3cc6a6993b42199c81e301d552079f6",
                 "shasum": ""
             },
             "require": {
@@ -220,20 +224,20 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-03-15 17:19:00"
+            "time": "2015-03-16 20:42:57"
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.2",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "bcf7dd38b5ab180256e2e4fb5da0369551b3f082"
+                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/bcf7dd38b5ab180256e2e4fb5da0369551b3f082",
-                "reference": "bcf7dd38b5ab180256e2e4fb5da0369551b3f082",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
+                "reference": "a10eb60bc0b07b747fa0c4ebd8821eb7307bd07f",
                 "shasum": ""
             },
             "require": {
@@ -248,7 +252,8 @@
                     "dist/fonts/glyphicons-halflings-regular.eot",
                     "dist/fonts/glyphicons-halflings-regular.svg",
                     "dist/fonts/glyphicons-halflings-regular.ttf",
-                    "dist/fonts/glyphicons-halflings-regular.woff"
+                    "dist/fonts/glyphicons-halflings-regular.woff",
+                    "dist/fonts/glyphicons-halflings-regular.woff2"
                 ],
                 "bower-asset-ignore": [
                     "/.*",
