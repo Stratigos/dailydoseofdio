@@ -1,5 +1,6 @@
 <?php
     use frontend\widgets\AdSidebar;
+    use frontend\widgets\DailyDosePortlet;
     use frontend\widgets\DailyQuotePortlet;
     use frontend\widgets\DuckDuckGoSearchPortlet;
     use frontend\widgets\SocialSidebar;
@@ -49,6 +50,7 @@
                     tri-tip. Fatback pork belly meatball laborum andouille.
                 </p>
             </div>
+            <?= DailyDosePortlet::widget() ?>
 
         </div>
 
