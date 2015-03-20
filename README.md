@@ -1,5 +1,4 @@
-ddod
-====
+= DDoD - Daily Dose of Dio =
 
 Yii2 Beta Advanced Application
 
@@ -15,3 +14,8 @@ ii) Create a new database and add the credentials to it to the appropriate confi
 
 3) Use "php yii migrate/up" to initialize database.
 
+
+=== Copyleft ===
+Copyright (C) 2014-2015 Stratigos
+https://github.com/Stratigos
+GPLv3 LISENCE - Please see [License File](LICENSE.md)
