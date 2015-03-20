@@ -1,6 +1,6 @@
-= Daily Dose of Dio =
+# Daily Dose of Dio
 
-== CMS and Blog dedicated to the musician Ronnie James Dio ==
+## CMS and Blog dedicated to the musician Ronnie James Dio ##
 
 Copyright (C) 2014-2015 Stratigos
 https://github.com/Stratigos
