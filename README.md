@@ -17,6 +17,6 @@ ii) Create a new database and add the credentials to it to the appropriate confi
 
 ### Copyleft ###
 
-Copyright :copyright: 2014-2015 Stratigos
-https://github.com/Stratigos
-GPLv3 LISENCE - Please see [License File](LICENSE.md)
+Copyright :copyright: 2014-2015 Stratigos  
+https://github.com/Stratigos  
+GPLv3 LISENCE - Please see [License File](LICENSE.md)  
