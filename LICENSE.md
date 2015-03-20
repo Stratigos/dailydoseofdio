@@ -1,3 +1,6 @@
+Copyright (C) 2014-2015 Stratigos
+https://github.com/Stratigos
+
 GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
