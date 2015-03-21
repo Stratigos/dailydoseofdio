@@ -7,7 +7,7 @@
     use common\models\Quote;
     use Zelenin\yii\widgets\Summernote\Summernote;
     use dosamigos\datetimepicker\DateTimePicker;
-    use dosamigos\selectize\Selectize;
+    use dosamigos\selectize\SelectizeTextInput;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
@@ -89,10 +89,10 @@
         <?php endif;?>
         <div class="form-group field-post-tags-selected">
             <label class="control-label" for="post-tags-selected">Post Tags</label>
-            <?= Selectize::widget([
+            <?= SelectizeTextInput::widget([
                 'name'          => PostTag::getInputFieldName(),
                 'value'         => $post_tags,
-                'url'           => ['tag/list'],
+                'loadUrl'       => ['tag/list'],
                 'options'       => [
                     'class' => 'form-control',
                     'id'    => 'post-tags-selected'
