@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/2amigos/yii2-date-picker-widget.git",
-                "reference": "f780322be4e6d3e6de372514365c13d36901b7bd"
+                "reference": "c40afdb9473a542f6434cf19e4faab9b01a34f90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-date-picker-widget/zipball/f780322be4e6d3e6de372514365c13d36901b7bd",
-                "reference": "f780322be4e6d3e6de372514365c13d36901b7bd",
+                "url": "https://api.github.com/repos/2amigos/yii2-date-picker-widget/zipball/c40afdb9473a542f6434cf19e4faab9b01a34f90",
+                "reference": "c40afdb9473a542f6434cf19e4faab9b01a34f90",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "yii 2",
                 "yii2"
             ],
-            "time": "2015-03-20 13:04:48"
+            "time": "2015-03-20 13:38:39"
         },
         {
             "name": "2amigos/yii2-date-time-picker-widget",
@@ -135,17 +135,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/2amigos/yii2-selectize-widget.git",
-                "reference": "e20123d3b52194a29e55e8750e0a48b2ea3a5988"
+                "reference": "adf969fe90fcf57818a331fa565903839e7e9532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-selectize-widget/zipball/e20123d3b52194a29e55e8750e0a48b2ea3a5988",
-                "reference": "e20123d3b52194a29e55e8750e0a48b2ea3a5988",
+                "url": "https://api.github.com/repos/2amigos/yii2-selectize-widget/zipball/adf969fe90fcf57818a331fa565903839e7e9532",
+                "reference": "adf969fe90fcf57818a331fa565903839e7e9532",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/selectize": "~0.12.0",
-                "yiisoft/yii2": "~2.0.0"
+                "yiisoft/yii2": "~2.0.0",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
@@ -192,7 +193,7 @@
                 "yii 2",
                 "yii2"
             ],
-            "time": "2015-03-20 13:21:33"
+            "time": "2015-03-20 22:04:12"
         },
         {
             "name": "aws/aws-sdk-php",
@@ -1122,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f48856459af5c543797e2517b700c13f3276f688"
+                "reference": "bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f48856459af5c543797e2517b700c13f3276f688",
-                "reference": "f48856459af5c543797e2517b700c13f3276f688",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a",
+                "reference": "bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a",
                 "shasum": ""
             },
             "require": {
@@ -1202,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-20 13:18:52"
+            "time": "2015-03-21 12:52:44"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
