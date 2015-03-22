@@ -94,7 +94,24 @@ class m130524_201442_init extends Migration
             $tableOptions
         );
 
-        // remaining content datatypes or content taxonomy datatypes
+        // remaining content datatypes, or content taxonomy datatypes
+
+        $this->createTable(
+            '{{%promoted_posts}}',
+            [
+                'id'           => Schema::TYPE_PK,
+                'post_id'      => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'description'  => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'image_path'   => Schema::TYPE_STRING  . '(255) DEFAULT NULL',
+                'image_ext'    => Schema::TYPE_STRING  . '(6) DEFAULT NULL',
+                'status'       => 'TINYINT(1) UNSIGNED NOT NULL DEFAULT 0',
+                'published_at' => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'created_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'updated_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+                'deleted_at'   => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0'
+            ],
+            $tableOptions
+        );
 
         $this->createTable(
             '{{%pages}}',
