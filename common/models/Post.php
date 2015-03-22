@@ -260,6 +260,14 @@ class Post extends ActiveRecord
     }
 
     /**
+     * relation to PromotedPosts
+     */
+    public function getPromotedPosts()
+    {
+        return $this->hasMany(PromotedPost::className(), ['post_id' => 'id'])->inverseOf('post');
+    }
+
+    /**
      * get full url to a Post's image.
      * @param $size_key String
      *  name of a configured image size (e.g., '250x155')
