@@ -29,10 +29,10 @@ class PromotedPost extends ActiveRecord
      * @inheritdoc
      * @return PromotedPostQuery
      */
-    // public static function find()
-    // {
-    //     return new PromotedPostQuery(get_called_class());
-    // }
+    public static function find()
+    {
+        return new PromotedPostQuery(get_called_class());
+    }
 
     /**
      * @inheritdoc
