@@ -124,7 +124,7 @@ class Post extends ActiveRecord
             [['shortname'], 'validateShortnameURLFriendly'],
             [['body'], 'string', 'max' => 65535],
             [['status'], 'required'],
-            [['status'], 'integer', 'min' => 0, 'max' => 1],
+            [['status'], 'integer', 'min' => self::STATUS_DRAFT, 'max' => self::STATUS_PUBLISHED],
         ];
     }
 
