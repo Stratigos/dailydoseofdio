@@ -69,7 +69,9 @@ class PromotedPost extends ActiveRecord
             [['post_id'], 'integer'],
             [['description'], 'string', 'max' => 255],
             [['status'], 'required'],
-            [['status'], 'integer', 'min' => 0, 'max' => 1]
+            [['status'], 'integer', 'min' => self::STATUS_DRAFT, 'max' => self::STATUS_PUBLISHED],
+            [['rank'], 'required'],
+            [['rank'], 'integer', 'min' => 0, 'max' => 999],
         ];
     }
 
@@ -81,7 +83,8 @@ class PromotedPost extends ActiveRecord
         return [
             'post_id'     => 'Post ID',
             'description' => 'Description',
-            'status'      => 'Status'
+            'status'      => 'Status',
+            'rank'        => 'Rank'
         ];
     }
 
