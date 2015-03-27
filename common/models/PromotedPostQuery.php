@@ -10,6 +10,7 @@ class PromotedPostQuery extends ActiveQuery
 {
     /**
      * Base criteria for a PromotedPost to appear in user facing content.
+     *  Includes relation to Post within it's published() scope.
      * @return self
      */
     public function published()
@@ -18,6 +19,8 @@ class PromotedPostQuery extends ActiveQuery
             'published_at < ' . time() .
             ' AND status = '. PromotedPost::STATUS_PUBLISHED .
             ' AND deleted_at = 0'
+        )->with(
+            ['post' => function (PostQuery $query) { $query->published(); }]
         );
 
         return $this;
