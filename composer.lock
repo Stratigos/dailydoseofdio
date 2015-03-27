@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1c119a1d3b4c9fa726fc1eae25a2039357ca8808"
+                "reference": "5942bb53e6629c482e8fbc3828967f6516e95c02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1c119a1d3b4c9fa726fc1eae25a2039357ca8808",
-                "reference": "1c119a1d3b4c9fa726fc1eae25a2039357ca8808",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5942bb53e6629c482e8fbc3828967f6516e95c02",
+                "reference": "5942bb53e6629c482e8fbc3828967f6516e95c02",
                 "shasum": ""
             },
             "require": {
@@ -260,7 +260,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-03-24 22:03:02"
+            "time": "2015-03-26 19:36:25"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -485,16 +485,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.61",
+            "version": "3.1.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2"
+                "reference": "da1a274cefa18a52a0519ac7ffe8e8d31e950eae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/da1a274cefa18a52a0519ac7ffe8e8d31e950eae",
+                "reference": "da1a274cefa18a52a0519ac7ffe8e8d31e950eae",
                 "shasum": ""
             },
             "require": {
@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8"
+                "reference": "6b8da53205fd8b934b12a84f4418c6abb5d4714f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8",
-                "reference": "5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6b8da53205fd8b934b12a84f4418c6abb5d4714f",
+                "reference": "6b8da53205fd8b934b12a84f4418c6abb5d4714f",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-26 12:24:59"
+            "time": "2015-03-27 02:57:27"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1401,12 +1401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zelenin/yii2-summernote-widget.git",
-                "reference": "bd962a5eb6667ee94a4552a9017b7024dc47261d"
+                "reference": "f71a683c42b371bb55b641a4f241fd468b19d444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zelenin/yii2-summernote-widget/zipball/bd962a5eb6667ee94a4552a9017b7024dc47261d",
-                "reference": "bd962a5eb6667ee94a4552a9017b7024dc47261d",
+                "url": "https://api.github.com/repos/zelenin/yii2-summernote-widget/zipball/f71a683c42b371bb55b641a4f241fd468b19d444",
+                "reference": "f71a683c42b371bb55b641a4f241fd468b19d444",
                 "shasum": ""
             },
             "require": {
@@ -1447,7 +1447,7 @@
                 "wysiwyg",
                 "yii2"
             ],
-            "time": "2015-03-08 13:58:39"
+            "time": "2015-03-27 07:55:47"
         }
     ],
     "packages-dev": [
