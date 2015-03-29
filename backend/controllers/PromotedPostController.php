@@ -57,7 +57,7 @@ class PromotedPostController extends Controller
             'index',
             [
                 'createPromotedPostUrl'    => Yii::$app->urlManager->createUrl('promotedpost/create'),
-                'PromotedPostDataProvider' => new PromotedPostIndexDP()
+                'promotedPostDataProvider' => new PromotedPostIndexDP()
             ]
         );
     }
