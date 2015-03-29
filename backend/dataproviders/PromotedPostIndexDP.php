@@ -12,6 +12,6 @@ class PromotedPostIndexDP extends IndexDataProvider
     public function init()
     {
         parent::init();
-        $this->query = PromotedPost::find()->where(['deleted_at' => 0])->orderBy(['rank' => SORT_ASC]);
+        $this->query = PromotedPost::find()->where(['deleted_at' => 0])->with('post')->orderBy(['rank' => SORT_ASC]);
     }
 }
