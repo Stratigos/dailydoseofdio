@@ -24,11 +24,6 @@ class PromotedPostController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['view'],
-                        'allow'   => true,
-                        'roles'   => ['@']
-                    ],
-                    [
                         'actions' => ['index', 'create', 'update', 'delete'],
                         'allow'   => true,
                         'roles'   => ['author']
@@ -63,28 +58,6 @@ class PromotedPostController extends Controller
             [
                 'createPromotedPostUrl'    => Yii::$app->urlManager->createUrl('promotedpost/create'),
                 'PromotedPostDataProvider' => new PromotedPostIndexDP()
-            ]
-        );
-    }
-
-    /**
-     * render a view of a PromotedPost's data
-     * @param Int $id
-     *  valid promoted_posts.id value
-     */
-    public function actionView($id)
-    {
-        $promotedPost = PromotedPost::find()->where('id = :_id', [':_id' => $id])->one();
-
-        if($promotedPost === NULL) {
-            throw new HttpException(404, "PromotedPost {$id} Not Found");
-        }
-
-        return $this->render(
-            'view',
-            [
-                'indexUrl'     => Yii::$app->urlManager->createUrl('promotedpost/index'),
-                'promotedPost' => $promotedPost
             ]
         );
     }
