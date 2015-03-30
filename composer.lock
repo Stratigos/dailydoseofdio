@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735"
+                "reference": "2f7ef4000368e1c876730537b0e8d82a8aebe9e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
-                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2f7ef4000368e1c876730537b0e8d82a8aebe9e9",
+                "reference": "2f7ef4000368e1c876730537b0e8d82a8aebe9e9",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-29 16:01:24"
+            "time": "2015-03-30 08:32:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1518,12 +1518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-codeception.git",
-                "reference": "86606c9b4dfca1d58a6981467258c96a3751516f"
+                "reference": "31c2e974c72070747d2213d4ad0054038e5a5925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/86606c9b4dfca1d58a6981467258c96a3751516f",
-                "reference": "86606c9b4dfca1d58a6981467258c96a3751516f",
+                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/31c2e974c72070747d2213d4ad0054038e5a5925",
+                "reference": "31c2e974c72070747d2213d4ad0054038e5a5925",
                 "shasum": ""
             },
             "require": {
@@ -1555,7 +1555,7 @@
                 "codeception",
                 "yii2"
             ],
-            "time": "2015-03-23 18:33:13"
+            "time": "2015-03-30 14:18:21"
         },
         {
             "name": "yiisoft/yii2-debug",
