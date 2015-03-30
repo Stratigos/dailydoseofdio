@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'label' => 'Title',
                             'value' => function($data) {
-                                return StringHelper::truncateWords(HtmlHelper::encode($data->post->title), 7, '&hellip;');
+                                return StringHelper::truncateWords(
+                                    HtmlHelper::encode($data->post->title), 7, '&hellip;'
+                                );
                             }
                         ],
                         [
@@ -35,13 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return $data->getSummary(50, '');
                             }
                         ],
-                        [
-                            'label' => 'Publish Date',
-                            'class' => 'yii\grid\DataColumn',
-                            'value' => function($data) {
-                                return empty($data->published_at) ? null : date('Y-m-d H:i:s', $data->published_at);
-                            }
-                        ],
+                        'rank',
                         [
                             'label' => 'Status',
                             'value' => function($data) {
@@ -51,6 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return 'Published';
                                 }
                                 return 'Invalid';
+                            }
+                        ],
+                        [
+                            'label' => 'Publish Date',
+                            'class' => 'yii\grid\DataColumn',
+                            'value' => function($data) {
+                                return empty($data->published_at) ? null : date('Y-m-d H:i:s', $data->published_at);
                             }
                         ],
                         [
