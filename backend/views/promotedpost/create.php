@@ -14,7 +14,7 @@
         <?php echo $this->render(
             '_promotedpost_form',
             [
-                'promotedpost' => $post,
+                'promotedPost' => $promotedPost,
                 'errors'       => $errors
             ]
         ); ?>

@@ -20,7 +20,7 @@
             'enctype' => 'multipart/form-data'
         ]
     ]); ?>
-        <?= $form->field($promotedpost, 'status')->radioList(
+        <?= $form->field($promotedPost, 'status')->radioList(
             [
                 PromotedPost::STATUS_DRAFT     => 'Draft',
                 PromotedPost::STATUS_PUBLISHED => 'Published'
@@ -28,7 +28,7 @@
         ); ?>
         <?=
             $form->field(
-                $promotedpost,
+                $promotedPost,
                 'post_id',
                 [
                     'inputOptions' => [
@@ -40,7 +40,7 @@
         ?>
         <?=
             $form->field(
-                $promotedpost,
+                $promotedPost,
                 'rank',
                 [
                     'inputOptions' => [
@@ -57,7 +57,7 @@
                 'name'           => 'promotedpost_published_at_string',
                 'size'           => 'ms',            
                 'pickButtonIcon' => 'glyphicon glyphicon-time',
-                'value'          => (empty($promotedpost->published_at) ? '' : date('Y-m-d H:i:s', $promotedpost->published_at)),
+                'value'          => (empty($promotedPost->published_at) ? '' : date('Y-m-d H:i:s', $promotedPost->published_at)),
                 'clientOptions'  => [
                     'format'         => 'yyyy-mm-dd hh:ii:ss',
                     'startView'      => 2,
@@ -70,9 +70,9 @@
             ]);?>
         </div>
         <div class="form-group promotedpost-image-display">
-             <?php if($promotedpost->image) : ?>
+             <?php if($promotedPost->image) : ?>
                 <?= Html::img(
-                    $promotedpost->getImage('250x155'),
+                    $promotedPost->getImage('250x155'),
                     [
                         'class' => 'form-model-thumbnail',
                         'alt'   => 'PROMOTEDPOST IMAGE APPEARS HERE',
@@ -83,9 +83,9 @@
                 <p>Using Post's image, no custom Promoted Post image uploaded.</p>
             <?php endif;?>
         </div>
-        <?= $form->field($promotedpost->image_file, 'image')->fileInput(); ?>
-        <? if($promotedpost->description) : ?>
-            <?= $form->field($promotedpost, 'description')->widget(Summernote::className(), []) ?>
+        <?= $form->field($promotedPost->image_file, 'image')->fileInput(); ?>
+        <? if($promotedPost->description) : ?>
+            <?= $form->field($promotedPost, 'description')->widget(Summernote::className(), []) ?>
         <? else: /* TODO: JS TO CLICK TO REVEAL FORM FROM ABOVE */ ?>
             <p>Set custom description. *UNDER CONSTRUCTION*</p>
         <? endif; ?>

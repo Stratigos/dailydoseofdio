@@ -26,10 +26,7 @@
                     'dataProvider' => $promotedPostDataProvider,
                     'columns'      => [
                         'id',
-                        [
-                            'label' => 'Post ID',
-                            'value' => $data->post_id
-                        ],
+                        'post_id',
                         [
                             'label' => 'Title',
                             'value' => function($data) {
