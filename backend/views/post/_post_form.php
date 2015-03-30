@@ -2,7 +2,7 @@
     use common\models\Post;
     use common\models\PostTag;
     use yii\helpers\Html;
-    use yii\widgets\ActiveForm;
+    use yii\bootstrap\ActiveForm;
     use dosamigos\datetimepicker\DateTimePicker;
     use dosamigos\selectize\SelectizeTextInput;
     use Zelenin\yii\widgets\Summernote\Summernote;
@@ -30,11 +30,11 @@
             'enctype' => 'multipart/form-data'
         ]
     ]); ?>
-        <?= $form->field($post, 'status')->radioList(
-            array(
+        <?= $form->field($post, 'status')->inline()->radioList(
+            [
                 Post::STATUS_DRAFT     => 'Draft',
                 Post::STATUS_PUBLISHED => 'Published'
-            )
+            ]
         ); ?>
         <?= $form->field($post, 'title'); ?>
         <?= $form->field($post, 'shortname'); ?>
