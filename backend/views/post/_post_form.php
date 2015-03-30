@@ -1,13 +1,11 @@
 <?php
-    use yii\helpers\Html;
-    use yii\widgets\ActiveForm;
-    use yii\web\JsExpression;
     use common\models\Post;
     use common\models\PostTag;
-    use common\models\Quote;
-    use Zelenin\yii\widgets\Summernote\Summernote;
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
     use dosamigos\datetimepicker\DateTimePicker;
     use dosamigos\selectize\SelectizeTextInput;
+    use Zelenin\yii\widgets\Summernote\Summernote;
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
