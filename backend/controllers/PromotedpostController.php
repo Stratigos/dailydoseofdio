@@ -12,7 +12,7 @@ use yii\web\Controller;
 use backend\dataproviders\PromotedPostIndexDP;
 use common\models\PromotedPost;
 
-class PromotedPostController extends Controller
+class PromotedpostController extends Controller
 {
     /**
      * @inheritdoc
