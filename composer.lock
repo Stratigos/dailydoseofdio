@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "6b8da53205fd8b934b12a84f4418c6abb5d4714f"
+                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6b8da53205fd8b934b12a84f4418c6abb5d4714f",
-                "reference": "6b8da53205fd8b934b12a84f4418c6abb5d4714f",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
+                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-27 02:57:27"
+            "time": "2015-03-29 16:01:24"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1211,12 +1211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "90e3df6da4f642c3e6f505856c5f98c7bfee51c1"
+                "reference": "a163a1301885c3116733e5bc3c138128388e18fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/90e3df6da4f642c3e6f505856c5f98c7bfee51c1",
-                "reference": "90e3df6da4f642c3e6f505856c5f98c7bfee51c1",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/a163a1301885c3116733e5bc3c138128388e18fa",
+                "reference": "a163a1301885c3116733e5bc3c138128388e18fa",
                 "shasum": ""
             },
             "require": {
@@ -1253,7 +1253,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-03-23 15:47:34"
+            "time": "2015-03-29 13:37:34"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1563,12 +1563,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed"
+                "reference": "edb42627d91abae3294748309e147f473acb2398"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/11f46389c9818a0638555902ce5ad2e9e10ec3ed",
-                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/edb42627d91abae3294748309e147f473acb2398",
+                "reference": "edb42627d91abae3294748309e147f473acb2398",
                 "shasum": ""
             },
             "require": {
@@ -1602,7 +1602,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-03-23 18:34:58"
+            "time": "2015-03-29 13:47:04"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -1610,12 +1610,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6"
+                "reference": "04aaa7a97d866f286f04ef829ea56c31148e403f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
-                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/04aaa7a97d866f286f04ef829ea56c31148e403f",
+                "reference": "04aaa7a97d866f286f04ef829ea56c31148e403f",
                 "shasum": ""
             },
             "require": {
@@ -1655,7 +1655,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-03-23 18:28:16"
+            "time": "2015-03-29 13:45:41"
         }
     ],
     "aliases": [],
