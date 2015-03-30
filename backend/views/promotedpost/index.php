@@ -1,8 +1,11 @@
 <?php
-use yii\grid\GridView;
-use common\models\PromotedPost;
-$this->title                   = 'Promoted Posts Index';
-$this->params['breadcrumbs'][] = $this->title;
+    /**
+    * @todo ADD JS TO ALLOW REORDERING VIA GRID VIEW
+    */
+    use yii\grid\GridView;
+    use common\models\PromotedPost;
+    $this->title                   = 'Promoted Posts Index';
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
     <div>
@@ -11,6 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="body-content">
         <div>
             <p class="lead"><a href="<?= $createPromotedPostUrl ?>">Promote a New Post</a></p>
+            <hr/>
+        </div>
+        <div>
+            <p><em>...widget to display carousel from homepage here...</em></p>
             <hr/>
         </div>
         <div>
