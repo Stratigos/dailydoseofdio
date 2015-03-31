@@ -84,11 +84,11 @@
             <?php endif;?>
         </div>
         <?= $form->field($promotedPost->image_file, 'image')->fileInput(); ?>
-        <? if($promotedPost->description) : ?>
+        <?php if($promotedPost->description) : ?>
             <?= $form->field($promotedPost, 'description')->widget(Summernote::className(), []) ?>
-        <? else: /* TODO: JS TO CLICK TO REVEAL FORM FROM ABOVE */ ?>
+        <?php else: /* TODO: JS TO CLICK TO REVEAL FORM FROM ABOVE */ ?>
             <p>Set custom description. *UNDER CONSTRUCTION*</p>
-        <? endif; ?>
+        <?php endif; ?>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>
