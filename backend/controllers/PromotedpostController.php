@@ -67,11 +67,19 @@ class PromotedpostController extends Controller
      */
     public function actionCreate()
     {
-        $promotedPost = new PromotedPost();
         $errors       = [];
+        $promotedPost = new PromotedPost();
+        $promotedPost->loadDefaultValues();
 
         if(Yii::$app->request->isPost) {
-            $promotedPost->load(Yii::$app->request->post());
+            $post_request_data = Yii::$app->request->post();
+            $promotedPost->load($post_request_data);
+            // TODO - MAKE A CALLBACK FOR THIS published_at PROC
+            if( isset($post_request_data['promotedpost_published_at_string']) &&
+                !empty($post_request_data['promotedpost_published_at_string'])
+            ) {
+                $promotedPost->published_at = strtotime($post_request_data['promotedpost_published_at_string']);
+            }
             if($promotedPost->save()) {
                 return $this->redirect(['index']);
             } else {
@@ -101,7 +109,14 @@ class PromotedpostController extends Controller
         }
 
         if(Yii::$app->request->isPost) {
-            $promotedPost->load(Yii::$app->request->post());
+            $post_request_data = Yii::$app->request->post();
+            $promotedPost->load($post_request_data);
+            // TODO - MAKE A CALLBACK FOR THIS published_at PROC
+            if( isset($post_request_data['promotedpost_published_at_string']) &&
+                !empty($post_request_data['promotedpost_published_at_string'])
+            ) {
+                $promotedPost->published_at = strtotime($post_request_data['promotedpost_published_at_string']);
+            }
             if($promotedPost->save()) {
                 return $this->redirect(['index']);
             } else {

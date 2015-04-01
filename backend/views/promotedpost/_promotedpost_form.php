@@ -70,7 +70,7 @@
             ]);?>
         </div>
         <div class="form-group promotedpost-image-display">
-             <?php if($promotedPost->image) : ?>
+             <?php if(!empty($promotedPost->image_path)) : ?>
                 <?= Html::img(
                     $promotedPost->getImage('250x155'),
                     [

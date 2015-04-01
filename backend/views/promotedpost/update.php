@@ -1,5 +1,5 @@
 <?php
-    $this->title                   = "Update Promoted Post {$post->id}";
+    $this->title                   = "Update Promoted Post {$promotedPost->id}";
     $this->params['breadcrumbs'][] = [
         'label' => 'Promoted Posts Index',
         'url'   => Yii::$app->urlManager->createUrl('promotedpost/index')
@@ -8,8 +8,8 @@
 ?>
 <div class="post-index">
     <div>
-        <h3>Update Promoted Post (ID: <?= $promotedpost->id ?>)</h3>
-        <div><?= $promotedpost->post->title; ?></div>
+        <h3>Update Promoted Post (ID: <?= $promotedPost->id ?>)</h3>
+        <div><?= $promotedPost->post->title; ?></div>
     </div>
     <br />
     <div class="body-content">

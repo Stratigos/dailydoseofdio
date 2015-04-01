@@ -3,6 +3,8 @@
     * @todo ADD JS TO ALLOW REORDERING VIA GRID VIEW
     */
     use yii\grid\GridView;
+    use yii\helpers\StringHelper;
+    use yii\helpers\Html;
     use common\models\PromotedPost;
     $this->title                   = 'Promoted Posts Index';
     $this->params['breadcrumbs'][] = $this->title;
@@ -31,7 +33,7 @@
                             'label' => 'Title',
                             'value' => function($data) {
                                 return StringHelper::truncateWords(
-                                    HtmlHelper::encode($data->post->title), 7, '&hellip;'
+                                    Html::encode($data->post->title), 7, '&hellip;'
                                 );
                             }
                         ],
