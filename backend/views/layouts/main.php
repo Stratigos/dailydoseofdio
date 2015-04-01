@@ -80,8 +80,12 @@ AppAsset::register($this);
                 [
                     'label' => 'Promotionals',
                     'items' => [
+                        [
+                            'label' => 'Promoted Posts',
+                            'url'   => Yii::$app->urlManager->createUrl('promotedpost/index')
+                        ],
                         '<li class="divider"></li>',
-                        '<li class="dropdown-header">Under Construction</li>'
+                        '<li class="dropdown-header">More TBD</li>'
                     ]
                 ]
             ];
