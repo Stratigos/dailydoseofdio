@@ -21,6 +21,10 @@ return [
         'post' => [
             '75x75'   => ['width' => 75,  'height' => 75,  'quality' => 90],
             '250x155' => ['width' => 250, 'height' => 155, 'quality' => 90]
+        ],
+        'promotedpost' => [
+            '75x75'   => ['width' => 75,  'height' => 75,  'quality' => 90],
+            '250x155' => ['width' => 250, 'height' => 155, 'quality' => 90]
         ]
     ]
 ];

@@ -52,7 +52,7 @@ class PromotedPost extends ActiveRecord
         if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
             $behaviors['imageUpload'] = [
                 'class'             => 'backend\components\ImageUploadBehavior',
-                'model_unique_attr' => 'id'
+                'model_unique_attr' => 'post_id'
             ];
         }
 
