@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/2amigos/yii2-date-picker-widget.git",
-                "reference": "c61989074044185f35cb47379e8715b9729c5674"
+                "reference": "1525cf0f0802a558cef358f2bc3fb8cd989a6110"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/2amigos/yii2-date-picker-widget/zipball/c61989074044185f35cb47379e8715b9729c5674",
-                "reference": "c61989074044185f35cb47379e8715b9729c5674",
+                "url": "https://api.github.com/repos/2amigos/yii2-date-picker-widget/zipball/1525cf0f0802a558cef358f2bc3fb8cd989a6110",
+                "reference": "1525cf0f0802a558cef358f2bc3fb8cd989a6110",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "yii 2",
                 "yii2"
             ],
-            "time": "2015-03-23 20:47:25"
+            "time": "2015-03-31 19:32:10"
         },
         {
             "name": "2amigos/yii2-date-time-picker-widget",
@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "672b8c012f00bc5bc9ceede46230574f85f27759"
+                "reference": "7fa73cbdb0d362648d763833ffdd3a15b7cfc7c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/672b8c012f00bc5bc9ceede46230574f85f27759",
-                "reference": "672b8c012f00bc5bc9ceede46230574f85f27759",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/7fa73cbdb0d362648d763833ffdd3a15b7cfc7c3",
+                "reference": "7fa73cbdb0d362648d763833ffdd3a15b7cfc7c3",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-31 04:23:38"
+            "time": "2015-04-01 00:17:49"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
