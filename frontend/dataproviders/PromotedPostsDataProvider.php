@@ -6,7 +6,7 @@
 namespace frontend\dataproviders;
 
 use yii\data\ActiveDataProvider;
-use common\models\Post;
+use common\models\PromotedPost;
 
 class PromotedPostsDataProvider extends ActiveDataProvider
 {
