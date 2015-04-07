@@ -32,7 +32,9 @@ class PromotedPostQuery extends ActiveQuery
      */
     public function publishedRankDesc()
     {
-        $this->published->addOrderBy(['rank' => SORT_DESC]);
+        $this->published()->addOrderBy(['rank' => SORT_DESC]);
+
+        return $this;
     }
 
     /**
