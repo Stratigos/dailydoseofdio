@@ -38,8 +38,11 @@
                             }
                         ],
                         [
-                            'label' => 'Description',
-                            'value' => function($data) {
+                            // `format => 'raw'` allows rendering of `&hellip;`
+                            //  from getSummary()
+                            'label'  => 'Description',
+                            'format' => 'raw',
+                            'value'  => function($data) {
                                 return $data->getSummary(50, '');
                             }
                         ],
