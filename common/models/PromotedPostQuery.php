@@ -27,6 +27,15 @@ class PromotedPostQuery extends ActiveQuery
     }
 
     /**
+     * Adds sort by rank in descending order clause to published() criteria.
+     * @return self
+     */
+    public function publishedRankDesc()
+    {
+        $this->published->addOrderBy(['rank' => SORT_DESC]);
+    }
+
+    /**
      * Adds descending sort by publish date to published() criteria
      * @return self
      */
