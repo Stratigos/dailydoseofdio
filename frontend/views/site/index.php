@@ -1,5 +1,6 @@
 <?php
     use frontend\widgets\AdSidebar;
+    use frontend\widgets\DailyDoseCarousel;
     use frontend\widgets\DailyDosePortlet;
     use frontend\widgets\DailyQuotePortlet;
     use frontend\widgets\DuckDuckGoSearchPortlet;
@@ -16,6 +17,9 @@
                     <h1>Daily Dose of Dio</h1>
                     <h4>Dedicated to the music, poetry, and life<br/>of Ronnie James Dio</h4>
                 </div>
+            </div>
+            <div>
+            <?= DailyDoseCarousel::widget(); ?>
             </div>
             <?= ListView::widget([
                 'dataProvider' => $postsDP,
