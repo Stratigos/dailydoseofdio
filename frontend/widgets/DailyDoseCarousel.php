@@ -39,15 +39,16 @@ class DailyDoseCarousel extends Carousel {
         if ($promos = $this->dataProvider->getModels()) {
             foreach ($promos as $promo) {
                 $this->items[] = [
-                    'content' => Html::img($promo->getImage('250x155')),
-                    'caption' => Html::tag(
-                        'h4',
-                        StringHelper::truncateWords($promo->post->title, 5, '&hellip;')
-                    )
-                    . Html::tag('p', $promo->getSummary($this->summaryLength))
+                    'content' => Html::img($promo->getImage()),
+                    'caption' => '<div class="well">' . Html::a(
+                        Html::tag('h4', StringHelper::truncateWords($promo->post->title, 5, '&hellip;'))
+                        . Html::tag('p', $promo->getSummary($this->summaryLength)),
+                        $promo->post->url
+                    ) . "</div>"
                 ];
             }
         }
         parent::init();
+
     }
 }
