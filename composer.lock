@@ -197,16 +197,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "dev-master",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "96dd5a8e3d9dbc435383a34523ee92156c8137ee"
+                "reference": "526a52732b11154aa937ec1e160668d7f7b83afc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/96dd5a8e3d9dbc435383a34523ee92156c8137ee",
-                "reference": "96dd5a8e3d9dbc435383a34523ee92156c8137ee",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/526a52732b11154aa937ec1e160668d7f7b83afc",
+                "reference": "526a52732b11154aa937ec1e160668d7f7b83afc",
                 "shasum": ""
             },
             "require": {
@@ -260,7 +260,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-04-07 21:07:40"
+            "time": "2015-04-09 18:58:17"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -1060,17 +1060,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "2.7.x-dev",
+            "version": "2.8.x-dev",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "186349c2966529804e38685f671e64746dde220b"
+                "reference": "15bbd5beed94cca89ffcce18fb76eeac38937240"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/186349c2966529804e38685f671e64746dde220b",
-                "reference": "186349c2966529804e38685f671e64746dde220b",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/15bbd5beed94cca89ffcce18fb76eeac38937240",
+                "reference": "15bbd5beed94cca89ffcce18fb76eeac38937240",
                 "shasum": ""
             },
             "require": {
@@ -1091,7 +1091,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -1115,7 +1115,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-03-13 17:50:01"
+            "time": "2015-04-10 08:56:33"
         },
         {
             "name": "yiisoft/yii2",
@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "3fad8d0ebab9a5480475631770438243ba9abd61"
+                "reference": "2e3da8c138b877fb120b4495eda2f777e9ce3de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3fad8d0ebab9a5480475631770438243ba9abd61",
-                "reference": "3fad8d0ebab9a5480475631770438243ba9abd61",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2e3da8c138b877fb120b4495eda2f777e9ce3de2",
+                "reference": "2e3da8c138b877fb120b4495eda2f777e9ce3de2",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1203,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-04-08 00:17:42"
+            "time": "2015-04-11 11:13:55"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1211,12 +1211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "a1876944644373efbe1dbd9cfdbc9c3747008577"
+                "reference": "6fc0a438fdd498507f598fecfd551587d99534c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/a1876944644373efbe1dbd9cfdbc9c3747008577",
-                "reference": "a1876944644373efbe1dbd9cfdbc9c3747008577",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/6fc0a438fdd498507f598fecfd551587d99534c9",
+                "reference": "6fc0a438fdd498507f598fecfd551587d99534c9",
                 "shasum": ""
             },
             "require": {
@@ -1253,7 +1253,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-04-03 15:52:53"
+            "time": "2015-04-10 08:55:05"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1610,12 +1610,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "ef6bbef7ef19f2cadbf93ad26dc4e14b46e34272"
+                "reference": "fa5de82b2bc5951d8252b67684df8c060789ab09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/ef6bbef7ef19f2cadbf93ad26dc4e14b46e34272",
-                "reference": "ef6bbef7ef19f2cadbf93ad26dc4e14b46e34272",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/fa5de82b2bc5951d8252b67684df8c060789ab09",
+                "reference": "fa5de82b2bc5951d8252b67684df8c060789ab09",
                 "shasum": ""
             },
             "require": {
@@ -1655,7 +1655,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-04-08 13:11:58"
+            "time": "2015-04-09 22:06:22"
         }
     ],
     "aliases": [],
