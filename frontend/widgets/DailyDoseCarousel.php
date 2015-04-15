@@ -15,6 +15,14 @@ use yii\helpers\StringHelper;
 class DailyDoseCarousel extends Carousel {
 
     /**
+     * @var inheritdoc
+     */
+    public $controls = [
+        '<i class="glyphicon glyphicon-hand-left"></i>',  // left
+        '<i class="glyphicon glyphicon-hand-right"></i>'  // right
+    ];
+
+    /**
      * @var $dataProvider ActiveDataProvider
      */
     public $dataProvider;
