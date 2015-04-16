@@ -1,6 +1,6 @@
 # DDoD - Daily Dose of Dio
 
-[Yii2](https://github.com/yiisoft/yii2) Beta Advanced Application, which creates a CMS and resulting user-facing blog for discussing the awesome and enigmatic human being [Ronnie James Dio](http://ronniejamesdio.com/). The frontend features responsive design with a mobile friendly UI. The backend utilizes [Amazon S3 services](https://github.com/aws/aws-sdk-php) for image uploads, several other community widgets, such as [DateTime](https://github.com/2amigos/yii2-date-time-picker-widget) pickers, [Selectize](https://github.com/2amigos/yii2-selectize-widget) tag attribution, and the [Summernote](https://github.com/zelenin/yii2-summernote-widget) editor (see the `composer.json` file for more info).
+[Yii2](https://github.com/yiisoft/yii2) Beta Advanced Application, which creates a CMS and resulting user-facing blog for discussing the awesome and enigmatic human being [Ronnie James Dio](http://ronniejamesdio.com/). The frontend features responsive design with a mobile friendly UI. The backend utilizes [Amazon S3 services](https://github.com/aws/aws-sdk-php) for image uploads, and several other community widgets, such as [DateTime](https://github.com/2amigos/yii2-date-time-picker-widget) pickers, [Selectize](https://github.com/2amigos/yii2-selectize-widget) tag attribution, and the [Summernote](https://github.com/zelenin/yii2-summernote-widget) editor (see the `composer.json` file for more info).
 
 **...Under Construction...**
 
