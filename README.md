@@ -1,6 +1,6 @@
-# DDoD - Daily Dose of Dio #
+# DDoD - Daily Dose of Dio
 
-Yii2 Beta Advanced Application
+Yii2 Beta Advanced Application, which creates a CMS and resulting user-facing blog for discussing the awesome and enigmatic human being Ronnie James Dio. The frontend features responsive design with a mobile friendly UI. The backend utilizes Amazon S3 services for image uploads, several other community widgets, such as DateTime pickers, Selectize tag attribution, and the Summernote editor (see the `composer.json` file for more info).
 
 ...Under Construction...
 
@@ -42,15 +42,15 @@ Example DB config, using MySQL:
     ]
 ````
 
-1) Use "composer update" to load vendor/ dir and external dependencies.
+1) Use `composer update` to load vendor/ dir and external dependencies.
 
-2) Use "php init" to initialize application.
+2) Use `php init` to initialize application.
 
-3) Use "yii migrate" ( `php /path/to/this/app/yii migrate/up` ) to apply seed data and any schema migrations.  
+3) Use `yii migrate` ( `php /path/to/this/app/yii migrate/up` ) to apply seed data and any schema migrations.  
   3i) Create alias for the `yii` command via: `alias yii='php /var/www/ddod/yii'`
 
 
-### Copyleft ###
+### Copyleft
 
 Copyright :copyright: 2014-2015 Stratigos  
 https://github.com/Stratigos  
