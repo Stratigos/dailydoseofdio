@@ -11,6 +11,7 @@ class DailyDoseCarouselAsset extends AssetBundle
 {
     public $baseUrl = '@web/css/widgets';
 
+    public $depends = ['frontend\assets\AppAsset'];
 
     public function init()
     {
