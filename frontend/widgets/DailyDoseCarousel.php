@@ -7,6 +7,7 @@
 *************************************************************************/
 namespace frontend\widgets;
 
+use frontend\assets\DailyDoseCarouselAsset;
 use frontend\dataproviders\PromotedPostsDataProvider;
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
@@ -55,8 +56,17 @@ class DailyDoseCarousel extends Carousel {
                     ) . "</div>"
                 ];
             }
+            $this->registerClientScript();
         }
         parent::init();
 
+    }
+
+    /**
+     * adds CSS/JS files for this widget
+     */
+    public function registerClientScript()
+    {
+        DailyDoseCarouselAsset::register($this->getView());
     }
 }
