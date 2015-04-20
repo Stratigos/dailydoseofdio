@@ -49,11 +49,14 @@ class DailyDoseCarousel extends Carousel {
             foreach ($promos as $promo) {
                 $this->items[] = [
                     'content' => Html::img($promo->getImage()),
-                    'caption' => '<div class="well">' . Html::a(
-                        Html::tag('h4', StringHelper::truncateWords($promo->post->title, 5, '&hellip;'))
-                        . Html::tag('p', $promo->getSummary($this->summaryLength)),
-                        $promo->post->url
-                    ) . "</div>"
+                    'caption' => 
+                        Html::beginTag('div', ['class' => 'well'])
+                            . Html::a(
+                                Html::tag('h4', StringHelper::truncateWords($promo->post->title, 5, '&hellip;'))
+                                    . Html::tag('p', $promo->getSummary($this->summaryLength)),
+                                $promo->post->url
+                            )
+                        . Html::endTag('div')
                 ];
             }
             $this->registerClientScript();
