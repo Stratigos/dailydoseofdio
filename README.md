@@ -52,6 +52,5 @@ Example DB config, using MySQL:
 
 ### Copyleft
 
-Copyright :copyright: 2014-2015 Todd Morningstar | [Stratigos @ github](https:://github.com/Stratigos )
-https://github.com/Stratigos  
+Copyright :copyright: 2014-2015 Todd Morningstar | https:://github.com/Stratigos
 GPLv3 LISENCE - Please see [License File](LICENSE.md)  
