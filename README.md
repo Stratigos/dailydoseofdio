@@ -26,7 +26,7 @@ For "backend" application:
   SetEnv AWS_SECRET_ACCESS_KEY YOUR-AWS-SECRET-KEY
 ````
 
-ii) Create a new database and add the credentials to it to the appropriate config params file.
+ii) Create a new database, and add the credentials to it to the appropriate config params file.
 
 Example DB config, using MySQL: 
 ````
