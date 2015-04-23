@@ -11,4 +11,3 @@
     class="btn btn-primary media"
     href="<?= Yii::$app->urlManager->createUrl($model->url) ?>"
 >Read Blog <span class="glyphicon glyphicon-chevron-right"></span></a>
-<hr />
