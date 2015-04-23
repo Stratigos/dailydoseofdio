@@ -75,7 +75,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; Dudeman Somebody 2014</p>
+            <p class="pull-left">&copy; Todd Morningstar, 2014-2015</p>
         </div>
     </footer>
 
