@@ -8,7 +8,7 @@ use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
 if(empty($this->title)) {
-    $this->title = Yii::$app->params['defaultTitle'];
+    $this->title = Yii::$app->params['defaultTitle'] . ' *BETA*';
 }
 
 AppAsset::register($this);
@@ -28,7 +28,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'Daily Dose of Dio',
+                'brandLabel' => Yii::$app->params['defaultTitle'] . ' *BETA*',
                 'brandUrl'   => Yii::$app->homeUrl,
                 'options'    => [
                     'class' => 'navbar-inverse navbar-fixed-top'
