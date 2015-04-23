@@ -94,6 +94,40 @@ a.desc:after {
 
 /* ----------------------- My Additions ----------------------- */
 
+
+/* Overriding Bootstrap Defaults */
+
+body {
+    background-color: #111111;
+}
+
+hr {
+    border-top: 1px solid #4f0909;
+}
+
+a {
+    color: #b71616;
+}
+
+h1 {
+    color: #7f0f0f;
+}
+
+.btn-primary {
+    background-color: #7f0f0f;
+    border-color: #4f0909;
+}
+
+.page-header {
+    border-bottom: 1px solid #4f0909;
+}
+
+.well {
+    background-color: #a5a5a5;
+    border: 1px solid #4f0909;
+}
+
+
 /* Post Partials */
 
 .post-partial-title {
