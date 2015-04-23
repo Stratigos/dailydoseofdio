@@ -1,5 +1,16 @@
 /* DailyDoseCarousel */
 
+div.carousel {
+  margin-bottom: 20px;
+}
+
+div.carousel>div.carousel-inner>div.item img {
+    margin: 0 auto;
+}
+div.carousel>div.carousel-inner>div.item img {
+    margin: 0 auto;
+}
+
 @media screen and (min-width: 768px) 
 .carousel-control .glyphicon-hand-left, .carousel-control .glyphicon-hand-right, .carousel-control .icon-next, .carousel-control .icon-prev {
   width: 30px;
@@ -18,11 +29,4 @@
   top: 50%;
   margin-left: -10px;
   font-size: 32px;
-}
-
-div.carousel>div.carousel-inner>div.item img {
-    margin: 0 auto;
-}
-div.carousel>div.carousel-inner>div.item img {
-    margin: 0 auto;
 }
