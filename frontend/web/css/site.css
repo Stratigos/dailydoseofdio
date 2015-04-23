@@ -92,5 +92,19 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-/* --- My Additions --- */
+/* ----------------------- My Additions ----------------------- */
+
+/* Post Partials */
+
+.post-partial-title {
+    margin-bottom: 2px;
+}
+.post-partial-byline-author {
+    margin: 2px 0px;
+}
+.post-partial-byline-pubdate {
+    margin: 2px 0px;
+}
+
+
 
