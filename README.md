@@ -47,7 +47,7 @@ Example DB config, using MySQL:
 2) Use `php init` to initialize application.
 
 3) Use `yii migrate` ( `php /path/to/this/app/yii migrate/up` ) to apply seed data and any schema migrations.  
-  3i) Create alias for the `yii` command via: `alias yii='php /var/www/ddod/yii'`
+  3i) Create alias for the `yii` command via: `alias yii='php /var/www/PATH-TO-DDOD-CHECKOUT/yii'`
 
 
 ### Copyleft
