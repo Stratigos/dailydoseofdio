@@ -6,7 +6,6 @@
 <p class="post-partial-byline-pubdate">
     <span class="glyphicon glyphicon-time"></span> <?= date('Y-m-d H:i:s', $model->published_at); ?>
 </p>
-<hr />
 <div class="row">
     <div class="col-md-5 col-sm-5">
         <?php if($model->image_path) : ?>
