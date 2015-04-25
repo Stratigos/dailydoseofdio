@@ -13,7 +13,7 @@
             <?php endif; ?>
             <p><span class="glyphicon glyphicon-time"></span> <?= $date ?></p>
             <hr>
-            <p class="lead"><?= $post->body ?></p>
+            <div class="post-body"><?= $post->body ?></div>
             <hr>
             <!-- Comments Form -->
             <!-- <div class="well">

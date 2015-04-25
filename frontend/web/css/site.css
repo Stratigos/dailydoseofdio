@@ -127,6 +127,13 @@ h1 {
     border: 1px solid #4f0909;
 }
 
+/* Posts */
+.post-body {
+    max-width: 750px;
+    padding: 0.7em;
+    background-color: #a5a5a5;
+    color: #333;
+}
 
 /* Post Partials */
 
