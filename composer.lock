@@ -742,16 +742,16 @@
         },
         {
             "name": "bower-asset/summernote",
-            "version": "v0.6.4",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/summernote/summernote.git",
-                "reference": "b0d7742b6ceab32b32adcf2f1b72f352e390c2a7"
+                "reference": "0deff89f7554f7776458dac47d0531875dac5831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summernote/summernote/zipball/b0d7742b6ceab32b32adcf2f1b72f352e390c2a7",
-                "reference": "b0d7742b6ceab32b32adcf2f1b72f352e390c2a7",
+                "url": "https://api.github.com/repos/summernote/summernote/zipball/0deff89f7554f7776458dac47d0531875dac5831",
+                "reference": "0deff89f7554f7776458dac47d0531875dac5831",
                 "shasum": ""
             },
             "require": {
@@ -1124,12 +1124,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "3f455529c34da4b54aa47db076c1884c10791878"
+                "reference": "ef6543e4d1554d9277c8510ec7fa1de8484cf62e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3f455529c34da4b54aa47db076c1884c10791878",
-                "reference": "3f455529c34da4b54aa47db076c1884c10791878",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef6543e4d1554d9277c8510ec7fa1de8484cf62e",
+                "reference": "ef6543e4d1554d9277c8510ec7fa1de8484cf62e",
                 "shasum": ""
             },
             "require": {
@@ -1204,7 +1204,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-04-24 16:22:26"
+            "time": "2015-04-26 02:01:50"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
