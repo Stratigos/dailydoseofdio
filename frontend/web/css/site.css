@@ -146,3 +146,6 @@ h1 {
 .post-partial-byline-pubdate {
     margin: 2px 0px;
 }
+.post-partial-summary {
+    color: #a5a5a5;
+}

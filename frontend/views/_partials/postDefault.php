@@ -14,7 +14,7 @@
             <img class="img-responsive" src="http://placehold.it/250x155" alt="">
         <?php endif; ?>
     </div>
-    <p><?= $model->summary; ?></p>
+    <p class="post-partial-summary"><?= $model->summary; ?></p>
 </div>
 <br />
 <div class="control-group">
