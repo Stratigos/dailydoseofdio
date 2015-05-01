@@ -29,7 +29,8 @@ class DailyDosePortlet extends Portlet
                         $imgSrc,
                         [
                             'height' => 80,
-                            'width' => 144
+                            'width'  => 144,
+                            'class'  => 'voffset10 shadow'
                         ]
                     ),
                     $dailyDose->url
