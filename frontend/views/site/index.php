@@ -29,9 +29,9 @@
                 'summary'      => ''
             ]); ?>
             <br />
-            <p>            
+            <p class="text-center voffset20 well">
                 <a
-                    class="btn btn-primary"
+                    class="btn btn-primary shadow"
                     href="<?= $archiveUrl ?>"
                 >More Doses <span class="glyphicon glyphicon-chevron-right"></span></a>
             </p>
@@ -60,8 +60,5 @@
 
     </div>
     <!-- /.row -->
-
-    <hr>
-
 </div>
 <!-- /.container -->
