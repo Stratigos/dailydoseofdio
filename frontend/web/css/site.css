@@ -146,6 +146,11 @@ h1 {
     border: 1px solid #111111;
 }
 
+.pagination li.disabled span {
+    background-color: #959595;
+    border: 1px solid #4f0909;
+}
+
 /* General Helper Classes */
 
 .shadow {
