@@ -6,6 +6,7 @@
 ******************************************************************************/
 namespace frontend\widgets;
 
+use frontend\assets\DuckDuckSearchAsset;
 use frontend\widgets\Portlet;
 use yii\helpers\Html;
 
@@ -14,6 +15,16 @@ class DuckDuckGoSearchPortlet extends Portlet
     public $title = 'Search for a Dose';
 
     public $htmlOptions = ['class' => 'portlet well'];
+
+    /**
+     * Handles any preconfiguration, such as setting assets
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $this->registerClientScript();
+        parent::init();
+    }
 
     /**
      * Displays the Seach input field
@@ -41,7 +52,7 @@ class DuckDuckGoSearchPortlet extends Portlet
                     [
                         'placeholder' => 'Search with DuckDuckGo',
                         'maxlength'   => '255',
-                        'class'       => 'form-control'
+                        'class'       => 'form-control ddg-search-input'
                     ]
                 );
                 $srchFrm .= Html::beginTag('span', ['class' => 'input-group-btn']);
@@ -62,5 +73,13 @@ class DuckDuckGoSearchPortlet extends Portlet
         echo $srchFrm;
 
         return;
-    } 
+    }
+
+    /**
+     * adds CSS/JS files for this widget
+     */
+    public function registerClientScript()
+    {
+        DuckDuckSearchAsset::register($this->getView());
+    }
 }
