@@ -118,6 +118,11 @@ h1 {
     border-color: #4f0909;
 }
 
+.btn-primary:hover {
+    background-color: #4f0909;
+    border-color: #7f0f0f;
+}
+
 .page-header {
     border-bottom: 1px solid #4f0909;
 }
