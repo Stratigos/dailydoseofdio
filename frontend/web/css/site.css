@@ -141,8 +141,19 @@ h1 {
     border: 1px solid #4f0909;
 }
 
+.pagination li a:hover {
+    color: #a5a5a5;
+    background-color: #4f0909;
+    border: 1px solid #4f0909;
+}
+
 .pagination li.active a {
     background-color: #7f0f0f;
+    border: 1px solid #111111;
+}
+
+.pagination li.active a:hover {
+    background-color: #111111;
     border: 1px solid #111111;
 }
 
