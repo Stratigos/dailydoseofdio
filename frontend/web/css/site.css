@@ -127,6 +127,25 @@ h1 {
     border: 1px solid #4f0909;
 }
 
+.pagination {
+    background-color: #a5a5a5;
+}
+
+.pagination li {
+    background-color: #a5a5a5;
+}
+
+.pagination li a {
+    color: #b71616;
+    background-color: #a5a5a5;
+    border: 1px solid #4f0909;
+}
+
+.pagination li.active a {
+    background-color: #7f0f0f;
+    border: 1px solid #111111;
+}
+
 /* General Helper Classes */
 
 .shadow {
