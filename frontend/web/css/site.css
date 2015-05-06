@@ -108,6 +108,9 @@ hr {
 a {
     color: #b71616;
 }
+a:hover, a:focus {
+    color:#4f0909;
+}
 
 h1 {
     color: #7f0f0f;
