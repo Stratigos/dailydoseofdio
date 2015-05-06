@@ -2,8 +2,8 @@
 
 ### CMS and Blog dedicated to the musician Ronnie James Dio ###
 
-Copyright (C) 2014-2015 Stratigos
-https://github.com/Stratigos
+Copyright (C) 2014-2015 Todd Morningstar
+https://github.com/stratigos
 
 GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
