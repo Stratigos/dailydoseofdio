@@ -164,15 +164,15 @@ class m141115_202842_seedData extends Migration
         $blogger_data = [
             [
                 'name'      => 'Todd Stargazer',
-                'shortname' => 'todd-stargazer';
+                'shortname' => 'todd-stargazer'
             ],
             [
                 'name'      => 'Hans Hairbanger',
-                'shortname' => 'hans-hairbanger';
+                'shortname' => 'hans-hairbanger'
             ],
             [
                 'name'      => 'Raine',
-                'shortname' => 'raine';
+                'shortname' => 'raine'
             ]
         ];
         foreach($blogger_data as $blgr) {
