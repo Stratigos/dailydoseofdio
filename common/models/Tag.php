@@ -75,7 +75,7 @@ class Tag extends ActiveRecord
     }
 
     /**
-     * intermediate relation to Posts (PostTag)
+     * Intermediate relation to Posts (PostTag)
      * @see Tag::getTags()
      */
     public function getPostTags()
@@ -84,10 +84,10 @@ class Tag extends ActiveRecord
     }
 
     /**
-     * relation to Posts
+     * Relation to Posts
      * @see Tag::getPostTags()
      */
     public function getPosts() {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->via('postTags');
+        return $this->hasMany(Post::className(), ['id' => 'tag_id'])->via('postTags');
     }
 }
