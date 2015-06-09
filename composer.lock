@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "5d42742a4bd3eb36b391a510ea0dde94",
@@ -197,16 +197,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.8.4",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1f92deea40f03f1112cd3d026141d89eabbaf858"
+                "reference": "7dbaacbaf6ef6cb2f2df749223ba016448c6a266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1f92deea40f03f1112cd3d026141d89eabbaf858",
-                "reference": "1f92deea40f03f1112cd3d026141d89eabbaf858",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7dbaacbaf6ef6cb2f2df749223ba016448c6a266",
+                "reference": "7dbaacbaf6ef6cb2f2df749223ba016448c6a266",
                 "shasum": ""
             },
             "require": {
@@ -218,6 +218,7 @@
                 "ext-openssl": "*",
                 "monolog/monolog": "~1.4",
                 "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit-mock-objects": "2.3.1",
                 "symfony/yaml": "~2.1"
             },
             "suggest": {
@@ -228,11 +229,6 @@
                 "symfony/yaml": "Eases the ability to write manifests for creating jobs in AWS Import/Export"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Aws": "src/"
@@ -260,7 +256,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-05-14 23:43:27"
+            "time": "2015-06-04 22:17:29"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -347,16 +343,16 @@
         },
         {
             "name": "bower-asset/codemirror",
-            "version": "5.2.0",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codemirror/CodeMirror.git",
-                "reference": "8deccbd02af7b3569a970c0c5af0ddfc92302c95"
+                "reference": "994281f9d3eed7cd00e9beef64f70d8d78047523"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/8deccbd02af7b3569a970c0c5af0ddfc92302c95",
-                "reference": "8deccbd02af7b3569a970c0c5af0ddfc92302c95",
+                "url": "https://api.github.com/repos/codemirror/CodeMirror/zipball/994281f9d3eed7cd00e9beef64f70d8d78047523",
+                "reference": "994281f9d3eed7cd00e9beef64f70d8d78047523",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -1015,12 +1011,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "ac8b475454c120bfb31f5bef475233dd4fb6b626"
+                "reference": "21b7eb31c51d98e9da0543527a0242875f3d92b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/ac8b475454c120bfb31f5bef475233dd4fb6b626",
-                "reference": "ac8b475454c120bfb31f5bef475233dd4fb6b626",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/21b7eb31c51d98e9da0543527a0242875f3d92b9",
+                "reference": "21b7eb31c51d98e9da0543527a0242875f3d92b9",
                 "shasum": ""
             },
             "require": {
@@ -1056,10 +1052,11 @@
             "description": "Swiftmailer, free feature-rich PHP mailer",
             "homepage": "http://swiftmailer.org",
             "keywords": [
+                "email",
                 "mail",
                 "mailer"
             ],
-            "time": "2015-05-06 16:40:00"
+            "time": "2015-06-06 14:20:09"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1125,12 +1122,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "89aa33f7c97b6b7d4396806ce1a175e9786c7cd3"
+                "reference": "bc69c48efb2afff074ba279040337186e4fd26f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/89aa33f7c97b6b7d4396806ce1a175e9786c7cd3",
-                "reference": "89aa33f7c97b6b7d4396806ce1a175e9786c7cd3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bc69c48efb2afff074ba279040337186e4fd26f8",
+                "reference": "bc69c48efb2afff074ba279040337186e4fd26f8",
                 "shasum": ""
             },
             "require": {
@@ -1205,7 +1202,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-18 00:14:14"
+            "time": "2015-06-09 10:04:04"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1213,17 +1210,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "f387e6ebfdfc3621ff7f6aa52f168f26562b6eb0"
+                "reference": "0396fafd62d30dbf83e5f56cc72536ed5ce1d63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/f387e6ebfdfc3621ff7f6aa52f168f26562b6eb0",
-                "reference": "f387e6ebfdfc3621ff7f6aa52f168f26562b6eb0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/0396fafd62d30dbf83e5f56cc72536ed5ce1d63e",
+                "reference": "0396fafd62d30dbf83e5f56cc72536ed5ce1d63e",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
-                "yiisoft/yii2": ">=2.0.4"
+                "yiisoft/yii2": ">=2.0.x-dev"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1255,7 +1252,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-05-15 10:20:11"
+            "time": "2015-06-04 11:00:16"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1360,12 +1357,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yurkinx/yii2-image.git",
-                "reference": "60a34e00acbeadac3084f79c3889b733e5b8eb3f"
+                "reference": "a99384b9f856798c731d76ce78db0674b8ad7414"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/60a34e00acbeadac3084f79c3889b733e5b8eb3f",
-                "reference": "60a34e00acbeadac3084f79c3889b733e5b8eb3f",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/a99384b9f856798c731d76ce78db0674b8ad7414",
+                "reference": "a99384b9f856798c731d76ce78db0674b8ad7414",
                 "shasum": ""
             },
             "require": {
@@ -1395,7 +1392,7 @@
                 "image",
                 "yii2"
             ],
-            "time": "2015-04-05 21:03:16"
+            "time": "2015-05-19 19:10:47"
         },
         {
             "name": "zelenin/yii2-summernote-widget",
@@ -1565,12 +1562,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "9a945c208f20c129da4fcfe5e8110e0c113c7871"
+                "reference": "09454f3cd0614f1e6ddf23f92ef227d87a33853e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/9a945c208f20c129da4fcfe5e8110e0c113c7871",
-                "reference": "9a945c208f20c129da4fcfe5e8110e0c113c7871",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/09454f3cd0614f1e6ddf23f92ef227d87a33853e",
+                "reference": "09454f3cd0614f1e6ddf23f92ef227d87a33853e",
                 "shasum": ""
             },
             "require": {
@@ -1604,7 +1601,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-05-15 16:46:39"
+            "time": "2015-06-08 08:58:10"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -1612,12 +1609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "1a889d35d7e30b5c56820cc4ec1d7bdacd69244b"
+                "reference": "bc7df9d8fa44b3308cc899ffc8e4204316304e41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/1a889d35d7e30b5c56820cc4ec1d7bdacd69244b",
-                "reference": "1a889d35d7e30b5c56820cc4ec1d7bdacd69244b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/bc7df9d8fa44b3308cc899ffc8e4204316304e41",
+                "reference": "bc7df9d8fa44b3308cc899ffc8e4204316304e41",
                 "shasum": ""
             },
             "require": {
@@ -1657,7 +1654,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-05-18 11:12:35"
+            "time": "2015-06-07 17:22:13"
         }
     ],
     "aliases": [],
