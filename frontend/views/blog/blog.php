@@ -9,6 +9,7 @@
             <?= Html::img($blog->getImage('200x200')); ?>
             <p><b>Description:</b>&nbsp;<?= $blog->description; ?></p>
         </div>
+        <hr />
         <?= ListView::widget([
             'dataProvider' => $postsDP,
             'itemView'     => '@frontend/views/_partials/postDefault.php',
