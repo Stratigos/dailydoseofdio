@@ -10,7 +10,7 @@
                 <?php if($post->blogger): ?>
                     <span class="post-byline">
                         by <?= Html::a($post->blogger->name, $post->blogger->url);?>
-                    </span><span class="white"> | </span>
+                    </span><span class="lt-grey"> | </span>
                 <?php endif; ?>
                 <span class="post-date">
                     <span class="glyphicon glyphicon-time"></span> <?= $date ?>
