@@ -6,12 +6,16 @@
             <?php if($post->blog) : ?>
                 <h2><?= Html::a($post->blog->title, $post->blog->url); ?></h2>
             <?php endif; ?>
-            <?php if($post->blogger): ?>
-                <p class="lead">
-                    by <?= Html::a($post->blogger->name, $post->blogger->url);?>
-                </p>
-            <?php endif; ?>
-            <p><span class="glyphicon glyphicon-time"></span> <?= $date ?></p>
+            <div class="post-meta">
+                <?php if($post->blogger): ?>
+                    <span class="post-byline">
+                        by <?= Html::a($post->blogger->name, $post->blogger->url);?>
+                    </span><span class="white"> | </span>
+                <?php endif; ?>
+                <span class="post-date">
+                    <span class="glyphicon glyphicon-time"></span> <?= $date ?>
+                </span>
+            </div>            
             <hr />
             <div class="post-body"><?= $post->body ?></div>
             <hr />

@@ -172,6 +172,10 @@ h1 {
 
 /* General Helper Classes */
 
+.lt-grey {
+    color: #a5a5a5;
+}
+
 .shadow {
     box-shadow: 0 0 10px #000;
 }
@@ -185,6 +189,10 @@ h1 {
 }
 
 /* Posts */
+.post-meta {
+    padding-left: 20px;
+}
+
 .post-body {
     max-width: 750px;
     padding: 0.7em;
