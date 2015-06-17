@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
-            <h1><?= $post->title ?></h1>
+            <h1 class="text-center"><?= $post->title ?></h1>
             <?php if($post->blog) : ?>
                 <h2><?= Html::a($post->blog->title, $post->blog->url); ?></h2>
             <?php endif; ?>
