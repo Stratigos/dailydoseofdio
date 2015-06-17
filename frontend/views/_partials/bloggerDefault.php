@@ -1,9 +1,9 @@
 <?php use yii\helpers\Html; ?>
 <h2><?= Html::a(Html::encode($model->name), $model->url); ?></h2>
-<div class="row">
+<div>
     <?= Html::img($model->getImage('200x200')); ?>
 </div>
-<div class="row">
+<div>
     <p><?= $model->short_description ?></p>
 </div>
 <div class="clearfix"></div>
