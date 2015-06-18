@@ -76,7 +76,7 @@ class UserController extends Controller
         $user   = new User();
         $errors = [];
 
-        if(Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
             $user->load(Yii::$app->request->post());
             if($user->save()) {
                 return $this->redirect(['index']);
@@ -102,12 +102,26 @@ class UserController extends Controller
         $user   = User::find()->where('id = :_id', [':_id' => $id])->one();
         $errors = [];
 
-        if($user === NULL) {
+        if ($user === NULL) {
             throw new HttpException(404, "User {$id} Not Found");
         }
 
-        if(Yii::$app->request->isPost) {
-            $user->load(Yii::$app->request->post());
+        if (Yii::$app->request->isPost) {
+            $post_data = Yii::$app->request->post();
+            $user->load($post_data);
+
+            // Crude way of updating password. TODO: implement a UserAdminForm
+            //  model, which handles validation for passphrases / pass
+            //  confirms, and any other rules associated with setting the 
+            //  password value.
+            // Currently, no error is thrown if User pass/conf dont match.
+            if (isset($post_data['user_password']) && !empty($post_data['user_password'])) {
+                if (isset($post_data['user_password_conf']) &&
+                   ($post_data['user_password_conf'] == $post_data['user_password'])
+                ) {
+                    $user->new_password = $post_data['user_password'];
+                }
+            }
 
             if($user->save()) {
                 return $this->redirect(['index']);
@@ -130,9 +144,9 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {   
-        if($user = User::find()->where('id = :_id', [':_id' => $id])->one()) {
+        if ($user = User::find()->where('id = :_id', [':_id' => $id])->one()) {
             $user->deleted_at = time();
-            if($user->save()) {
+            if ($user->save()) {
                 return $this->redirect(['index']);
             } else {
                 $errors[] = "Error deleting user: {$id}";

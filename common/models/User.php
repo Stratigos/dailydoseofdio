@@ -29,6 +29,16 @@ class User extends ActiveRecord implements IdentityInterface
     const ROLE_USER = 10;
 
     /**
+     * @var $new_password String
+     *  Yii2's janky way of updating users.password_hash via form input. 
+     *  Var temporarily stores text input of passphrase, which is converted
+     *  to a hash before saving the record.
+     * @see self::beforeSave()
+     * @see self::setPassword()
+     */
+    public $new_password;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -52,12 +62,9 @@ class User extends ActiveRecord implements IdentityInterface
     */
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
-            if(isset($this->password)) {
-                echo('<pre>');
-                echo(print_r('wtf how is password set?'));
-                echo('</pre>');
-                die();
-                $this->password_hash = Security::generatePasswordHash($this->password);
+            if(isset($this->new_password) /* && $this->validatePassword($new_password) */) {
+                $this->setPassword($this->new_password);
+                $this->new_password = null;
             }
             return true;
         }
@@ -74,7 +81,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             ['role', 'default', 'value' => self::ROLE_USER],
-            ['role', 'in', 'range' => [self::ROLE_USER]],
+            ['role', 'in', 'range' => [self::ROLE_USER]]
         ];
     }
 
