@@ -5,7 +5,7 @@ div.carousel {
 }
 
 div.carousel>div.carousel-inner>div.item img {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
