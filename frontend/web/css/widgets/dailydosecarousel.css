@@ -7,16 +7,14 @@ div.carousel {
 div.carousel>div.carousel-inner>div.item img {
     margin: 0 auto;
 }
-div.carousel>div.carousel-inner>div.item img {
-    margin: 0 auto;
-}
 
-@media screen and (min-width: 768px) 
-.carousel-control .glyphicon-hand-left, .carousel-control .glyphicon-hand-right, .carousel-control .icon-next, .carousel-control .icon-prev {
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  font-size: 30px;
+@media screen and (min-width: 768px) {
+  .carousel-control .glyphicon-hand-left, .carousel-control .glyphicon-hand-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    font-size: 30px;
+  }
 }
 .carousel-control .glyphicon-hand-right, .carousel-control .icon-next {
   right: 5%;
