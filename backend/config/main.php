@@ -89,8 +89,8 @@ return [
                 'tag/delete/<id:\d+>'          => 'tag/delete',
                 'users'                        => 'user/index',
                 'user/create'                  => 'user/create',
-                'user/update'                  => 'user/update',
-                'user/delete'                  => 'user/delete'
+                'user/update/<id:\d+>'         => 'user/update',
+                'user/delete/<id:\d+>'         => 'user/delete'
             ]
         ],
         'user' => [

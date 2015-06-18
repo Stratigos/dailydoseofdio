@@ -47,6 +47,25 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+    * @inheritdoc
+    *   - hashes password if one is set
+    */
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            if(isset($this->password)) {
+                echo('<pre>');
+                echo(print_r('wtf how is password set?'));
+                echo('</pre>');
+                die();
+                $this->password_hash = Security::generatePasswordHash($this->password);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
       * @inheritdoc
       */
     public function rules()
@@ -54,7 +73,6 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-
             ['role', 'default', 'value' => self::ROLE_USER],
             ['role', 'in', 'range' => [self::ROLE_USER]],
         ];

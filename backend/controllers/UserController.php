@@ -4,14 +4,14 @@
 *************************************/
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-//use backend\dataproviders\UserControllerIndexDataProvider;
-use common\models\User;
 
 class UserController extends Controller
 {
@@ -54,11 +54,16 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        $userDP                              = new ActiveDataProvider();
+        $userDP->pagination->defaultPageSize = 10;
+        $userDP->pagination->pageSizeParam   = false;
+        $userDP->query                       = User::find();
+
         return $this->render(
             'index',
             [
                 'createUserUrl'     => Yii::$app->urlManager->createUrl('user/create'),
-                'usersDataProvider' => new UserControllerIndexDataProvider()
+                'usersDataProvider' => $userDP
             ]
         );
     }
@@ -103,6 +108,7 @@ class UserController extends Controller
 
         if(Yii::$app->request->isPost) {
             $user->load(Yii::$app->request->post());
+
             if($user->save()) {
                 return $this->redirect(['index']);
             } else {
