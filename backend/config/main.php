@@ -86,7 +86,11 @@ return [
                 'tag/view/<id:\d+>'            => 'tag/view',
                 'tag/create'                   => 'tag/create',
                 'tag/update/<id:\d+>'          => 'tag/update',
-                'tag/delete/<id:\d+>'          => 'tag/delete'
+                'tag/delete/<id:\d+>'          => 'tag/delete',
+                'users'                        => 'user/index',
+                'user/create'                  => 'user/create',
+                'user/update'                  => 'user/update',
+                'user/delete'                  => 'user/delete'
             ]
         ],
         'user' => [
