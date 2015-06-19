@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2ee053239be2ad4cf020f3b5998f29b5302d82c9"
+                "reference": "e9b8623c1e23f533d969ef2269a043f7d4838e18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ee053239be2ad4cf020f3b5998f29b5302d82c9",
-                "reference": "2ee053239be2ad4cf020f3b5998f29b5302d82c9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e9b8623c1e23f533d969ef2269a043f7d4838e18",
+                "reference": "e9b8623c1e23f533d969ef2269a043f7d4838e18",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2015-06-11 23:48:44"
+            "time": "2015-06-19 00:56:27"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -1304,12 +1304,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "a6bef7f792543832701e73889b4b7b7704302967"
+                "reference": "fffcd50b35c53888b40bb7cf9d52f25e1a4e2f43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/a6bef7f792543832701e73889b4b7b7704302967",
-                "reference": "a6bef7f792543832701e73889b4b7b7704302967",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/fffcd50b35c53888b40bb7cf9d52f25e1a4e2f43",
+                "reference": "fffcd50b35c53888b40bb7cf9d52f25e1a4e2f43",
                 "shasum": ""
             },
             "require": {
@@ -1346,7 +1346,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2015-05-10 22:31:28"
+            "time": "2015-06-18 08:31:25"
         },
         {
             "name": "yurkinx/yii2-image",
