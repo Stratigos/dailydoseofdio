@@ -92,7 +92,7 @@ class PostController extends Controller
     {
         $post = Post::find()->where('id = :_id', [':_id' => $id])->one();
 
-        if($post === NULL) {
+        if ($post === NULL) {
             throw new HttpException(404, "Post {$id} Not Found");
         }
 
@@ -124,7 +124,7 @@ class PostController extends Controller
     public function actionCreate($media_type)
     {
         $post_media_types = Post::getMediaTypes();
-        if(!array_key_exists($media_type, $post_media_types)) {
+        if (!array_key_exists($media_type, $post_media_types)) {
             throw new HttpException(404, 'Invalid Post Media Type.');
         }
 
@@ -142,30 +142,30 @@ class PostController extends Controller
         $relational_content = $rel_content_dp->formattedContent;
         $post_media         = PostMediaFactory::instantiatePostMedia($post->getMediaTypeName());
 
-        if(Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
             $post->load($post_request_data);
             // load Post's media instance here, to preserve form data on error
-            if(isset($post_media)) {
+            if (isset($post_media)) {
                 $post_media->load($post_request_data);
             }
             // Set the Post's published_at from a datetimepicker value.
-            if( isset($post_request_data['post_published_at_string']) &&
+            if ( isset($post_request_data['post_published_at_string']) &&
                 !empty($post_request_data['post_published_at_string'])
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
             // set current User as author
             $post->created_by = Yii::$app->user->id;
-            if($post->save()) {
+            if ($post->save()) {
                 // check for any media, and save relation to Post
-                if($post->type_id && isset($post_media)) {
+                if ($post->type_id && isset($post_media)) {
                     $post_media->post_id = $post->id;
-                    if(!$post_media->save()) {
+                    if (!$post_media->save()) {
                         $errors[$post_media->className()] = $post_media->getErrors();
                     }
                 }
-                if(!empty($errors)) {
+                if (!empty($errors)) {
                     Yii::$app->session->setFlash('success', "Post: {$post->id} created!");
                     return $this->redirect(
                         Yii::$app->urlManager->createUrl(
@@ -210,10 +210,10 @@ class PostController extends Controller
     public function actionUpdate($id, $create_errors = NULL)
     {
         $post = Post::find()->where('id = :_id', [':_id' => $id])->one();
-        if(empty($post)) {
+        if (empty($post)) {
             throw new HttpException(404, "Post {$id} Not Found");
         }
-        if(!Yii::$app->user->can('updatePost', ['post' => $post])) {
+        if (!Yii::$app->user->can('updatePost', ['post' => $post])) {
             throw new HttpException(403, "You must be the author of this Post.");
         }
         $post_tags      = '';
@@ -226,31 +226,31 @@ class PostController extends Controller
         ;
         $relational_content = $rel_content_dp->formattedContent;
         // load Tags associated with Post
-        if(!empty($post->tags)) {
+        if (!empty($post->tags)) {
             $post_tags = ArrayHelper::map($post->tags, 'id', 'name');
             $post_tags = implode(',', $post_tags);
         }
 
-        if(Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
             $post_request_data = Yii::$app->request->post();
             $post->load($post_request_data);
             // Set the Post's published_at from a datetimepicker value.
-            if( isset($post_request_data['post_published_at_string']) &&
+            if ( isset($post_request_data['post_published_at_string']) &&
                 !empty($post_request_data['post_published_at_string'])
             ) {
                 $post->published_at = strtotime($post_request_data['post_published_at_string']);
             }
-            if($post->save()) {
+            if ($post->save()) {
                 // check for any media, and save relation to Post
-                if($post->type_id && isset($post_media)) {
+                if ($post->type_id && isset($post_media)) {
                     $post_media->load($post_request_data);
                     $post_media->post_id = $post->id;
-                    if(!$post_media->save()) {
+                    if (!$post_media->save()) {
                         $errors[$post_media->className()] = $post_media->getErrors();
                     }
                 }
                 // if everything saved correctly, refresh current page
-                if(empty($errors)) {
+                if (empty($errors)) {
                     Yii::$app->session->setFlash('success', "Post: {$post->id} updated!");
                     return $this->refresh();
                 }
@@ -283,9 +283,9 @@ class PostController extends Controller
     public function actionDelete($id)
     {   
         //$errors = [];
-        if($post = Post::find()->where('id = :_id', [':_id' => $id])->one()) {
+        if ($post = Post::find()->where('id = :_id', [':_id' => $id])->one()) {
             $post->deleted_at = time();
-            if($post->save()) {
+            if ($post->save()) {
                 return $this->redirect(['index']);
             } else {
                 $errors[] = "Error deleting post: {$id}";
