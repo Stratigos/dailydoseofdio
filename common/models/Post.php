@@ -63,8 +63,7 @@ class Post extends ActiveRecord
         return [
             self::POST_TYPE_TEXT  => 'text',
             self::POST_TYPE_VIDEO => 'video',
-            self::POST_TYPE_QUOTE => 'quote',
-            self::POST_TYPE_IMAGE => 'image'
+            self::POST_TYPE_QUOTE => 'quote'
         ];
     }
 
@@ -193,9 +192,6 @@ class Post extends ActiveRecord
                 break;
             case self::POST_TYPE_QUOTE :
                 $media = $this->quote;
-                break;
-            case self::POST_TYPE_IMAGE :
-                //$media = $this->image;
                 break;
         }
         return $media;
