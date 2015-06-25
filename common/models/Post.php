@@ -88,7 +88,7 @@ class Post extends ActiveRecord
             ]
         ];
 
-        if(isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
+        if (isset(Yii::$app->params['isBackend']) && Yii::$app->params['isBackend']) {
             $behaviors['imageUpload'] = [
                 'class'             => 'backend\components\ImageUploadBehavior',
                 'model_unique_attr' => 'shortname'
@@ -133,7 +133,7 @@ class Post extends ActiveRecord
     public function validateShortnameURLFriendly($attribute)
     {
         $value = $this->$attribute;
-        if(preg_match(self::$shortnameFriendlyPattern, $value)) {
+        if (preg_match(self::$shortnameFriendlyPattern, $value)) {
             $this->addError(
                 $attribute,
                 'Post shortname can only contain lower-case letters, numbers, and dashes.'
@@ -169,7 +169,7 @@ class Post extends ActiveRecord
     {
         $name        = NULL;
         $media_types = self::getMediaTypes();
-        if($this->type_id && isset($media_types[$this->type_id])) {
+        if ($this->type_id && isset($media_types[$this->type_id])) {
             $name = $media_types[$this->type_id];
         }
 
@@ -290,9 +290,9 @@ class Post extends ActiveRecord
     {
         $summary = null;
 
-        if(!empty($this->body)) {
+        if (!empty($this->body)) {
             $summary = substr(strip_tags($this->body, $allowable_tags), 0, $length);
-            if($length < strlen($this->body)) {
+            if ($length < strlen($this->body)) {
                 $summary .= ' &hellip;';
             }
         }
