@@ -47,29 +47,29 @@ class PostTagsAttributionBehavior extends Behavior
         $success   = FALSE; 
         $post_data = Yii::$app->request->post();
         // remove current set of PostTags 
-        if(!empty($this->owner->postTags)) {
+        if (!empty($this->owner->postTags)) {
             foreach($this->owner->postTags as $_post_tag) {
                 $_post_tag->delete();
             }
         }
         //@todo add regex check for letters, numbers, commas, and spaces
-        if(isset($post_data[PostTag::getInputFieldName()]) && !empty($post_data[PostTag::getInputFieldName()])) {
+        if (isset($post_data[PostTag::getInputFieldName()]) && !empty($post_data[PostTag::getInputFieldName()])) {
             $post_tags_arr = explode(',', $post_data[PostTag::getInputFieldName()]);
-            if(!empty($post_tags_arr)) {
+            if (!empty($post_tags_arr)) {
                 foreach($post_tags_arr as $tag_name) {
                     $tag = Tag::find()->where('name = :_name', [':_name' => $tag_name])->one();
-                    if($tag) {
+                    if ($tag) {
                         $post_tag          = new PostTag();
                         $post_tag->post_id = $this->owner->id;
                         $post_tag->tag_id  = $tag->id;
-                        if(!$post_tag->save()) {
+                        if (!$post_tag->save()) {
                             $this->owner->addError($this->model_error_attribute, $post_tag->getErrors());
                         }
                     } else {
                         $this->owner->addError($this->model_error_attribute, 'Invalid Tags Submission');
                     }
                 }
-                if(!$this->owner->hasErrors('id')) {
+                if (!$this->owner->hasErrors('id')) {
                     $success = TRUE;
                 }
             }
