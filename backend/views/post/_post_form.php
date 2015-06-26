@@ -9,7 +9,7 @@
 ?>
 <div>
     <div id="post-form-errors" class="form-errors-cont">
-        <?php if(isset($errors) && !empty($errors)) : ?>
+        <?php if (isset($errors) && !empty($errors)) : ?>
             <p>ERRORS</p>
             <!-- <ul class="form-errors-list has-error help-block">
                 <?php /* foreach($errors as $prop_errors) :
@@ -61,7 +61,7 @@
         <?= $form->field($post, 'blog_id')->dropDownList($blogs); ?>
         <?= $form->field($post, 'blogger_id')->dropDownList($bloggers); ?>
         <div class="form-group post-image-display">
-             <?php if($post->image) : ?>
+             <?php if ($post->image) : ?>
                 <?= Html::img(
                     $post->getImage('250x155'),
                     [
@@ -72,11 +72,11 @@
                 ); ?>
             <?php else : ?>
                 <p>NO IMAGE UPLOADED</p>
-            <?php endif;?>
+            <?php endif; ?>
         </div>
         <?= $form->field($post->image_file, 'image')->fileInput(); ?>
         <?= $form->field($post, 'body')->widget(Summernote::className(), []) ?>
-        <?php if($post->type_id) : ?>
+        <?php if ($post->type_id) : ?>
             <?= $this->render(
                 '_post_' . $post->getMediaTypeName() . '_form',
                 [
@@ -84,7 +84,7 @@
                     'form'       => $form
                 ]
             ); ?>
-        <?php endif;?>
+        <?php endif; ?>
         <div class="form-group field-post-tags-selected">
             <label class="control-label" for="post-tags-selected">Post Tags</label>
             <?= SelectizeTextInput::widget([
@@ -110,18 +110,24 @@
         </div>
 
         <div id='post-form-tag-list-cont' class="form-group">
-            <?php /*
-                THIS NEEDS TO BECOME A SELECT DROPDOWN
-                THAT IS HIDDEN ON LOAD, DISPLAYS WITH ONCLICK OF HELPER
-                LINK OR BUTTON OR IMAGE, AND DISPLAYS ALL AVAILABLE TAGS.
-                WHEN A TAG IS SELECTED, ITS ADDED TO THE LIST ABOVE
-            */ ?>
+            <?php /* @todo Refactor the following tag selection list into a self contained widget */ ?>
             <p>TAGS:</p>
-            <?php if(!empty($tags)): ?>
-                <p>There are <?= count($tags); ?> Tags in this system (UNDER CONSTRUCTION).</p>
+            <?php if (!empty($tags)): ?>
+
+                <?php $post_tags_arr = explode(',', $post_tags); ?>
+                <p>There are <?= count($tags); ?> Tags created for this system.</p>
+                <div class="post-form-tag-cloud">
+                    <?php foreach ($tags as $tag) : ?>
+                        <?php if (!in_array($tag->name, $post_tags_arr)): ?>
+                            <button class='btn btn-default post-form-tag-list-item'><?= $tag->name; ?></button>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+                <?php unset($post_tags_arr); ?>
+
             <?php else: ?>
                 <p>No Tags found.</p>
-            <?php endif;?>
+            <?php endif; ?>
         </div>
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
