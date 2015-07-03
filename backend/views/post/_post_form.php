@@ -3,6 +3,7 @@
     use common\models\PostTag;
     use yii\helpers\Html;
     use yii\bootstrap\ActiveForm;
+    use yii\web\JqueryAsset;
     use dosamigos\datetimepicker\DateTimePicker;
     use dosamigos\selectize\SelectizeTextInput;
     use Zelenin\yii\widgets\Summernote\Summernote;
@@ -132,3 +133,6 @@
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
 </div>
+<?php
+    $this->registerJsFile('/js/postform.js', ['depends' => JqueryAsset::className()]);
+?>
