@@ -52,9 +52,9 @@
                     'startView'      => 2,
                     'minView'        => 0,
                     'maxView'        => 4,
-                    'autoclose'      => TRUE,
-                    'todayBtn'       => TRUE,
-                    'todayHighlight' => TRUE
+                    'autoclose'      => true,
+                    'todayBtn'       => true,
+                    'todayHighlight' => true
                 ]
             ]);?>
         </div>
@@ -103,9 +103,9 @@
                     'labelField'    => 'name',
                     'searchField'   => ['name'],
                     'loadThrottle'  => 500,
-                    'addPrecedence' => TRUE,
-                    'hideSelected'  => TRUE,
-                    'create'        => FALSE
+                    'addPrecedence' => true,
+                    'hideSelected'  => true,
+                    'create'        => false
                 ],
             ]) ?>
         </div>
